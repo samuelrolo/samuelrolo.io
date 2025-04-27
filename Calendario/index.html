@@ -72,6 +72,16 @@
             <div class="booking-options">
                 <form id="booking-form">
                     <div class="form-group">
+                        <label for="service-type">Tipo de Serviço:</label>
+                        <select id="service-type" name="service-type" required>
+                            <option value="coaching">Coaching</option>
+                            <option value="inspiration">Momentos de Inspiração</option>
+                            <option value="digital">Conteúdos Digitais</option>
+                            <option value="cv">Revisão de CV e/ou preparação para entrevistas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="session-type">Tipo de Sessão:</label>
                         <select id="session-type" name="session-type" required>
                             <option value="remote">Remota (Online)</option>
@@ -86,6 +96,10 @@
                             <option value="30">30 minutos - 20€</option>
                             <option value="45">45 minutos - 30€</option>
                             <option value="60">60 minutos - 40€</option>
+                            <option value="30-cv-basic">Revisão de CV Básica (30 min) - 25€</option>
+                            <option value="60-cv-complete">Revisão de CV Completa (60 min) - 45€</option>
+                            <option value="45-interview">Preparação para Entrevista (45 min) - 35€</option>
+                            <option value="90-cv-interview">Pacote Completo (CV + Entrevista) (90 min) - 70€</option>
                         </select>
                     </div>
 
@@ -129,7 +143,7 @@
             </div>
 
             <div class="user-details">
-                <h4>Seus Dados</h4>
+                <h4>Os Seus Dados</h4>
                 <form id="user-form">
                     <div class="form-group">
                         <label for="user-name">Nome Completo:</label>
@@ -167,6 +181,9 @@
                     </button>
                     <button class="payment-method" data-method="mbway">
                         <i class="fas fa-mobile-alt"></i> MB WAY
+                    </button>
+                    <button class="payment-method" data-method="bank-transfer">
+                        <i class="fas fa-university"></i> Transferência Bancária
                     </button>
                 </div>
             </div>
@@ -209,7 +226,28 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/logo.png" alt="Share2Inspire Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="../index.html#inicio">Início</a></li>
+                        <li><a href="../index.html#servicos">Serviços</a></li>
+                        <li><a href="../index.html#precos">Preços</a></li>
+                        <li><a href="../index.html#contato">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> srshare2inspire@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +351 961 925 050</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
 

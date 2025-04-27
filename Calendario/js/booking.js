@@ -272,6 +272,10 @@ function processPayment(method, amount, description, userDetails) {
         case 'mbway':
             paymentProvider = window.paymentProviders.mbway;
             break;
+        case 'bank-transfer':
+            // Mostrar informações de transferência bancária
+            showBankTransferInfo(amount, userDetails);
+            return;
         default:
             hideLoadingIndicator();
             alert('Método de pagamento não suportado.');
@@ -301,6 +305,60 @@ function processPayment(method, amount, description, userDetails) {
             handlePaymentResult(result, description, userDetails, amount);
         }, 3000);
     }
+}
+
+function showBankTransferInfo(amount, userDetails) {
+    // Criar e mostrar modal com informações de transferência bancária
+    const modalHtml = `
+        <div id="bank-transfer-modal" class="modal" style="display: block;">
+            <div class="modal-content" style="max-width: 500px;">
+                <span class="close" onclick="document.getElementById('bank-transfer-modal').remove()">&times;</span>
+                <h2>Pagamento por Transferência Bancária</h2>
+                <p style="margin-bottom: 20px;">Valor a pagar: <strong>${amount.toFixed(2)}€</strong></p>
+                <div class="payment-info" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <p><strong>Dados para transferência:</strong></p>
+                    <p><strong>IBAN:</strong> <span style="font-family: monospace; font-size: 1.1em;">LT38 32 50 0674 3397 9375</span></p>
+                    <p><strong>Beneficiário:</strong> Samuel Rolo</p>
+                    <p><strong>Referência:</strong> Share2Inspire_${userDetails.name.split(' ')[0]}</p>
+                </div>
+                <p style="margin: 15px 0; font-size: 0.9em; color: #666;">
+                    Após realizar a transferência, envie o comprovativo para <strong>srshare2inspire@gmail.com</strong> com o seu nome e data da marcação.
+                </p>
+                <button onclick="handleBankTransferConfirmation('${userDetails.name}', ${amount})" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Confirmar que realizei a transferência</button>
+            </div>
+        </div>
+    `;
+    
+    // Adicionar modal ao DOM
+    const modalContainer = document.createElement('div');
+    modalContainer.innerHTML = modalHtml;
+    document.body.appendChild(modalContainer.firstElementChild);
+    
+    // Esconder indicador de carregamento
+    hideLoadingIndicator();
+}
+
+function handleBankTransferConfirmation(userName, amount) {
+    // Remover modal
+    document.getElementById('bank-transfer-modal').remove();
+    
+    // Mostrar mensagem de confirmação
+    showLoadingIndicator('A processar a sua confirmação...');
+    
+    setTimeout(() => {
+        const result = {
+            success: true,
+            transactionId: 'bank_' + Math.random().toString(36).substr(2, 9)
+        };
+        
+        // Simular dados do utilizador para a confirmação
+        const userDetails = {
+            name: userName,
+            dateTime: new Date().toLocaleString('pt-PT')
+        };
+        
+        handlePaymentResult(result, 'Transferência Bancária', userDetails, amount);
+    }, 2000);
 }
 
 function showCreditCardForm(paymentId, userDetails, amount) {
@@ -368,15 +426,20 @@ function showMBWayForm(paymentId, userDetails, amount) {
                 <span class="close" onclick="document.getElementById('mbway-modal').remove()">&times;</span>
                 <h2>Pagamento com MB WAY</h2>
                 <p style="margin-bottom: 20px;">Valor a pagar: <strong>${amount.toFixed(2)}€</strong></p>
+                <div class="payment-info" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <p><strong>Envie o pagamento para:</strong></p>
+                    <p style="font-size: 1.2em; margin: 10px 0;"><strong>+351961925050</strong></p>
+                    <p style="font-size: 0.9em; color: #666;">Após enviar o pagamento, clique no botão abaixo para confirmar.</p>
+                </div>
                 <form id="mbway-form">
                     <div class="form-group">
-                        <label for="mbway-phone">Número de Telemóvel:</label>
+                        <label for="mbway-phone">O seu número de telemóvel (para confirmação):</label>
                         <input type="tel" id="mbway-phone" placeholder="9XXXXXXXX" required>
                     </div>
                     <p style="margin: 15px 0; font-size: 0.9em; color: #666;">
-                        Irá receber uma notificação na app MB WAY para confirmar o pagamento.
+                        Irá receber uma notificação na aplicação MB WAY para confirmar o pagamento.
                     </p>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Pagar com MB WAY</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Confirmar Pagamento MB WAY</button>
                 </form>
             </div>
         </div>
@@ -396,7 +459,7 @@ function showMBWayForm(paymentId, userDetails, amount) {
         showLoadingIndicator('Enviando pedido para MB WAY...');
         
         setTimeout(() => {
-            showLoadingIndicator('Aguardando confirmação na app MB WAY...');
+            showLoadingIndicator('Aguardando confirmação na aplicação MB WAY...');
             
             setTimeout(() => {
                 const result = {
@@ -413,12 +476,21 @@ function showMBWayForm(paymentId, userDetails, amount) {
 function simulateRedirect(url, method) {
     // Criar e mostrar modal de redirecionamento
     let methodName = '';
+    let paymentInfo = '';
+    
     switch(method) {
         case 'apple-pay':
             methodName = 'Apple Pay';
             break;
         case 'revolut':
             methodName = 'Revolut';
+            paymentInfo = `
+                <div class="payment-info" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; text-align: left;">
+                    <p><strong>Envie o pagamento para:</strong></p>
+                    <p style="font-size: 1.2em; margin: 10px 0;"><strong>@samuelrolo</strong></p>
+                    <p style="font-size: 0.9em; color: #666;">Após enviar o pagamento, tire um screenshot da confirmação e envie para srshare2inspire@gmail.com</p>
+                </div>
+            `;
             break;
         case 'paypal':
             methodName = 'PayPal';
@@ -430,8 +502,9 @@ function simulateRedirect(url, method) {
     const modalHtml = `
         <div id="redirect-modal" class="modal" style="display: block;">
             <div class="modal-content" style="text-align: center;">
-                <h2>Redirecionando para ${methodName}</h2>
-                <p>Você será redirecionado para a página de pagamento em instantes...</p>
+                <h2>Pagamento com ${methodName}</h2>
+                ${paymentInfo}
+                <p>Será redirecionado para a página de pagamento em instantes...</p>
                 <div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite;"></div>
                 <p>URL: ${url}</p>
                 <style>
@@ -605,7 +678,7 @@ function generateClientEmailContent(userDetails, transactionId, amount) {
         <p>Obrigado por escolher a Share2Inspire!</p>
         
         <p>Atenciosamente,<br>
-        Equipe Share2Inspire<br>
+        Equipa Share2Inspire<br>
         srshare2inspire@gmail.com</p>
     `;
 }
