@@ -615,8 +615,8 @@
 <body>
     <header>
         <div class="logo-container">
-            <!-- Fallback para o logo -->
-            <img src="images/logo.png" alt="Share2Inspire Logo" class="logo" onerror="this.onerror=null; this.src='images/logo.png'; if(this.src.indexOf('images/logo.png') !== -1 && !this.complete) this.src='logo.png';">
+            <!-- Logo com caminho corrigido -->
+            <img src="images/logo.png" alt="Share2Inspire Logo" class="logo">
         </div>
         <div class="language-selector">
             <button id="translate-button" onclick="translateToEnglish()">Translate to English</button>
@@ -632,6 +632,7 @@
                 <a href="#inicio" id="nav-inicio" class="active">Início</a>
                 <a href="#sobre" id="nav-sobre">Sobre</a>
                 <a href="#servicos" id="nav-servicos">Serviços</a>
+                <a href="#precos" id="nav-precos">Preços</a>
                 <a href="#questionario" id="nav-questionario">Questionário</a>
                 <a href="#agendar" id="nav-agendar">Agendar</a>
                 <a href="#autor" id="nav-autor">Sobre o Autor</a>
@@ -654,36 +655,35 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <!-- Fallback para imagens de serviços -->
-                        <img src="images/coaching-icon.png" alt="Coaching" onerror="this.onerror=null; this.src='images/coaching-icon.png'; if(this.src.indexOf('images/coaching-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Coaching';">
+                        <img src="images/coaching-icon.png" alt="Coaching">
                     </div>
                     <h3>Coaching</h3>
                     <p>Apoio individual a profissionais que procuram desenvolver a sua liderança, reforçar a confiança em momentos de mudança ou trabalhar competências como a comunicação e a gestão emocional.</p>
-                    <a href="#agendar" class="btn nav-link" data-service="coaching">Agendar Coaching</a>
+                    <a href="#agendar" class="btn nav-link">Agendar Coaching</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/inspiration-icon.png" alt="Momentos de Inspiração" onerror="this.onerror=null; this.src='images/inspiration-icon.png'; if(this.src.indexOf('images/inspiration-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Inspiração';">
+                        <img src="images/inspiration-icon.png" alt="Momentos de Inspiração">
                     </div>
                     <h3>Momentos de Inspiração</h3>
                     <p>Sessões práticas e dinâmicas sobre temas como liderança humana, comunicação autêntica, gestão da mudança e construção de culturas organizacionais saudáveis.</p>
-                    <a href="#agendar" class="btn nav-link" data-service="inspiracao">Agendar Sessão</a>
+                    <a href="#agendar" class="btn nav-link">Agendar Sessão</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/digital-icon.png" alt="Conteúdos Digitais" onerror="this.onerror=null; this.src='images/digital-icon.png'; if(this.src.indexOf('images/digital-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Digital';">
+                        <img src="images/digital-icon.png" alt="Conteúdos Digitais">
                     </div>
                     <h3>Conteúdos Digitais</h3>
                     <p>Desenvolvimento de conteúdos digitais — como publicações, vídeos ou newsletters — com dicas práticas e mensagens transformadoras.</p>
-                    <a href="#agendar" class="btn nav-link" data-service="conteudos">Solicitar Conteúdo</a>
+                    <a href="#agendar" class="btn nav-link">Solicitar Conteúdo</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/cv-icon.png" alt="Revisão de CV" onerror="this.onerror=null; this.src='images/cv-icon.png'; if(this.src.indexOf('images/cv-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=CV';">
+                        <img src="images/cv-icon.png" alt="Revisão de CV">
                     </div>
                     <h3>Revisão de CV e/ ou preparação para entrevistas</h3>
                     <p>Sessão práticas e com o objetivo de recolher inputs para o teu CV e em como te destacares no processo de recrutamento de una grande empresa de consultoria.</p>
-                    <a href="#agendar" class="btn nav-link" data-service="cv">Agendar Revisão</a>
+                    <a href="#agendar" class="btn nav-link">Agendar Revisão</a>
                 </div>
             </div>
         </div>
@@ -697,6 +697,13 @@
                 <p>Inspirar, transformar e capacitar pessoas a navegarem com confiança e humanidade pelos desafios da mudança. Através de soluções práticas e personalizadas, promovemos uma cultura de crescimento, adaptabilidade e liderança consciente.</p>
                 <a href="#contato" class="btn nav-link">Fala comigo!</a>
             </div>
+        </div>
+    </section>
+    
+    <section id="precos" class="precos-section fade-in" style="display: none;">
+        <div class="container">
+            <h2>Tabela de Preços</h2>
+            <iframe src="precos.html" style="width:100%; height:800px; border:none; overflow:hidden;"></iframe>
         </div>
     </section>
     
@@ -804,7 +811,7 @@
             <h2>Sobre o Autor</h2>
             <div class="autor-container">
                 <div class="autor-foto">
-                    <img src="images/samuel-foto.jpg" alt="Samuel Rolo" onerror="this.onerror=null; this.src='images/samuel-foto.jpg'; if(this.src.indexOf('images/samuel-foto.jpg') !== -1 && !this.complete) this.src='autor.png'; if(this.src.indexOf('autor.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/280?text=Samuel+Rolo';">
+                    <img src="autor.png" alt="Samuel Rolo">
                 </div>
                 <div class="autor-bio">
                     <h3>Samuel Rolo</h3>
@@ -939,17 +946,11 @@
                         targetId = this.getAttribute('href');
                     }
                     
-                    // Se for um botão de serviço, preencher o formulário
-                    const serviceType = this.getAttribute('data-service');
-                    if (serviceType) {
+                    // Se for um botão de serviço, mostrar a seção de agendamento
+                    if (targetId === 'agendar') {
                         const servicoSelect = document.getElementById('servico');
                         if (servicoSelect) {
-                            for (let i = 0; i < servicoSelect.options.length; i++) {
-                                if (servicoSelect.options[i].value === serviceType) {
-                                    servicoSelect.selectedIndex = i;
-                                    break;
-                                }
-                            }
+                            servicoSelect.selectedIndex = 0;
                         }
                     }
                     

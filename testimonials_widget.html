@@ -54,6 +54,8 @@
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             border-left: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
         }
         
         .testimonial:hover {
@@ -107,30 +109,80 @@
     </style>
 </head>
 <body>
-    <div class="testimonials-container">
-        <div class="testimonial fade-in">
-            <div class="testimonial-content">
-                I had the plesure to work with Samuel during my last project at Deloitte. He is a dedicated professional that always goes above and beyond to make an impact that matters. Samuel does a remarkable job leading his teams while being commited and always available to help others. Moreover, he is extremely hard-working, determined and always challanges us to do our best. It was an honour learning from him!
-            </div>
-            <div class="testimonial-author">Marta Oliveira Dias</div>
-            <div class="testimonial-position">Service Improvement Specialist @VodafoneZiggo</div>
-        </div>
-        
-        <div class="testimonial fade-in">
-            <div class="testimonial-content">
-                O Samuel é sem dúvida um excelente profissional. Tive o privilégio de estudar com ele e desde cedo foi possível perceber que o futuro que lhe esperava era risonho, tal como demonstra o seu trajeto profissional. Humilde, trabalhador, eficaz, pragmático entre outras competências importantes na área onde se insere, os Recursos Humanos. Um exemplo!
-            </div>
-            <div class="testimonial-author">João Miguel Lince</div>
-            <div class="testimonial-position">Human Resources Manager at Sublime Hotels</div>
-        </div>
-        
-        <div class="testimonial fade-in">
-            <div class="testimonial-content">
-                I had the pleasure of working with Samuel in his first unofficial project as a senior consultant and was instantly impressed. Samuel effortlessly and expertly managed to juggle multiple issues in the toughest situation, his leadership and team building skills were exceptional, and I was very impressed by his consulting capabilities and willingness to coach new members. As a Senior Consultant, Samuel has my highest recommendation and I can safely say that I have learned a lot by working with him.
-            </div>
-            <div class="testimonial-author">Ricardo Ramos da Silva</div>
-            <div class="testimonial-position">Senior Manager | HRIT Senior Solution Architect | Senior Project Manager | Successfactors SME</div>
-        </div>
+    <div class="testimonials-container" id="testimonials-container">
+        <!-- Os testimonials serão carregados dinamicamente via JavaScript -->
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar as recomendações do arquivo JSON
+            fetch('../linkedin_recommendations.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('testimonials-container');
+                    
+                    // Limpar o container
+                    container.innerHTML = '';
+                    
+                    // Adicionar cada recomendação ao container
+                    data.recommendations.forEach((recommendation, index) => {
+                        const delay = index * 0.2; // Atraso para animação escalonada
+                        
+                        const testimonial = document.createElement('div');
+                        testimonial.className = 'testimonial fade-in';
+                        testimonial.style.animationDelay = `${delay}s`;
+                        
+                        const content = document.createElement('div');
+                        content.className = 'testimonial-content';
+                        content.textContent = recommendation.text;
+                        
+                        const author = document.createElement('div');
+                        author.className = 'testimonial-author';
+                        author.textContent = recommendation.name;
+                        
+                        const position = document.createElement('div');
+                        position.className = 'testimonial-position';
+                        position.textContent = recommendation.title;
+                        
+                        testimonial.appendChild(content);
+                        testimonial.appendChild(author);
+                        testimonial.appendChild(position);
+                        
+                        container.appendChild(testimonial);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar as recomendações:', error);
+                    
+                    // Fallback para recomendações estáticas em caso de erro
+                    const container = document.getElementById('testimonials-container');
+                    container.innerHTML = `
+                        <div class="testimonial fade-in">
+                            <div class="testimonial-content">
+                                I had the plesure to work with Samuel during my last project at Deloitte. He is a dedicated professional that always goes above and beyond to make an impact that matters. Samuel does a remarkable job leading his teams while being commited and always available to help others. Moreover, he is extremely hard-working, determined and always challanges us to do our best. It was an honour learning from him!
+                            </div>
+                            <div class="testimonial-author">Marta Oliveira Dias</div>
+                            <div class="testimonial-position">Service Improvement Specialist @VodafoneZiggo</div>
+                        </div>
+                        
+                        <div class="testimonial fade-in">
+                            <div class="testimonial-content">
+                                O Samuel é sem dúvida um excelente profissional. Tive o privilégio de estudar com ele e desde cedo foi possível perceber que o futuro que lhe esperava era risonho, tal como demonstra o seu trajeto profissional. Humilde, trabalhador, eficaz, pragmático entre outras competências importantes na área onde se insere, os Recursos Humanos. Um exemplo!
+                            </div>
+                            <div class="testimonial-author">João Miguel Lince</div>
+                            <div class="testimonial-position">Human Resources Manager at Sublime Hotels</div>
+                        </div>
+                        
+                        <div class="testimonial fade-in">
+                            <div class="testimonial-content">
+                                I had the pleasure of working with Samuel in his first unofficial project as a senior consultant and was instantly impressed. Samuel effortlessly and expertly managed to juggle multiple issues in the toughest situation, his leadership and team building skills were exceptional, and I was very impressed by his consulting capabilities and willingness to coach new members. As a Senior Consultant, Samuel has my highest recommendation and I can safely say that I have learned a lot by working with him.
+                            </div>
+                            <div class="testimonial-author">Ricardo Ramos da Silva</div>
+                            <div class="testimonial-position">Senior Manager | HRIT Senior Solution Architect | Senior Project Manager | Successfactors SME</div>
+                        </div>
+                    `;
+                });
+        });
+    </script>
 </body>
 </html>
