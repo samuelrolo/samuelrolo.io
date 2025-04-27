@@ -11,70 +11,79 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 header {
-    background-color: #3498db;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px 0;
 }
 
-h1, h2, h3, h4 {
-    margin-top: 0;
+header h1 {
+    margin: 0;
+    color: #3498db;
 }
 
-/* Seção de introdução */
+header h2 {
+    margin: 5px 0 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #666;
+}
+
+main {
+    padding: 40px 0;
+}
+
 .intro {
     text-align: center;
-    margin: 30px 0;
+    margin-bottom: 40px;
+}
+
+.intro h2 {
+    color: #3498db;
+    margin-bottom: 15px;
 }
 
 /* Tabela de preços */
 .price-summary {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background-color: #f0f8ff;
     padding: 20px;
+    border-radius: 5px;
     margin-bottom: 30px;
 }
 
 .price-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin-bottom: 15px;
 }
 
 .price-table th, .price-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
 .price-table th {
     background-color: #3498db;
     color: white;
-    font-weight: 600;
 }
 
 .price-table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.price-table tr:hover {
-    background-color: #e9f7fe;
-}
-
 .payment-policy {
-    background-color: #e8f4f8;
-    padding: 15px;
+    font-size: 0.9rem;
+    background-color: #e8f4fc;
+    padding: 10px;
+    border-radius: 5px;
     border-left: 4px solid #3498db;
-    margin: 20px 0;
-    border-radius: 4px;
 }
 
-/* Contêiner de marcação */
+/* Formulário de agendamento */
 .booking-container {
     display: flex;
     flex-wrap: wrap;
@@ -85,50 +94,42 @@ h1, h2, h3, h4 {
 .booking-options {
     flex: 1;
     min-width: 300px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .calendar-container {
     flex: 2;
     min-width: 400px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Formulário */
 .form-group {
     margin-bottom: 20px;
 }
 
-label {
+.form-group label {
     display: block;
     margin-bottom: 5px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
-input, select, textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
-textarea {
+.form-group textarea {
     height: 100px;
     resize: vertical;
 }
 
-/* Informações de preço */
 .price-info {
-    background-color: #f8f9fa;
+    background-color: #f0f8ff;
     padding: 15px;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-top: 20px;
 }
 
@@ -138,9 +139,9 @@ textarea {
 
 /* Resumo da marcação */
 .booking-summary {
-    background-color: white;
+    background-color: #fff;
     padding: 30px;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     margin-bottom: 40px;
 }
@@ -149,29 +150,29 @@ textarea {
     margin-bottom: 30px;
 }
 
-/* Métodos de pagamento */
 .payment-methods {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
 .payment-method {
     flex: 1;
     min-width: 120px;
     padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
     cursor: pointer;
     text-align: center;
-    transition: all 0.3s;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .payment-method:hover {
     border-color: #3498db;
-    background-color: #f0f7fb;
+    background-color: #f0f8ff;
 }
 
 .payment-method.selected {
@@ -180,22 +181,61 @@ textarea {
 }
 
 .payment-method i {
+    display: block;
     font-size: 24px;
     margin-bottom: 5px;
-    display: block;
+}
+
+.terms-conditions {
+    margin: 20px 0;
+}
+
+.terms-conditions .form-group {
+    display: flex;
+    align-items: flex-start;
+}
+
+.terms-conditions input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.booking-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* Políticas de marcação */
+.booking-policies {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}
+
+.policy-item {
+    margin-bottom: 20px;
+}
+
+.policy-item h4 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.policy-item i {
+    margin-right: 5px;
 }
 
 /* Botões */
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
     border-radius: 4px;
+    font-size: 1rem;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .btn-primary {
@@ -216,28 +256,12 @@ textarea {
     background-color: #7f8c8d;
 }
 
-.booking-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-/* Políticas de marcação */
-.booking-policies {
-    margin-bottom: 40px;
-}
-
-.policy-item {
-    margin-bottom: 20px;
-}
-
-.policy-item h4 {
-    color: #3498db;
-    margin-bottom: 10px;
-}
-
-.policy-item i {
-    margin-right: 10px;
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
 }
 
 /* Modal */
@@ -254,10 +278,10 @@ textarea {
 }
 
 .modal-content {
-    background-color: white;
+    background-color: #fff;
     margin: 10% auto;
     padding: 30px;
-    border-radius: 8px;
+    border-radius: 5px;
     max-width: 800px;
     position: relative;
 }
@@ -274,7 +298,7 @@ textarea {
 .terms-content {
     max-height: 400px;
     overflow-y: auto;
-    margin: 20px 0;
+    margin-bottom: 20px;
     padding-right: 10px;
 }
 
@@ -283,34 +307,68 @@ textarea {
     display: none;
 }
 
-.fade-in {
-    animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
 /* Responsividade */
 @media (max-width: 768px) {
     .booking-container {
         flex-direction: column;
     }
     
-    .calendar-container, .booking-options {
-        min-width: 100%;
+    .payment-methods {
+        flex-direction: column;
     }
     
     .payment-method {
-        min-width: 100px;
+        width: 100%;
+    }
+    
+    .booking-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
     }
 }
 
-footer {
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px 0;
+/* Estilos para a seção de confirmação */
+.booking-confirmation {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     text-align: center;
-    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.confirmation-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.confirmation-icon {
+    font-size: 80px;
+    color: #2ecc71;
+    margin-bottom: 20px;
+}
+
+.confirmation-message {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 20px 0 30px;
+    color: #555;
+}
+
+.confirmation-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+#return-home {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
 }
