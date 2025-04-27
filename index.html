@@ -655,35 +655,31 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/coaching-icon.png" alt="Coaching">
+                        <img src="images/icons/coaching-icon.png" alt="Coaching">
                     </div>
                     <h3>Coaching</h3>
                     <p>Apoio individual a profissionais que procuram desenvolver a sua liderança, reforçar a confiança em momentos de mudança ou trabalhar competências como a comunicação e a gestão emocional.</p>
-                    <a href="#agendar" class="btn nav-link">Agendar Coaching</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/inspiration-icon.png" alt="Momentos de Inspiração">
+                        <img src="images/icons/inspiration-icon.png" alt="Momentos de Inspiração">
                     </div>
                     <h3>Momentos de Inspiração</h3>
                     <p>Sessões práticas e dinâmicas sobre temas como liderança humana, comunicação autêntica, gestão da mudança e construção de culturas organizacionais saudáveis.</p>
-                    <a href="#agendar" class="btn nav-link">Agendar Sessão</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/digital-icon.png" alt="Conteúdos Digitais">
+                        <img src="images/icons/digital-icon.png" alt="Conteúdos Digitais">
                     </div>
                     <h3>Conteúdos Digitais</h3>
                     <p>Desenvolvimento de conteúdos digitais — como publicações, vídeos ou newsletters — com dicas práticas e mensagens transformadoras.</p>
-                    <a href="#agendar" class="btn nav-link">Solicitar Conteúdo</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/cv-icon.png" alt="Revisão de CV">
+                        <img src="images/icons/cv-icon.png" alt="Revisão de CV">
                     </div>
                     <h3>Revisão de CV e/ ou preparação para entrevistas</h3>
                     <p>Sessão práticas e com o objetivo de recolher inputs para o teu CV e em como te destacares no processo de recrutamento de una grande empresa de consultoria.</p>
-                    <a href="#agendar" class="btn nav-link">Agendar Revisão</a>
                 </div>
             </div>
         </div>
@@ -751,58 +747,10 @@
     <section id="agendar" class="agendar-section fade-in" style="display: none;">
         <div class="container">
             <h2>Agendar uma Sessão</h2>
-            <form id="agendar-form" class="agendar-form" action="mailto:srshare2inspire@gmail.com" method="post" enctype="text/plain">
-                <input type="hidden" id="service-type" name="service_type" value="geral">
-                <input type="hidden" name="subject" value="Pedido de Agendamento">
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <div class="form-group">
-                            <label for="nome">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" required>
-                        </div>
-                    </div>
-                    <div class="form-col">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-col">
-                        <div class="form-group">
-                            <label for="telefone">Telefone</label>
-                            <input type="tel" id="telefone" name="telefone">
-                        </div>
-                    </div>
-                    <div class="form-col">
-                        <div class="form-group">
-                            <label for="data-preferida">Data Preferida</label>
-                            <input type="date" id="data-preferida" name="data_preferida" required>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="servico">Tipo de Serviço</label>
-                    <select id="servico" name="servico" required>
-                        <option value="">Selecione um serviço</option>
-                        <option value="coaching">Coaching</option>
-                        <option value="inspiracao">Momentos de Inspiração</option>
-                        <option value="conteudos">Conteúdos Digitais</option>
-                        <option value="cv">Revisão de CV / Preparação para Entrevistas</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="mensagem">Mensagem (Opcional)</label>
-                    <textarea id="mensagem" name="mensagem" rows="5"></textarea>
-                </div>
-                
-                <button type="submit" class="btn">Enviar Pedido</button>
-            </form>
+            <p style="text-align: center; margin-bottom: 30px;">Para agendar uma sessão e garantir sua vaga, utilize nosso sistema completo de agendamento e pagamento.</p>
+            <div style="text-align: center;">
+                <a href="Calendario/index.html" class="btn" style="font-size: 1.2rem; padding: 15px 30px;">Acessar Sistema de Agendamento</a>
+            </div>
         </div>
     </section>
     
@@ -902,6 +850,51 @@
             const sections = document.querySelectorAll('section');
             
             // Função para mostrar uma seção específica
+            function showSection(sectionId) {
+                sections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.style.display = 'block';
+                        setTimeout(() => {
+                            section.classList.add('active');
+                        }, 50);
+                    } else {
+                        section.style.display = 'none';
+                        section.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar links ativos
+                allNavLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${sectionId}` || 
+                        (link.id === 'nav-inicio' && sectionId === 'inicio')) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Inicializar com a seção de início
+            showSection('inicio');
+            
+            // Adicionar event listeners para os links de navegação
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    showSection(targetId);
+                    
+                    // Fechar menu mobile se estiver aberto
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="js/translate.js"></script>
+</body>
+</html>
             function showSection(sectionId) {
                 // Esconder todas as seções
                 sections.forEach(section => {

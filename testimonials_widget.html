@@ -116,7 +116,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Carregar as recomendações do arquivo JSON
-            fetch('../linkedin_recommendations.json')
+            fetch('linkedin_recommendations.json')
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById('testimonials-container');

@@ -4,7 +4,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Configuração dos métodos de pagamento
     setupPaymentMethods();
+    
+    // Configuração do botão de agendamento na página principal
+    setupBookingButton();
 });
+
+function setupBookingButton() {
+    // Adicionar evento de clique para o botão de agendamento na página principal
+    const bookingButtons = document.querySelectorAll('a[href="#agendar"]');
+    bookingButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Redirecionar para a página de agendamento
+            window.location.href = '/Calendario/';
+        });
+    });
+}
 
 function setupPaymentSystem() {
     // Configuração do Apple Pay
@@ -127,6 +142,13 @@ function setupPaymentMethods() {
             // Adicionar indicação visual de seleção
             this.style.backgroundColor = '#e8f4fc';
             this.style.borderColor = '#3498db';
+            
+            // Atualizar botão de confirmação para mostrar que o pagamento é necessário
+            const confirmButton = document.getElementById('confirm-booking');
+            if (confirmButton) {
+                confirmButton.textContent = 'Pagar e Confirmar Marcação';
+                confirmButton.classList.add('payment-ready');
+            }
         });
     });
     
@@ -387,57 +409,95 @@ function handlePaymentResult(result, description, userDetails, paidAmount) {
         sendBookingInfoToEmail(description, userDetails, result.transactionId, paidAmount);
     } else {
         // Pagamento falhou
-        alert(`Erro no pagamento: ${result.error || 'Ocorreu um erro ao processar o pagamento.'}`);
+        alert(`Erro no pagamento: ${result.error || 'Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.'}`);
     }
 }
 
 function showSuccessMessage(transactionId, description, userDetails, paidAmount) {
-    // Determinar se é pagamento parcial ou total
-    const isPartialPayment = userDetails.isPartialPayment;
-    const remainingAmount = isPartialPayment ? userDetails.totalAmount - paidAmount : 0;
-    
-    // Criar e mostrar modal de sucesso com a mensagem específica solicitada
-    const modalHtml = `
+    // Criar e mostrar mensagem de sucesso
+    const successHtml = `
         <div id="success-modal" class="modal" style="display: block;">
-            <div class="modal-content">
-                <span class="close" onclick="document.getElementById('success-modal').remove()">&times;</span>
-                <h2 style="color: #2ecc71;"><i class="fas fa-check-circle" style="margin-right: 10px;"></i>Pagamento Confirmado!</h2>
-                <div style="margin: 20px 0; text-align: center;">
-                    <p style="font-size: 18px; font-weight: bold;">A sua reserva foi enviada, receberá a confirmação nas próximas 24H.</p>
+            <div class="modal-content" style="max-width: 600px; text-align: center;">
+                <h2 style="color: #4CAF50;"><i class="fas fa-check-circle" style="font-size: 48px; margin-bottom: 20px;"></i><br>Pagamento Confirmado!</h2>
+                <p>O seu pagamento de <strong>${paidAmount.toFixed(2)}€</strong> foi processado com sucesso.</p>
+                <p>ID da Transação: <strong>${transactionId}</strong></p>
+                
+                <div style="margin: 30px 0; padding: 20px; background-color: #f9f9f9; border-radius: 5px; text-align: left;">
+                    <h3>Detalhes da Marcação:</h3>
+                    <p><strong>Serviço:</strong> ${description}</p>
+                    <p><strong>Nome:</strong> ${userDetails.name}</p>
+                    <p><strong>Email:</strong> ${userDetails.email}</p>
+                    <p><strong>Telefone:</strong> ${userDetails.phone}</p>
+                    <p><strong>Valor Total:</strong> ${userDetails.totalAmount.toFixed(2)}€</p>
+                    ${userDetails.isPartialPayment ? 
+                        `<p><strong>Valor Pago:</strong> ${paidAmount.toFixed(2)}€ (50% do valor total)</p>
+                         <p><strong>Valor Restante:</strong> ${(userDetails.totalAmount - paidAmount).toFixed(2)}€ (a pagar no dia da sessão)</p>` 
+                        : 
+                        `<p><strong>Valor Pago:</strong> ${paidAmount.toFixed(2)}€ (pagamento total)</p>`
+                    }
                 </div>
-                <div style="margin: 20px 0;">
-                    <p><strong>ID da Transação:</strong> ${transactionId}</p>
-                    <p><strong>Descrição:</strong> ${description}</p>
-                    <p><strong>Valor Pago:</strong> ${paidAmount.toFixed(2)}€ ${isPartialPayment ? '(50% do valor total)' : '(Pagamento total)'}</p>
-                    ${isPartialPayment ? `<p><strong>Valor Restante:</strong> ${remainingAmount.toFixed(2)}€ (a pagar no dia da sessão)</p>` : ''}
-                </div>
-                <p>Obrigado pela sua marcação. Um resumo foi enviado para o seu email (${userDetails.email}).</p>
-                <button onclick="document.getElementById('success-modal').remove(); window.location.reload();" class="btn btn-primary" style="margin-top: 20px;">Concluir</button>
+                
+                <p>Um email de confirmação foi enviado para <strong>${userDetails.email}</strong> com todos os detalhes da sua marcação.</p>
+                <p>Obrigado por escolher a Share2Inspire!</p>
+                
+                <button onclick="window.location.href='/'" class="btn btn-primary" style="margin-top: 20px;">Voltar para a Página Inicial</button>
             </div>
         </div>
     `;
     
     // Adicionar modal ao DOM
-    const modalContainer = document.createElement('div');
-    modalContainer.innerHTML = modalHtml;
-    document.body.appendChild(modalContainer.firstElementChild);
+    const successContainer = document.createElement('div');
+    successContainer.innerHTML = successHtml;
+    document.body.appendChild(successContainer.firstElementChild);
 }
 
 function sendBookingInfoToEmail(description, userDetails, transactionId, paidAmount) {
-    console.log(`Enviando informações de reserva para srshare2inspire@gmail.com e ${userDetails.email}`);
-    console.log(`Detalhes da reserva: ${description}`);
-    console.log(`Utilizador: ${userDetails.name} (${userDetails.email}, ${userDetails.phone})`);
-    console.log(`ID da Transação: ${transactionId}`);
-    console.log(`Valor Pago: ${paidAmount.toFixed(2)}€ ${userDetails.isPartialPayment ? '(50% do valor total)' : '(Pagamento total)'}`);
+    // Simular envio de email
+    console.log('Enviando email de confirmação para:', userDetails.email);
+    console.log('Enviando email de notificação para: srshare2inspire@gmail.com');
     
-    if (userDetails.isPartialPayment) {
-        const remainingAmount = userDetails.totalAmount - paidAmount;
-        console.log(`Valor Restante: ${remainingAmount.toFixed(2)}€ (a pagar no dia da sessão)`);
-    }
+    // Conteúdo do email para o cliente
+    const clientEmailContent = `
+        Olá ${userDetails.name},
+        
+        Obrigado por agendar uma sessão na Share2Inspire!
+        
+        Detalhes da sua marcação:
+        - Serviço: ${description}
+        - ID da Transação: ${transactionId}
+        - Valor Total: ${userDetails.totalAmount.toFixed(2)}€
+        ${userDetails.isPartialPayment ? 
+            `- Valor Pago: ${paidAmount.toFixed(2)}€ (50% do valor total)
+             - Valor Restante: ${(userDetails.totalAmount - paidAmount).toFixed(2)}€ (a pagar no dia da sessão)` 
+            : 
+            `- Valor Pago: ${paidAmount.toFixed(2)}€ (pagamento total)`
+        }
+        
+        Em caso de dúvidas, entre em contato através do email srshare2inspire@gmail.com.
+        
+        Atenciosamente,
+        Equipe Share2Inspire
+    `;
     
-    // Esta função simularia o envio de um email com os detalhes da reserva
-    // Em um ambiente de produção, isso seria implementado com um serviço de email real
+    // Conteúdo do email para o administrador
+    const adminEmailContent = `
+        Nova marcação recebida!
+        
+        Detalhes da marcação:
+        - Serviço: ${description}
+        - Cliente: ${userDetails.name}
+        - Email: ${userDetails.email}
+        - Telefone: ${userDetails.phone}
+        - ID da Transação: ${transactionId}
+        - Valor Total: ${userDetails.totalAmount.toFixed(2)}€
+        ${userDetails.isPartialPayment ? 
+            `- Valor Pago: ${paidAmount.toFixed(2)}€ (50% do valor total)
+             - Valor Restante: ${(userDetails.totalAmount - paidAmount).toFixed(2)}€ (a pagar no dia da sessão)` 
+            : 
+            `- Valor Pago: ${paidAmount.toFixed(2)}€ (pagamento total)`
+        }
+    `;
     
-    // Simulação de envio bem-sucedido
-    console.log('Email enviado com sucesso!');
+    console.log('Email para cliente:', clientEmailContent);
+    console.log('Email para administrador:', adminEmailContent);
 }
