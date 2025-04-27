@@ -1,38 +1,63 @@
-// Código para detetar e reparar problemas com imagens
+// Código para detetar e reportar erros de carregamento de imagens
 document.addEventListener('DOMContentLoaded', function() {
-  const images = document.querySelectorAll('img');
-  
-  images.forEach(img => {
-    // Adicionar tratamento de erro para cada imagem
-    img.onerror = function() {
-      console.log('Erro ao carregar imagem:', img.src);
-      
-      // Tentar corrigir caminhos comuns de erro
-      if (img.src.includes('imagens/')) {
-        // Corrigir caminho de 'imagens/' para 'images/'
-        const newSrc = img.src.replace('imagens/', 'images/');
-        console.log('Tentando caminho alternativo:', newSrc);
-        img.src = newSrc;
-      } else if (!img.src.includes('/') && !img.src.startsWith('data:') && !img.src.startsWith('http')) {
-        // Se for um caminho relativo sem diretório, adicionar 'images/'
-        const newSrc = 'images/' + img.src;
-        console.log('Tentando caminho alternativo:', newSrc);
-        img.src = newSrc;
-      } else if (img.src.includes('icons/') && img.src.endsWith('.png')) {
-        // Tentar corrigir ícones específicos
-        const iconName = img.src.split('/').pop();
-        if (['coaching-icon.png', 'inspiration-icon.png', 'digital-icon.png', 'cv-icon.png'].includes(iconName)) {
-          // Usar ícones genéricos para substituir os vazios
-          img.src = 'https://via.placeholder.com/64/3498db/ffffff?text=' + iconName.replace('-icon.png', '');
+    // Função para verificar se uma imagem carregou corretamente
+    function verificarImagem(img) {
+        if (!img.complete || img.naturalWidth === 0) {
+            console.error('Erro ao carregar imagem:', img.src);
+            
+            // Adicionar classe para destacar imagens com erro
+            img.classList.add('erro-carregamento');
+            
+            // Tentar caminhos alternativos
+            if (img.src.indexOf('/') === -1) {
+                // Se a imagem estiver na raiz, tentar na pasta images
+                const novoCaminho = 'images/' + img.src;
+                console.log('Tentando caminho alternativo:', novoCaminho);
+                img.src = novoCaminho;
+            } else if (img.src.indexOf('images/') === 0) {
+                // Se a imagem estiver na pasta images, tentar na raiz
+                const novoCaminho = img.src.replace('images/', '');
+                console.log('Tentando caminho alternativo:', novoCaminho);
+                img.src = novoCaminho;
+            } else if (img.src.indexOf('imagens/') === 0) {
+                // Se a imagem estiver na pasta imagens (que não existe), tentar na pasta images
+                const novoCaminho = img.src.replace('imagens/', 'images/');
+                console.log('Tentando caminho alternativo:', novoCaminho);
+                img.src = novoCaminho;
+            }
         }
-      }
-    };
-    
-    // Verificar imagens que já estão no DOM
-    if (img.complete && img.naturalHeight === 0) {
-      img.onerror();
     }
-  });
-  
-  console.log('Tratamento de erros de imagens inicializado');
+    
+    // Verificar todas as imagens existentes
+    document.querySelectorAll('img').forEach(function(img) {
+        if (img.complete) {
+            verificarImagem(img);
+        } else {
+            img.addEventListener('load', function() {
+                verificarImagem(img);
+            });
+            
+            img.addEventListener('error', function() {
+                console.error('Erro ao carregar imagem:', img.src);
+                
+                // Tentar caminhos alternativos
+                if (img.src.indexOf('/') === -1) {
+                    // Se a imagem estiver na raiz, tentar na pasta images
+                    const novoCaminho = 'images/' + img.src;
+                    console.log('Tentando caminho alternativo:', novoCaminho);
+                    img.src = novoCaminho;
+                } else if (img.src.indexOf('images/') === 0) {
+                    // Se a imagem estiver na pasta images, tentar na raiz
+                    const novoCaminho = img.src.replace('images/', '');
+                    console.log('Tentando caminho alternativo:', novoCaminho);
+                    img.src = novoCaminho;
+                } else if (img.src.indexOf('imagens/') === 0) {
+                    // Se a imagem estiver na pasta imagens (que não existe), tentar na pasta images
+                    const novoCaminho = img.src.replace('imagens/', 'images/');
+                    console.log('Tentando caminho alternativo:', novoCaminho);
+                    img.src = novoCaminho;
+                }
+            });
+        }
+    });
 });
