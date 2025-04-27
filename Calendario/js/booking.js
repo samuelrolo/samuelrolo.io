@@ -115,52 +115,85 @@ function setupPaymentMethods() {
     paymentMethods.forEach(method => {
         method.addEventListener('click', function() {
             // Remover seleção anterior
-            paymentMethods.forEach(m => m.classList.remove('selected'));
+            paymentMethods.forEach(m => {
+                m.classList.remove('selected');
+                m.style.backgroundColor = '';
+                m.style.borderColor = '';
+            });
             // Adicionar seleção ao método clicado
             this.classList.add('selected');
             selectedPaymentMethod = this.getAttribute('data-method');
+            
+            // Adicionar indicação visual de seleção
+            this.style.backgroundColor = '#e8f4fc';
+            this.style.borderColor = '#3498db';
         });
     });
     
     // Botão de confirmar marcação e pagamento
-    document.getElementById('confirm-booking').addEventListener('click', function() {
-        if (!document.getElementById('terms-accept').checked) {
-            alert('Por favor, aceite os termos e condições para continuar.');
-            return;
-        }
-        
-        // Verificar se todos os campos obrigatórios estão preenchidos
-        const userName = document.getElementById('user-name').value;
-        const userEmail = document.getElementById('user-email').value;
-        const userPhone = document.getElementById('user-phone').value;
-        
-        if (!userName || !userEmail || !userPhone) {
-            alert('Por favor, preencha todos os campos obrigatórios.');
-            return;
-        }
-        
-        // Verificar se um método de pagamento foi selecionado
-        if (!selectedPaymentMethod) {
-            alert('Por favor, selecione um método de pagamento.');
-            return;
-        }
-        
-        // Obter detalhes da reserva
-        const sessionType = document.getElementById('session-type').value;
-        const sessionDuration = parseInt(document.getElementById('session-duration').value);
-        const sessionQuantity = parseInt(document.getElementById('session-quantity').value);
-        const finalPrice = parseFloat(document.getElementById('final-price').textContent.replace('€', ''));
-        
-        // Criar descrição da reserva
-        const bookingDescription = `${sessionQuantity} sessão(ões) de ${sessionDuration} minutos - ${sessionType === 'remote' ? 'Remota' : 'Presencial'}`;
-        
-        // Processar pagamento com base no método selecionado
-        processPayment(selectedPaymentMethod, finalPrice, bookingDescription, {
-            name: userName,
-            email: userEmail,
-            phone: userPhone
+    const confirmButton = document.getElementById('confirm-booking');
+    if (confirmButton) {
+        confirmButton.addEventListener('click', function() {
+            if (!document.getElementById('terms-accept').checked) {
+                alert('Por favor, aceite os termos e condições para continuar.');
+                return;
+            }
+            
+            // Verificar se todos os campos obrigatórios estão preenchidos
+            const userName = document.getElementById('user-name').value;
+            const userEmail = document.getElementById('user-email').value;
+            const userPhone = document.getElementById('user-phone').value;
+            
+            if (!userName || !userEmail || !userPhone) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Verificar se um método de pagamento foi selecionado
+            if (!selectedPaymentMethod) {
+                alert('Por favor, selecione um método de pagamento.');
+                return;
+            }
+            
+            // Obter detalhes da reserva
+            const sessionType = document.getElementById('session-type').value;
+            const sessionDuration = parseInt(document.getElementById('session-duration').value);
+            const sessionQuantity = parseInt(document.getElementById('session-quantity').value);
+            const finalPrice = parseFloat(document.getElementById('final-price').textContent.replace('€', ''));
+            
+            // Calcular valor do pagamento (50% para valores acima de 10€, com mínimo de 10€)
+            let paymentAmount = finalPrice;
+            let isPartialPayment = false;
+            
+            if (finalPrice > 10) {
+                paymentAmount = Math.max(finalPrice * 0.5, 10);
+                isPartialPayment = paymentAmount < finalPrice;
+            }
+            
+            // Atualizar o valor a ser pago no resumo
+            document.getElementById('payment-amount').textContent = `${paymentAmount.toFixed(2)}€`;
+            if (isPartialPayment) {
+                document.getElementById('payment-type').textContent = 'Pagamento Parcial (50%)';
+                document.getElementById('remaining-amount').textContent = `${(finalPrice - paymentAmount).toFixed(2)}€`;
+                document.getElementById('remaining-payment-info').style.display = 'block';
+            } else {
+                document.getElementById('payment-type').textContent = 'Pagamento Total';
+                document.getElementById('remaining-payment-info').style.display = 'none';
+            }
+            
+            // Criar descrição da reserva
+            const bookingDescription = `${sessionQuantity} sessão(ões) de ${sessionDuration} minutos - ${sessionType === 'remote' ? 'Remota' : 'Presencial'}`;
+            
+            // Processar pagamento com base no método selecionado
+            processPayment(selectedPaymentMethod, paymentAmount, bookingDescription, {
+                name: userName,
+                email: userEmail,
+                phone: userPhone,
+                totalAmount: finalPrice,
+                isPartialPayment: isPartialPayment
+            });
         });
-    });
+    }
 }
 
 function processPayment(method, amount, description, userDetails) {
@@ -193,7 +226,7 @@ function processPayment(method, amount, description, userDetails) {
     
     if (method === 'credit-card') {
         // Para cartão de crédito, mostrar formulário de cartão
-        showCreditCardForm(paymentInit.paymentId, userDetails);
+        showCreditCardForm(paymentInit.paymentId, userDetails, amount);
     } else {
         // Para outros métodos, redirecionar para a página de checkout
         simulateRedirect(paymentInit.checkoutUrl, method);
@@ -205,18 +238,19 @@ function processPayment(method, amount, description, userDetails) {
                 transactionId: 'trans_' + Math.random().toString(36).substr(2, 9)
             };
             
-            handlePaymentResult(result, description, userDetails);
+            handlePaymentResult(result, description, userDetails, amount);
         }, 3000);
     }
 }
 
-function showCreditCardForm(paymentId, userDetails) {
+function showCreditCardForm(paymentId, userDetails, amount) {
     // Criar e mostrar modal de formulário de cartão
     const modalHtml = `
         <div id="cc-modal" class="modal" style="display: block;">
             <div class="modal-content" style="max-width: 500px;">
                 <span class="close" onclick="document.getElementById('cc-modal').remove()">&times;</span>
                 <h2>Pagamento com Cartão de Crédito</h2>
+                <p style="margin-bottom: 20px;">Valor a pagar: <strong>${amount.toFixed(2)}€</strong></p>
                 <form id="cc-form">
                     <div class="form-group">
                         <label for="cc-number">Número do Cartão:</label>
@@ -236,7 +270,7 @@ function showCreditCardForm(paymentId, userDetails) {
                         <label for="cc-name">Nome no Cartão:</label>
                         <input type="text" id="cc-name" placeholder="NOME COMO APARECE NO CARTÃO" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Pagar</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Pagar ${amount.toFixed(2)}€</button>
                 </form>
             </div>
         </div>
@@ -261,7 +295,7 @@ function showCreditCardForm(paymentId, userDetails) {
                 transactionId: 'cc_' + Math.random().toString(36).substr(2, 9)
             };
             
-            handlePaymentResult(result, 'Pagamento com Cartão', userDetails);
+            handlePaymentResult(result, 'Pagamento com Cartão', userDetails, amount);
         }, 2000);
     });
 }
@@ -342,22 +376,26 @@ function hideLoadingIndicator() {
     }
 }
 
-function handlePaymentResult(result, description, userDetails) {
+function handlePaymentResult(result, description, userDetails, paidAmount) {
     hideLoadingIndicator();
     
     if (result.success) {
         // Pagamento bem-sucedido
-        showSuccessMessage(result.transactionId, description, userDetails);
+        showSuccessMessage(result.transactionId, description, userDetails, paidAmount);
         
         // Enviar informações para o email srshare2inspire.pt sem visibilidade do utilizador
-        sendBookingInfoToEmail(description, userDetails, result.transactionId);
+        sendBookingInfoToEmail(description, userDetails, result.transactionId, paidAmount);
     } else {
         // Pagamento falhou
         alert(`Erro no pagamento: ${result.error || 'Ocorreu um erro ao processar o pagamento.'}`);
     }
 }
 
-function showSuccessMessage(transactionId, description, userDetails) {
+function showSuccessMessage(transactionId, description, userDetails, paidAmount) {
+    // Determinar se é pagamento parcial ou total
+    const isPartialPayment = userDetails.isPartialPayment;
+    const remainingAmount = isPartialPayment ? userDetails.totalAmount - paidAmount : 0;
+    
     // Criar e mostrar modal de sucesso com a mensagem específica solicitada
     const modalHtml = `
         <div id="success-modal" class="modal" style="display: block;">
@@ -370,8 +408,10 @@ function showSuccessMessage(transactionId, description, userDetails) {
                 <div style="margin: 20px 0;">
                     <p><strong>ID da Transação:</strong> ${transactionId}</p>
                     <p><strong>Descrição:</strong> ${description}</p>
+                    <p><strong>Valor Pago:</strong> ${paidAmount.toFixed(2)}€ ${isPartialPayment ? '(50% do valor total)' : '(Pagamento total)'}</p>
+                    ${isPartialPayment ? `<p><strong>Valor Restante:</strong> ${remainingAmount.toFixed(2)}€ (a pagar no dia da sessão)</p>` : ''}
                 </div>
-                <p>Obrigado pela sua marcação. A informação foi enviada para o nosso sistema.</p>
+                <p>Obrigado pela sua marcação. Um resumo foi enviado para o seu email (${userDetails.email}).</p>
                 <button onclick="document.getElementById('success-modal').remove(); window.location.reload();" class="btn btn-primary" style="margin-top: 20px;">Concluir</button>
             </div>
         </div>
@@ -383,21 +423,21 @@ function showSuccessMessage(transactionId, description, userDetails) {
     document.body.appendChild(modalContainer.firstElementChild);
 }
 
-function sendBookingInfoToEmail(description, userDetails, transactionId) {
-    console.log(`Enviando informações de reserva para srshare2inspire@gmail.com`);
+function sendBookingInfoToEmail(description, userDetails, transactionId, paidAmount) {
+    console.log(`Enviando informações de reserva para srshare2inspire@gmail.com e ${userDetails.email}`);
     console.log(`Detalhes da reserva: ${description}`);
     console.log(`Utilizador: ${userDetails.name} (${userDetails.email}, ${userDetails.phone})`);
     console.log(`ID da Transação: ${transactionId}`);
+    console.log(`Valor Pago: ${paidAmount.toFixed(2)}€ ${userDetails.isPartialPayment ? '(50% do valor total)' : '(Pagamento total)'}`);
     
-    // Esta função simularia o envio de email para srshare2inspire@gmail.com
-    // Em um ambiente de produção, isso seria implementado com um serviço de email
+    if (userDetails.isPartialPayment) {
+        const remainingAmount = userDetails.totalAmount - paidAmount;
+        console.log(`Valor Restante: ${remainingAmount.toFixed(2)}€ (a pagar no dia da sessão)`);
+    }
     
-    // Simular integração com Google Calendar
-    syncWithGoogleCalendar(description, userDetails);
-}
-
-function syncWithGoogleCalendar(description, userDetails) {
-    console.log(`Sincronizando com Google Calendar para srshare2inspire@gmail.com: ${description} para ${userDetails.name} (${userDetails.email})`);
-    // Esta função seria implementada com a API do Google Calendar
-    // Para fins de demonstração, apenas logamos a intenção
+    // Esta função simularia o envio de um email com os detalhes da reserva
+    // Em um ambiente de produção, isso seria implementado com um serviço de email real
+    
+    // Simulação de envio bem-sucedido
+    console.log('Email enviado com sucesso!');
 }

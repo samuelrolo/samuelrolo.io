@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const novoCaminho = img.src.replace('images/', '');
                 console.log('Tentando caminho alternativo:', novoCaminho);
                 img.src = novoCaminho;
+            } else if (img.src.indexOf('imagens/') === 0) {
+                // Se a imagem estiver na pasta imagens (que não existe), tentar na pasta images
+                const novoCaminho = img.src.replace('imagens/', 'images/');
+                console.log('Tentando caminho alternativo:', novoCaminho);
+                img.src = novoCaminho;
             }
         }
     }
@@ -44,6 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (img.src.indexOf('images/') === 0) {
                     // Se a imagem estiver na pasta images, tentar na raiz
                     const novoCaminho = img.src.replace('images/', '');
+                    console.log('Tentando caminho alternativo:', novoCaminho);
+                    img.src = novoCaminho;
+                } else if (img.src.indexOf('imagens/') === 0) {
+                    // Se a imagem estiver na pasta imagens (que não existe), tentar na pasta images
+                    const novoCaminho = img.src.replace('imagens/', 'images/');
                     console.log('Tentando caminho alternativo:', novoCaminho);
                     img.src = novoCaminho;
                 }
