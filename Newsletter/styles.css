@@ -1,0 +1,402 @@
+/* Estilos gerais */
+:root {
+    --primary-color: #006080; /* Azul escuro do site principal */
+    --secondary-color: #4CAF50; /* Verde do site principal */
+    --dark-bg: #000000; /* Fundo preto do site principal */
+    --light-text: #ffffff; /* Texto claro */
+    --card-bg: #ffffff; /* Fundo dos cards */
+    --card-text: #333333; /* Texto dos cards */
+    --border-radius: 8px; /* Bordas arredondadas */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Cabeçalho */
+header {
+    background-color: var(--dark-bg);
+    padding: 2rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-container {
+    margin-bottom: 1rem;
+}
+
+.logo {
+    max-width: 200px;
+    height: auto;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+/* Menu de navegação */
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: 1.5rem;
+    background-color: #333;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0;
+}
+
+.nav-menu a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--light-text);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    background-color: var(--primary-color);
+}
+
+/* Seção de introdução */
+.intro-section {
+    padding: 3rem 2rem;
+    text-align: center;
+    background-color: var(--primary-color);
+}
+
+.intro-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.intro-section p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Seção de artigos */
+.articles-section {
+    padding: 3rem 2rem;
+}
+
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.article-card {
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.article-card h3 {
+    padding: 1.5rem 1.5rem 0.5rem;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.article-date {
+    padding: 0 1.5rem 1rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.article-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.article-excerpt {
+    padding: 1.5rem;
+    font-size: 1rem;
+}
+
+.read-more-btn {
+    display: inline-block;
+    margin: 0 1.5rem 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.read-more-btn:hover {
+    background-color: #004d66;
+}
+
+/* Seção de subscrição */
+.subscribe-section {
+    padding: 3rem 2rem;
+    background-color: var(--secondary-color);
+}
+
+.subscribe-card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.subscribe-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.subscribe-card p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.subscribe-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--light-text);
+    color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.subscribe-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* Seção de recomendações */
+.recommendations-section {
+    padding: 3rem 2rem;
+    background-color: var(--dark-bg);
+}
+
+.recommendations-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+}
+
+.recommendations-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.carousel-control {
+    background: none;
+    border: none;
+    color: var(--light-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s;
+}
+
+.carousel-control:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.recommendations-carousel {
+    flex: 1;
+    overflow: hidden;
+}
+
+.recommendation-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.recommender-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.recommender-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.recommender-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.recommender-title {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.recommendation-text {
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.view-more-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.view-more-btn {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    background-color: #0077b5; /* Cor do LinkedIn */
+    color: var(--light-text);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.view-more-btn:hover {
+    background-color: #005582;
+}
+
+.view-more-btn i {
+    margin-right: 0.5rem;
+}
+
+/* Rodapé */
+footer {
+    background-color: #111;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: var(--light-text);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+}
+
+.libutton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7px;
+  text-align: center;
+  outline: none;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  width: 200px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: #0A66C2;
+  font-family: "SF Pro Text", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10px auto;
+  transition: background-color 0.3s ease;
+}
+
+.libutton:hover {
+  background-color: #004182;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+    }
+    
+    .articles-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .article-card {
+        width: 100%;
+    }
+    
+    .recommendation-card {
+        padding: 1rem;
+    }
+    
+    .recommender-avatar {
+        width: 50px;
+        height: 50px;
+    }
+}
