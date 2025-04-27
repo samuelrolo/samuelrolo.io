@@ -750,9 +750,9 @@
     <section id="agendar" class="agendar-section fade-in" style="display: none;">
         <div class="container">
             <h2>Agendar uma Sessão</h2>
-            <p style="text-align: center; margin-bottom: 30px;">Para agendar uma sessão e garantir sua vaga, utilize nosso sistema completo de agendamento e pagamento.</p>
+            <p style="text-align: center; margin-bottom: 30px;">Para agendar uma sessão e garantir a sua vaga, utilize o nosso sistema completo de agendamento e pagamento.</p>
             <div style="text-align: center;">
-                <a href="Calendario/index.html" class="btn" style="font-size: 1.2rem; padding: 15px 30px;">Acessar Sistema de Agendamento</a>
+                <a href="Calendario/index.html" class="btn" style="font-size: 1.2rem; padding: 15px 30px;">Aceda ao Sistema de Agendamento</a>
             </div>
         </div>
     </section>
@@ -926,82 +926,6 @@
         });
     </script>
     <script src="js/translate.js"></script>
-</body>
-</html>
-            function showSection(sectionId) {
-                // Esconder todas as seções
-                sections.forEach(section => {
-                    if (section.id !== 'inicio' && section.id !== 'servicos') {
-                        section.style.display = 'none';
-                    }
-                });
-                
-                // Remover a classe active de todos os links
-                document.querySelectorAll('nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Se for a página inicial, apenas mostrar início e serviços
-                if (sectionId === 'inicio' || sectionId === '') {
-                    document.getElementById('nav-inicio').classList.add('active');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    return;
-                }
-                
-                // Mostrar a seção solicitada
-                const targetSection = document.getElementById(sectionId);
-                if (targetSection) {
-                    targetSection.style.display = 'block';
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Ativar o link correspondente
-                    document.getElementById('nav-' + sectionId).classList.add('active');
-                }
-            }
-            
-            // Adicionar evento de clique aos links de navegação
-            allNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Obter o ID da seção a partir do href ou do atributo data-service
-                    let targetId;
-                    if (this.getAttribute('href').startsWith('#')) {
-                        targetId = this.getAttribute('href').substring(1);
-                    } else {
-                        targetId = this.getAttribute('href');
-                    }
-                    
-                    // Se for um botão de serviço, mostrar a seção de agendamento
-                    if (targetId === 'agendar') {
-                        const servicoSelect = document.getElementById('servico');
-                        if (servicoSelect) {
-                            servicoSelect.selectedIndex = 0;
-                        }
-                    }
-                    
-                    showSection(targetId);
-                });
-            });
-            
-            // Verificar se há um hash na URL e navegar para essa seção
-            if (window.location.hash) {
-                const targetId = window.location.hash.substring(1);
-                showSection(targetId);
-            }
-            
-            // Adicionar suporte para botões de voltar/avançar do navegador
-            window.addEventListener('popstate', function() {
-                if (window.location.hash) {
-                    const targetId = window.location.hash.substring(1);
-                    showSection(targetId);
-                } else {
-                    showSection('inicio');
-                }
-            });
-        });
-    </script>
     <script src="js/image-error-handler.js"></script>
-    <script src="js/translate.js"></script>
 </body>
 </html>

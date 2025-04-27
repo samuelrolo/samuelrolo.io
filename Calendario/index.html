@@ -63,6 +63,39 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <h3>Preços para Revisão de CV e Preparação para Entrevistas</h3>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Duração</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Revisão de CV Básica</td>
+                        <td>30 min</td>
+                        <td>25€</td>
+                    </tr>
+                    <tr>
+                        <td>Revisão de CV Completa</td>
+                        <td>60 min</td>
+                        <td>45€</td>
+                    </tr>
+                    <tr>
+                        <td>Preparação para Entrevista</td>
+                        <td>45 min</td>
+                        <td>35€</td>
+                    </tr>
+                    <tr>
+                        <td>Pacote Completo (CV + Entrevista)</td>
+                        <td>90 min</td>
+                        <td>70€</td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="payment-policy">
                 <p><strong>Política de Pagamento:</strong> Para valores acima de 10€, é exigido apenas 50% do valor total no momento da reserva (mínimo 10€).</p>
             </div>
@@ -71,6 +104,16 @@
         <section class="booking-container">
             <div class="booking-options">
                 <form id="booking-form">
+                    <div class="form-group">
+                        <label for="service-type">Tipo de Serviço:</label>
+                        <select id="service-type" name="service-type" required>
+                            <option value="coaching">Coaching</option>
+                            <option value="inspiration">Momentos de Inspiração</option>
+                            <option value="digital">Conteúdos Digitais</option>
+                            <option value="cv">Revisão de CV e/ou Preparação para Entrevistas</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="session-type">Tipo de Sessão:</label>
                         <select id="session-type" name="session-type" required>

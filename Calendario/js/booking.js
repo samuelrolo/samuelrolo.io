@@ -368,15 +368,18 @@ function showMBWayForm(paymentId, userDetails, amount) {
                 <span class="close" onclick="document.getElementById('mbway-modal').remove()">&times;</span>
                 <h2>Pagamento com MB WAY</h2>
                 <p style="margin-bottom: 20px;">Valor a pagar: <strong>${amount.toFixed(2)}€</strong></p>
+                <p style="margin-bottom: 15px; font-weight: bold; color: #3498db;">
+                    Envie o pagamento para o número: <strong>+351961925050</strong>
+                </p>
                 <form id="mbway-form">
                     <div class="form-group">
-                        <label for="mbway-phone">Número de Telemóvel:</label>
+                        <label for="mbway-phone">O seu número de telemóvel (para confirmação):</label>
                         <input type="tel" id="mbway-phone" placeholder="9XXXXXXXX" required>
                     </div>
                     <p style="margin: 15px 0; font-size: 0.9em; color: #666;">
-                        Irá receber uma notificação na app MB WAY para confirmar o pagamento.
+                        Após enviar o pagamento através da app MB WAY, clique no botão abaixo para confirmar.
                     </p>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Pagar com MB WAY</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Confirmar Pagamento MB WAY</button>
                 </form>
             </div>
         </div>
@@ -412,28 +415,44 @@ function showMBWayForm(paymentId, userDetails, amount) {
 
 function simulateRedirect(url, method) {
     // Criar e mostrar modal de redirecionamento
-    let methodName = '';
-    switch(method) {
-        case 'apple-pay':
-            methodName = 'Apple Pay';
-            break;
-        case 'revolut':
-            methodName = 'Revolut';
-            break;
-        case 'paypal':
-            methodName = 'PayPal';
-            break;
-        default:
-            methodName = method;
+    let modalContent = '';
+    
+    if (method === 'revolut') {
+        modalContent = `
+            <h2>Pagamento com Revolut</h2>
+            <p style="margin-bottom: 20px;">Por favor, envie o pagamento para:</p>
+            <p style="font-weight: bold; color: #3498db; font-size: 1.2em; margin-bottom: 15px;">@samuelrolo</p>
+            <p style="margin-bottom: 15px;">Ou utilize o IBAN:</p>
+            <p style="font-weight: bold; color: #3498db; font-size: 1.2em; margin-bottom: 20px;">LT38 32 50 0674 3397 9375</p>
+            <p>Após enviar o pagamento, clique no botão abaixo para confirmar.</p>
+            <button id="confirm-revolut-payment" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Confirmar Pagamento</button>
+        `;
+    } else if (method === 'paypal') {
+        modalContent = `
+            <h2>Pagamento com PayPal</h2>
+            <p style="margin-bottom: 20px;">Será redirecionado para o PayPal para concluir o pagamento.</p>
+            <p>Após concluir o pagamento, será redirecionado de volta para confirmar a sua reserva.</p>
+            <div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite;"></div>
+        `;
+    } else if (method === 'apple-pay') {
+        modalContent = `
+            <h2>Pagamento com Apple Pay</h2>
+            <p style="margin-bottom: 20px;">Por favor, complete o pagamento através do Apple Pay.</p>
+            <p>Após concluir o pagamento, será redirecionado de volta para confirmar a sua reserva.</p>
+            <div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite;"></div>
+        `;
+    } else {
+        modalContent = `
+            <h2>Redirecionando para ${method}</h2>
+            <p>Será redirecionado para a página de pagamento em instantes...</p>
+            <div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite;"></div>
+        `;
     }
     
     const modalHtml = `
         <div id="redirect-modal" class="modal" style="display: block;">
-            <div class="modal-content" style="text-align: center;">
-                <h2>Redirecionando para ${methodName}</h2>
-                <p>Você será redirecionado para a página de pagamento em instantes...</p>
-                <div class="loader" style="margin: 20px auto; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite;"></div>
-                <p>URL: ${url}</p>
+            <div class="modal-content" style="text-align: center; max-width: 500px; margin: auto;">
+                ${modalContent}
                 <style>
                     @keyframes spin {
                         0% { transform: rotate(0deg); }
