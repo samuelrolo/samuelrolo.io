@@ -610,12 +610,16 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="css/language-selector.css">
 </head>
 <body>
     <header>
         <div class="logo-container">
             <!-- Fallback para o logo -->
-            <img src="logo.png" alt="Share2Inspire Logo" class="logo" onerror="this.onerror=null; this.src='imagens/logo.png'; if(this.src.indexOf('imagens/logo.png') !== -1 && !this.complete) this.src='logotipo.png';">
+            <img src="images/logo.png" alt="Share2Inspire Logo" class="logo" onerror="this.onerror=null; this.src='images/logo.png'; if(this.src.indexOf('images/logo.png') !== -1 && !this.complete) this.src='logo.png';">
+        </div>
+        <div class="language-selector">
+            <button id="translate-button" onclick="translateToEnglish()">Translate to English</button>
         </div>
     </header>
     
@@ -651,7 +655,7 @@
                 <div class="service-card">
                     <div class="service-icon">
                         <!-- Fallback para imagens de serviços -->
-                        <img src="coaching-icon.png" alt="Coaching" onerror="this.onerror=null; this.src='imagens/coaching-icon.png'; if(this.src.indexOf('imagens/coaching-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Coaching';">
+                        <img src="images/coaching-icon.png" alt="Coaching" onerror="this.onerror=null; this.src='images/coaching-icon.png'; if(this.src.indexOf('images/coaching-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Coaching';">
                     </div>
                     <h3>Coaching</h3>
                     <p>Apoio individual a profissionais que procuram desenvolver a sua liderança, reforçar a confiança em momentos de mudança ou trabalhar competências como a comunicação e a gestão emocional.</p>
@@ -659,7 +663,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="inspiration-icon.png" alt="Momentos de Inspiração" onerror="this.onerror=null; this.src='imagens/inspiration-icon.png'; if(this.src.indexOf('imagens/inspiration-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Inspiração';">
+                        <img src="images/inspiration-icon.png" alt="Momentos de Inspiração" onerror="this.onerror=null; this.src='images/inspiration-icon.png'; if(this.src.indexOf('images/inspiration-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Inspiração';">
                     </div>
                     <h3>Momentos de Inspiração</h3>
                     <p>Sessões práticas e dinâmicas sobre temas como liderança humana, comunicação autêntica, gestão da mudança e construção de culturas organizacionais saudáveis.</p>
@@ -667,7 +671,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="digital-icon.png" alt="Conteúdos Digitais" onerror="this.onerror=null; this.src='imagens/digital-icon.png'; if(this.src.indexOf('imagens/digital-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Digital';">
+                        <img src="images/digital-icon.png" alt="Conteúdos Digitais" onerror="this.onerror=null; this.src='images/digital-icon.png'; if(this.src.indexOf('images/digital-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=Digital';">
                     </div>
                     <h3>Conteúdos Digitais</h3>
                     <p>Desenvolvimento de conteúdos digitais — como publicações, vídeos ou newsletters — com dicas práticas e mensagens transformadoras.</p>
@@ -675,7 +679,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="cv-icon.png" alt="Revisão de CV" onerror="this.onerror=null; this.src='imagens/cv-icon.png'; if(this.src.indexOf('imagens/cv-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=CV';">
+                        <img src="images/cv-icon.png" alt="Revisão de CV" onerror="this.onerror=null; this.src='images/cv-icon.png'; if(this.src.indexOf('images/cv-icon.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/80?text=CV';">
                     </div>
                     <h3>Revisão de CV e/ ou preparação para entrevistas</h3>
                     <p>Sessão práticas e com o objetivo de recolher inputs para o teu CV e em como te destacares no processo de recrutamento de una grande empresa de consultoria.</p>
@@ -800,7 +804,7 @@
             <h2>Sobre o Autor</h2>
             <div class="autor-container">
                 <div class="autor-foto">
-                    <img src="samuel-foto.jpg" alt="Samuel Rolo" onerror="this.onerror=null; this.src='imagens/samuel-foto.jpg'; if(this.src.indexOf('imagens/samuel-foto.jpg') !== -1 && !this.complete) this.src='autor.png'; if(this.src.indexOf('autor.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/280?text=Samuel+Rolo';">
+                    <img src="images/samuel-foto.jpg" alt="Samuel Rolo" onerror="this.onerror=null; this.src='images/samuel-foto.jpg'; if(this.src.indexOf('images/samuel-foto.jpg') !== -1 && !this.complete) this.src='autor.png'; if(this.src.indexOf('autor.png') !== -1 && !this.complete) this.src='https://via.placeholder.com/280?text=Samuel+Rolo';">
                 </div>
                 <div class="autor-bio">
                     <h3>Samuel Rolo</h3>
@@ -846,6 +850,14 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Seção de Recomendações -->
+    <section id="recomendacoes" class="recomendacoes-section fade-in" style="display: none;">
+        <div class="container">
+            <h2>Recomendações</h2>
+            <iframe src="testimonials_widget.html" width="100%" height="600" frameborder="0"></iframe>
         </div>
     </section>
 
@@ -963,5 +975,6 @@
         });
     </script>
     <script src="js/image-error-handler.js"></script>
+    <script src="js/translate.js"></script>
 </body>
 </html>
