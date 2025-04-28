@@ -619,7 +619,7 @@
     <header>
         <div class="logo-container">
             <!-- Logo com caminho corrigido -->
-            <img src="images/logo.png" alt="Share2Inspire Logo" class="logo">
+            <img src="logo.png" alt="Share2Inspire Logo" class="logo">
         </div>
         <div class="language-selector">
             <button id="translate-button" onclick="translateToEnglish()">Translate to English</button>
@@ -658,28 +658,28 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/icons/coaching-icon.svg" alt="Coaching">
+                        <img src="icons/coaching-icon.svg" alt="Coaching" onerror="this.onerror=null; this.src='https://via.placeholder.com/80/3498db/ffffff?text=Coaching';">
                     </div>
                     <h3>Coaching</h3>
                     <p>Apoio individual a profissionais que procuram desenvolver a sua liderança, reforçar a confiança em momentos de mudança ou trabalhar competências como a comunicação e a gestão emocional.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/icons/inspiration-icon.svg" alt="Momentos de Inspiração">
+                        <img src="icons/inspiration-icon.svg" alt="Momentos de Inspiração" onerror="this.onerror=null; this.src='https://via.placeholder.com/80/3498db/ffffff?text=Inspiração';">
                     </div>
                     <h3>Momentos de Inspiração</h3>
                     <p>Sessões práticas e dinâmicas sobre temas como liderança humana, comunicação autêntica, gestão da mudança e construção de culturas organizacionais saudáveis.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/icons/digital-icon.svg" alt="Conteúdos Digitais">
+                        <img src="icons/digital-icon.svg" alt="Conteúdos Digitais" onerror="this.onerror=null; this.src='https://via.placeholder.com/80/3498db/ffffff?text=Digital';">
                     </div>
                     <h3>Conteúdos Digitais</h3>
                     <p>Desenvolvimento de conteúdos digitais — como publicações, vídeos ou newsletters — com dicas práticas e mensagens transformadoras.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="images/icons/cv-icon.svg" alt="Revisão de CV">
+                        <img src="icons/cv-icon.svg" alt="Revisão de CV" onerror="this.onerror=null; this.src='https://via.placeholder.com/80/3498db/ffffff?text=CV';">
                     </div>
                     <h3>Revisão de CV e/ ou preparação para entrevistas</h3>
                     <p>Sessão práticas e com o objetivo de recolher inputs para o teu CV e em como te destacares no processo de recrutamento de una grande empresa de consultoria.</p>
@@ -752,7 +752,7 @@
             <h2>Agendar uma Sessão</h2>
             <p style="text-align: center; margin-bottom: 30px;">Para agendar uma sessão e garantir sua vaga, utilize nosso sistema completo de agendamento e pagamento.</p>
             <div style="text-align: center;">
-                <a href="Calendario/index.html" class="btn" style="font-size: 1.2rem; padding: 15px 30px;">Acessar Sistema de Agendamento</a>
+                <a href="Calendario/index.html" class="btn" style="font-size: 1.2rem; padding: 15px 30px;">Aceder Sistema de Agendamento</a>
             </div>
         </div>
     </section>
@@ -823,7 +823,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/logo.png" alt="Share2Inspire Logo" class="footer-logo-img">
+                    <img src="logo.png" alt="Share2Inspire Logo" class="footer-logo-img">
                 </div>
                 <div class="footer-links">
                     <h3>Links Rápidos</h3>
@@ -855,153 +855,8 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Menu mobile
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const navLinks = document.getElementById('nav-links');
-            
-            if (mobileMenuToggle && navLinks) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                });
-            }
-            
-            // Mostrar o questionário quando o botão for clicado
-            const showSurveyBtn = document.getElementById('show-survey-btn');
-            const surveyContainer = document.getElementById('survey-container');
-            
-            if (showSurveyBtn && surveyContainer) {
-                showSurveyBtn.addEventListener('click', function() {
-                    surveyContainer.classList.add('active');
-                    showSurveyBtn.style.display = 'none';
-                });
-            }
-            
-            // Sistema de navegação melhorado
-            const allNavLinks = document.querySelectorAll('nav a, .nav-link');
-            const sections = document.querySelectorAll('section');
-            
-            // Função para mostrar uma seção específica
-            function showSection(sectionId) {
-                sections.forEach(section => {
-                    if (section.id === sectionId) {
-                        section.style.display = 'block';
-                        setTimeout(() => {
-                            section.classList.add('active');
-                        }, 50);
-                    } else {
-                        section.style.display = 'none';
-                        section.classList.remove('active');
-                    }
-                });
-                
-                // Atualizar links ativos
-                allNavLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${sectionId}` || 
-                        (link.id === 'nav-inicio' && sectionId === 'inicio')) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-            }
-            
-            // Inicializar com a seção de início
-            showSection('inicio');
-            
-            // Adicionar event listeners para os links de navegação
-            allNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    showSection(targetId);
-                    
-                    // Fechar menu mobile se estiver aberto
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="js/navigation.js"></script>
     <script src="js/translate.js"></script>
-</body>
-</html>
-            function showSection(sectionId) {
-                // Esconder todas as seções
-                sections.forEach(section => {
-                    if (section.id !== 'inicio' && section.id !== 'servicos') {
-                        section.style.display = 'none';
-                    }
-                });
-                
-                // Remover a classe active de todos os links
-                document.querySelectorAll('nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Se for a página inicial, apenas mostrar início e serviços
-                if (sectionId === 'inicio' || sectionId === '') {
-                    document.getElementById('nav-inicio').classList.add('active');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    return;
-                }
-                
-                // Mostrar a seção solicitada
-                const targetSection = document.getElementById(sectionId);
-                if (targetSection) {
-                    targetSection.style.display = 'block';
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Ativar o link correspondente
-                    document.getElementById('nav-' + sectionId).classList.add('active');
-                }
-            }
-            
-            // Adicionar evento de clique aos links de navegação
-            allNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Obter o ID da seção a partir do href ou do atributo data-service
-                    let targetId;
-                    if (this.getAttribute('href').startsWith('#')) {
-                        targetId = this.getAttribute('href').substring(1);
-                    } else {
-                        targetId = this.getAttribute('href');
-                    }
-                    
-                    // Se for um botão de serviço, mostrar a seção de agendamento
-                    if (targetId === 'agendar') {
-                        const servicoSelect = document.getElementById('servico');
-                        if (servicoSelect) {
-                            servicoSelect.selectedIndex = 0;
-                        }
-                    }
-                    
-                    showSection(targetId);
-                });
-            });
-            
-            // Verificar se há um hash na URL e navegar para essa seção
-            if (window.location.hash) {
-                const targetId = window.location.hash.substring(1);
-                showSection(targetId);
-            }
-            
-            // Adicionar suporte para botões de voltar/avançar do navegador
-            window.addEventListener('popstate', function() {
-                if (window.location.hash) {
-                    const targetId = window.location.hash.substring(1);
-                    showSection(targetId);
-                } else {
-                    showSection('inicio');
-                }
-            });
-        });
-    </script>
     <script src="js/image-error-handler.js"></script>
-    <script src="js/translate.js"></script>
 </body>
 </html>

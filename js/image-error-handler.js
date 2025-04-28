@@ -18,13 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const newSrc = 'images/' + img.src;
         console.log('Tentando caminho alternativo:', newSrc);
         img.src = newSrc;
+      } else if (img.src.includes('icons/') && img.src.endsWith('.svg')) {
+        // Não fazer nada, manter o SVG
+        console.log('Mantendo o ícone SVG:', img.src);
       } else if (img.src.includes('icons/') && img.src.endsWith('.png')) {
-        // Tentar corrigir ícones específicos
-        const iconName = img.src.split('/').pop();
-        if (['coaching-icon.png', 'inspiration-icon.png', 'digital-icon.png', 'cv-icon.png'].includes(iconName)) {
-          // Usar ícones genéricos para substituir os vazios
-          img.src = 'https://via.placeholder.com/64/3498db/ffffff?text=' + iconName.replace('-icon.png', '');
-        }
+        // Substituir PNGs vazios por SVGs correspondentes
+        const newSrc = img.src.replace('.png', '.svg');
+        console.log('Substituindo PNG por SVG:', newSrc);
+        img.src = newSrc;
       }
     };
     
