@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Sistema de navegação melhorado
-    const allNavLinks = document.querySelectorAll('nav a, .nav-link');
+    const allNavLinks = document.querySelectorAll('nav a, .nav-link, .footer-links a');
     const sections = document.querySelectorAll('section');
     
     // Função para mostrar uma seção específica

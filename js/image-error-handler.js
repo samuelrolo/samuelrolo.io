@@ -25,6 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
           // Usar ícones genéricos para substituir os vazios
           img.src = 'https://via.placeholder.com/64/3498db/ffffff?text=' + iconName.replace('-icon.png', '');
         }
+      } else if (img.src.includes('images/') && img.src.endsWith('.jpg')) {
+        // Tratar imagens JPG ausentes na newsletter
+        const imgName = img.src.split('/').pop();
+        const imgAlt = img.alt || 'Imagem';
+        // Usar placeholders para imagens ausentes
+        img.src = 'https://via.placeholder.com/350x200/3498db/ffffff?text=' + imgAlt.replace(/ /g, '+');
       }
     };
     
