@@ -712,7 +712,7 @@
             <p style="text-align: center;">Responde a este questionário rápido e descobre qual é o teu estilo de liderança predominante.</p>
             <button id="show-survey-btn" class="show-survey-btn">Iniciar Questionário</button>
             <div id="survey-container" class="survey-container">
-                <form id="survey-form" action="mailto:srshare2inspire@gmail.com" method="post" enctype="text/plain">
+                <form id="survey-form" action="#" method="post" onsubmit="event.preventDefault(); alert('Formulário enviado com sucesso! Entraremos em contato em breve.');">
                     <input type="hidden" name="subject" value="Resultado do Questionário de Liderança">
                     
                     <div class="question">
@@ -779,7 +779,7 @@
         <div class="container">
             <h2>Newsletter</h2>
             <p style="text-align: center;">Receba regularmente conteúdos exclusivos sobre liderança, transformação organizacional e desenvolvimento pessoal.</p>
-            <form class="newsletter-form" action="mailto:srshare2inspire@gmail.com" method="post" enctype="text/plain">
+            <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault(); alert('Subscrição realizada com sucesso! Obrigado pelo seu interesse.');">
                 <input type="hidden" name="subject" value="Subscrição Newsletter">
                 <input type="email" name="email" placeholder="O seu e-mail" required>
                 <button type="submit" class="btn">Subscrever</button>
