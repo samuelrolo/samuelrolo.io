@@ -834,14 +834,18 @@
                         <li><a href="#precos">Preços</a></li>
                         <li><a href="#agendar">Agendar</a></li>
                         <li><a href="#contato">Contacto</a></li>
+                        <li><a href="politica_privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="politica_privacidade.pdf" download>Download Política de Privacidade (PDF)</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h3>Contacto</h3>
+                    <h3>Contacto & Informação Legal</h3>
                     <p><i class="fas fa-envelope"></i> srshare2inspire@gmail.com</p>
                     <p><i class="fas fa-phone"></i> +351 961 925 050</p>
+                    <p><a href="informacao_legal.pdf" download>Informação Legal</a></p>
+                    <p><a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home.chooseLanguage" target="_blank">Resolução de Litígios em Linha</a></p>
                     <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/samuelrolo" target="_blank" aria-label="LinkedIn">
+                         <a href="https://www.linkedin.com/in/samuelrolo" target="_blank" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
                         <a href="https://www.instagram.com/share2inspire_" target="_blank" aria-label="Instagram">
@@ -851,7 +855,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Share2Inspire. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -923,63 +927,6 @@
                         navLinks.classList.remove('active');
                     }
                 });
-            });
-        });
-    </script>
-    <script src="js/translate.js"></script>
-</body>
-</html>
-                
-                // Mostrar a seção solicitada
-                const targetSection = document.getElementById(sectionId);
-                if (targetSection) {
-                    targetSection.style.display = 'block';
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Ativar o link correspondente
-                    document.getElementById('nav-' + sectionId).classList.add('active');
-                }
-            }
-            
-            // Adicionar evento de clique aos links de navegação
-            allNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Obter o ID da seção a partir do href ou do atributo data-service
-                    let targetId;
-                    if (this.getAttribute('href').startsWith('#')) {
-                        targetId = this.getAttribute('href').substring(1);
-                    } else {
-                        targetId = this.getAttribute('href');
-                    }
-                    
-                    // Se for um botão de serviço, mostrar a seção de agendamento
-                    if (targetId === 'agendar') {
-                        const servicoSelect = document.getElementById('servico');
-                        if (servicoSelect) {
-                            servicoSelect.selectedIndex = 0;
-                        }
-                    }
-                    
-                    showSection(targetId);
-                });
-            });
-            
-            // Verificar se há um hash na URL e navegar para essa seção
-            if (window.location.hash) {
-                const targetId = window.location.hash.substring(1);
-                showSection(targetId);
-            }
-            
-            // Adicionar suporte para botões de voltar/avançar do navegador
-            window.addEventListener('popstate', function() {
-                if (window.location.hash) {
-                    const targetId = window.location.hash.substring(1);
-                    showSection(targetId);
-                } else {
-                    showSection('inicio');
-                }
             });
         });
     </script>

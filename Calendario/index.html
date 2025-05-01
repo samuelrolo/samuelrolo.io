@@ -14,214 +14,347 @@
 <body>
     <header>
         <div class="container">
-            <h1>Share2Inspire</h1>
-            <h2>Kickstart Pro | Express Coaching</h2>
+            <div class="header-top">
+                 <a href="http://share2inspire.pt" class="back-link"><i class="fas fa-arrow-left"></i> Voltar ao Site Principal</a>
+                 <h1>Share2Inspire</h1>
+            </div>
+            <h2>KICKSTART PRO | EXPRESS COACHING</h2>
         </div>
     </header>
 
     <main class="container">
-        <section class="intro">
-            <h2>Marque a sua Sessão de Coaching</h2>
-            <p>Bem-vindo ao sistema de marcação de sessões de coaching. Selecione o tipo de sessão, duração e horário disponível no calendário abaixo.</p>
-        </section>
-
-        <section class="price-summary">
-            <h3>Tabela de Preços</h3>
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Duração</th>
-                        <th>Preço Base</th>
-                        <th>Desconto (2+ sessões)</th>
-                        <th>Preço com Desconto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>15 min</td>
-                        <td>10€</td>
-                        <td>N/A</td>
-                        <td>10€</td>
-                    </tr>
-                    <tr>
-                        <td>30 min</td>
-                        <td>20€</td>
-                        <td>-2,5€ por sessão</td>
-                        <td>17,5€ por sessão</td>
-                    </tr>
-                    <tr>
-                        <td>45 min</td>
-                        <td>30€</td>
-                        <td>-5€ por sessão</td>
-                        <td>25€ por sessão</td>
-                    </tr>
-                    <tr>
-                        <td>60 min</td>
-                        <td>40€</td>
-                        <td>-7,5€ por sessão</td>
-                        <td>32,5€ por sessão</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="payment-policy">
-                <p><strong>Política de Pagamento:</strong> Para valores acima de 10€, é exigido apenas 50% do valor total no momento da reserva (mínimo 10€).</p>
+        <!-- Ecrã de Seleção de Serviço -->
+        <section id="service-selection" class="service-selection-screen">
+            <h2>Escolha o Serviço Pretendido</h2>
+            <div class="service-options">
+                <button id="select-coaching" class="btn btn-primary service-button">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    KICKSTART PRO | EXPRESS COACHING
+                    <span>(Sessões de Coaching)</span>
+                </button>
+                <button id="select-cv-review" class="btn btn-secondary service-button">
+                    <i class="fas fa-file-alt"></i>
+                    Revisão de CV / Preparação para Entrevista
+                    <span>(Análise e Otimização)</span>
+                </button>
             </div>
         </section>
 
-        <section class="booking-container">
-            <div class="booking-options">
-                <form id="booking-form">
+        <!-- Fluxo de Coaching (inicialmente oculto) -->
+        <div id="coaching-flow" style="display: none;">
+            <section class="intro">
+                <h2>Marque a sua Sessão de Coaching</h2>
+                <p>Bem-vindo ao sistema de marcação de sessões de coaching. Selecione o tipo de sessão, duração e horário disponível no calendário abaixo.</p>
+            </section>
+
+            <section class="price-summary">
+                <h3>Tabela de Preços - Coaching</h3>
+                <table class="price-table">
+                    <!-- ... (tabela de preços coaching existente) ... -->
+                    <thead>
+                        <tr>
+                            <th>Duração</th>
+                            <th>Preço Base</th>
+                            <th>Desconto (2+ sessões)</th>
+                            <th>Preço com Desconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15 min</td>
+                            <td>10€</td>
+                            <td>N/A</td>
+                            <td>10€</td>
+                        </tr>
+                        <tr>
+                            <td>30 min</td>
+                            <td>20€</td>
+                            <td>-2,5€ por sessão</td>
+                            <td>17,5€ por sessão</td>
+                        </tr>
+                        <tr>
+                            <td>45 min</td>
+                            <td>30€</td>
+                            <td>-5€ por sessão</td>
+                            <td>25€ por sessão</td>
+                        </tr>
+                        <tr>
+                            <td>60 min</td>
+                            <td>40€</td>
+                            <td>-7,5€ por sessão</td>
+                            <td>32,5€ por sessão</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="payment-policy">
+                    <p><strong>Política de Pagamento:</strong> Para valores acima de 10€, é exigido apenas 50% do valor total no momento da reserva (mínimo 10€).</p>
+                </div>
+            </section>
+
+            <section class="booking-container">
+                 <!-- ... (formulário de booking e calendário existentes) ... -->
+                 <div class="booking-options">
+                    <form id="booking-form">
+                        <div class="form-group" style="display: none;"> <!-- Ocultar seleção de serviço aqui -->
+                            <label for="service-type">Tipo de Serviço:</label>
+                            <select id="service-type" name="service-type" required>
+                                <option value="coaching" selected>Coaching</option> 
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-type">Tipo de Sessão:</label>
+                            <select id="session-type" name="session-type" required>
+                                <option value="remote">Remota (Online)</option>
+                                <option value="presential">Presencial (Distrito de Lisboa)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-duration">Duração da Sessão:</label>
+                            <select id="session-duration" name="session-duration" required>
+                                <option value="15">15 minutos - 10€</option>
+                                <option value="30">30 minutos - 20€</option>
+                                <option value="45">45 minutos - 30€</option>
+                                <option value="60">60 minutos - 40€</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-quantity">Número de Sessões:</label>
+                            <select id="session-quantity" name="session-quantity" required>
+                                <option value="1">1 sessão</option>
+                                <option value="2">2 sessões</option>
+                                <option value="3">3 sessões</option>
+                                <option value="4">4 sessões</option>
+                                <option value="5">5 sessões</option>
+                            </select>
+                        </div>
+                        <div class="price-info">
+                            <p>Preço Base: <span id="base-price">10€</span></p>
+                            <p>Desconto: <span id="discount">0€</span></p>
+                            <p>Preço Final: <span id="final-price">10€</span></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="calendar-container">
+                    <div id="calendar"></div>
+                </div>
+            </section>
+
+            <section class="booking-summary hidden" id="booking-summary">
+                 <!-- ... (resumo da marcação existente) ... -->
+                 <h3>Resumo da Marcação</h3>
+                <div class="summary-details">
+                    <p><strong>Tipo de Sessão:</strong> <span id="summary-type"></span></p>
+                    <p><strong>Duração:</strong> <span id="summary-duration"></span></p>
+                    <p><strong>Data e Hora:</strong> <span id="summary-datetime"></span></p>
+                    <p><strong>Número de Sessões:</strong> <span id="summary-quantity"></span></p>
+                    <p><strong>Preço Total:</strong> <span id="summary-price"></span></p>
+                    <p><strong>Tipo de Pagamento:</strong> <span id="payment-type">Pagamento Total</span></p>
+                    <p><strong>Valor a Pagar Agora:</strong> <span id="payment-amount"></span></p>
+                    <div id="remaining-payment-info" style="display: none;">
+                        <p><strong>Valor Restante:</strong> <span id="remaining-amount"></span> (a pagar no dia da sessão)</p>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <h4>Os Seus Dados</h4>
+                    <form id="user-form">
+                        <div class="form-group">
+                            <label for="user-name">Nome Completo:</label>
+                            <input type="text" id="user-name" name="user-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-email">Email:</label>
+                            <input type="email" id="user-email" name="user-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-phone">Telefone:</label>
+                            <input type="tel" id="user-phone" name="user-phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-notes">Notas (opcional):</label>
+                            <textarea id="user-notes" name="user-notes"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="payment-options">
+                    <h4>Método de Pagamento</h4>
+                    <div class="payment-methods">
+                        <button class="payment-method" data-method="apple-pay">
+                            <i class="fab fa-apple-pay"></i> Apple Pay
+                        </button>
+                        <button class="payment-method" data-method="revolut">
+                            <i class="fab fa-revolut"></i> Revolut
+                        </button>
+                        <button class="payment-method" data-method="paypal">
+                            <i class="fab fa-paypal"></i> PayPal
+                        </button>
+                        <button class="payment-method" data-method="credit-card">
+                            <i class="fas fa-credit-card"></i> Cartão de Crédito
+                        </button>
+                        <button class="payment-method" data-method="mbway">
+                            <i class="fas fa-mobile-alt"></i> MB WAY
+                        </button>
+                        <button class="payment-method" data-method="bank-transfer">
+                            <i class="fas fa-university"></i> Transferência Bancária
+                        </button>
+                    </div>
+                </div>
+                <div class="terms-conditions">
                     <div class="form-group">
-                        <label for="service-type">Tipo de Serviço:</label>
-                        <select id="service-type" name="service-type" required>
-                            <option value="coaching">Coaching</option>
-                            <option value="inspiration">Momentos de Inspiração</option>
-                            <option value="digital">Conteúdos Digitais</option>
-                            <option value="cv">Revisão de CV e/ou preparação para entrevistas</option>
+                        <input type="checkbox" id="terms-accept" name="terms-accept" required>
+                        <label for="terms-accept">Li e aceito os <a href="#" id="terms-link">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
+                    </div>
+                </div>
+                <div class="booking-actions">
+                    <button id="back-button" class="btn btn-secondary">Voltar</button>
+                    <button id="confirm-booking" class="btn btn-primary">Pagar e Confirmar Marcação</button>
+                </div>
+            </section>
+
+            <section class="booking-policies">
+                 <!-- ... (políticas de marcação existentes) ... -->
+                 <h3>Políticas de Marcação</h3>
+                <div class="policy-item">
+                    <h4><i class="fas fa-clock"></i> Antecedência Mínima</h4>
+                    <p>Sessões remotas: 48 horas de antecedência</p>
+                    <p>Sessões presenciais: 5 dias úteis para confirmação</p>
+                </div>
+                <div class="policy-item">
+                    <h4><i class="fas fa-euro-sign"></i> Preços e Descontos</h4>
+                    <p>15 minutos: 10€ | 30 minutos: 20€ | 45 minutos: 30€ | 60 minutos: 40€</p>
+                    <p>Descontos para múltiplas sessões: -2,5€ (30min), -5€ (45min), -7,5€ (60min)</p>
+                    <p>Primeiras 10 vagas: 25% de desconto na primeira marcação</p>
+                    <p>A cada 5 sessões: Uma sessão adicional gratuita</p>
+                </div>
+                <div class="policy-item">
+                    <h4><i class="fas fa-money-bill-wave"></i> Pagamento e Reembolso</h4>
+                    <p>Pagamento no ato da marcação</p>
+                    <p>Sem reembolso para desistências</p>
+                    <p>Em marcações com mais de uma sessão, apenas os valores além da primeira sessão podem ser reembolsados</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Fluxo de Revisão de CV (inicialmente oculto) -->
+        <div id="cv-review-flow" style="display: none;">
+            <section class="intro">
+                <h2>Revisão de CV / Preparação para Entrevista</h2>
+                <p>Selecione o serviço desejado, preencha os seus dados, anexe o seu CV (ou documento relevante) e adicione quaisquer notas.</p>
+            </section>
+
+            <section class="price-summary">
+                 <h3>Tabela de Preços - Revisão de CV / Entrevista</h3>
+                 <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                            <th>Duração Estimada</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Revisão de CV Básica</td>
+                            <td>30 min</td>
+                            <td>25€</td>
+                        </tr>
+                        <tr>
+                            <td>Revisão de CV Completa</td>
+                            <td>60 min</td>
+                            <td>45€</td>
+                        </tr>
+                        <tr>
+                            <td>Preparação para Entrevista</td>
+                            <td>45 min</td>
+                            <td>35€</td>
+                        </tr>
+                        <tr>
+                            <td>Pacote Completo (CV + Entrevista)</td>
+                            <td>90 min</td>
+                            <td>70€</td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <div class="payment-policy">
+                    <p><strong>Política de Pagamento:</strong> Pagamento integral no momento da solicitação.</p>
+                 </div>
+            </section>
+
+            <section class="cv-review-form-container">
+                <form id="cv-review-form">
+                    <div class="form-group">
+                        <label for="cv-service-selection">Selecione o Serviço:</label>
+                        <select id="cv-service-selection" name="cv-service-selection" required>
+                            <option value="">-- Escolha uma opção --</option>
+                            <option value="30-cv-basic" data-price="25">Revisão de CV Básica (30 min) - 25€</option>
+                            <option value="60-cv-complete" data-price="45">Revisão de CV Completa (60 min) - 45€</option>
+                            <option value="45-interview" data-price="35">Preparação para Entrevista (45 min) - 35€</option>
+                            <option value="90-cv-interview" data-price="70">Pacote Completo (CV + Entrevista) (90 min) - 70€</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="session-type">Tipo de Sessão:</label>
-                        <select id="session-type" name="session-type" required>
-                            <option value="remote">Remota (Online)</option>
-                            <option value="presential">Presencial (Distrito de Lisboa)</option>
-                        </select>
+                    <div class="user-details">
+                        <h4>Os Seus Dados</h4>
+                        <div class="form-group">
+                            <label for="cv-user-name">Nome Completo:</label>
+                            <input type="text" id="cv-user-name" name="cv-user-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cv-user-email">Email:</label>
+                            <input type="email" id="cv-user-email" name="cv-user-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cv-user-phone">Telefone:</label>
+                            <input type="tel" id="cv-user-phone" name="cv-user-phone" required>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="session-duration">Duração da Sessão:</label>
-                        <select id="session-duration" name="session-duration" required>
-                            <option value="15">15 minutos - 10€</option>
-                            <option value="30">30 minutos - 20€</option>
-                            <option value="45">45 minutos - 30€</option>
-                            <option value="60">60 minutos - 40€</option>
-                            <option value="30-cv-basic">Revisão de CV Básica (30 min) - 25€</option>
-                            <option value="60-cv-complete">Revisão de CV Completa (60 min) - 45€</option>
-                            <option value="45-interview">Preparação para Entrevista (45 min) - 35€</option>
-                            <option value="90-cv-interview">Pacote Completo (CV + Entrevista) (90 min) - 70€</option>
-                        </select>
+                        <label for="cv-upload">Anexar CV (PDF, DOC, DOCX):</label>
+                        <input type="file" id="cv-upload" name="cv-upload" accept=".pdf,.doc,.docx" required>
+                        <small>Tamanho máximo: 5MB</small>
                     </div>
 
                     <div class="form-group">
-                        <label for="session-quantity">Número de Sessões:</label>
-                        <select id="session-quantity" name="session-quantity" required>
-                            <option value="1">1 sessão</option>
-                            <option value="2">2 sessões</option>
-                            <option value="3">3 sessões</option>
-                            <option value="4">4 sessões</option>
-                            <option value="5">5 sessões</option>
-                        </select>
+                        <label for="cv-user-notes">Notas / Pedidos Específicos (opcional):</label>
+                        <textarea id="cv-user-notes" name="cv-user-notes" rows="4"></textarea>
                     </div>
 
-                    <div class="price-info">
-                        <p>Preço Base: <span id="base-price">10€</span></p>
-                        <p>Desconto: <span id="discount">0€</span></p>
-                        <p>Preço Final: <span id="final-price">10€</span></p>
+                     <div class="price-info cv-price-info" style="margin-top: 20px;">
+                        <p>Preço Final: <span id="cv-final-price">0€</span></p>
+                    </div>
+
+                    <div class="payment-options cv-payment-options">
+                        <h4>Método de Pagamento</h4>
+                        <div class="payment-methods">
+                             <!-- Botões de pagamento serão adicionados dinamicamente ou copiados do outro fluxo -->
+                             <button class="payment-method" data-method="apple-pay"><i class="fab fa-apple-pay"></i> Apple Pay</button>
+                             <button class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
+                             <button class="payment-method" data-method="paypal"><i class="fab fa-paypal"></i> PayPal</button>
+                             <button class="payment-method" data-method="credit-card"><i class="fas fa-credit-card"></i> Cartão de Crédito</button>
+                             <button class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
+                             <button class="payment-method" data-method="bank-transfer"><i class="fas fa-university"></i> Transferência Bancária</button>
+                        </div>
+                    </div>
+
+                    <div class="terms-conditions cv-terms-conditions">
+                        <div class="form-group">
+                            <input type="checkbox" id="cv-terms-accept" name="cv-terms-accept" required>
+                            <label for="cv-terms-accept">Li e aceito os <a href="#" class="cv-terms-link">termos e condições</a>.</label>
+                        </div>
+                    </div>
+
+                    <div class="booking-actions cv-booking-actions">
+                        <button type="button" id="cv-back-button" class="btn btn-secondary">Voltar à Seleção</button>
+                        <button type="submit" id="cv-confirm-booking" class="btn btn-primary">Pagar e Enviar Pedido</button>
                     </div>
                 </form>
-            </div>
+            </section>
 
-            <div class="calendar-container">
-                <div id="calendar"></div>
-            </div>
-        </section>
+             <!-- Modal para Termos e Condições (CV) - Pode usar o mesmo modal ou um específico -->
+             <!-- <div id="cv-terms-modal" class="modal"> ... </div> -->
 
-        <section class="booking-summary hidden" id="booking-summary">
-            <h3>Resumo da Marcação</h3>
-            <div class="summary-details">
-                <p><strong>Tipo de Sessão:</strong> <span id="summary-type"></span></p>
-                <p><strong>Duração:</strong> <span id="summary-duration"></span></p>
-                <p><strong>Data e Hora:</strong> <span id="summary-datetime"></span></p>
-                <p><strong>Número de Sessões:</strong> <span id="summary-quantity"></span></p>
-                <p><strong>Preço Total:</strong> <span id="summary-price"></span></p>
-                <p><strong>Tipo de Pagamento:</strong> <span id="payment-type">Pagamento Total</span></p>
-                <p><strong>Valor a Pagar Agora:</strong> <span id="payment-amount"></span></p>
-                <div id="remaining-payment-info" style="display: none;">
-                    <p><strong>Valor Restante:</strong> <span id="remaining-amount"></span> (a pagar no dia da sessão)</p>
-                </div>
-            </div>
+        </div>
 
-            <div class="user-details">
-                <h4>Os Seus Dados</h4>
-                <form id="user-form">
-                    <div class="form-group">
-                        <label for="user-name">Nome Completo:</label>
-                        <input type="text" id="user-name" name="user-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="user-email">Email:</label>
-                        <input type="email" id="user-email" name="user-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="user-phone">Telefone:</label>
-                        <input type="tel" id="user-phone" name="user-phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="user-notes">Notas (opcional):</label>
-                        <textarea id="user-notes" name="user-notes"></textarea>
-                    </div>
-                </form>
-            </div>
-
-            <div class="payment-options">
-                <h4>Método de Pagamento</h4>
-                <div class="payment-methods">
-                    <button class="payment-method" data-method="apple-pay">
-                        <i class="fab fa-apple-pay"></i> Apple Pay
-                    </button>
-                    <button class="payment-method" data-method="revolut">
-                        <i class="fab fa-revolut"></i> Revolut
-                    </button>
-                    <button class="payment-method" data-method="paypal">
-                        <i class="fab fa-paypal"></i> PayPal
-                    </button>
-                    <button class="payment-method" data-method="credit-card">
-                        <i class="fas fa-credit-card"></i> Cartão de Crédito
-                    </button>
-                    <button class="payment-method" data-method="mbway">
-                        <i class="fas fa-mobile-alt"></i> MB WAY
-                    </button>
-                    <button class="payment-method" data-method="bank-transfer">
-                        <i class="fas fa-university"></i> Transferência Bancária
-                    </button>
-                </div>
-            </div>
-
-            <div class="terms-conditions">
-                <div class="form-group">
-                    <input type="checkbox" id="terms-accept" name="terms-accept" required>
-                    <label for="terms-accept">Li e aceito os <a href="#" id="terms-link">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
-                </div>
-            </div>
-
-            <div class="booking-actions">
-                <button id="back-button" class="btn btn-secondary">Voltar</button>
-                <button id="confirm-booking" class="btn btn-primary">Pagar e Confirmar Marcação</button>
-            </div>
-        </section>
-
-        <section class="booking-policies">
-            <h3>Políticas de Marcação</h3>
-            <div class="policy-item">
-                <h4><i class="fas fa-clock"></i> Antecedência Mínima</h4>
-                <p>Sessões remotas: 48 horas de antecedência</p>
-                <p>Sessões presenciais: 5 dias úteis para confirmação</p>
-            </div>
-            <div class="policy-item">
-                <h4><i class="fas fa-euro-sign"></i> Preços e Descontos</h4>
-                <p>15 minutos: 10€ | 30 minutos: 20€ | 45 minutos: 30€ | 60 minutos: 40€</p>
-                <p>Descontos para múltiplas sessões: -2,5€ (30min), -5€ (45min), -7,5€ (60min)</p>
-                <p>Primeiras 10 vagas: 25% de desconto na primeira marcação</p>
-                <p>A cada 5 sessões: Uma sessão adicional gratuita</p>
-            </div>
-            <div class="policy-item">
-                <h4><i class="fas fa-money-bill-wave"></i> Pagamento e Reembolso</h4>
-                <p>Pagamento no ato da marcação</p>
-                <p>Sem reembolso para desistências</p>
-                <p>Em marcações com mais de uma sessão, apenas os valores além da primeira sessão podem ser reembolsados</p>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -237,12 +370,16 @@
                         <li><a href="../index.html#servicos">Serviços</a></li>
                         <li><a href="../index.html#precos">Preços</a></li>
                         <li><a href="../index.html#contato">Contacto</a></li>
+                        <li><a href="../politica_privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="../politica_privacidade.pdf" download>Download Política de Privacidade (PDF)</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h3>Contacto</h3>
+                    <h3>Contacto & Informação Legal</h3>
                     <p><i class="fas fa-envelope"></i> srshare2inspire@gmail.com</p>
                     <p><i class="fas fa-phone"></i> +351 961 925 050</p>
+                    <p><a href="../informacao_legal.pdf" download>Informação Legal</a></p>
+                    <p><a href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home.chooseLanguage" target="_blank">Resolução de Litígios em Linha</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -290,7 +427,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/pt.js"></script>
     <!-- Scripts personalizados -->
-    <script src="js/calendar.js"></script>
     <script src="js/booking.js"></script>
+    <script src="js/calendar.js"></script>
 </body>
 </html>
