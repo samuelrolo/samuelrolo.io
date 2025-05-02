@@ -407,6 +407,30 @@
             padding: 1rem 2rem;
         }
         
+        }
+        
+        /* Newsletter Form Styles */
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 2rem auto 0; /* Added top margin */
+            gap: 1rem;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            flex-shrink: 0;
+            /* Use existing btn styles, no need to repeat */
+        }
+
         /* Mobile Menu Styles */
         .mobile-menu-toggle {
             display: none;
@@ -542,198 +566,168 @@
              <img src="logo.png" alt="Share2Inspire Logo" class="logo" onerror="this.style.display='none'"> <!-- Simple onerror handler -->
         </div>
         <div class="language-selector">
-            <button id="translate-button" onclick="translateToEnglish()">Translate to English</button>
+            <button id="translate-button" class="btn-translate">Translate to English</button>
         </div>
     </header>
 
     <nav>
         <div class="container">
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </button>
+            <!-- Navigation Links -->
             <div class="nav-links">
-                <a href="#inicio">Início</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#servicos">Serviços</a>
-                <a href="#autor">Autor</a>
-                <a href="#contacto">Contacto</a>
-                <a href="precos.html">Preços</a>
-                <a href="Calendario/index.html" class="btn btn-nav">Agendar Sessão</a> <!-- Link para o calendário -->
+                <a href="#hero">Início</a>
+                <a href="#about">Sobre</a>
+                <a href="#services">Serviços</a>
+                <a href="#author">Autor</a>
+                <a href="#contact">Contacto</a>
+                <a href="Calendario/index.html" class="btn btn-nav">Agendar</a>
             </div>
         </div>
     </nav>
 
-    <section id="inicio" class="hero-section fade-in">
+    <section id="hero" class="hero-section fade-in">
         <div class="container">
             <h1>Inspiring Change, Humanizing Work</h1>
-            <p>Transformando a gestão de pessoas e organizações através de soluções inovadoras e centradas no ser humano.</p>
-            <a href="#servicos" class="btn">Descubra os Nossos Serviços</a>
+            <a href="Calendario/index.html" class="btn">Agendar</a>
         </div>
     </section>
 
-    <section id="sobre" class="about-section fade-in">
+    <section id="about" class="about-section fade-in">
         <div class="container">
             <h2>Sobre a Share2Inspire</h2>
             <div class="about-content">
-                <p>A Share2Inspire dedica-se a potenciar o capital humano nas organizações. Acreditamos que o sucesso empresarial sustentável passa por equipas motivadas, líderes inspiradores e uma cultura organizacional positiva.</p>
-                <p>Com uma abordagem personalizada e baseada em dados, ajudamos as empresas a enfrentar os desafios da transformação digital, a promover o bem-estar dos colaboradores e a alcançar resultados excecionais.</p>
+                <p>A Share2Inspire é um catalisador de crescimento profissional fundado por Samuel Rolo, um especialista em transformação organizacional com mais de 14 anos de experiência na Europa, África e Américas. Através da Share2Inspire, o Samuel ajuda jovens profissionais a acelerar o início das suas carreiras e apoia profissionais seniores a navegar pela mudança com confiança e humanidade.</p>
+                <p>A sua abordagem combina conhecimento técnico com uma profunda compreensão da dinâmica humana, criando soluções que promovem carreiras equilibradas e baseadas no bem-estar. Com uma sólida experiência em Consultoria e Transformação de RH, as suas perspetivas são especialmente valiosas para quem procura uma carreira em consultoria ou orientação sobre transformação organizacional, o futuro do trabalho, mudança e sustentabilidade humana.</p>
             </div>
         </div>
     </section>
 
-    <section id="servicos" class="fade-in">
+    <section id="services" class="services-section fade-in">
         <div class="container">
             <h2>Os Nossos Serviços</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i> <!-- Example Icon -->
-                    </div>
+                    <div class="service-icon"><img src="images/icon-coaching.png" alt="Coaching Icon"></div>
                     <h3>Kickstart Pro ! Express coaching</h3>
-                    <p>Sessões de coaching focadas e rápidas para desbloquear o seu potencial.</p>
+                    <p>Sessões focadas para acelerar o seu desenvolvimento profissional e ultrapassar desafios específicos.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-alt"></i> <!-- Example Icon -->
-                    </div>
+                    <div class="service-icon"><img src="images/icon-cv.png" alt="CV Review Icon"></div>
                     <h3>Revisão de CV</h3>
-                    <p>Otimize o seu currículo para destacar as suas competências e alcançar os seus objetivos.</p>
+                    <p>Otimize o seu currículo para destacar as suas competências e alcançar os seus objetivos de carreira.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-lightbulb"></i> <!-- Example Icon -->
-                    </div>
+                    <div class="service-icon"><img src="images/icon-consulting.png" alt="Consulting Icon"></div>
                     <h3>Aconselhamento para Transformações Organizacionais</h3>
-                    <p>Orientação estratégica para navegar processos de mudança e redesenho organizacional.</p>
+                    <p>Orientação estratégica para líderes e equipas que enfrentam processos de mudança e transformação.</p>
                 </div>
-            </div>
-            <div style="text-align: center; margin-top: 2rem;">
-                 <a href="Calendario/index.html" class="btn">Agendar Sessão</a>
             </div>
         </div>
     </section>
 
-    <section id="autor" class="autor-section fade-in">
+    <section id="author" class="autor-section fade-in">
         <div class="container">
-            <h2>O Autor</h2>
+            <h2>Sobre o Autor</h2>
             <div class="autor-container">
                 <div class="autor-foto">
-                    <img src="autor.png" alt="Foto de Samuel Rolo" onerror="this.style.display='none'">
+                    <img src="images/samuel_rolo.jpg" alt="Samuel Rolo" onerror="this.style.display='none'">
                 </div>
                 <div class="autor-bio">
                     <h3>Samuel Rolo</h3>
-                    <p>Com mais de 12 anos de experiência em consultoria de Capital Humano e Transformação Organizacional, Samuel Rolo é apaixonado por ajudar pessoas e empresas a atingirem o seu potencial máximo. Tendo trabalhado com clientes de diversas indústrias e geografias, possui um profundo conhecimento dos desafios e oportunidades no mundo do trabalho atual.</p>
-                    <p>A sua abordagem combina rigor analítico com empatia, procurando sempre soluções práticas e sustentáveis que gerem impacto real. É um defensor da liderança humanizada e da criação de ambientes de trabalho onde todos possam prosperar.</p>
+                    <p>Com mais de 14 anos de experiência em consultoria de capital humano e transformação organizacional, Samuel Rolo é um especialista apaixonado por ajudar pessoas e empresas a prosperar em ambientes de mudança.</p>
+                    <p>A sua experiência internacional e abordagem centrada no ser humano permitem-lhe criar soluções inovadoras e sustentáveis que impulsionam o crescimento e o bem-estar.</p>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn de Samuel Rolo">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <!-- Adicionar outros links sociais se relevante -->
+                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <!-- Add other relevant social links -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contacto" class="contact-section fade-in">
+    <!-- Seção de Recomendações -->
+    <section id="recomendacoes" class="recomendacoes-section fade-in">
+        <div class="container">
+            <h2>Recomendações</h2>
+            <iframe src="testimonials_widget.html" width="100%" height="600" frameborder="0" sandbox="allow-same-origin allow-scripts"></iframe>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter-section fade-in">
+        <div class="container">
+            <h2>Newsletter</h2>
+            <p style="text-align: center;">Receba regularmente conteúdos exclusivos sobre liderança, transformação organizacional e desenvolvimento pessoal.</p>
+            <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault(); alert('Subscrição enviada! Obrigado.');">
+                <input type="email" name="email" placeholder="O seu e-mail" required>
+                <button type="submit" class="btn">Subscrever</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section fade-in">
         <div class="container">
             <h2>Entre em Contacto</h2>
             <div class="contact-info">
-                <p>Tem alguma questão ou gostaria de discutir como podemos ajudar a sua organização? Estamos à sua disposição.</p>
-                <p>
-                    <i class="fas fa-envelope"></i> Email: <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a>
-                </p>
-                <p>
-                    <i class="fas fa-phone"></i> Telefone: <a href="tel:+351961925050">+351 961 925 050</a>
-                </p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn de Samuel Rolo">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <!-- Adicionar outros links sociais -->
-                </div>
+                <p>Tem alguma questão ou pretende discutir como podemos ajudar a sua organização ou carreira? Envie-nos uma mensagem!</p>
+                <p>Email: <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                <p>Siga-nos nas redes sociais para mais conteúdos e inspiração.</p>
+                 <div class="social-links">
+                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                 </div>
             </div>
         </div>
     </section>
 
     <section class="cta-section fade-in">
         <div class="container">
-            <h2>Pronto para Transformar?</h2>
-            <p>Agende uma sessão ou contacte-nos para saber mais.</p>
-            <a href="Calendario/index.html" class="btn">Agendar Agora</a>
+            <h2>Pronto para Transformar o Seu Futuro?</h2>
+            <a href="Calendario/index.html" class="btn">Agendar</a>
         </div>
     </section>
 
-    <!-- Footer incluído via link CSS -->
-    <footer>
+    <!-- Footer -->
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Share2Inspire Logo" onerror="this.style.display='none'"/>
+                    <img src="logo_white.png" alt="Share2Inspire Logo Branco">
                 </div>
                 <div class="footer-links">
-                    <h4>Links Rápidos</h4>
+                    <h4>Links Úteis</h4>
                     <ul>
-                        <li><a href="#inicio">Início</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="precos.html">Preços</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#hero">Início</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#author">Autor</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                        <li><a href="Calendario/index.html">Agendar</a></li>
                         <li><a href="politica_privacidade.html">Política de Privacidade</a></li>
-                        <li><a href="politica_privacidade.pdf" download="Politica_Privacidade_Share2Inspire.pdf">Download Política de Privacidade (PDF)</a></li>
+                        <li><a href="tabela_precos_cv/tabela_precos.html">Tabela de Preços - Revisão CV</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>Contacto & Informação Legal</h4>
-                    <p><i class="fas fa-envelope"></i> srshare2inspire@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +351 961 925 050</p>
-                    <p><a href="informacao_legal.pdf" target="_blank">Informação Legal</a></p>
-                    <p><a href="https://ec.europa.eu/consumers/odr/main/?event=main.home2.show" target="_blank">Resolução de Litígios em Linha</a></p>
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
+                <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/navigation.js"></script> <!-- Navigation script handles mobile menu and smooth scroll -->
-    <script src="js/language-toggle.js"></script>
-    <script src="js/survey-widget-loader.js"></script>
-    <script>
-        // Script para animação fade-in (mantido)
-        const fadeInSections = document.querySelectorAll('.fade-in');
-        const options = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                }
-                // Apply fade-in animation by adding a class or directly setting style
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
-                entry.target.classList.add('visible'); // Add a class to mark as visible
-                observer.unobserve(entry.target);
-            });
-        }, options);
-
-        fadeInSections.forEach(section => {
-            // Initial state for animation
-            section.style.opacity = 0;
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(section);
-        });
-
-        // Script para tradução (placeholder)
-        function translateToEnglish() {
-            alert('Translation to English is not yet implemented.');
-            // Aqui iria a lógica de tradução
-        }
-    </script>
+    <script src="js/navigation.js"></script>
+    <script src="js/language-selector.js"></script>
 
 </body>
 </html>

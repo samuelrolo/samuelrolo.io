@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
                  <h1 style="margin: 0;">Share2Inspire</h1>
                  <span style="width: 150px;"></span> <!-- Spacer -->
             </div>
-            <h2>Marcação de Sessões</h2>
+            <h2>Marcações</h2> <!-- Changed from Marcação de Sessões -->
         </div>
     </header>
 
@@ -42,7 +42,7 @@
 
         <!-- Fluxo de Coaching (inicialmente oculto) -->
         <div id="coaching-flow" style="display: none;">
-            <!-- Intro and Price Summary Sections (unchanged) -->
+            <!-- Intro and Price Summary Sections -->
             <section class="intro">
                 <h2>Marque a sua Sessão - Kickstart Pro ! Express coaching</h2>
                 <p>Selecione o tipo de sessão, duração e horário disponível no calendário abaixo.</p>
@@ -69,7 +69,7 @@
                     <p><strong>Política de Pagamento (Coaching):</strong> Para valores acima de 10€, é exigido apenas 50% do valor total no momento da reserva (mínimo 10€).</p>
                 </div>
             </section>
-            <!-- Booking Container (unchanged) -->
+            <!-- Booking Container -->
              <section class="booking-container">
                  <div class="booking-options">
                     <form id="booking-form">
@@ -99,7 +99,7 @@
                 <div class="calendar-container"><div id="calendar"></div></div>
             </section>
 
-            <!-- Booking Summary (Coaching) - Updated Payment Options -->
+            <!-- Booking Summary (Coaching) -->
             <section class="booking-summary hidden" id="booking-summary-coaching">
                  <h3>Resumo da Marcação</h3>
                 <div class="summary-details">
@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="user-details">
-                    <h4>Os Seus Dados</h4>
+                    <h4>Os Seus Dados</h4> <!-- Corrected from Seus Dados -->
                     <form id="user-form-coaching">
                         <div class="form-group"><label for="user-name-coaching">Nome Completo:</label><input type="text" id="user-name-coaching" name="user-name" required></div>
                         <div class="form-group"><label for="user-email-coaching">Email:</label><input type="email" id="user-email-coaching" name="user-email" required></div>
@@ -128,18 +128,15 @@
                     <h4>Método de Pagamento</h4>
                     <div class="payment-methods">
                         <button class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
-                        <button class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button> <!-- Added MB -->
-                        <button class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button> <!-- Added Payshop -->
+                        <button class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
+                        <button class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
                         <button class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
-                        <button class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button> <!-- Changed icon -->
+                        <button class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button>
                     </div>
-                    <!-- Updated Payment Details Area -->
                     <div id="payment-details-coaching" class="hidden payment-details-area">
-                        <!-- MB WAY Instructions -->
                         <div id="mbway-instructions-coaching" class="payment-instructions hidden">
                             <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-coaching"></strong>.</p>
                         </div>
-                        <!-- Multibanco Reference -->
                         <div id="mb-reference-coaching" class="payment-instructions hidden">
                             <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
                             <ul>
@@ -150,7 +147,6 @@
                             </ul>
                             <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
                         </div>
-                        <!-- Payshop Reference -->
                         <div id="payshop-reference-coaching" class="payment-instructions hidden">
                             <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
                             <ul>
@@ -160,7 +156,6 @@
                             </ul>
                              <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
                         </div>
-                        <!-- Revolut/Bank Transfer Details -->
                         <div id="other-payment-details-coaching" class="payment-instructions hidden">
                             <!-- Details for Revolut/Bank Transfer will be shown by JS -->
                         </div>
@@ -174,11 +169,10 @@
                 </div>
                 <div class="booking-actions">
                     <button id="back-button-coaching" class="btn btn-secondary">Voltar</button>
-                    <!-- Button text might change based on payment method -->
                     <button id="confirm-booking-coaching" class="btn btn-primary">Confirmar Marcação</button> 
                 </div>
             </section>
-            <!-- Booking Policies (unchanged) -->
+            <!-- Booking Policies -->
             <section class="booking-policies">
                  <h3>Políticas de Marcação (Kickstart Pro ! Express coaching)</h3>
                  <div class="policy-item"><h4><i class="fas fa-clock"></i> Antecedência Mínima</h4><p>Sessões remotas: 48 horas de antecedência</p><p>Sessões presenciais: 5 dias úteis para confirmação</p></div>
@@ -187,9 +181,9 @@
             </section>
         </div>
 
-        <!-- Fluxo de Revisão de CV (Updated Payment Options) -->
+        <!-- Fluxo de Revisão de CV -->
         <div id="cv-review-flow" style="display: none;">
-            <!-- Intro and Price Summary Sections (unchanged) -->
+            <!-- Intro and Price Summary Sections -->
             <section class="intro">
                 <h2>Revisão de CV / Preparação para Entrevista</h2>
                 <p>Selecione o serviço desejado, preencha os seus dados, anexe o seu CV (ou documento relevante) e adicione quaisquer notas.</p>
@@ -208,7 +202,7 @@
                 <div class="payment-policy"><p><strong>Política de Pagamento:</strong> Pagamento integral no momento da solicitação.</p></div>
             </section>
 
-            <!-- CV Review Form Container - Updated Payment Options -->
+            <!-- CV Review Form Container -->
             <section class="cv-review-form-container">
                 <form id="cv-review-form">
                     <div class="form-group">
@@ -222,31 +216,33 @@
                         </select>
                     </div>
 
-                    <h4>Os Seus Dados</h4>
+                    <h4>Os Seus Dados</h4> <!-- Corrected from Seus Dados -->
                     <div class="form-group"><label for="cv-user-name">Nome Completo:</label><input type="text" id="cv-user-name" name="cv-user-name" required></div>
                     <div class="form-group"><label for="cv-user-email">Email:</label><input type="email" id="cv-user-email" name="cv-user-email" required></div>
                     <div class="form-group"><label for="cv-user-phone">Telefone (para MB WAY, se aplicável):</label><input type="tel" id="cv-user-phone" name="cv-user-phone" required></div>
-                    <div class="form-group"><label for="cv-upload">Anexar CV (PDF, DOC, DOCX):</label><input type="file" id="cv-upload" name="cv-upload" accept=".pdf,.doc,.docx" required><small>Tamanho máximo: 5MB</small></div>
-                    <div class="form-group"><label for="cv-user-notes">Notas Adicionais (opcional):</label><textarea id="cv-user-notes" name="cv-user-notes" placeholder="Indique áreas específicas para foco, vagas a que se candidata, etc."></textarea></div>
+                    <div class="form-group">
+                        <label for="cv-file-upload">Anexar CV (PDF, DOC, DOCX):</label>
+                        <input type="file" id="cv-file-upload" name="cv-file-upload" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <div class="form-group"><label for="cv-user-notes">Notas (opcional):</label><textarea id="cv-user-notes" name="cv-user-notes"></textarea></div>
 
-                    <div class="price-info"><p>Preço Final: <span id="cv-final-price">0€</span></p></div>
+                    <div class="price-info">
+                        <p>Preço Final: <span id="cv-final-price">0€</span></p>
+                    </div>
 
-                    <div class="payment-options" style="margin-top: 20px;">
+                    <div class="payment-options">
                         <h4>Método de Pagamento</h4>
                         <div class="payment-methods">
-                            <button class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
-                            <button class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button> <!-- Added MB -->
-                            <button class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button> <!-- Added Payshop -->
-                            <button class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
-                            <button class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button> <!-- Changed icon -->
+                            <button type="button" class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
+                            <button type="button" class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
+                            <button type="button" class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
+                            <button type="button" class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
+                            <button type="button" class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button>
                         </div>
-                         <!-- Updated Payment Details Area -->
-                         <div id="payment-details-cv" class="hidden payment-details-area">
-                             <!-- MB WAY Instructions -->
+                        <div id="payment-details-cv" class="hidden payment-details-area">
                             <div id="mbway-instructions-cv" class="payment-instructions hidden">
                                 <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-cv"></strong>.</p>
                             </div>
-                            <!-- Multibanco Reference -->
                             <div id="mb-reference-cv" class="payment-instructions hidden">
                                 <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
                                 <ul>
@@ -255,9 +251,8 @@
                                     <li><strong>Valor:</strong> <span id="mb-amount-cv"></span>€</li>
                                     <li><strong>Válido até:</strong> <span id="mb-expiry-cv"></span></li>
                                 </ul>
-                                <p>Guarde estes dados. O serviço será iniciado após validação do pagamento.</p>
+                                <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
                             </div>
-                            <!-- Payshop Reference -->
                             <div id="payshop-reference-cv" class="payment-instructions hidden">
                                 <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
                                 <ul>
@@ -265,9 +260,8 @@
                                     <li><strong>Valor:</strong> <span id="payshop-amount-cv"></span>€</li>
                                     <li><strong>Válido até:</strong> <span id="payshop-expiry-cv"></span></li>
                                 </ul>
-                                <p>Guarde estes dados. O serviço será iniciado após validação do pagamento.</p>
+                                 <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
                             </div>
-                            <!-- Revolut/Bank Transfer Details -->
                             <div id="other-payment-details-cv" class="payment-instructions hidden">
                                 <!-- Details for Revolut/Bank Transfer will be shown by JS -->
                             </div>
@@ -277,56 +271,40 @@
                     <div class="terms-conditions">
                         <div class="form-group">
                             <input type="checkbox" id="terms-accept-cv" name="terms-accept" required>
-                            <label for="terms-accept-cv">Li e aceito os <a href="#" id="open-terms-modal-cv">termos e condições</a>.</label>
+                            <label for="terms-accept-cv">Li e aceito os <a href="#" id="open-terms-modal-cv">termos e condições</a>, incluindo a política de pagamento.</label>
                         </div>
                     </div>
 
                     <div class="booking-actions">
                         <button type="button" id="back-button-cv" class="btn btn-secondary">Voltar</button>
-                        <!-- Button text might change based on payment method -->
-                        <button type="submit" id="confirm-booking-cv" class="btn btn-primary">Confirmar Pedido</button> 
+                        <button type="submit" id="confirm-booking-cv" class="btn btn-primary">Confirmar Pedido</button>
                     </div>
                 </form>
             </section>
         </div>
 
-        <!-- Ecrã de Confirmação (Unchanged) -->
-        <section id="booking-confirmation" class="booking-confirmation hidden">
-            <div class="confirmation-content">
-                <div class="confirmation-icon"><i class="fas fa-check-circle"></i></div>
-                <h2>Marcação/Pedido Recebido!</h2>
-                <p class="confirmation-message">Obrigado! Recebemos a sua marcação/pedido. Irá receber um email de confirmação em breve com os detalhes e próximos passos.</p>
-                <div class="confirmation-details">
-                    <p><strong>Serviço:</strong> <span id="confirm-service"></span></p>
-                    <p><strong>Nome:</strong> <span id="confirm-name"></span></p>
-                    <p><strong>Email:</strong> <span id="confirm-email"></span></p>
-                    <p><strong>Data/Hora (se aplicável):</strong> <span id="confirm-datetime"></span></p>
-                    <p><strong>Valor Pago/Referência Gerada:</strong> <span id="confirm-price"></span></p> <!-- Adjusted text -->
-                    <p><strong>Método de Pagamento:</strong> <span id="confirm-payment-method"></span></p>
-                </div>
-                <a href="../index.html" id="return-home" class="btn btn-secondary">Voltar à Página Inicial</a>
-            </div>
+        <!-- Confirmation Screen (Shared) -->
+        <section id="confirmation-screen" class="hidden confirmation-message">
+            <h2>Obrigado!</h2>
+            <p id="confirmation-text">A sua marcação/pedido foi recebido com sucesso. Receberá um e-mail de confirmação em breve.</p>
+            <p id="payment-confirmation-details"></p> <!-- For MB/Payshop/Other details -->
+            <a href="../index.html" class="btn">Voltar ao Site Principal</a>
         </section>
 
-        <!-- Modal para Termos e Condições (Unchanged) -->
+        <!-- Terms Modal (Shared) -->
         <div id="terms-modal" class="modal">
             <div class="modal-content">
-                <span class="close" id="close-terms-modal">&times;</span>
+                <span class="close-button">&times;</span>
                 <h2>Termos e Condições</h2>
-                <div class="terms-content">
-                    <p><strong>Política de Pagamento (Coaching):</strong></p>
-                    <ul><li>Para valores > 10€, 50% na reserva (mín 10€). Restante no dia.</li><li>Valores <= 10€, pagamento integral na reserva.</li></ul>
-                    <p><strong>Política de Pagamento (Revisão de CV / Preparação para Entrevista):</strong></p>
-                    <ul><li>Pagamento integral na solicitação.</li></ul>
-                    <p><strong>Política de Reembolso:</strong></p>
-                    <ul><li>Sem reembolso para desistências.</li><li>Reembolso parcial possível para sessões múltiplas canceladas (exceto 1ª).</li></ul>
-                    <p><strong>Política de Cancelamento/Reagendamento (pelo Cliente):</strong></p>
-                    <ul><li>Remotas: antecedência mínima de 48h.</li><li>Presenciais: antecedência mínima de 5 dias úteis.</li><li>Pedidos tardios podem implicar perda do valor/sessão.</li></ul>
-                     <p><strong>Política de Privacidade:</strong></p>
-                    <ul><li>Dados confidenciais, usados apenas para gestão do serviço. Consulte a <a href="../politica_privacidade.html" target="_blank">Política de Privacidade</a> completa.</li></ul>
-                    <p>Ao confirmar, concorda com estes termos.</p>
+                <div id="terms-content">
+                    <!-- Content will be loaded dynamically based on flow -->
+                    <h4>Política de Pagamento</h4>
+                    <p id="modal-payment-policy"></p>
+                    <h4>Política de Reembolso e Cancelamento</h4>
+                    <p>Não são efetuados reembolsos em caso de desistência após a marcação. Para pacotes de sessões múltiplas, poderá ser considerado um reembolso parcial caso o cancelamento ocorra com antecedência suficiente (mínimo 72 horas antes da próxima sessão agendada), sujeito a análise caso a caso.</p>
+                    <h4>Privacidade</h4>
+                    <p>Os seus dados serão tratados com confidencialidade e utilizados apenas para fins relacionados com a marcação e prestação do serviço. Consulte a nossa <a href="../politica_privacidade.html" target="_blank">Política de Privacidade</a> completa.</p>
                 </div>
-                <button id="accept-terms-modal" class="btn btn-primary">Aceitar</button>
             </div>
         </div>
 
@@ -334,17 +312,17 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
-            <p><a href="../politica_privacidade.html" target="_blank">Política de Privacidade</a></p>
+            <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <!-- FullCalendar JS -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/pt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/pt.js"></script> <!-- Portuguese locale -->
     <!-- Booking Logic JS -->
     <script src="js/calendar.js"></script>
     <script src="js/booking.js"></script>
+
 </body>
 </html>
 
