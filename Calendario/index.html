@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- FullCalendar CSS -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
-    <script src="../js/image-error-handler.js"></script>
+    <!-- Removed image-error-handler.js as it's not needed here -->
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="header-top">
-                 <a href="http://share2inspire.pt" class="back-link"><i class="fas fa-arrow-left"></i> Voltar ao Site Principal</a>
-                 <h1>Share2Inspire</h1>
+            <div class="header-top" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                 <a href="../index.html" class="back-link" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> Voltar ao Site Principal</a>
+                 <h1 style="margin: 0;">Share2Inspire</h1>
+                 <span style="width: 150px;"></span> <!-- Spacer -->
             </div>
             <h2>Marcação de Sessões</h2> <!-- Title adjusted for both services -->
         </div>
@@ -24,31 +25,33 @@
 
     <main class="container">
         <!-- Ecrã de Seleção de Serviço -->
-        <section id="service-selection" class="service-selection-screen">
+        <section id="service-selection" class="selection-screen">
             <h2>Escolha o Serviço Pretendido</h2>
             <div class="service-options">
-                <button id="select-coaching" class="btn btn-primary service-button">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    KICKSTART PRO | EXPRESS COACHING
-                    <span>(Sessões de Coaching)</span>
-                </button>
-                <button id="select-cv-review" class="btn btn-secondary service-button">
+                <!-- Updated Button Text -->
+                <div class="service-option" id="select-coaching">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Kickstart Pro ! Express coaching</h3>
+                    <p>Sessões de coaching focadas e rápidas para desbloquear o seu potencial.</p>
+                </div>
+                <!-- Updated Button Text -->
+                <div class="service-option" id="select-cv-review">
                     <i class="fas fa-file-alt"></i>
-                    Revisão de CV / Preparação para Entrevista
-                    <span>(Análise e Otimização)</span>
-                </button>
+                    <h3>Revisão de CV / Preparação para Entrevista</h3>
+                    <p>Otimize o seu currículo ou prepare-se para entrevistas.</p>
+                </div>
             </div>
         </section>
 
         <!-- Fluxo de Coaching (inicialmente oculto) -->
         <div id="coaching-flow" style="display: none;">
             <section class="intro">
-                <h2>Marque a sua Sessão de Coaching</h2>
-                <p>Bem-vindo ao sistema de marcação de sessões de coaching. Selecione o tipo de sessão, duração e horário disponível no calendário abaixo.</p>
+                <h2>Marque a sua Sessão - Kickstart Pro ! Express coaching</h2>
+                <p>Selecione o tipo de sessão, duração e horário disponível no calendário abaixo.</p>
             </section>
 
             <section class="price-summary">
-                <h3>Tabela de Preços - Coaching</h3>
+                <h3>Tabela de Preços - Kickstart Pro ! Express coaching</h3>
                 <table class="price-table">
                     <thead>
                         <tr>
@@ -96,7 +99,7 @@
                         <div class="form-group" style="display: none;"> <!-- Ocultar seleção de serviço aqui -->
                             <label for="service-type">Tipo de Serviço:</label>
                             <select id="service-type" name="service-type" required>
-                                <option value="coaching" selected>Coaching</option>
+                                <option value="coaching" selected>Kickstart Pro ! Express coaching</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -137,9 +140,10 @@
                 </div>
             </section>
 
-            <section class="booking-summary hidden" id="booking-summary">
+            <section class="booking-summary hidden" id="booking-summary-coaching">
                  <h3>Resumo da Marcação</h3>
                 <div class="summary-details">
+                    <p><strong>Serviço:</strong> Kickstart Pro ! Express coaching</p>
                     <p><strong>Tipo de Sessão:</strong> <span id="summary-type"></span></p>
                     <p><strong>Duração:</strong> <span id="summary-duration"></span></p>
                     <p><strong>Data e Hora:</strong> <span id="summary-datetime"></span></p>
@@ -153,62 +157,57 @@
                 </div>
                 <div class="user-details">
                     <h4>Os Seus Dados</h4>
-                    <form id="user-form">
+                    <form id="user-form-coaching">
                         <div class="form-group">
-                            <label for="user-name">Nome Completo:</label>
-                            <input type="text" id="user-name" name="user-name" required>
+                            <label for="user-name-coaching">Nome Completo:</label>
+                            <input type="text" id="user-name-coaching" name="user-name" required>
                         </div>
                         <div class="form-group">
-                            <label for="user-email">Email:</label>
-                            <input type="email" id="user-email" name="user-email" required>
+                            <label for="user-email-coaching">Email:</label>
+                            <input type="email" id="user-email-coaching" name="user-email" required>
                         </div>
                         <div class="form-group">
-                            <label for="user-phone">Telefone:</label>
-                            <input type="tel" id="user-phone" name="user-phone" required>
+                            <label for="user-phone-coaching">Telefone (para MB WAY, se aplicável):</label>
+                            <input type="tel" id="user-phone-coaching" name="user-phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="user-notes">Notas (opcional):</label>
-                            <textarea id="user-notes" name="user-notes"></textarea>
+                            <label for="user-notes-coaching">Notas (opcional):</label>
+                            <textarea id="user-notes-coaching" name="user-notes"></textarea>
                         </div>
                     </form>
                 </div>
                 <div class="payment-options">
                     <h4>Método de Pagamento</h4>
                     <div class="payment-methods">
-                        <button class="payment-method" data-method="apple-pay">
-                            <i class="fab fa-apple-pay"></i> Apple Pay
+                        <button class="payment-method" data-method="mbway">
+                            <i class="fas fa-mobile-alt"></i> MB WAY
                         </button>
                         <button class="payment-method" data-method="revolut">
                             <i class="fab fa-revolut"></i> Revolut
                         </button>
-                        <button class="payment-method" data-method="paypal">
-                            <i class="fab fa-paypal"></i> PayPal
-                        </button>
-                        <button class="payment-method" data-method="credit-card">
-                            <i class="fas fa-credit-card"></i> Cartão de Crédito
-                        </button>
-                        <button class="payment-method" data-method="mbway">
-                            <i class="fas fa-mobile-alt"></i> MB WAY
-                        </button>
-                        <button class="payment-method" data-method="bank-transfer">
+                         <button class="payment-method" data-method="bank-transfer">
                             <i class="fas fa-university"></i> Transferência Bancária
                         </button>
+                        <!-- Add other methods if needed -->
+                    </div>
+                    <div id="payment-details" class="hidden" style="margin-top: 15px; padding: 10px; background-color: var(--light-gold-border); border-radius: 4px;">
+                        <!-- Payment details will be shown here -->
                     </div>
                 </div>
                 <div class="terms-conditions">
                     <div class="form-group">
-                        <input type="checkbox" id="terms-accept-coaching" name="terms-accept-coaching" required>
-                        <label for="terms-accept-coaching">Li e aceito os <a href="../politica_privacidade.html" target="_blank">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
+                        <input type="checkbox" id="terms-accept-coaching" name="terms-accept" required>
+                        <label for="terms-accept-coaching">Li e aceito os <a href="#" id="open-terms-modal-coaching">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
                     </div>
                 </div>
                 <div class="booking-actions">
-                    <button id="back-button" class="btn btn-secondary">Voltar</button>
-                    <button id="confirm-booking" class="btn btn-primary">Pagar e Confirmar Marcação</button>
+                    <button id="back-button-coaching" class="btn btn-secondary">Voltar</button>
+                    <button id="confirm-booking-coaching" class="btn btn-primary">Pagar e Confirmar Marcação</button>
                 </div>
             </section>
 
             <section class="booking-policies">
-                 <h3>Políticas de Marcação (Coaching)</h3>
+                 <h3>Políticas de Marcação (Kickstart Pro ! Express coaching)</h3>
                 <div class="policy-item">
                     <h4><i class="fas fa-clock"></i> Antecedência Mínima</h4>
                     <p>Sessões remotas: 48 horas de antecedência</p>
@@ -223,7 +222,7 @@
                 </div>
                 <div class="policy-item">
                     <h4><i class="fas fa-money-bill-wave"></i> Pagamento e Reembolso</h4>
-                    <p>Pagamento no ato da marcação</p>
+                    <p>Pagamento no ato da marcação (50% para valores > 10€, mínimo 10€)</p>
                     <p>Sem reembolso para desistências</p>
                     <p>Em marcações com mais de uma sessão, apenas os valores além da primeira sessão podem ser reembolsados</p>
                 </div>
@@ -298,8 +297,8 @@
                         <input type="email" id="cv-user-email" name="cv-user-email" required>
                     </div>
                     <div class="form-group">
-                        <label for="cv-user-phone">Telefone:</label>
-                        <input type="tel" id="cv-user-phone" name="cv-user-phone" required placeholder="Para contacto e pagamento MB WAY">
+                        <label for="cv-user-phone">Telefone (para MB WAY, se aplicável):</label>
+                        <input type="tel" id="cv-user-phone" name="cv-user-phone" required>
                     </div>
                     <div class="form-group">
                         <label for="cv-upload">Anexar CV (PDF, DOC, DOCX):</label>
@@ -307,72 +306,101 @@
                         <small>Tamanho máximo: 5MB</small>
                     </div>
                     <div class="form-group">
-                        <label for="cv-user-notes">Notas / Pedidos Específicos (opcional):</label>
-                        <textarea id="cv-user-notes" name="cv-user-notes" rows="4"></textarea>
+                        <label for="cv-user-notes">Notas Adicionais (opcional):</label>
+                        <textarea id="cv-user-notes" name="cv-user-notes" placeholder="Indique áreas específicas para foco, vagas a que se candidata, etc."></textarea>
                     </div>
 
                     <div class="price-info">
                         <p>Preço Final: <span id="cv-final-price">0€</span></p>
                     </div>
 
-                    <div class="payment-options">
+                    <div class="payment-options" style="margin-top: 20px;">
                         <h4>Método de Pagamento</h4>
                         <div class="payment-methods">
-                             <button type="button" class="payment-method" data-method="apple-pay">
-                                <i class="fab fa-apple-pay"></i> Apple Pay
-                            </button>
-                            <button type="button" class="payment-method" data-method="revolut">
-                                <i class="fab fa-revolut"></i> Revolut
-                            </button>
-                            <button type="button" class="payment-method" data-method="paypal">
-                                <i class="fab fa-paypal"></i> PayPal
-                            </button>
-                            <button type="button" class="payment-method" data-method="credit-card">
-                                <i class="fas fa-credit-card"></i> Cartão de Crédito
-                            </button>
-                            <button type="button" class="payment-method active" data-method="mbway"> <!-- Default to MB WAY -->
+                            <button class="payment-method" data-method="mbway">
                                 <i class="fas fa-mobile-alt"></i> MB WAY
                             </button>
-                            <button type="button" class="payment-method" data-method="bank-transfer">
+                            <button class="payment-method" data-method="revolut">
+                                <i class="fab fa-revolut"></i> Revolut
+                            </button>
+                             <button class="payment-method" data-method="bank-transfer">
                                 <i class="fas fa-university"></i> Transferência Bancária
                             </button>
+                            <!-- Add other methods if needed -->
                         </div>
-                        <!-- Add hidden input or logic to store selected payment method -->
+                         <div id="payment-details-cv" class="hidden" style="margin-top: 15px; padding: 10px; background-color: var(--light-gold-border); border-radius: 4px;">
+                            <!-- Payment details will be shown here -->
+                        </div>
                     </div>
 
                     <div class="terms-conditions">
                         <div class="form-group">
-                            <input type="checkbox" id="cv-terms-accept" name="cv-terms-accept" required>
-                            <label for="cv-terms-accept">Li e aceito os <a href="../politica_privacidade.html" target="_blank">termos e condições</a>.</label>
+                            <input type="checkbox" id="terms-accept-cv" name="terms-accept" required>
+                            <label for="terms-accept-cv">Li e aceito os <a href="#" id="open-terms-modal-cv">termos e condições</a>.</label>
                         </div>
                     </div>
 
                     <div class="booking-actions">
-                        <button type="button" id="cv-back-button" class="btn btn-secondary">Voltar à Seleção</button>
-                        <button type="submit" id="cv-confirm-booking" class="btn btn-primary">Pagar e Enviar Pedido</button>
+                        <button type="button" id="back-button-cv" class="btn btn-secondary">Voltar</button>
+                        <button type="submit" id="confirm-booking-cv" class="btn btn-primary">Pagar e Enviar Pedido</button>
                     </div>
                 </form>
             </section>
         </div>
 
+        <!-- Ecrã de Confirmação (para ambos os fluxos) -->
+        <section id="booking-confirmation" class="booking-confirmation hidden">
+            <div class="confirmation-content">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Marcação/Pedido Recebido!</h2>
+                <p class="confirmation-message">Obrigado! Recebemos a sua marcação/pedido. Irá receber um email de confirmação em breve com os detalhes e próximos passos.</p>
+                <div class="confirmation-details">
+                    <p><strong>Serviço:</strong> <span id="confirm-service"></span></p>
+                    <p><strong>Nome:</strong> <span id="confirm-name"></span></p>
+                    <p><strong>Email:</strong> <span id="confirm-email"></span></p>
+                    <p><strong>Data/Hora (se aplicável):</strong> <span id="confirm-datetime"></span></p>
+                    <p><strong>Valor Pago:</strong> <span id="confirm-price"></span></p>
+                    <p><strong>Método de Pagamento:</strong> <span id="confirm-payment-method"></span></p>
+                </div>
+                <a href="../index.html" id="return-home" class="btn btn-secondary">Voltar à Página Inicial</a>
+            </div>
+        </section>
+
         <!-- Modal para Termos e Condições -->
         <div id="terms-modal" class="modal">
             <div class="modal-content">
-                <span class="close-button">&times;</span>
+                <span class="close" id="close-terms-modal">&times;</span>
                 <h2>Termos e Condições</h2>
-                <p>Conteúdo dos termos e condições aqui...</p>
-                <!-- Carregar conteúdo da política de privacidade? -->
-            </div>
-        </div>
-
-        <!-- Modal para detalhes de pagamento (MB WAY, Transferência, etc.) -->
-        <div id="payment-details-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-payment-modal close-button">&times;</span>
-                <h2>Detalhes de Pagamento</h2>
-                <div id="payment-instructions">
-                    <!-- Conteúdo dinâmico baseado no método -->
+                <div class="terms-content">
+                    <!-- Conteúdo dos termos e condições será carregado aqui -->
+                    <p><strong>Política de Pagamento (Coaching):</strong></p>
+                    <ul>
+                        <li>Para valores acima de 10€, é exigido apenas 50% do valor total no momento da reserva (mínimo 10€). O restante é pago no dia da sessão.</li>
+                        <li>Para valores de 10€ ou menos, o pagamento é integral no momento da reserva.</li>
+                    </ul>
+                    <p><strong>Política de Pagamento (Revisão de CV / Preparação para Entrevista):</strong></p>
+                    <ul>
+                        <li>O pagamento é integral no momento da solicitação do serviço.</li>
+                    </ul>
+                    <p><strong>Política de Reembolso:</strong></p>
+                    <ul>
+                        <li>Não há reembolso para desistências após a confirmação da marcação ou início do serviço.</li>
+                        <li>Em marcações de coaching com mais de uma sessão, apenas os valores correspondentes às sessões não realizadas (além da primeira) podem ser considerados para reembolso em circunstâncias excecionais, a serem avaliadas caso a caso.</li>
+                    </ul>
+                    <p><strong>Política de Cancelamento/Reagendamento (pelo Cliente):</strong></p>
+                    <ul>
+                        <li>Cancelamentos ou pedidos de reagendamento devem ser feitos com pelo menos 48 horas de antecedência para sessões remotas e 5 dias úteis para sessões presenciais.</li>
+                        <li>Pedidos feitos com antecedência inferior podem implicar a perda do valor pago ou da sessão.</li>
+                    </ul>
+                     <p><strong>Política de Privacidade:</strong></p>
+                    <ul>
+                         <li>Os seus dados serão tratados com confidencialidade e usados exclusivamente para a gestão da marcação e prestação do serviço. Consulte a nossa <a href="../politica_privacidade.html" target="_blank">Política de Privacidade</a> completa.</li>
+                    </ul>
+                    <p>Ao confirmar a marcação, concorda com estes termos.</p>
                 </div>
+                <button id="accept-terms-modal" class="btn btn-primary">Aceitar</button>
             </div>
         </div>
 
@@ -380,42 +408,17 @@
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="../logo.png" alt="Share2Inspire Logo" onerror="this.style.display='none'"/>
-                </div>
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="../index.html#inicio">Início</a></li>
-                        <li><a href="../index.html#servicos">Serviços</a></li>
-                        <li><a href="../precos.html">Preços</a></li>
-                        <li><a href="../index.html#contacto">Contacto</a></li>
-                        <li><a href="../politica_privacidade.html">Política de Privacidade</a></li>
-                        <li><a href="../politica_privacidade.pdf" download="Politica_Privacidade_Share2Inspire.pdf">Download Política de Privacidade (PDF)</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contacto & Informação Legal</h4>
-                    <p><i class="fas fa-envelope"></i> srshare2inspire@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +351 961 925 050</p>
-                    <p><a href="../informacao_legal.pdf" target="_blank">Informação Legal</a></p>
-                    <p><a href="https://ec.europa.eu/consumers/odr/main/?event=main.home2.show" target="_blank">Resolução de Litígios em Linha</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
-            </div>
+            <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
+            <p><a href="../politica_privacidade.html" target="_blank">Política de Privacidade</a></p>
         </div>
     </footer>
 
     <!-- FullCalendar JS -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/pt.js"></script> <!-- Portuguese locale -->
-    <!-- Scripts JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/pt.js"></script> <!-- Locale Português -->
+    <!-- Booking Logic JS -->
+    <script src="js/calendar.js"></script>
     <script src="js/booking.js"></script>
-    <script src="js/calendar.js"></script> <!-- calendar.js depends on booking.js for some elements/functions -->
-
 </body>
 </html>
 

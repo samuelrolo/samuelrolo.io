@@ -8,12 +8,13 @@
     <!-- Combined Styles -->
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
+            /* Updated Color Scheme */
+            --primary-color: #B8860B; /* DarkGoldenrod */
+            --secondary-color: #333333; /* Dark Gray/Near Black */
+            --accent-color: #D4AF37; /* Gold (alternative accent) */
             --white: #ffffff;
-            --light-bg: #f5f7fa;
-            --dark-bg: #34495e;
+            --light-bg: #f8f8f8; /* Lighter Gray */
+            --dark-bg: #222222; /* Darker Gray/Near Black */
             --text-color: #333333;
             --transition: all 0.3s ease;
             --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -34,6 +35,7 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            background-color: var(--white); /* Ensure base background is white */
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -41,6 +43,7 @@
             font-weight: 700;
             line-height: 1.3;
             margin-bottom: 1.5rem;
+            color: var(--secondary-color); /* Use secondary color for headings */
         }
         
         h1 {
@@ -50,7 +53,6 @@
         
         h2 {
             font-size: 2.2rem;
-            color: var(--secondary-color);
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
@@ -65,11 +67,12 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background-color: var(--primary-color);
+            background-color: var(--primary-color); /* Gold underline */
         }
         
         p {
             margin-bottom: 1.5rem;
+            color: var(--text-color); /* Ensure paragraph text color */
         }
         
         .container {
@@ -83,14 +86,18 @@
         }
         
         .hero-section {
-            background-color: var(--dark-bg);
+            background-color: var(--dark-bg); /* Dark background */
             color: var(--white);
             text-align: center;
             padding: 8rem 0;
         }
+        .hero-section h1,
+        .hero-section p {
+             color: var(--white); /* Ensure text is white on dark background */
+        }
         
         .about-section {
-            background-color: var(--light-bg);
+            background-color: var(--light-bg); /* Light gray background */
             padding: 5rem 0;
         }
         
@@ -102,7 +109,7 @@
         
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
+            background-color: var(--primary-color); /* Gold background */
             color: var(--white);
             padding: 0.9rem 1.8rem;
             border: none;
@@ -117,7 +124,7 @@
         }
         
         .btn:hover {
-            background: #2980b9;
+            background: #A0740A; /* Darker gold on hover */
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
@@ -125,7 +132,7 @@
         /* Footer styles moved to css/footer-styles.css */
         
         nav {
-            background-color: var(--dark-bg);
+            background-color: var(--dark-bg); /* Dark background for nav */
             text-align: center;
             position: sticky;
             top: 0;
@@ -136,6 +143,7 @@
         nav .container {
             display: flex;
             justify-content: center;
+            align-items: center; /* Align items vertically */
             flex-wrap: wrap;
         }
         
@@ -153,30 +161,51 @@
         
         nav a:hover {
             background-color: rgba(255,255,255,0.1);
-            color: var(--primary-color);
+            color: var(--primary-color); /* Gold on hover */
         }
         
         nav a.active {
-            background-color: var(--accent-color);
+            /* Optional: Style for active link, maybe a subtle underline or different color */
+             border-bottom: 2px solid var(--primary-color);
+             color: var(--primary-color);
+        }
+
+        /* Specific style for the Schedule button in nav */
+        nav .btn-nav {
+            background-color: var(--primary-color); /* Gold background */
             color: var(--white);
+            padding: 0.7rem 1.5rem; /* Slightly smaller padding */
+            border-radius: 20px; /* More rounded corners */
+            margin-left: 1.5rem; /* Add some space from other links */
+            font-weight: 600;
+            box-shadow: none; /* Remove default button shadow */
+            border: 2px solid var(--primary-color);
+        }
+
+        nav .btn-nav:hover {
+            background-color: var(--white); /* White background on hover */
+            color: var(--primary-color); /* Gold text on hover */
+            transform: none; /* Remove hover transform */
+            box-shadow: none;
         }
         
         .services-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around; /* Use space-around for better distribution */
             gap: 2rem;
         }
         
         .service-card {
-            flex: 1;
-            min-width: 300px;
+            flex-basis: calc(33.333% - 2rem); /* Aim for 3 cards per row */
+            min-width: 280px; /* Adjust min-width */
             padding: 2rem;
             background: var(--white);
             border-radius: 10px;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
-            border-top: 4px solid var(--primary-color);
+            border-top: 4px solid var(--primary-color); /* Gold top border */
+            text-align: center; /* Center content */
         }
         
         .service-card:hover {
@@ -192,13 +221,13 @@
         
         .service-icon {
             font-size: 2.5rem;
-            color: var(--primary-color);
+            color: var(--primary-color); /* Gold icon color */
             margin-bottom: 1.5rem;
             text-align: center;
         }
         
         .service-icon img {
-            max-width: 80px;
+            max-width: 60px; /* Slightly smaller icon */
             height: auto;
             display: inline-block;
         }
@@ -254,11 +283,12 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background-color: var(--primary-color);
+            background-color: var(--primary-color); /* Gold underline */
         }
         
         .contact-section {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('images/contact-bg.jpg') center/cover;
+            /* Keep gradient, but maybe adjust colors if needed */
+            background: linear-gradient(rgba(34, 34, 34, 0.9), rgba(34, 34, 34, 0.9)), url('images/contact-bg.jpg') center/cover;
             color: var(--white);
             padding: 5rem 0;
         }
@@ -280,17 +310,18 @@
         .contact-info p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: var(--white); /* Ensure text is white */
         }
         
         .contact-info a {
-            color: var(--primary-color);
+            color: var(--primary-color); /* Gold links */
             font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
         }
         
         .contact-info a:hover {
-            color: var(--accent-color);
+            color: #D4AF37; /* Lighter gold on hover */
         }
         
         @keyframes fadeIn {
@@ -333,12 +364,12 @@
             height: 40px;
             border-radius: 50%;
             background-color: var(--white);
-            color: var(--secondary-color);
+            color: var(--dark-bg); /* Dark icon color */
             transition: var(--transition);
         }
         
         .social-links a:hover {
-            background-color: var(--primary-color);
+            background-color: var(--primary-color); /* Gold background */
             color: var(--white);
             transform: translateY(-3px);
         }
@@ -358,6 +389,7 @@
         header {
             text-align: center;
             padding-top: 20px;
+            background-color: var(--white); /* White header background */
         }
         
         .cta-section {
@@ -375,71 +407,7 @@
             padding: 1rem 2rem;
         }
         
-        .survey-container {
-            max-width: 600px;
-            margin: 0 auto;
-            display: none;
-        }
-        
-        .survey-container.active {
-            display: block;
-        }
-        
-        .show-survey-btn {
-            display: block;
-            margin: 0 auto;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .show-survey-btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        /* Estilo para seções que estão sendo visualizadas */
-        section.viewing {
-            display: block;
-        }
-        
-        /* Formulários */
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-        }
-        
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Estilos para o menu mobile */
+        /* Mobile Menu Styles */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -450,7 +418,7 @@
             padding: 1rem;
         }
         
-        /* Media queries para responsividade */
+        /* Media queries for responsividade */
         @media (max-width: 992px) {
             .container {
                 padding: 0 1.5rem;
@@ -461,6 +429,7 @@
             }
             
             .service-card {
+                flex-basis: calc(50% - 1rem); /* 2 cards per row */
                 min-width: 250px;
             }
         }
@@ -485,34 +454,51 @@
             }
             
             nav .container {
-                flex-direction: column;
-                align-items: center;
+                justify-content: space-between; /* Space between logo/toggle and links */
+                padding: 0.5rem 1.5rem; /* Adjust padding */
             }
-            
-            nav a {
-                padding: 0.8rem 1rem;
-                font-size: 0.9rem;
-                width: 100%;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-                position: absolute;
-                right: 1rem;
-                top: 1rem;
-            }
-            
+
             .nav-links {
                 display: none;
                 width: 100%;
                 flex-direction: column;
+                background-color: var(--dark-bg);
+                position: absolute;
+                top: 100%; /* Position below nav */
+                left: 0;
+                padding-bottom: 1rem;
             }
             
             .nav-links.active {
                 display: flex;
             }
+
+            nav a {
+                padding: 0.8rem 1rem;
+                font-size: 1rem; /* Slightly larger font */
+                width: 100%;
+                text-align: left; /* Align text left */
+                border-bottom: 1px solid rgba(255,255,255,0.1); /* Separator */
+            }
+            nav a:last-child {
+                 border-bottom: none;
+            }
+
+            nav .btn-nav {
+                 margin: 1rem auto 0; /* Center button */
+                 display: block;
+                 width: fit-content;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                /* position: absolute; */ /* Remove absolute positioning */
+                /* right: 1rem; */
+                /* top: 1rem; */
+            }
             
             .service-card {
+                flex-basis: 100%; /* 1 card per row */
                 min-width: 100%;
             }
         }
@@ -540,84 +526,20 @@
             }
             
             .service-icon img {
-                max-width: 60px;
+                max-width: 50px; /* Even smaller icon */
             }
         }
         
-        /* Estilos para formulário de agendamento */
-        .agendar-section {
-            background-color: var(--light-bg);
-            padding: 5rem 0;
-        }
-        
-        .agendar-form {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--box-shadow);
-        }
-        
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-col {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .question {
-            margin-bottom: 1.5rem;
-        }
-        
-        .question label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .question input[type="radio"] {
-            width: auto;
-            margin-right: 0.5rem;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 1rem;
-        }
-        
-        .newsletter-form input {
-            flex: 1;
-        }
-        
-        .newsletter-form button {
-            flex-shrink: 0;
-        }
-        
-        @media (max-width: 576px) {
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-        }
     </style>
     <link rel="stylesheet" href="css/language-selector.css">
     <link rel="stylesheet" href="css/footer-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="js/image-error-handler.js"></script>
+    <!-- Removed image-error-handler.js script link, functionality integrated into navigation.js or handled by onerror -->
 </head>
 <body>
     <header>
         <div class="logo-container">
-             <img src="logo.png" alt="Share2Inspire Logo" class="logo" onerror="handleImageError(this)">
+             <img src="logo.png" alt="Share2Inspire Logo" class="logo" onerror="this.style.display='none'"> <!-- Simple onerror handler -->
         </div>
         <div class="language-selector">
             <button id="translate-button" onclick="translateToEnglish()">Translate to English</button>
@@ -625,17 +547,19 @@
     </header>
 
     <nav>
-        <button class="mobile-menu-toggle" aria-label="Toggle menu">
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="container nav-links">
-            <a href="#inicio">Início</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#autor">Autor</a>
-            <a href="#contacto">Contacto</a>
-            <a href="precos.html">Preços</a>
-            <a href="Calendario/index.html" class="btn btn-nav">Agendar Sessão</a> <!-- Link para o calendário -->
+        <div class="container">
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#autor">Autor</a>
+                <a href="#contacto">Contacto</a>
+                <a href="precos.html">Preços</a>
+                <a href="Calendario/index.html" class="btn btn-nav">Agendar Sessão</a> <!-- Link para o calendário -->
+            </div>
         </div>
     </nav>
 
@@ -663,28 +587,28 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-rocket"></i> <!-- Example Icon -->
                     </div>
-                    <h3>Consultoria em Capital Humano</h3>
-                    <p>Estratégias de talento, desenvolvimento organizacional, gestão de desempenho e compensação & benefícios.</p>
+                    <h3>Kickstart Pro ! Express coaching</h3>
+                    <p>Sessões de coaching focadas e rápidas para desbloquear o seu potencial.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-file-alt"></i> <!-- Example Icon -->
                     </div>
-                    <h3>Transformação Organizacional</h3>
-                    <p>Gestão da mudança, design organizacional, otimização de processos de RH e implementação de tecnologias.</p>
+                    <h3>Revisão de CV</h3>
+                    <p>Otimize o seu currículo para destacar as suas competências e alcançar os seus objetivos.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
+                        <i class="fas fa-lightbulb"></i> <!-- Example Icon -->
                     </div>
-                    <h3>Coaching & Desenvolvimento</h3>
-                    <p>Coaching executivo, desenvolvimento de liderança, programas de mentoring e formação personalizada.</p>
+                    <h3>Aconselhamento para Transformações Organizacionais</h3>
+                    <p>Orientação estratégica para navegar processos de mudança e redesenho organizacional.</p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                 <a href="Calendario/index.html" class="btn">Agendar Sessão de Coaching ou Revisão de CV</a>
+                 <a href="Calendario/index.html" class="btn">Agendar Sessão</a>
             </div>
         </div>
     </section>
@@ -694,7 +618,7 @@
             <h2>O Autor</h2>
             <div class="autor-container">
                 <div class="autor-foto">
-                    <img src="autor.png" alt="Foto de Samuel Rolo" onerror="handleImageError(this)">
+                    <img src="autor.png" alt="Foto de Samuel Rolo" onerror="this.style.display='none'">
                 </div>
                 <div class="autor-bio">
                     <h3>Samuel Rolo</h3>
@@ -734,7 +658,7 @@
 
     <section class="cta-section fade-in">
         <div class="container">
-            <h2>Pronto para Transformar a Sua Organização?</h2>
+            <h2>Pronto para Transformar?</h2>
             <p>Agende uma sessão ou contacte-nos para saber mais.</p>
             <a href="Calendario/index.html" class="btn">Agendar Agora</a>
         </div>
@@ -745,7 +669,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="Share2Inspire Logo" onerror="handleImageError(this)"/>
+                    <img src="logo.png" alt="Share2Inspire Logo" onerror="this.style.display='none'"/>
                 </div>
                 <div class="footer-links">
                     <h4>Links Rápidos</h4>
@@ -772,10 +696,44 @@
         </div>
     </footer>
 
-    <script src="js/navigation.js"></script> <!-- Moved navigation script here -->
-    <script src="js/image-error-handler.js"></script>
+    <script src="js/navigation.js"></script> <!-- Navigation script handles mobile menu and smooth scroll -->
     <script src="js/language-toggle.js"></script>
     <script src="js/survey-widget-loader.js"></script>
+    <script>
+        // Script para animação fade-in (mantido)
+        const fadeInSections = document.querySelectorAll('.fade-in');
+        const options = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                // Apply fade-in animation by adding a class or directly setting style
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible'); // Add a class to mark as visible
+                observer.unobserve(entry.target);
+            });
+        }, options);
+
+        fadeInSections.forEach(section => {
+            // Initial state for animation
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Script para tradução (placeholder)
+        function translateToEnglish() {
+            alert('Translation to English is not yet implemented.');
+            // Aqui iria a lógica de tradução
+        }
+    </script>
 
 </body>
 </html>
