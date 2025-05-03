@@ -136,6 +136,7 @@
         .results-container {
             text-align: center;
             padding: 2rem;
+            display: none; /* Hidden by default */
         }
         .result-actions {
             margin-top: 2rem;
@@ -178,11 +179,11 @@
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
-            <div class="progress-text">Pergunta <span id="current-question">1</span> de <span id="total-questions">10</span></div> <!-- Reduced to 10 questions -->
+            <div class="progress-text">Pergunta <span id="current-question">1</span> de <span id="total-questions">20</span></div> <!-- Updated to 20 questions -->
         </div>
 
         <div id="survey-content">
-            <!-- Questions 1-10 -->
+            <!-- Questions 1-20 -->
             <div class="question-container active" data-question="1">
                 <h3>1. Tomada de Decisão</h3>
                 <p class="question-text">Quando enfrentas uma decisão difícil, como procedes?</p>
@@ -195,51 +196,107 @@
             </div>
 
             <div class="question-container" data-question="2">
-                <h3>2. Comunicação</h3>
-                <p class="question-text">Como descreves o teu estilo de comunicação com a equipa?</p>
-                <div class="options-container">
-                    <div class="option" data-type="A">Direto e objetivo.</div>
-                    <div class="option" data-type="B">Inspirador e motivacional.</div>
-                    <div class="option" data-type="C">Diplomático e conciliador.</div>
-                    <div class="option" data-type="D">Baseado em princípios e valores.</div>
-                </div>
+                 <h3>2. Tomada de Decisão</h3>
+                 <p class="question-text">Como reages quando és pressionado a tomar uma decisão rápida?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Sigo o meu instinto e assumo a responsabilidade.</div>
+                     <div class="option" data-type="B">Tento analisar rapidamente as opções disponíveis.</div>
+                     <div class="option" data-type="C">Pergunto à equipa e envolvo-os na decisão.</div>
+                     <div class="option" data-type="D">Reflito sobre os impactos a longo prazo antes de agir.</div>
+                 </div>
             </div>
-            
+
             <div class="question-container" data-question="3">
-                <h3>3. Gestão de Conflitos</h3>
-                <p class="question-text">Como costumas resolver conflitos dentro da equipa?</p>
-                <div class="options-container">
-                    <div class="option" data-type="A">Encaro diretamente e tento resolver rapidamente.</div>
-                    <div class="option" data-type="B">Analiso os factos antes de tomar uma decisão.</div>
-                    <div class="option" data-type="C">Promovo o diálogo entre as partes envolvidas.</div>
-                    <div class="option" data-type="D">Guio a equipa para encontrar uma solução alinhada com os valores do grupo.</div>
-                </div>
+                 <h3>3. Comunicação e Relacionamento</h3>
+                 <p class="question-text">Como descreves o teu estilo de comunicação com a equipa?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Direto e objetivo.</div>
+                     <div class="option" data-type="B">Inspirador e motivacional.</div>
+                     <div class="option" data-type="C">Diplomático e conciliador.</div>
+                     <div class="option" data-type="D">Baseado em princípios e valores.</div>
+                 </div>
             </div>
 
             <div class="question-container" data-question="4">
-                <h3>4. Motivação</h3>
-                <p class="question-text">Como motivas a tua equipa num momento difícil?</p>
-                <div class="options-container">
-                    <div class="option" data-type="A">Dou um discurso inspirador e motivo-os para a ação.</div>
-                    <div class="option" data-type="B">Apresento soluções práticas e um plano claro.</div>
-                    <div class="option" data-type="C">Escuto as preocupações e reforço o espírito de equipa.</div>
-                    <div class="option" data-type="D">Relembro-os do impacto do trabalho no propósito maior.</div>
-                </div>
+                 <h3>4. Comunicação e Relacionamento</h3>
+                 <p class="question-text">O que fazes quando um colaborador discorda da tua visão?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Explico de forma clara a minha perspetiva e sigo em frente.</div>
+                     <div class="option" data-type="B">Escuto, mas decido com base nos factos.</div>
+                     <div class="option" data-type="C">Tento encontrar um meio-termo.</div>
+                     <div class="option" data-type="D">Avalio se a discordância tem fundamento e ajusto, se necessário.</div>
+                 </div>
             </div>
 
             <div class="question-container" data-question="5">
-                <h3>5. Gestão da Mudança</h3>
-                <p class="question-text">Como reages quando há uma grande mudança na empresa?</p>
-                <div class="options-container">
-                    <div class="option" data-type="A">Vejo como uma oportunidade para inovar.</div>
-                    <div class="option" data-type="B">Faço uma análise dos riscos antes de agir.</div>
-                    <div class="option" data-type="C">Garante que a equipa se sente ouvida e apoiada.</div>
-                    <div class="option" data-type="D">Reforço a importância dos valores e da missão durante a mudança.</div>
-                </div>
+                 <h3>5. Gestão de Conflitos</h3>
+                 <p class="question-text">Como costumas resolver conflitos dentro da equipa?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Encaro diretamente e tento resolver rapidamente.</div>
+                     <div class="option" data-type="B">Analiso os factos antes de tomar uma decisão.</div>
+                     <div class="option" data-type="C">Promovo o diálogo entre as partes envolvidas.</div>
+                     <div class="option" data-type="D">Guio a equipa para encontrar uma solução alinhada com os valores do grupo.</div>
+                 </div>
             </div>
 
-             <div class="question-container" data-question="6">
-                <h3>6. Delegação</h3>
+            <div class="question-container" data-question="6">
+                 <h3>6. Gestão de Conflitos</h3>
+                 <p class="question-text">Quando há tensão na equipa, o que fazes primeiro?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Tomo uma decisão rápida para evitar maiores problemas.</div>
+                     <div class="option" data-type="B">Recolho informação e compreendo todas as perspetivas.</div>
+                     <div class="option" data-type="C">Facilito uma conversa aberta para resolver o problema.</div>
+                     <div class="option" data-type="D">Relembro a equipa dos princípios que devem guiar a decisão.</div>
+                 </div>
+            </div>
+
+            <div class="question-container" data-question="7">
+                 <h3>7. Motivação e Gestão de Pessoas</h3>
+                 <p class="question-text">O que te dá mais satisfação como líder?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Tomar decisões estratégicas que fazem a diferença.</div>
+                     <div class="option" data-type="B">Resolver problemas complexos de forma eficiente.</div>
+                     <div class="option" data-type="C">Ajudar as pessoas a crescer e desenvolver-se.</div>
+                     <div class="option" data-type="D">Criar um ambiente onde todos se sintam alinhados com um propósito.</div>
+                 </div>
+            </div>
+
+            <div class="question-container" data-question="8">
+                 <h3>8. Motivação e Gestão de Pessoas</h3>
+                 <p class="question-text">Como motivas a tua equipa num momento difícil?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Dou um discurso inspirador e motivo-os para a ação.</div>
+                     <div class="option" data-type="B">Apresento soluções práticas e um plano claro.</div>
+                     <div class="option" data-type="C">Escuto as preocupações e reforço o espírito de equipa.</div>
+                     <div class="option" data-type="D">Relembro-os do impacto do trabalho no propósito maior.</div>
+                 </div>
+            </div>
+
+            <div class="question-container" data-question="9">
+                 <h3>9. Gestão da Mudança</h3>
+                 <p class="question-text">Como reages quando há uma grande mudança na empresa?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Vejo como uma oportunidade para inovar.</div>
+                     <div class="option" data-type="B">Faço uma análise dos riscos antes de agir.</div>
+                     <div class="option" data-type="C">Garante que a equipa se sente ouvida e apoiada.</div>
+                     <div class="option" data-type="D">Reforço a importância dos valores e da missão durante a mudança.</div>
+                 </div>
+            </div>
+
+            <div class="question-container" data-question="10">
+                 <h3>10. Gestão da Mudança</h3>
+                 <p class="question-text">Qual a tua prioridade ao comunicar mudanças à equipa?</p>
+                 <div class="options-container">
+                     <div class="option" data-type="A">Motivar e criar entusiasmo em torno da mudança.</div>
+                     <div class="option" data-type="B">Explicar os detalhes e responder a todas as dúvidas.</div>
+                     <div class="option" data-type="C">Assegurar que a equipa se sente segura e envolvida.</div>
+                     <div class="option" data-type="D">Alinhar a mudança com os princípios e missão da empresa.</div>
+                 </div>
+            </div>
+            
+            <!-- Adding questions 11-20 -->
+            <div class="question-container" data-question="11">
+                <h3>11. Delegação</h3>
                 <p class="question-text">Ao delegar tarefas, qual a tua abordagem principal?</p>
                 <div class="options-container">
                     <div class="option" data-type="A">Defino claramente o resultado esperado e dou autonomia.</div>
@@ -249,8 +306,19 @@
                 </div>
             </div>
 
-             <div class="question-container" data-question="7">
-                <h3>7. Feedback</h3>
+             <div class="question-container" data-question="12">
+                <h3>12. Delegação</h3>
+                <p class="question-text">Como lidas com um colaborador que tem dificuldades em cumprir uma tarefa delegada?</p>
+                <div class="options-container">
+                    <div class="option" data-type="A">Assumo a tarefa para garantir que é feita corretamente.</div>
+                    <div class="option" data-type="B">Analiso o problema e ofereço orientação específica.</div>
+                    <div class="option" data-type="C">Ofereço apoio e procuro entender as dificuldades.</div>
+                    <div class="option" data-type="D">Relembro a importância da tarefa e ofereço recursos adicionais.</div>
+                </div>
+            </div>
+
+             <div class="question-container" data-question="13">
+                <h3>13. Feedback</h3>
                 <p class="question-text">Como preferes dar feedback a um membro da equipa?</p>
                 <div class="options-container">
                     <div class="option" data-type="A">De forma direta e imediata, focando nos factos.</div>
@@ -260,8 +328,19 @@
                 </div>
             </div>
 
-             <div class="question-container" data-question="8">
-                <h3>8. Visão de Futuro</h3>
+             <div class="question-container" data-question="14">
+                <h3>14. Feedback</h3>
+                <p class="question-text">Como reages ao receber feedback crítico sobre a tua liderança?</p>
+                <div class="options-container">
+                    <div class="option" data-type="A">Defendo a minha posição e explico as minhas razões.</div>
+                    <div class="option" data-type="B">Analiso o feedback objetivamente e procuro áreas de melhoria.</div>
+                    <div class="option" data-type="C">Agradeço o feedback e reflito sobre como posso melhorar.</div>
+                    <div class="option" data-type="D">Avalio o feedback à luz dos valores e objetivos da equipa.</div>
+                </div>
+            </div>
+
+             <div class="question-container" data-question="15">
+                <h3>15. Visão de Futuro</h3>
                 <p class="question-text">Qual o teu foco principal ao pensar no futuro da equipa/organização?</p>
                 <div class="options-container">
                     <div class="option" data-type="A">Inovação e novas oportunidades de crescimento.</div>
@@ -271,8 +350,19 @@
                 </div>
             </div>
 
-             <div class="question-container" data-question="9">
-                <h3>9. Risco</h3>
+             <div class="question-container" data-question="16">
+                <h3>16. Visão de Futuro</h3>
+                <p class="question-text">Como comunicas a visão de futuro à tua equipa?</p>
+                <div class="options-container">
+                    <div class="option" data-type="A">Através de apresentações inspiradoras e motivacionais.</div>
+                    <div class="option" data-type="B">Com planos detalhados, metas claras e KPIs.</div>
+                    <div class="option" data-type="C">Envolvendo a equipa na definição da visão e dos próximos passos.</div>
+                    <div class="option" data-type="D">Ligando a visão aos valores fundamentais e ao propósito da organização.</div>
+                </div>
+            </div>
+
+             <div class="question-container" data-question="17">
+                <h3>17. Risco</h3>
                 <p class="question-text">Qual a tua atitude perante o risco?</p>
                 <div class="options-container">
                     <div class="option" data-type="A">Estou disposto a correr riscos calculados para alcançar grandes objetivos.</div>
@@ -282,8 +372,19 @@
                 </div>
             </div>
 
-             <div class="question-container" data-question="10">
-                <h3>10. Reconhecimento</h3>
+             <div class="question-container" data-question="18">
+                <h3>18. Risco</h3>
+                <p class="question-text">Como lidas com o fracasso ou um resultado inesperado?</p>
+                <div class="options-container">
+                    <div class="option" data-type="A">Vejo como uma oportunidade de aprendizagem e sigo em frente rapidamente.</div>
+                    <div class="option" data-type="B">Analiso o que correu mal para evitar erros futuros.</div>
+                    <div class="option" data-type="C">Apoio a equipa e foco em recuperar a confiança.</div>
+                    <div class="option" data-type="D">Reflito sobre as lições aprendidas e como se alinham com os nossos valores.</div>
+                </div>
+            </div>
+
+             <div class="question-container" data-question="19">
+                <h3>19. Reconhecimento</h3>
                 <p class="question-text">Como gostas de reconhecer o bom trabalho da equipa?</p>
                 <div class="options-container">
                     <div class="option" data-type="A">Com bónus, promoções ou outros incentivos tangíveis.</div>
@@ -293,8 +394,20 @@
                 </div>
             </div>
 
+             <div class="question-container" data-question="20">
+                <h3>20. Reconhecimento</h3>
+                <p class="question-text">O que consideras mais importante ao celebrar sucessos?</p>
+                <div class="options-container">
+                    <div class="option" data-type="A">Reconhecer os resultados e o impacto alcançado.</div>
+                    <div class="option" data-type="B">Partilhar os dados e métricas que comprovam o sucesso.</div>
+                    <div class="option" data-type="C">Valorizar o esforço individual e coletivo da equipa.</div>
+                    <div class="option" data-type="D">Reforçar como o sucesso contribui para a missão e valores.</div>
+                </div>
+            </div>
+            <!-- End of questions -->
+
             <!-- Results Container -->
-            <div class="results-container" style="display: none;">
+            <div class="results-container">
                 <h2>O Teu Arquétipo de Liderança</h2>
                 <div class="result-type">
                     <h3 id="result-title">[Arquétipo Calculado]</h3>
@@ -313,9 +426,9 @@
         </div>
 
         <!-- Navigation Buttons -->
-        <div class="survey-navigation" style="display: block;"> <!-- Ensure navigation is visible initially -->
+        <div class="survey-navigation" style="display: flex;"> <!-- Ensure navigation is visible initially -->
             <button id="prev-btn" class="nav-btn" disabled>Anterior</button>
-            <button id="next-btn" class="nav-btn">Próxima</button>
+            <button id="next-btn" class="nav-btn" disabled>Próxima</button> <!-- Start disabled -->
         </div>
 
         <a href="../index.html" class="back-link">Voltar ao Site Principal</a>
