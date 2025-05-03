@@ -626,18 +626,19 @@
                     <h3>Aconselhamento para Transformações Organizacionais</h3>
                     <p>Orientação estratégica para líderes e equipas que enfrentam processos de mudança e transformação.</p>
                 </div>
+                <!-- New Survey Card -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-brain" style="color: var(--primary-color); font-size: 2.5rem;"></i></div> <!-- Using FontAwesome icon -->
+                    <h3>Descobre o Teu Arquétipo de Liderança</h3>
+                    <p>Responde ao nosso questionário interativo e descobre o teu estilo de liderança predominante.</p>
+                    <a href="questionario/index.html" class="btn" style="margin-top: 1rem;">Iniciar Questionário</a>
+                </div>
+                <!-- End New Survey Card -->
             </div>
         </div>
     </section>
 
-    <!-- Add Survey Widget Here -->
-    <section id="survey-widget-section" class="container fade-in" style="padding: 5rem 0; text-align: center;">
-         <h2 style="text-align: center; margin-bottom: 1.5rem;">Descobre o Teu Arquétipo de Liderança</h2>
-         <p style="max-width: 800px; margin: 0 auto 2rem auto; text-align: center;">Responde a este questionário e recebe um relatório personalizado.</p>
-         <iframe src="survey_widget/widget_embed.html" style="width: 100%; max-width: 900px; height: 800px; border: 1px solid #ddd; border-radius: 8px; margin: 0 auto; display: block;" title="Questionário Arquétipo de Liderança"></iframe>
-         <p style="margin-top: 2rem;"><a href="test_results/test_report.md" target="_blank" class="btn">Ver Relatório de Exemplo</a></p> <!-- Link to test report -->
-    </section>
-    <!-- End Survey Widget -->
+    <!-- Survey Widget Section Removed - Replaced by Card Link -->
 
     <section id="author" class="autor-section fade-in">
         <div class="container">
@@ -665,18 +666,33 @@
             <iframe src="testimonials_widget.html" width="100%" height="600" frameborder="0" sandbox="allow-same-origin allow-scripts"></iframe>
         </div>
     </section>
-
-    <section id="newsletter" class="newsletter-section fade-in">
+    <!-- HR Innovation Hub Section -->
+    <section id="hr-innovation-hub" class="newsletter-section fade-in" style="padding: 4rem 0; background-color: var(--light-bg);">
         <div class="container">
-            <h2>Newsletter</h2>
-            <p style="text-align: center;">Receba regularmente conteúdos exclusivos sobre liderança, transformação organizacional e desenvolvimento pessoal.</p>
-            <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault(); alert('Subscrição enviada! Obrigado.');">
-                <input type="email" name="email" placeholder="O seu e-mail" required>
-                <button type="submit" class="btn">Subscrever</button>
-            </form>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <img src="images/hr_innovation_hub_banner.png" alt="HR Innovation Hub Banner" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                <h2 style="margin-bottom: 1rem;">HR Innovation Hub</h2>
+                <p>Explore as últimas tendências, insights e estratégias em Gestão de Pessoas e Transformação Organizacional.</p>
+            </div>
+
+            <div class="latest-article" style="background-color: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--box-shadow); display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 3rem;">
+                <div class="article-image" style="flex: 1 1 300px;">
+                    <img src="images/reskilling_article_image.png" alt="Reskilling Article Image" style="width: 100%; height: auto; border-radius: 8px;">
+                </div>
+                <div class="article-content" style="flex: 2 1 400px;">
+                    <h3 style="margin-bottom: 1rem;">Artigo em Destaque</h3>
+                    <h4 style="margin-bottom: 1rem;">Reskilling: An Inspiring Perspective from Both Individual and Organizational Standpoints</h4>
+                    <p style="margin-bottom: 1.5rem;">Num mundo em constante mudança, o reskilling torna-se crucial. Explore perspetivas sobre como indivíduos e organizações podem abraçar esta transformação...</p>
+                    <a href="https://www.linkedin.com/pulse/reskilling-inspiring-perspective-from-both-individual-samuel-rolo-2sdyf/?trackingId=ZUKrtIHBRPGcT0vZD6jHvw%3D%3D" target="_blank" class="btn">Ler Artigo Completo</a>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="https://www.linkedin.com/newsletters/hr-innovation-hub-%F0%9F%92%A1-7258968797414342657/" target="_blank" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Subscrever no LinkedIn</a>
+            </div>
         </div>
     </section>
-
+    <!-- End HR Innovation Hub Section -->
     <section id="contact" class="contact-section fade-in">
         <div class="container">
             <h2>Entre em Contacto</h2>
