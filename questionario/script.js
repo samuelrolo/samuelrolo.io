@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const questionContainers = document.querySelectorAll(".question-container");
     const resultsContainer = document.querySelector(".results-container");
-    const surveyContent = document.getElementById("survey-content");
+    const surveyContent = document.getElementById("survey-content"); // Container for questions
     const progressFill = document.querySelector(".progress-fill");
     const currentQuestionSpan = document.getElementById("current-question");
     const totalQuestionsSpan = document.getElementById("total-questions");
@@ -11,18 +11,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const navigationContainer = document.querySelector(".survey-navigation");
 
     let currentQuestionIndex = 0;
-    const totalQuestions = questionContainers.length;
+    const totalQuestions = questionContainers.length; // Should be 20 now
     const userAnswers = {}; // Store answers as { questionIndex: answerType }
 
-    // Archetype definitions (simplified for brevity)
+    // Archetype definitions with descriptions
     const archetypes = {
-        A: { name: "Líder Visionário", description: "Focado na inovação e futuro." },
-        B: { name: "Líder Estratega", description: "Analítico e focado em eficiência." },
-        C: { name: "Líder Colaborativo", description: "Focado nas pessoas e harmonia." },
-        D: { name: "Líder Guardião", description: "Focado em valores e estabilidade." },
+        A: { 
+            name: "Líder Visionário", 
+            description: "És um líder que inspira através de uma visão clara e motivadora. Tens facilidade em ver o quadro geral e em comunicar um futuro empolgante. A tua energia e carisma motivam os outros a seguir-te, mesmo em tempos de incerteza."
+        },
+        B: { 
+            name: "Líder Analítico", 
+            description: "És um líder que toma decisões baseadas em dados e análises cuidadosas. Valorizas a precisão, a eficiência e a resolução metódica de problemas. A tua abordagem estruturada traz clareza e direção em situações complexas."
+        },
+        C: { 
+            name: "Líder Colaborativo", 
+            description: "És um líder que valoriza as relações e o trabalho em equipa. Tens uma capacidade natural para ouvir, criar consenso e desenvolver o potencial dos outros. A tua liderança cria ambientes inclusivos onde todos se sentem valorizados."
+        },
+        D: { 
+            name: "Líder Guardião", // Changed from Transformational for consistency with original options
+            description: "És um líder guiado por valores e princípios fortes. Procuras criar impacto significativo e duradouro, alinhando ações com um propósito maior. A tua integridade e visão ética inspiram confiança e compromisso."
+        },
     };
 
     function init() {
+        if (totalQuestions === 0) {
+            console.error("No question containers found!");
+            return;
+        }
         totalQuestionsSpan.textContent = totalQuestions;
         updateQuestionVisibility();
         setupOptionListeners();
@@ -35,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".option").forEach((option) => {
             option.addEventListener("click", function () {
                 selectOption(this);
-                // Automatically move to next question after a short delay
-                // setTimeout(goToNextQuestion, 300); // Optional: uncomment for auto-advance
+                // Optional: Auto-advance after selection
+                // setTimeout(goToNextQuestion, 300);
             });
         });
     }
@@ -62,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Update button text on the last question
             nextBtn.textContent = currentQuestionIndex === totalQuestions - 1 ? "Ver Resultados" : "Próxima";
 
-            // Restore selected state if navigating back
+            // Restore selected state if navigating back/forward
             if (userAnswers[currentQuestionIndex]) {
                  const selectedOption = questionContainers[currentQuestionIndex].querySelector(`.option[data-type="${userAnswers[currentQuestionIndex]}"]`);
                  if (selectedOption) {
@@ -70,16 +86,21 @@ document.addEventListener("DOMContentLoaded", function () {
                      questionContainers[currentQuestionIndex].querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
                      selectedOption.classList.add("selected");
                  }
+            } else {
+                 // Ensure no option is marked selected if no answer stored
+                 questionContainers[currentQuestionIndex].querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
             }
 
         } else {
-            // Show results
+            // This case should ideally not be reached here, showResults handles the transition
+            console.log("Reached end index, showing results...");
             showResults();
         }
     }
 
     function selectOption(optionElement) {
         const questionContainer = optionElement.closest(".question-container");
+        if (!questionContainer) return;
         const answerType = optionElement.dataset.type;
 
         // Remove selected class from siblings
@@ -90,8 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add selected class to the clicked option
         optionElement.classList.add("selected");
 
-        // Store the answer
+        // Store the answer using the current index
         userAnswers[currentQuestionIndex] = answerType;
+        console.log(`Answered Q${currentQuestionIndex + 1}: ${answerType}`); // Debug log
 
         // Enable the next button
         nextBtn.disabled = false;
@@ -107,8 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function goToNextQuestion() {
         // Check if an answer was selected for the current question
         if (userAnswers[currentQuestionIndex] === undefined) {
-            // Optionally alert the user, though the button should be disabled
-            // alert("Por favor, selecione uma opção.");
+            // Button should be disabled, but double-check
+            alert("Por favor, selecione uma opção.");
             return;
         }
 
@@ -116,49 +138,71 @@ document.addEventListener("DOMContentLoaded", function () {
             currentQuestionIndex++;
             updateQuestionVisibility();
         } else {
-            // Reached the end, show results
-            currentQuestionIndex = totalQuestions; // Move index past the last question
+            // Reached the end (after answering the last question), show results
+            console.log("Last question answered, calculating results...");
             showResults();
         }
     }
 
     function calculateResults() {
         const counts = { A: 0, B: 0, C: 0, D: 0 };
-        Object.values(userAnswers).forEach((answerType) => {
-            counts[answerType]++;
-        });
+        // Count answers based on the stored userAnswers object
+        for (let i = 0; i < totalQuestions; i++) {
+            if (userAnswers[i]) {
+                counts[userAnswers[i]]++;
+            }
+        }
+        console.log("Answer counts:", counts); // Debug log
 
-        let dominantType = "A";
+        let dominantType = "A"; // Default
         let maxCount = 0;
+        // Find the archetype with the highest count
         for (const type in counts) {
             if (counts[type] > maxCount) {
                 maxCount = counts[type];
                 dominantType = type;
             }
         }
-        // Basic tie-breaking: just picks the first one encountered in case of a tie
-        return archetypes[dominantType];
+        
+        // Simple tie-breaking: if counts are equal, the first one encountered wins (A > B > C > D)
+        // More sophisticated tie-breaking could be added if needed.
+        
+        console.log("Dominant type:", dominantType); // Debug log
+        return archetypes[dominantType] || { name: "Erro", description: "Não foi possível calcular o resultado." }; // Return archetype object or error
     }
 
     function showResults() {
         surveyContent.style.display = "none";
         navigationContainer.style.display = "none";
-        resultsContainer.style.display = "block";
+        resultsContainer.style.display = "block"; // Show the results container
 
         const result = calculateResults();
-        document.getElementById("result-title").textContent = result.name;
-        document.getElementById("result-description").textContent = result.description;
-        // Chart generation logic could be added here if needed
+        const resultTitleElement = document.getElementById("result-title");
+        const resultDescriptionElement = document.getElementById("result-description");
+
+        if (resultTitleElement && resultDescriptionElement) {
+             resultTitleElement.textContent = result.name;
+             resultDescriptionElement.textContent = result.description;
+        } else {
+             console.error("Result title or description element not found!");
+        }
+        
+        // Chart generation logic could be re-added here if needed
+        // createResultsChart(counts); // Pass counts if chart is needed
     }
 
     function restartSurvey() {
         currentQuestionIndex = 0;
+        // Clear stored answers
         for (let i = 0; i < totalQuestions; i++) {
-             delete userAnswers[i]; // Clear answers
-             // Clear visual selection
-             questionContainers[i].querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+             delete userAnswers[i]; 
         }
-        updateQuestionVisibility();
+        // Reset visual selections (optional, updateQuestionVisibility handles it)
+        // questionContainers.forEach(container => {
+        //     container.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+        // });
+        console.log("Survey restarted, answers cleared."); // Debug log
+        updateQuestionVisibility(); // This will show the first question and hide results
     }
 
     // Initialize the survey
