@@ -1,0 +1,10 @@
+{
+  "name": "send-email-function",
+  "version": "1.0.0",
+  "description": "Serverless function to send email via Brevo API",
+  "main": "send-email.js",
+  "dependencies": {
+    "node-fetch": "^2.6.7" 
+  }
+}
+

@@ -204,27 +204,59 @@ document.addEventListener("DOMContentLoaded", function () {
         updateQuestionVisibility();
     }
 
-    function handleEmailSubmit(event) {
+    async function handleEmailSubmit(event) {
         event.preventDefault(); // Prevent default form submission
         const userEmail = userEmailInput.value;
         const result = calculateResults(); // Get the calculated archetype
-        const subject = encodeURIComponent(`Interesse no Arquétipo de Liderança: ${result.name}`);
-        const body = encodeURIComponent(`Olá,\n\nGostaria de saber mais sobre o meu resultado no questionário de Arquétipo de Liderança (${result.name}).\n\nO meu e-mail é: ${userEmail}\n\nObrigado.`);
-        const mailtoLink = `mailto:srshare2inspire@gmail.com?subject=${subject}&body=${body}`;
+        
+        if (!userEmail) {
+            alert("Por favor, introduza o seu endereço de e-mail.");
+            return;
+        }
 
-        // Show feedback message and open mail client
         if (formMessage) {
+            formMessage.textContent = "A enviar...";
+            formMessage.style.color = "var(--secondary-color)"; // Use a neutral color
             formMessage.style.display = "block";
         }
-        window.location.href = mailtoLink;
-        
-        // Optionally clear the input and hide message after a delay
-        setTimeout(() => {
-            userEmailInput.value = "";
-            if (formMessage) {
-                 formMessage.style.display = "none";
+
+        const data = {
+            email: userEmail,
+            archetype: result.name || "N/A",
+            source: "questionnaire_result" // Identify the source
+        };
+
+        try {
+            // Use a relative path, assuming deployment on Netlify/Vercel
+            // Adjust path if needed based on deployment setup
+            const response = await fetch("/.netlify/functions/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                if (formMessage) {
+                    formMessage.textContent = "Pedido enviado com sucesso! Entraremos em contacto em breve.";
+                    formMessage.style.color = "#4CAF50"; // Green for success
+                }
+                userEmailInput.value = ""; // Clear the input
+            } else {
+                const errorResult = await response.json();
+                if (formMessage) {
+                    formMessage.textContent = `Erro ao enviar: ${errorResult.message || "Tente novamente."}`;
+                    formMessage.style.color = "#F44336"; // Red for error
+                }
             }
-        }, 5000); // Hide after 5 seconds
+        } catch (error) {
+            console.error("Error submitting questionnaire email form:", error);
+            if (formMessage) {
+                formMessage.textContent = "Erro ao enviar o pedido. Verifique a sua ligação ou tente mais tarde.";
+                formMessage.style.color = "#F44336"; // Red for error
+            }
+        }
     }
 
     // Initialize the survey

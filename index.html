@@ -718,8 +718,27 @@
             <h2>Entre em Contacto</h2>
             <div class="contact-info">
                 <p>Tem alguma questão ou pretende discutir como podemos ajudar a sua organização ou carreira? Envie-nos uma mensagem!</p>
-                <p>Email: <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
-                <p>Siga-nos nas redes sociais para mais conteúdos e inspiração.</p>
+                <!-- Contact Form -->
+                <form id="contact-form" class="contact-form" style="margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                        <label for="contact-name" style="display: block; margin-bottom: 0.5rem; color: var(--white);">Nome:</label>
+                        <input type="text" id="contact-name" name="name" required style="width: 100%; padding: 0.8rem; border: 1px solid #555; border-radius: 5px; background-color: #444; color: var(--white); font-family: 'Open Sans', sans-serif;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label for="contact-email" style="display: block; margin-bottom: 0.5rem; color: var(--white);">Email:</label>
+                        <input type="email" id="contact-email" name="email" required style="width: 100%; padding: 0.8rem; border: 1px solid #555; border-radius: 5px; background-color: #444; color: var(--white); font-family: 'Open Sans', sans-serif;">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="contact-message" style="display: block; margin-bottom: 0.5rem; color: var(--white);">Mensagem:</label>
+                        <textarea id="contact-message" name="message" rows="5" required style="width: 100%; padding: 0.8rem; border: 1px solid #555; border-radius: 5px; background-color: #444; color: var(--white); font-family: 'Open Sans', sans-serif;"></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </div>
+                    <div id="contact-form-feedback" style="margin-top: 1rem; text-align: center; color: var(--white);"></div>
+                </form>
+                <!-- End Contact Form -->
+                <p style="margin-top: 2rem;">Siga-nos nas redes sociais para mais conteúdos e inspiração.</p>
                  <div class="social-links">
                         <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -776,4 +795,76 @@
 
 </body>
 </html>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
+    const contactFormFeedback = document.getElementById('contact-form-feedback');
+
+    if (contactForm && contactFormFeedback) {
+        contactForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default submission
+            contactFormFeedback.textContent = 'A enviar...';
+            contactFormFeedback.style.color = 'var(--white)';
+
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message'),
+                source: 'contact_form' // Identify the source
+            };
+
+            try {
+                // Use a relative path, assuming deployment on Netlify/Vercel
+                // Adjust '/.netlify/functions/send-email' if using a different platform or path
+                const response = await fetch('/.netlify/functions/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    contactFormFeedback.textContent = 'Mensagem enviada com sucesso!';
+                    contactFormFeedback.style.color = '#4CAF50'; // Green for success
+                    contactForm.reset(); // Clear the form
+                } else {
+                    const errorResult = await response.json();
+                    contactFormFeedback.textContent = `Erro ao enviar: ${errorResult.message || 'Tente novamente.'}`;
+                    contactFormFeedback.style.color = '#F44336'; // Red for error
+                }
+            } catch (error) {
+                console.error('Error submitting contact form:', error);
+                contactFormFeedback.textContent = 'Erro ao enviar a mensagem. Verifique a sua ligação ou tente mais tarde.';
+                contactFormFeedback.style.color = '#F44336'; // Red for error
+            }
+        });
+    }
+    
+    // Language Toggle (Example - adapt as needed)
+    const translateButton = document.getElementById('translate-button');
+    if (translateButton) {
+        translateButton.addEventListener('click', function() {
+            // Add your translation logic here
+            alert('Translation functionality not yet implemented.');
+            // Example: toggle language, reload page, or dynamically change content
+        });
+    }
+
+});
+</script>
 
