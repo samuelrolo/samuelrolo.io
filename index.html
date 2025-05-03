@@ -288,7 +288,7 @@
         
         .contact-section {
             /* Keep gradient, but maybe adjust colors if needed */
-            background: linear-gradient(rgba(34, 34, 34, 0.9), rgba(34, 34, 34, 0.9)), url('images/contact-bg.jpg') center/cover;
+            background: linear-gradient(rgba(34, 34, 34, 0.9), rgba(34, 34, 34, 0.9)); /* Removed missing background image */
             color: var(--white);
             padding: 5rem 0;
         }
@@ -583,6 +583,7 @@
                 <a href="#services">Serviços</a>
                 <a href="#author">Autor</a>
                 <a href="#contact">Contacto</a>
+                <a href="Newsletter/index.html">Newsletter</a>
                 <a href="Calendario/index.html" class="btn btn-nav">Agendar</a>
             </div>
         </div>
@@ -629,11 +630,20 @@
         </div>
     </section>
 
+    <!-- Add Survey Widget Here -->
+    <section id="survey-widget-section" class="container fade-in" style="padding: 5rem 0; text-align: center;">
+         <h2 style="text-align: center; margin-bottom: 1.5rem;">Descobre o Teu Arquétipo de Liderança</h2>
+         <p style="max-width: 800px; margin: 0 auto 2rem auto; text-align: center;">Responde a este questionário e recebe um relatório personalizado.</p>
+         <iframe src="survey_widget/widget_embed.html" style="width: 100%; max-width: 900px; height: 800px; border: 1px solid #ddd; border-radius: 8px; margin: 0 auto; display: block;" title="Questionário Arquétipo de Liderança"></iframe>
+         <p style="margin-top: 2rem;"><a href="test_results/test_report.md" target="_blank" class="btn">Ver Relatório de Exemplo</a></p> <!-- Link to test report -->
+    </section>
+    <!-- End Survey Widget -->
+
     <section id="author" class="autor-section fade-in">
         <div class="container">
             <h2>Sobre o Autor</h2>
             <div class="autor-container">
-                <div class="autor-foto">                    <img src="images/samuel_rolo.jpg" alt="Samuel Rolo">                </div>
+                <div class="autor-foto">                    <img src="autor.png" alt="Samuel Rolo">                </div>
                 <div class="autor-bio">
                     <h3>Samuel Rolo</h3>
                     <p>Com mais de 14 anos de experiência em consultoria de capital humano e transformação organizacional, Samuel Rolo é um especialista apaixonado por ajudar pessoas e empresas a prosperar em ambientes de mudança.</p>
