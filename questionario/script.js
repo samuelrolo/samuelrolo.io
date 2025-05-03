@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextBtn = document.getElementById("next-btn");
     const restartBtn = document.getElementById("restart-survey");
     const navigationContainer = document.querySelector(".survey-navigation");
+    const emailForm = document.getElementById("email-form");
+    const userEmailInput = document.getElementById("user-email");
+    const formMessage = document.getElementById("form-message");
 
     let currentQuestionIndex = 0;
     const totalQuestions = questionContainers.length; // Should be 20 now
@@ -35,34 +38,47 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function init() {
+        console.log("Initializing survey...");
         if (totalQuestions === 0) {
             console.error("No question containers found!");
             return;
         }
+        console.log(`Found ${totalQuestions} questions.`);
         totalQuestionsSpan.textContent = totalQuestions;
         updateQuestionVisibility();
         setupOptionListeners();
         prevBtn.addEventListener("click", goToPreviousQuestion);
         nextBtn.addEventListener("click", goToNextQuestion);
-        restartBtn.addEventListener("click", restartSurvey);
+        if (restartBtn) {
+            restartBtn.addEventListener("click", restartSurvey);
+        } else {
+            console.warn("Restart button not found in the DOM.");
+        }
+        // Add email form listener
+        if (emailForm) {
+            emailForm.addEventListener("submit", handleEmailSubmit);
+        } else {
+             console.warn("Email form not found in the DOM.");
+        }
+        console.log("Survey initialized.");
     }
 
     function setupOptionListeners() {
         document.querySelectorAll(".option").forEach((option) => {
             option.addEventListener("click", function () {
                 selectOption(this);
-                // Optional: Auto-advance after selection
-                // setTimeout(goToNextQuestion, 300);
             });
         });
     }
 
     function updateQuestionVisibility() {
+        console.log(`Updating visibility for question index: ${currentQuestionIndex}`);
         questionContainers.forEach((container, index) => {
             container.classList.toggle("active", index === currentQuestionIndex);
         });
 
         if (currentQuestionIndex < totalQuestions) {
+            console.log("Displaying question content.");
             surveyContent.style.display = "block";
             resultsContainer.style.display = "none";
             navigationContainer.style.display = "flex";
@@ -72,28 +88,21 @@ document.addEventListener("DOMContentLoaded", function () {
             currentQuestionSpan.textContent = currentQuestionIndex + 1;
 
             prevBtn.disabled = currentQuestionIndex === 0;
-            // Disable next button until an option is selected for the current question
             nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
-
-            // Update button text on the last question
             nextBtn.textContent = currentQuestionIndex === totalQuestions - 1 ? "Ver Resultados" : "Próxima";
 
-            // Restore selected state if navigating back/forward
             if (userAnswers[currentQuestionIndex]) {
                  const selectedOption = questionContainers[currentQuestionIndex].querySelector(`.option[data-type="${userAnswers[currentQuestionIndex]}"]`);
                  if (selectedOption) {
-                     // Ensure only the correct option is marked as selected
                      questionContainers[currentQuestionIndex].querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
                      selectedOption.classList.add("selected");
                  }
             } else {
-                 // Ensure no option is marked selected if no answer stored
                  questionContainers[currentQuestionIndex].querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
             }
 
         } else {
-            // This case should ideally not be reached here, showResults handles the transition
-            console.log("Reached end index, showing results...");
+            console.log("Reached end index in updateQuestionVisibility, calling showResults...");
             showResults();
         }
     }
@@ -103,19 +112,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!questionContainer) return;
         const answerType = optionElement.dataset.type;
 
-        // Remove selected class from siblings
         questionContainer.querySelectorAll(".option").forEach((opt) => {
             opt.classList.remove("selected");
         });
-
-        // Add selected class to the clicked option
         optionElement.classList.add("selected");
 
-        // Store the answer using the current index
         userAnswers[currentQuestionIndex] = answerType;
-        console.log(`Answered Q${currentQuestionIndex + 1}: ${answerType}`); // Debug log
-
-        // Enable the next button
+        console.log(`Answered Q${currentQuestionIndex + 1}: ${answerType}`);
         nextBtn.disabled = false;
     }
 
@@ -127,36 +130,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function goToNextQuestion() {
-        // Check if an answer was selected for the current question
+        console.log(`goToNextQuestion called. Current index: ${currentQuestionIndex}`);
         if (userAnswers[currentQuestionIndex] === undefined) {
-            // Button should be disabled, but double-check
             alert("Por favor, selecione uma opção.");
             return;
         }
 
         if (currentQuestionIndex < totalQuestions - 1) {
             currentQuestionIndex++;
+            console.log(`Moving to next question index: ${currentQuestionIndex}`);
             updateQuestionVisibility();
         } else {
-            // Reached the end (after answering the last question), show results
-            console.log("Last question answered, calculating results...");
+            console.log("Last question answered, calling showResults...");
             showResults();
         }
     }
 
     function calculateResults() {
         const counts = { A: 0, B: 0, C: 0, D: 0 };
-        // Count answers based on the stored userAnswers object
         for (let i = 0; i < totalQuestions; i++) {
             if (userAnswers[i]) {
                 counts[userAnswers[i]]++;
             }
         }
-        console.log("Answer counts:", counts); // Debug log
+        console.log("Answer counts:", counts);
 
-        let dominantType = "A"; // Default
-        let maxCount = 0;
-        // Find the archetype with the highest count
+        let dominantType = "A";
+        let maxCount = -1;
         for (const type in counts) {
             if (counts[type] > maxCount) {
                 maxCount = counts[type];
@@ -164,45 +164,67 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         
-        // Simple tie-breaking: if counts are equal, the first one encountered wins (A > B > C > D)
-        // More sophisticated tie-breaking could be added if needed.
-        
-        console.log("Dominant type:", dominantType); // Debug log
-        return archetypes[dominantType] || { name: "Erro", description: "Não foi possível calcular o resultado." }; // Return archetype object or error
+        console.log("Dominant type calculated:", dominantType);
+        return archetypes[dominantType] || { name: "Erro", description: "Não foi possível calcular o resultado." };
     }
 
     function showResults() {
+        console.log("Executing showResults function...");
+        if (!surveyContent || !navigationContainer || !resultsContainer) {
+             console.error("Core containers (surveyContent, navigationContainer, resultsContainer) not found!");
+             return;
+        }
         surveyContent.style.display = "none";
         navigationContainer.style.display = "none";
-        resultsContainer.style.display = "block"; // Show the results container
+        resultsContainer.style.display = "block";
+        console.log(`Results container display set to: ${resultsContainer.style.display}`);
 
         const result = calculateResults();
         const resultTitleElement = document.getElementById("result-title");
         const resultDescriptionElement = document.getElementById("result-description");
 
         if (resultTitleElement && resultDescriptionElement) {
+             console.log(`Setting result title to: ${result.name}`);
              resultTitleElement.textContent = result.name;
+             console.log(`Setting result description to: ${result.description}`);
              resultDescriptionElement.textContent = result.description;
         } else {
-             console.error("Result title or description element not found!");
+             console.error("Result title or description element not found in the DOM!");
         }
-        
-        // Chart generation logic could be re-added here if needed
-        // createResultsChart(counts); // Pass counts if chart is needed
+        console.log("showResults function finished.");
     }
 
     function restartSurvey() {
+        console.log("Restarting survey...");
         currentQuestionIndex = 0;
-        // Clear stored answers
         for (let i = 0; i < totalQuestions; i++) {
              delete userAnswers[i]; 
         }
-        // Reset visual selections (optional, updateQuestionVisibility handles it)
-        // questionContainers.forEach(container => {
-        //     container.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
-        // });
-        console.log("Survey restarted, answers cleared."); // Debug log
-        updateQuestionVisibility(); // This will show the first question and hide results
+        console.log("Answers cleared.");
+        updateQuestionVisibility();
+    }
+
+    function handleEmailSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+        const userEmail = userEmailInput.value;
+        const result = calculateResults(); // Get the calculated archetype
+        const subject = encodeURIComponent(`Interesse no Arquétipo de Liderança: ${result.name}`);
+        const body = encodeURIComponent(`Olá,\n\nGostaria de saber mais sobre o meu resultado no questionário de Arquétipo de Liderança (${result.name}).\n\nO meu e-mail é: ${userEmail}\n\nObrigado.`);
+        const mailtoLink = `mailto:srshare2inspire@gmail.com?subject=${subject}&body=${body}`;
+
+        // Show feedback message and open mail client
+        if (formMessage) {
+            formMessage.style.display = "block";
+        }
+        window.location.href = mailtoLink;
+        
+        // Optionally clear the input and hide message after a delay
+        setTimeout(() => {
+            userEmailInput.value = "";
+            if (formMessage) {
+                 formMessage.style.display = "none";
+            }
+        }, 5000); // Hide after 5 seconds
     }
 
     // Initialize the survey
