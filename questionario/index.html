@@ -423,6 +423,18 @@
                     <a href="../Calendario/index.html" class="btn">Agendar Sessão de Coaching</a>
                     <button id="restart-survey" class="btn btn-secondary">Refazer Questionário</button>
                 </div>
+
+                <!-- Email Submission Form -->
+                <div class="email-submission" style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                    <h4>Quer saber mais sobre o seu resultado?</h4>
+                    <p>Deixe o seu e-mail e entraremos em contacto.</p>
+                    <form id="email-form" style="display: flex; flex-direction: column; align-items: center; gap: 1rem; max-width: 400px; margin: 1rem auto 0;">
+                        <input type="email" id="user-email" placeholder="Seu e-mail" required style="padding: 0.8rem; width: 100%; border: 1px solid #ccc; border-radius: 5px;">
+                        <button type="submit" class="btn">Enviar E-mail</button>
+                    </form>
+                    <p id="form-message" style="margin-top: 1rem; color: green; display: none;">O seu cliente de e-mail será aberto.</p>
+                </div>
+
             </div>
         </div>
 
