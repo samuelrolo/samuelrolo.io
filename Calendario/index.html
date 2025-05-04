@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share2Inspire - Calendário de Marcações</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM1JZ9LBY9"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-LM1JZ9LBY9"); </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                 <a href="../index.html" class="back-link" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> Voltar ao Site Principal</a>
+                 <h1 style="margin: 0;">Share2Inspire</h1>
+                 <span style="width: 150px;"></span> <!-- Spacer -->
+            </div>
+            <h2>Marcações</h2> <!-- Changed from Marcação de Sessões -->
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Ecrã de Seleção de Serviço -->
+        <section id="service-selection" class="selection-screen">
+            <h2>Escolha o Serviço Pretendido</h2>
+            <div class="service-options">
+                <div class="service-option" id="select-coaching">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Kickstart Pro ! Express coaching</h3>
+                    <p>Sessões de coaching focadas e rápidas para desbloquear o seu potencial.</p>
+                </div>
+                <div class="service-option" id="select-cv-review">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Revisão de CV / Preparação para Entrevista</h3>
+                    <p>Otimize o seu currículo ou prepare-se para entrevistas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fluxo de Coaching (inicialmente oculto) -->
+        <div id="coaching-flow" style="display: none;">
+            <!-- Intro and Price Summary Sections -->
+            <section class="intro">
+                <h2>Marque a sua Sessão - Kickstart Pro ! Express coaching</h2>
+                <p>Selecione o tipo de sessão, duração e horário disponível no calendário abaixo.</p>
+            </section>
+            <section class="price-summary">
+                <h3>Tabela de Preços - Kickstart Pro ! Express coaching</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Duração</th>
+                            <th>Preço Base</th>
+                            <th>Desconto (2+ sessões)</th>
+                            <th>Preço com Desconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>15 min</td><td>10€</td><td>N/A</td><td>10€</td></tr>
+                        <tr><td>30 min</td><td>20€</td><td>-2,5€ por sessão</td><td>17,5€ por sessão</td></tr>
+                        <tr><td>45 min</td><td>30€</td><td>-5€ por sessão</td><td>25€ por sessão</td></tr>
+                        <tr><td>60 min</td><td>40€</td><td>-7,5€ por sessão</td><td>32,5€ por sessão</td></tr>
+                    </tbody>
+                </table>
+                <div class="payment-policy">
+                    <p><strong>Política de Pagamento (Coaching):</strong> Para valores acima de 10€, é exigido apenas 50% do valor total no momento da reserva (mínimo 10€).</p>
+                </div>
+            </section>
+            <!-- Booking Container -->
+             <section class="booking-container">
+                 <div class="booking-options">
+                    <form id="booking-form">
+                        <div class="form-group" style="display: none;">
+                            <label for="service-type">Tipo de Serviço:</label>
+                            <select id="service-type" name="service-type" required><option value="coaching" selected>Kickstart Pro ! Express coaching</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-type">Tipo de Sessão:</label>
+                            <select id="session-type" name="session-type" required><option value="remote">Remota (Online)</option><option value="presential">Presencial (Distrito de Lisboa)</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-duration">Duração da Sessão:</label>
+                            <select id="session-duration" name="session-duration" required><option value="15">15 minutos - 10€</option><option value="30">30 minutos - 20€</option><option value="45">45 minutos - 30€</option><option value="60">60 minutos - 40€</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-quantity">Número de Sessões:</label>
+                            <select id="session-quantity" name="session-quantity" required><option value="1">1 sessão</option><option value="2">2 sessões</option><option value="3">3 sessões</option><option value="4">4 sessões</option><option value="5">5 sessões</option></select>
+                        </div>
+                        <div class="price-info">
+                            <p>Preço Base: <span id="base-price">10€</span></p>
+                            <p>Desconto: <span id="discount">0€</span></p>
+                            <p>Preço Final: <span id="final-price">10€</span></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="calendar-container"><div id="calendar"></div></div>
+            </section>
+
+            <!-- Booking Summary (Coaching) -->
+            <section class="booking-summary hidden" id="booking-summary-coaching">
+                 <h3>Resumo da Marcação</h3>
+                <div class="summary-details">
+                    <p><strong>Serviço:</strong> Kickstart Pro ! Express coaching</p>
+                    <p><strong>Tipo de Sessão:</strong> <span id="summary-type"></span></p>
+                    <p><strong>Duração:</strong> <span id="summary-duration"></span></p>
+                    <p><strong>Data e Hora:</strong> <span id="summary-datetime"></span></p>
+                    <p><strong>Número de Sessões:</strong> <span id="summary-quantity"></span></p>
+                    <p><strong>Preço Total:</strong> <span id="summary-price"></span></p>
+                    <p><strong>Tipo de Pagamento:</strong> <span id="payment-type">Pagamento Total</span></p>
+                    <p><strong>Valor a Pagar Agora:</strong> <span id="payment-amount"></span></p>
+                    <div id="remaining-payment-info" style="display: none;">
+                        <p><strong>Valor Restante:</strong> <span id="remaining-amount"></span> (a pagar no dia da sessão)</p>
+                    </div>
+                </div>
+                    <h4>Os Seus Dados</h4> <!-- Corrected from Teus Dados -->
+                    <form id="user-form-coaching">
+                        <div class="form-group"><label for="user-name-coaching">Nome Completo:</label><input type="text" id="user-name-coaching" name="user-name" required></div>
+                        <div class="form-group"><label for="user-email-coaching">Email:</label><input type="email" id="user-email-coaching" name="user-email" required></div>
+                        <div class="form-group"><label for="user-phone-coaching">Telefone (para MB WAY, se aplicável):</label><input type="tel" id="user-phone-coaching" name="user-phone" required></div>
+                        <div class="form-group"><label for="user-notes-coaching">Notas (opcional):</label><textarea id="user-notes-coaching" name="user-notes"></textarea></div>
+                    </form>
+                </div>
+                <div class="payment-options">
+                    <h4>Método de Pagamento</h4>
+                    <div class="payment-methods">
+                        <button class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
+                        <button class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
+                        <button class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
+                        <!-- Removed Revolut and Bank Transfer -->
+                    </div>
+                    <div id="payment-details-coaching" class="hidden payment-details-area">
+                        <div id="mbway-instructions-coaching" class="payment-instructions hidden">
+                            <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-coaching"></strong>.</p>
+                        </div>
+                        <div id="mb-reference-coaching" class="payment-instructions hidden">
+                            <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
+                            <ul>
+                                <li><strong>Entidade:</strong> <span id="mb-entity-coaching"></span></li>
+                                <li><strong>Referência:</strong> <span id="mb-ref-coaching"></span></li>
+                                <li><strong>Valor:</strong> <span id="mb-amount-coaching"></span>€</li>
+                                <li><strong>Válido até:</strong> <span id="mb-expiry-coaching"></span></li>
+                            </ul>
+                            <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                        </div>
+                        <div id="payshop-reference-coaching" class="payment-instructions hidden">
+                            <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
+                            <ul>
+                                <li><strong>Referência:</strong> <span id="payshop-ref-coaching"></span></li>
+                                <li><strong>Valor:</strong> <span id="payshop-amount-coaching"></span>€</li>
+                                <li><strong>Válido até:</strong> <span id="payshop-expiry-coaching"></span></li>
+                            </ul>
+                             <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                        </div>
+                        <div id="other-payment-details-coaching" class="payment-instructions hidden">
+                            <!-- Details for Revolut/Bank Transfer will be shown by JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="terms-conditions">
+                    <div class="form-group">
+                        <input type="checkbox" id="terms-accept-coaching" name="terms-accept" required>
+                        <label for="terms-accept-coaching">Li e aceito os <a href="#" id="open-terms-modal-coaching">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
+                    </div>
+                </div>
+                <div class="booking-actions">
+                    <button id="back-button-coaching" class="btn btn-secondary">Voltar</button>
+                    <button id="confirm-booking-coaching" class="btn btn-primary">Confirmar Marcação</button> 
+                </div>
+            </section>
+            <!-- Booking Policies -->
+            <section class="booking-policies">
+                 <h3>Políticas de Marcação (Kickstart Pro ! Express coaching)</h3>
+                 <div class="policy-item"><h4><i class="fas fa-clock"></i> Antecedência Mínima</h4><p>Sessões remotas: 48 horas de antecedência</p><p>Sessões presenciais: 5 dias úteis para confirmação</p></div>
+                 <div class="policy-item"><h4><i class="fas fa-euro-sign"></i> Preços e Descontos</h4><p>15 min: 10€ | 30 min: 20€ | 45 min: 30€ | 60 min: 40€</p><p>Descontos: -2,5€ (30min), -5€ (45min), -7,5€ (60min) para 2+ sessões</p><p>Primeiras 10 vagas: 25% desconto | A cada 5 sessões: 1 grátis</p></div>
+                 <div class="policy-item"><h4><i class="fas fa-money-bill-wave"></i> Pagamento e Reembolso</h4><p>Pagamento no ato da marcação (50% para > 10€, mín 10€)</p><p>Sem reembolso para desistências</p><p>Reembolso parcial possível para sessões múltiplas canceladas</p></div>
+            </section>
+        </div>
+
+        <!-- Fluxo de Revisão de CV -->
+        <div id="cv-review-flow" style="display: none;">
+            <!-- Intro and Price Summary Sections -->
+            <section class="intro">
+                <h2>Revisão de CV / Preparação para Entrevista</h2>
+                <p>Selecione o serviço desejado, preencha os seus dados, anexe o seu CV (ou documento relevante) e adicione quaisquer notas.</p>
+            </section>
+            <section class="price-summary">
+                <h3>Tabela de Preços - Revisão de CV / Entrevista</h3>
+                <table class="price-table">
+                     <thead><tr><th>Serviço</th><th>Duração Estimada</th><th>Preço</th></tr></thead>
+                     <tbody>
+                         <tr><td>Revisão de CV Básica</td><td>30 min</td><td>25€</td></tr>
+                         <tr><td>Revisão de CV Completa</td><td>60 min</td><td>45€</td></tr>
+                         <tr><td>Preparação para Entrevista</td><td>45 min</td><td>35€</td></tr>
+                         <tr><td>Pacote Completo (CV + Entrevista)</td><td>90 min</td><td>70€</td></tr>
+                     </tbody>
+                </table>
+                <div class="payment-policy"><p><strong>Política de Pagamento:</strong> Pagamento integral no momento da solicitação.</p></div>
+            </section>
+
+            <!-- CV Review Form Container -->
+            <section class="cv-review-form-container">
+                <form id="cv-review-form">
+                    <div class="form-group">
+                        <label for="cv-service-selection">Selecione o Serviço:</label>
+                        <select id="cv-service-selection" name="cv-service-selection" required>
+                            <option value="" data-price="0">-- Escolha uma opção --</option>
+                            <option value="30-cv-basic" data-price="25">Revisão de CV Básica (30 min) - 25€</option>
+                            <option value="60-cv-complete" data-price="45">Revisão de CV Completa (60 min) - 45€</option>
+                            <option value="45-interview-prep" data-price="35">Preparação para Entrevista (45 min) - 35€</option>
+                            <option value="90-full-package" data-price="70">Pacote Completo (CV + Entrevista) (90 min) - 70€</option>
+                        </select>
+                    </div>
+                    <h4>Os Seus Dados</h4> <!-- Corrected from Teus Dados -->
+                    <div class="form-group"><label for="cv-user-name">Nome Completo:</label><input type="text" id="cv-user-name" name="cv-user-name" required></div>
+                    <div class="form-group"><label for="cv-user-email">Email:</label><input type="email" id="cv-user-email" name="cv-user-email" required></div>
+                    <div class="form-group"><label for="cv-user-phone">Telefone (para MB WAY, se aplicável):</label><input type="tel" id="cv-user-phone" name="cv-user-phone" required></div>
+                    <div class="form-group">
+                        <label for="cv-file-upload">Anexar CV (PDF, DOC, DOCX):</label>
+                        <input type="file" id="cv-file-upload" name="cv-file-upload" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <div class="form-group"><label for="cv-user-notes">Notas (opcional):</label><textarea id="cv-user-notes" name="cv-user-notes"></textarea></div>
+
+                    <div class="price-info">
+                        <p>Preço Final: <span id="cv-final-price">0€</span></p>
+                    </div>
+
+                    <div class="payment-options">
+                        <h4>Método de Pagamento</h4>
+                        <div class="payment-methods">
+                            <button type="button" class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
+                            <button type="button" class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
+                            <button type="button" class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
+                            <button type="button" class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
+                            <button type="button" class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button>
+                        </div>
+                        <div id="payment-details-cv" class="hidden payment-details-area">
+                            <div id="mbway-instructions-cv" class="payment-instructions hidden">
+                                <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-cv"></strong>.</p>
+                            </div>
+                            <div id="mb-reference-cv" class="payment-instructions hidden">
+                                <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
+                                <ul>
+                                    <li><strong>Entidade:</strong> <span id="mb-entity-cv"></span></li>
+                                    <li><strong>Referência:</strong> <span id="mb-ref-cv"></span></li>
+                                    <li><strong>Valor:</strong> <span id="mb-amount-cv"></span>€</li>
+                                    <li><strong>Válido até:</strong> <span id="mb-expiry-cv"></span></li>
+                                </ul>
+                                <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                            </div>
+                            <div id="payshop-reference-cv" class="payment-instructions hidden">
+                                <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
+                                <ul>
+                                    <li><strong>Referência:</strong> <span id="payshop-ref-cv"></span></li>
+                                    <li><strong>Valor:</strong> <span id="payshop-amount-cv"></span>€</li>
+                                    <li><strong>Válido até:</strong> <span id="payshop-expiry-cv"></span></li>
+                                </ul>
+                                 <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                            </div>
+                            <div id="other-payment-details-cv" class="payment-instructions hidden">
+                                <!-- Details for Revolut/Bank Transfer will be shown by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terms-conditions">
+                        <div class="form-group">
+                            <input type="checkbox" id="terms-accept-cv" name="terms-accept" required>
+                            <label for="terms-accept-cv">Li e aceito os <a href="#" id="open-terms-modal-cv">termos e condições</a>, incluindo a política de pagamento.</label>
+                        </div>
+                    </div>
+
+                    <div class="booking-actions">
+                        <button type="button" id="back-button-cv" class="btn btn-secondary">Voltar</button>
+                        <button type="submit" id="confirm-booking-cv" class="btn btn-primary">Confirmar Pedido</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- Confirmation Screen (Shared) -->
+        <section id="confirmation-screen" class="hidden confirmation-message">
+            <h2>Obrigado!</h2>
+            <p id="confirmation-text">A sua marcação/pedido foi recebido com sucesso. Receberá um e-mail de confirmação em breve.</p>
+            <p id="payment-confirmation-details"></p> <!-- For MB/Payshop/Other details -->
+            <a href="../index.html" class="btn">Voltar ao Site Principal</a>
+        </section>
+
+        <!-- Terms Modal (Shared) -->
+        <div id="terms-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Termos e Condições</h2>
+                <div id="terms-content">
+                    <!-- Content will be loaded dynamically based on flow -->
+                    <h4>Política de Pagamento</h4>
+                    <p id="modal-payment-policy"></p>
+                    <h4>Política de Reembolso e Cancelamento</h4>
+                    <p>Não são efetuados reembolsos em caso de desistência após a marcação. Para pacotes de sessões múltiplas, poderá ser considerado um reembolso parcial caso o cancelamento ocorra com antecedência suficiente (mínimo 72 horas antes da próxima sessão agendada), sujeito a análise caso a caso.</p>
+                    <h4>Privacidade</h4>
+                    <p>Os seus dados serão tratados com confidencialidade e utilizados apenas para fins relacionados com a marcação e prestação do serviço. Consulte a nossa <a href="../politica_privacidade.html" target="_blank">Política de Privacidade</a> completa.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/pt.js"></script> <!-- Portuguese locale -->
+    <!-- Booking Logic JS -->
+    <script src="js/calendar.js"></script>
+    <script src="js/booking.js"></script>
+
+</body>
+</html>
