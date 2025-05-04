@@ -50,7 +50,6 @@
                 // A backend proxy (e.g., serverless function) is recommended.
                 // The code below simulates the structure but requires a secure backend implementation.
                 
-                // const apiKey = "3532-9893-7426-5310"; // API Key REMOVED - DO NOT USE DIRECTLY IN PRODUCTION FRONTEND
                 const apiUrl = "https://api.brevo.com/v3/smtp/email";
 
                 const emailData = {
@@ -76,9 +75,9 @@
                     // *** INSECURE - DO NOT USE IN PRODUCTION FRONTEND ***
                     // Placeholder for secure backend call logic
                     // Example: Send data to your backend endpoint
-                    const backendResponse = await fetch('/api/send-feedback', {
-                         method: 'POST',
-                         headers: { 'Content-Type': 'application/json' },
+                    const backendResponse = await fetch("/api/send-feedback", {
+                         method: "POST",
+                         headers: { "Content-Type": "application/json" },
                          body: JSON.stringify({ rating, comment })
                     });
                     
@@ -112,4 +111,5 @@
                     feedbackStatus.className = "error";
                 }
             });
+
 
