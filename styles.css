@@ -26,7 +26,8 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px; 
+    min-height: calc(100vh - 301px)     
 }
 
 header {
@@ -468,7 +469,7 @@ footer {
     color: #666;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .service-option {
         width: calc(100% - 20px);
         max-width: none;
