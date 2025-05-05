@@ -1,0 +1,140 @@
+/* Estilos gerais herdados ou definidos no HTML principal */
+
+/* Estilos do footer */
+footer {
+    background-color: var(--dark-bg, #222222); /* Use CSS variable from main page, fallback to dark gray */
+    color: var(--white, #ffffff); /* Use CSS variable, fallback to white */
+    padding: 40px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer-logo {
+    flex: 1;
+    min-width: 100px;
+    margin-bottom: 10px;
+    /* Align logo better if needed */
+    display: flex;
+    align-items: center; 
+}
+
+.footer-logo img { /* Target the image directly */
+    max-width: 180px; /* Adjusted max-width for proportion */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure it behaves as a block element */
+}
+
+.footer-links,
+.footer-contact {
+    flex: 1;
+    min-width: 100px;
+    margin-bottom: 10px;
+}
+
+.footer-links h4, /* Changed from h3 to h4 to match HTML */
+.footer-contact h4 { /* Changed from h3 to h4 to match HTML */
+    color: var(--primary-color, #B8860B); /* Use CSS variable, fallback to gold */
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: var(--light-bg, #f8f8f8); /* Use CSS variable, fallback to light gray */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color, #B8860B); /* Use CSS variable, fallback to gold */
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    color: var(--light-bg, #f8f8f8); /* Ensure text color */
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    color: var(--primary-color, #B8860B); /* Use CSS variable, fallback to gold */
+}
+
+.footer-contact a {
+    color: var(--light-bg, #f8f8f8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: var(--primary-color, #B8860B);
+}
+
+/* Social icons styling if needed - assuming FontAwesome is used */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: var(--light-bg, #f8f8f8);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color, #B8860B);
+}
+
+.footer-bottom {
+    border-top: 1px solid #444; /* Darker gray border */
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa; /* Lighter gray for copyright */
+}
+
+/* Responsividade do footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center; /* Center items on smaller screens */
+        text-align: center; /* Center text */
+    }
+    
+    .footer-logo,
+    .footer-links,
+    .footer-contact {
+        width: 100%;
+        max-width: 400px; /* Limit width for better readability */
+        margin-bottom: 30px;
+    }
+
+    .footer-logo {
+        justify-content: center; /* Center logo image */
+    }
+
+    .footer-links ul {
+        display: inline-block; /* Allow centering */
+        text-align: left; /* Keep list items left-aligned */
+    }
+
+    .social-icons {
+        justify-content: center; /* Center social icons */
+    }
+}
+
