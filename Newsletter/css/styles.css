@@ -27,6 +27,16 @@ body {
     padding: 20px;
 }
 
+/* Container for main page content sections */
+#page-container {
+  flex-grow: 1; /* Allows container to grow if body is flex */
+  position: relative; /* Needed for absolute positioned children */
+  width: 100%;
+  /* Added min-height to ensure space for absolute positioned sections */
+  /* Adjust 301px based on the actual combined height of sticky header + nav */
+  min-height: calc(100vh - 301px);
+}
+
 header {
     background-color: var(--white);
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
