@@ -109,14 +109,14 @@
             transform: translateX(100%); /* Start off-screen right */
             overflow-y: auto; /* Allow scrolling within section if content overflows */
         }
-
-        .page-section.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-            z-index: 1;
-        }
-
+.page-section.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    z-index: 1;
+    height: auto;       /* <-- Linha adicionada */
+    min-height: 300px;  /* <-- Linha adicionada */
+}
         .page-section.prev {
             transform: translateX(-100%); /* Move previous section off-screen left */
             z-index: 0;
