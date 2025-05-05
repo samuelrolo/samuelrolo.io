@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share2Inspire - Inspiring Change, Humanizing Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Combined Styles -->
+    <style>
+        :root {
+            /* Updated Color Scheme */
+            --primary-color: #B8860B; /* DarkGoldenrod */
+            --secondary-color: #333333; /* Dark Gray/Near Black */
+            --accent-color: #D4AF37; /* Gold (alternative accent) */
+            --white: #ffffff;
+            --light-bg: #f8f8f8; /* Lighter Gray */
+            --dark-bg: #222222; /* Darker Gray/Near Black */
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+            --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+           /* scroll-behavior: smooth; */ /* Removed for section-based nav */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            /* overflow: hidden; */ /* Prevent body scroll - REMOVED FOR SCROLLING */
+            background-color: var(--white);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.8rem 1.6rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 5%; /* Adjust as needed */
+            padding-right: 5%; /* Adjust as needed */
+        }
+
+        .logo-container {
+            flex-shrink: 0;
+        }
+
+        .logo {
+            max-width: 200px; /* Adjust as needed */
+            height: auto;
+            display: block;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-flag {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        .lang-flag.active,
+        .lang-flag:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: var(--dark-bg);
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0; /* Stick below header */
+            z-index: 99; /* Below header, above sections */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0 1rem; /* Adjust padding */
+            height: auto; /* Override section container height */
+            justify-content: center; /* Override section container justify */
+        }
+        
+        nav a {
+            display: inline-block;
+            color: var(--white);
+            text-align: center;
+            padding: 0.8rem 1.2rem; /* Adjust padding */
+            text-decoration: none;
+            font-size: 1rem; /* Adjust font size */
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer; /* Indicate clickable */
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--primary-color);
+        }
+        
+        nav a.active {
+             border-bottom: 2px solid var(--primary-color);
+             color: var(--primary-color);
+        }
+
+        nav .btn-nav {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.6rem 1.2rem; 
+            border-radius: 20px; 
+            margin-left: 1rem; 
+            font-weight: 600;
+            box-shadow: none; 
+            border: 2px solid var(--primary-color);
+        }
+
+        nav .btn-nav:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--white);
+            transform: none; /* Override general btn hover */
+            box-shadow: none;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu-toggle {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Section Styles */
+        #page-container {
+            flex-grow: 1;
+            position: relative;
+            /* overflow: hidden; */ /* Important for transitions - REMOVED FOR SCROLLING */
+            width: 100%;
+        }
+
+        .page-section {
+            padding: 4rem 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            overflow-y: auto; /* Allow scrolling within section */
+            background-color: var(--white); /* Default background */
+        }
+
+        .page-section.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 1; /* Bring active section to front */
+        }
+
+        /* Specific Section Backgrounds */
+        #hero {
+            background-color: var(--light-bg);
+        }
+        #contact {
+             background-color: var(--light-bg);
+        }
+        #feedback {
+             background-color: var(--white);
+        }
+
+        /* Hero Section */
+        #hero .container {
+            text-align: center;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        #hero h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* About Section */
+        #about .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-content {
+            flex: 1; /* Takes remaining space */
+            min-width: 300px; /* Minimum width before wrapping */
+        }
+
+        .about-image {
+            flex-basis: 300px; /* Fixed width for image container */
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .service-card {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 280px; /* Min width before wrapping */
+            max-width: 350px; /* Max width */
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .service-icon img {
+            max-width: 60px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Author Section */
+        #author .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .author-image {
+            flex-basis: 300px;
+            text-align: center;
+        }
+
+        .author-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%; /* Circular image */
+            box-shadow: var(--box-shadow);
+            border: 5px solid var(--primary-color);
+        }
+
+        .author-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .author-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Recomendações Section */
+        #recomendacoes .container {
+            position: relative;
+        }
+
+        .recommendations-slider {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            max-width: 800px; /* Adjust as needed */
+        }
+
+        .recommendations-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .recommendation-card {
+            flex: 0 0 100%;
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            margin: 0 1rem; /* Spacing between cards if needed */
+            opacity: 0.5; /* Non-active cards are faded */
+            transform: scale(0.9); /* Non-active cards are smaller */
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .recommendation-card.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .recommendation-card blockquote {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        .recommendation-card cite {
+            font-weight: 600;
+            color: var(--primary-color);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .recommendation-card .company {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        #nav-arrow-left {
+            left: -25px; /* Adjust position */
+        }
+
+        #nav-arrow-right {
+            right: -25px; /* Adjust position */
+        }
+
+        /* HR Hub Section */
+        #hr-innovation-hub .container {
+            text-align: center;
+        }
+
+        #hr-innovation-hub p {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            width: 20px; /* Ensure icons align */
+            text-align: center;
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+        }
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Feedback Section Styles */
+        #feedback {
+            background-color: var(--white);
+        }
+
+        .feedback-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .rating-stars {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-stars .star {
+            font-size: 2rem;
+            color: #ccc; /* Default star color */
+            cursor: pointer;
+            transition: color 0.2s ease;
+            margin: 0 0.2rem;
+        }
+
+        .rating-stars .star:hover,
+        .rating-stars .star.selected {
+            color: var(--primary-color); /* Gold for selected/hovered */
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            min-height: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-form .btn {
+            margin-top: 0; /* Remove default top margin */
+        }
+
+        #feedback-status {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        #feedback-status.success {
+            color: green;
+        }
+        #feedback-status.error {
+            color: red;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container {
+                width: 95%;
+            }
+            h1 {
+                font-size: 2.4rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .page-section {
+                padding: 3rem 0;
+            }
+            .about-content,
+            .author-content {
+                text-align: center;
+            }
+            .about-image,
+            .author-image {
+                margin: 0 auto 2rem;
+            }
+            .nav-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            #nav-arrow-left {
+                left: 0;
+            }
+            #nav-arrow-right {
+                right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding-left: 3%;
+                padding-right: 3%;
+                position: static; /* Header no longer sticky */
+            }
+            nav {
+                position: static; /* Nav no longer sticky */
+                padding: 0;
+            }
+            nav .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                display: none; /* Hide links by default */
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--dark-bg);
+                position: absolute;
+                top: 60px; /* Adjust based on header height */
+                left: 0;
+                z-index: 98;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            .nav-links.active {
+                display: flex; /* Show when active */
+            }
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            nav a:last-child {
+                 border-bottom: none;
+            }
+
+            nav .btn-nav {
+                 margin: 1rem auto 0;
+                 display: block;
+                 width: fit-content;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .service-card {
+                flex-basis: 100%;
+                min-width: 100%;
+            }
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                bottom: 15px;
+            }
+            #nav-arrow-left {
+                left: 15px;
+            }
+            #nav-arrow-right {
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .page-section {
+                padding: 1.5rem 0;
+            }
+                        
+            .btn {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.95rem;
+            }
+            
+            .service-icon img {
+                max-width: 50px;
+            }
+
+            .logo {
+                max-width: 150px; /* Further reduce logo size */
+            }
+        }
+        
+    </style>
+    <link rel="stylesheet" href="css/language-selector.css"> <!-- Keep for potential specific styles -->
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM1JZ9LBY9"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-LM1JZ9LBY9'); </script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+             <img src="logo.png" alt="Share2Inspire Logo" class="logo">
+        </div>
+        <div class="language-selector">
+            <a href="#" id="lang-pt" class="lang-flag active" data-lang="pt">PT</a>
+            <a href="#" id="lang-en" class="lang-flag" data-lang="en">EN</a>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <!-- Updated href to data-section attribute -->
+                <a data-section="hero">Início</a> 
+                <a data-section="about">Sobre</a>
+                <a data-section="services">Serviços</a>
+                <a data-section="author">Autor</a>
+                <a data-section="recomendacoes">Recomendações</a>
+                <a data-section="hr-innovation-hub">HR Hub</a>
+                <a data-section="contact">Contacto</a>
+                <a href="Calendario/index.html" class="btn btn-nav">Agendar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Page Container -->
+    <div id="page-container">
+        <!-- Hero Section -->
+        <section id="hero" class="page-section active">
+            <div class="container">
+                <h1 data-translate="hero_title">Inspiring Change, Humanizing Work</h1>
+                <p data-translate="hero_subtitle">Ajudamos a transformar o teu potencial em sucesso profissional e organizacional.</p>
+                <a href="Calendario/index.html" class="btn" data-translate="schedule_button">Agendar</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="page-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2 data-translate="about_title">Sobre a Share2Inspire</h2>
+                    <p data-translate="about_p1">A Share2Inspire nasceu da paixão por desenvolver pessoas e otimizar processos de Recursos Humanos. Acreditamos que o sucesso de qualquer organização reside no potencial dos seus colaboradores.</p>
+                    <p data-translate="about_p2">Com uma abordagem personalizada e foco em resultados, ajudamos indivíduos a alcançar os seus objetivos de carreira e empresas a construir equipas de alta performance, promovendo um ambiente de trabalho mais humano e inspirador.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-image.jpg" alt="Equipa Share2Inspire a colaborar">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="page-section">
+            <div class="container">
+                <h2 data-translate="services_title">Os Nossos Serviços</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><img src="images/icons/career-coaching.png" alt="Career Coaching Icon"></div>
+                        <h3 data-translate="service1_title">Career Coaching</h3>
+                        <p data-translate="service1_desc">Orientação personalizada para definir e alcançar os teus objetivos de carreira.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><img src="images/icons/cv-review.png" alt="CV Review Icon"></div>
+                        <h3 data-translate="service2_title">Revisão de CV e LinkedIn</h3>
+                        <p data-translate="service2_desc">Otimiza o teu perfil profissional para destacar as tuas competências e experiências.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><img src="images/icons/interview-prep.png" alt="Interview Preparation Icon"></div>
+                        <h3 data-translate="service3_title">Preparação para Entrevistas</h3>
+                        <p data-translate="service3_desc">Desenvolve a confiança e as técnicas necessárias para teres sucesso em entrevistas.</p>
+                    </div>
+                     <div class="service-card">
+                        <div class="service-icon"><img src="images/icons/hr-consulting.png" alt="HR Consulting Icon"></div>
+                        <h3 data-translate="service4_title">Consultoria de RH</h3>
+                        <p data-translate="service4_desc">Soluções estratégicas para otimizar processos e desenvolver o capital humano da tua empresa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Author Section -->
+        <section id="author" class="page-section">
+            <div class="container">
+                 <div class="author-image">
+                    <img src="autor.png" alt="Samuel Rolo - Fundador da Share2Inspire">
+                </div>
+                <div class="author-content">
+                    <h2 data-translate="author_title">Sobre o Fundador</h2>
+                    <h3 data-translate="author_name">Samuel Rolo</h3>
+                    <p data-translate="author_p1">Com mais de 10 anos de experiência em Recursos Humanos e uma paixão genuína pelo desenvolvimento de talento, Samuel Rolo fundou a Share2Inspire com a missão de humanizar o trabalho e inspirar mudanças positivas.</p>
+                    <p data-translate="author_p2">A sua expertise abrange desde o recrutamento e seleção até à gestão de desempenho e desenvolvimento de liderança, sempre com um foco estratégico e humano.</p>
+                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" class="btn" data-translate="author_linkedin">Ver Perfil LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recomendações Section -->
+        <section id="recomendacoes" class="page-section">
+            <div class="container">
+                <h2 data-translate="recommendations_title">Recomendações</h2>
+                <div class="recommendations-slider">
+                    <div class="recommendations-wrapper">
+                        <!-- Recommendation cards will be loaded here by JavaScript -->
+                    </div>
+                </div>
+                <button id="nav-arrow-left" class="nav-arrow" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button id="nav-arrow-right" class="nav-arrow" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- HR Innovation Hub Section -->
+        <section id="hr-innovation-hub" class="page-section">
+            <div class="container">
+                <h2 data-translate="hrhub_title">HR Innovation Hub</h2>
+                <p data-translate="hrhub_desc">Um espaço dedicado à partilha de conhecimento, tendências e melhores práticas em Recursos Humanos. Explore artigos, insights e ferramentas para impulsionar a inovação na gestão de pessoas.</p>
+                <!-- Link para uma futura página ou blog -->
+                <a href="#" class="btn" data-translate="hrhub_button">Explorar o Hub (Brevemente)</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2 data-translate="contact_title">Contacto</h2>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/samuel_rolo_share2inspire/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- Formulário de Contacto pode ser adicionado aqui se necessário -->
+            </div>
+        </section>
+
+        <!-- Feedback Section -->
+        <section id="feedback" class="page-section">
+            <div class="container">
+                <h2 data-translate="feedback_title">Deixe o seu Feedback</h2>
+                <form id="feedback-form" class="feedback-form">
+                    <div class="rating-stars" data-translate="feedback_rating_label" aria-label="Classificação">
+                        <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                    </div>
+                    <input type="hidden" id="rating-value" name="rating" value="0">
+                    <textarea id="feedback-text" name="comment" rows="4" placeholder="Escreva aqui o seu comentário..." data-translate="feedback_textarea_placeholder" aria-label="Comentário"></textarea>
+                    <button type="submit" class="btn" data-translate="feedback_submit_button">Enviar Feedback</button>
+                    <p id="feedback-status" role="alert"></p>
+                </form>
+            </div>
+        </section>
+
+    </div> <!-- End Page Container -->
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column footer-logo-about">
+                 <img src="images/logo_white.png" alt="Share2Inspire Logo Branco" class="footer-logo">
+                 <p data-translate="footer_about">Inspirando mudança, humanizando o trabalho.</p>
+            </div>
+            <div class="footer-column footer-links">
+                <h4 data-translate="footer_links_title">Links Úteis</h4>
+                <ul>
+                    <li><a data-section="hero" data-translate="footer_link_home">Início</a></li>
+                    <li><a data-section="about" data-translate="footer_link_about">Sobre</a></li>
+                    <li><a data-section="services" data-translate="footer_link_services">Serviços</a></li>
+                    <li><a data-section="author" data-translate="footer_link_author">Autor</a></li>
+                    <li><a data-section="recomendacoes" data-translate="footer_link_recommendations">Recomendações</a></li>
+                    <li><a data-section="hr-innovation-hub" data-translate="footer_link_hrhub">HR Hub</a></li>
+                    <li><a data-section="contact" data-translate="footer_link_contact">Contacto</a></li>
+                    <li><a href="Calendario/index.html" data-translate="footer_link_schedule">Agendar</a></li>
+                    <li><a href="politica_privacidade.html" target="_blank" data-translate="footer_link_privacy">Política de Privacidade</a></li>
+                    <li><a href="tabela_precos_cv/index.html" target="_blank" data-translate="footer_link_cv_pricing">Tabela de Preços - Revisão CV</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h4 data-translate="footer_contact_title">Contacto</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/samuel_rolo_share2inspire/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <!-- Add script for section navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageContainer = document.getElementById('page-container');
+            const sections = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('nav a[data-section], .footer-links a[data-section]');
+            let currentSectionIndex = 0;
+            let isAnimating = false;
+
+            function showSection(index) {
+                if (isAnimating || index < 0 || index >= sections.length) return;
+                isAnimating = true;
+
+                const currentSection = sections[currentSectionIndex];
+                const nextSection = sections[index];
+
+                // Update active link
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`nav a[data-section="${nextSection.id}"], .footer-links a[data-section="${nextSection.id}"]`);
+                if (activeLink) activeLink.classList.add('active');
+
+                // Determine direction
+                const direction = index > currentSectionIndex ? 'next' : 'prev';
+
+                // Add animation classes
+                if (currentSection) {
+                    currentSection.classList.remove('active');
+                    currentSection.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+                }
+                nextSection.classList.add('active', direction === 'next' ? 'slide-in-right' : 'slide-in-left');
+
+                // Update current index
+                currentSectionIndex = index;
+
+                // Remove animation classes after animation ends
+                setTimeout(() => {
+                    if (currentSection) {
+                        currentSection.classList.remove('slide-out-left', 'slide-out-right');
+                    }
+                    nextSection.classList.remove('slide-in-left', 'slide-in-right');
+                    isAnimating = false;
+                }, 600); // Match CSS animation duration
+            }
+
+            // Initial section setup
+            if (sections.length > 0) {
+                sections[0].classList.add('active');
+                const initialActiveLink = document.querySelector(`nav a[data-section="${sections[0].id}"], .footer-links a[data-section="${sections[0].id}"]`);
+                if (initialActiveLink) initialActiveLink.classList.add('active');
+            }
+
+            // Event listeners for nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-section');
+                    const targetIndex = Array.from(sections).findIndex(section => section.id === targetId);
+                    if (targetIndex !== -1) {
+                        showSection(targetIndex);
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="js/recommendations.js"></script>
+    <script src="js/translate.js"></script>
+    <script src="js/feedback.js"></script>
+    <script src="js/image-error-handler.js"></script>
+
+</body>
+</html>
+
