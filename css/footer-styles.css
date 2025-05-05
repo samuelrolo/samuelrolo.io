@@ -16,8 +16,8 @@ footer {
 
 .footer-logo {
     flex: 1;
-    min-width: 200px;
-    margin-bottom: 20px;
+    min-width: 100px;
+    margin-bottom: 10px;
     /* Align logo better if needed */
     display: flex;
     align-items: center; 
@@ -32,8 +32,8 @@ footer {
 .footer-links,
 .footer-contact {
     flex: 1;
-    min-width: 200px;
-    margin-bottom: 20px;
+    min-width: 100px;
+    margin-bottom: 10px;
 }
 
 .footer-links h4, /* Changed from h3 to h4 to match HTML */

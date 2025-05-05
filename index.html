@@ -19,28 +19,28 @@
             --transition: all 0.3s ease;
             --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         html {
-           /* scroll-behavior: smooth; */ /* Removed for section-based nav */
+            /* scroll-behavior: smooth; */ /* Removed for section-based nav */
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
             color: var(--text-color);
             line-height: 1.6;
-            /* overflow: hidden; */ /* Prevent body scroll - REMOVED FOR SCROLLING */
+            overflow: hidden; /* Prevent body scroll */
             background-color: var(--white);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-
+        
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
@@ -48,12 +48,12 @@
             margin-bottom: 1.5rem;
             color: var(--secondary-color);
         }
-
+        
         h1 {
             font-size: 2.8rem;
             margin-bottom: 2rem;
         }
-
+        
         h2 {
             font-size: 2.2rem;
             text-align: center;
@@ -61,113 +61,193 @@
             position: relative;
             padding-bottom: 15px;
         }
-
+        
         h2::after {
             content: '';
             position: absolute;
-            left: 50%;
             bottom: 0;
+            left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
+            width: 80px;
+            height: 3px;
             background-color: var(--primary-color);
-            border-radius: 2px;
         }
-
+        
         p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
         }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--accent-color);
-        }
-
+        
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 2rem;
+            height: 100%; /* Allow container to fill section height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
         }
 
+        /* Page Container for Sections */
+        #page-container {
+            flex-grow: 1; /* Take remaining vertical space */
+            position: relative;
+            overflow: hidden; /* Hide non-active sections */
+            width: 100%;
+        }
+
+        .page-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 3rem 0; /* Adjust padding for section content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transform: translateX(100%); /* Start off-screen right */
+            overflow-y: auto; /* Allow scrolling within section if content overflows */
+        }
+
+        .page-section.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            z-index: 1;
+        }
+
+        .page-section.prev {
+            transform: translateX(-100%); /* Move previous section off-screen left */
+            z-index: 0;
+        }
+        
+        /* Adjust specific section backgrounds/styles */
+        #hero {
+            background-color: var(--dark-bg);
+            color: var(--white);
+        }
+        #hero h1, #hero p, #hero h2 {
+             color: var(--white);
+        }
+        #hero h2::after {
+            background-color: var(--white);
+        }
+
+        #about {
+            background-color: var(--light-bg);
+        }
+        
+        #author {
+            background-color: var(--light-bg);
+        }
+
+        #recomendacoes {
+             /* Keep default white or adjust */
+        }
+        #recomendacoes iframe {
+            height: calc(100% - 100px); /* Adjust iframe height within section */
+            min-height: 400px;
+        }
+
+        #hr-innovation-hub {
+            background-color: var(--light-bg);
+        }
+
+        #contact {
+            background: linear-gradient(rgba(34, 34, 34, 0.9), rgba(34, 34, 34, 0.9));
+            color: var(--white);
+        }
+        #contact h2 {
+            color: var(--white);
+        }
+        #contact h2::after {
+            background-color: var(--white);
+        }
+        #contact p, #contact a {
+            color: var(--white);
+        }
+        #contact a:hover {
+            color: var(--primary-color);
+        }
+        #contact .social-links a {
+            background-color: var(--white);
+            color: var(--dark-bg);
+        }
+        #contact .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
         .btn {
             display: inline-block;
             background-color: var(--primary-color);
             color: var(--white);
-            padding: 0.8rem 1.6rem;
+            padding: 0.9rem 1.8rem;
             border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            font-weight: 500;
+            font-size: 1.05rem;
             transition: var(--transition);
             box-shadow: var(--box-shadow);
         }
-
+        
         .btn:hover {
-            background-color: var(--accent-color);
-            color: var(--white);
-            transform: translateY(-2px);
+            background: #A0740A;
+            transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
-
-        /* Header Styles */
+                
         header {
-            background-color: var(--white);
-            padding: 1rem 0;
-            box-shadow: var(--box-shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-left: 5%; /* Adjust as needed */
-            padding-right: 5%; /* Adjust as needed */
+            flex-direction: column; 
+            align-items: center; 
+            padding: 15px 0; /* Reduced padding */
+            background-color: var(--white);
+            position: relative; 
+            z-index: 100; /* Ensure header is above sections */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .logo-container {
-            flex-shrink: 0;
+            margin-bottom: 10px; /* Reduced margin */
+            text-align: center;
         }
-
+        
         .logo {
-            max-width: 200px; /* Adjust as needed */
+            max-width: 180px; /* Slightly smaller logo */
             height: auto;
-            display: block;
+            transition: var(--transition);
+            display: inline-block;
         }
 
         .language-selector {
             display: flex;
-            align-items: center;
+            gap: 10px;
+        }
+        .language-selector .lang-flag img {
+            display: block; /* Remove extra space below image */
+            transition: transform 0.2s ease;
+        }
+        .language-selector .lang-flag:hover img {
+            transform: scale(1.1);
+        }
+        .language-selector .lang-flag.active {
+            border-bottom: 2px solid var(--primary-color);
         }
 
-        .lang-flag {
-            color: var(--secondary-color);
-            text-decoration: none;
-            margin-left: 10px;
-            font-weight: 600;
-            padding: 5px 8px;
-            border-radius: 3px;
-            transition: background-color 0.3s ease;
-        }
-
-        .lang-flag.active,
-        .lang-flag:hover {
-            background-color: var(--primary-color);
-            color: var(--white);
-        }
-
-        /* Navigation Styles */
         nav {
             background-color: var(--dark-bg);
-            padding: 0.5rem 0;
+            text-align: center;
             position: sticky;
             top: 0; /* Stick below header */
             z-index: 99; /* Below header, above sections */
@@ -219,442 +299,255 @@
         }
 
         nav .btn-nav:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            color: var(--white);
-            transform: none; /* Override general btn hover */
+            background-color: var(--white); 
+            color: var(--primary-color); 
+            transform: none; 
             box-shadow: none;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+        
+        .service-card {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            min-width: 280px; 
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color); 
+            text-align: center; 
+        }
+
+        .survey-card-highlight {
+            transform: scale(1.03); 
+            background-color: var(--light-bg); 
+            border-top-color: var(--accent-color); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .survey-card-highlight:hover {
+             transform: translateY(-10px) scale(1.05); 
+             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .service-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-icon img {
+            max-width: 60px; 
+            height: auto;
+            display: inline-block;
+        }
+        
+        .autor-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .autor-foto {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .autor-foto img {
+            max-width: 280px;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border: 5px solid var(--white);
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .autor-foto img:hover {
+            transform: scale(1.05);
+        }
+        
+        .autor-bio {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .autor-bio h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .autor-bio h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+                
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+                
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--dark-bg);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+                
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: fixed;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 0.7;
+        }
+        .nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 1;
+        }
+        .nav-arrow.hidden {
+            opacity: 0;
+            visibility: hidden;
+            cursor: default;
+        }
+        #nav-arrow-left {
+            left: 20px;
+        }
+        #nav-arrow-right {
+            right: 20px;
         }
 
         /* Mobile Menu Styles */
         .mobile-menu-toggle {
-            display: none; /* Hidden by default */
+            display: none;
             background: none;
             border: none;
             color: var(--white);
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem; /* Adjust padding */
         }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Section Styles */
-        #page-container {
-            flex-grow: 1;
-            position: relative;
-            /* overflow: hidden; */ /* Important for transitions - REMOVED FOR SCROLLING */
-            width: 100%;
-        }
-
-        .page-section {
-            padding: 4rem 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-            overflow-y: auto; /* Allow scrolling within section */
-            background-color: var(--white); /* Default background */
-        }
-
-        .page-section.active {
-            opacity: 1;
-            visibility: visible;
-            z-index: 1; /* Bring active section to front */
-        }
-
-        /* Specific Section Backgrounds */
-        #hero {
-            background-color: var(--light-bg);
-        }
-        #contact {
-             background-color: var(--light-bg);
-        }
-        #feedback {
-             background-color: var(--white);
-        }
-
-        /* Hero Section */
-        #hero .container {
-            text-align: center;
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
-
-        #hero h1 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        #hero p {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        /* About Section */
-        #about .container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .about-content {
-            flex: 1; /* Takes remaining space */
-            min-width: 300px; /* Minimum width before wrapping */
-        }
-
-        .about-image {
-            flex-basis: 300px; /* Fixed width for image container */
-            text-align: center;
-        }
-
-        .about-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: var(--box-shadow);
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .service-card {
-            background-color: var(--light-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            flex: 1;
-            min-width: 280px; /* Min width before wrapping */
-            max-width: 350px; /* Max width */
-            box-shadow: var(--box-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-
-        .service-icon img {
-            max-width: 60px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        /* Author Section */
-        #author .container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .author-image {
-            flex-basis: 300px;
-            text-align: center;
-        }
-
-        .author-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 50%; /* Circular image */
-            box-shadow: var(--box-shadow);
-            border: 5px solid var(--primary-color);
-        }
-
-        .author-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .author-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Recomendações Section */
-        #recomendacoes .container {
-            position: relative;
-        }
-
-        .recommendations-slider {
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-            max-width: 800px; /* Adjust as needed */
-        }
-
-        .recommendations-wrapper {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .recommendation-card {
-            flex: 0 0 100%;
-            background-color: var(--light-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--box-shadow);
-            text-align: center;
-            margin: 0 1rem; /* Spacing between cards if needed */
-            opacity: 0.5; /* Non-active cards are faded */
-            transform: scale(0.9); /* Non-active cards are smaller */
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .recommendation-card.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .recommendation-card blockquote {
-            font-style: italic;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            color: var(--secondary-color);
-        }
-
-        .recommendation-card cite {
-            font-weight: 600;
-            color: var(--primary-color);
-            display: block;
-            margin-top: 0.5rem;
-        }
-
-        .recommendation-card .company {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav-arrow:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        #nav-arrow-left {
-            left: -25px; /* Adjust position */
-        }
-
-        #nav-arrow-right {
-            right: -25px; /* Adjust position */
-        }
-
-        /* HR Hub Section */
-        #hr-innovation-hub .container {
-            text-align: center;
-        }
-
-        #hr-innovation-hub p {
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 2rem;
-        }
-
-        /* Contact Section */
-        .contact-info {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .contact-info p {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--primary-color);
-            width: 20px; /* Ensure icons align */
-            text-align: center;
-        }
-
-        .contact-info a {
-            color: var(--text-color);
-        }
-        .contact-info a:hover {
-            color: var(--primary-color);
-        }
-
-        .social-links {
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            color: var(--secondary-color);
-            font-size: 1.8rem;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Feedback Section Styles */
-        #feedback {
-            background-color: var(--white);
-        }
-
-        .feedback-form {
-            max-width: 600px;
-            margin: 2rem auto 0;
-            padding: 2rem;
-            background-color: var(--light-bg);
-            border-radius: 8px;
-            box-shadow: var(--box-shadow);
-            text-align: center;
-        }
-
-        .rating-stars {
-            margin-bottom: 1.5rem;
-        }
-
-        .rating-stars .star {
-            font-size: 2rem;
-            color: #ccc; /* Default star color */
-            cursor: pointer;
-            transition: color 0.2s ease;
-            margin: 0 0.2rem;
-        }
-
-        .rating-stars .star:hover,
-        .rating-stars .star.selected {
-            color: var(--primary-color); /* Gold for selected/hovered */
-        }
-
-        .feedback-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-            min-height: 100px;
-            margin-bottom: 1.5rem;
-        }
-
-        .feedback-form .btn {
-            margin-top: 0; /* Remove default top margin */
-        }
-
-        #feedback-status {
-            margin-top: 1rem;
-            font-weight: 500;
-        }
-
-        #feedback-status.success {
-            color: green;
-        }
-        #feedback-status.error {
-            color: red;
-        }
-
-        /* Responsive Styles */
+        
+        /* Media queries for responsividade */
         @media (max-width: 992px) {
             .container {
-                width: 95%;
+                padding: 0 1.5rem;
             }
+            .page-section {
+                 padding: 2rem 0;
+            }
+            .services-grid {
+                gap: 1.5rem;
+            }
+            
+            .service-card {
+                flex-basis: calc(50% - 1rem);
+                min-width: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2.4rem;
+                font-size: 2.2rem;
             }
+            
             h2 {
                 font-size: 1.8rem;
             }
-            .page-section {
-                padding: 3rem 0;
-            }
-            .about-content,
-            .author-content {
+            
+            .autor-container {
+                flex-direction: column;
                 text-align: center;
             }
-            .about-image,
-            .author-image {
-                margin: 0 auto 2rem;
+            
+            .autor-bio h3::after {
+                left: 50%;
+                transform: translateX(-50%);
             }
-            .nav-arrow {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-            #nav-arrow-left {
-                left: 0;
-            }
-            #nav-arrow-right {
-                right: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding-left: 3%;
-                padding-right: 3%;
-                position: static; /* Header no longer sticky */
-            }
-            nav {
-                position: static; /* Nav no longer sticky */
-                padding: 0;
-            }
+            
             nav .container {
-                flex-direction: column;
-                align-items: flex-start;
+                justify-content: space-between;
+                padding: 0.5rem 1rem;
             }
+
             .nav-links {
-                display: none; /* Hide links by default */
-                flex-direction: column;
+                display: none;
                 width: 100%;
+                flex-direction: column;
                 background-color: var(--dark-bg);
                 position: absolute;
-                top: 60px; /* Adjust based on header height */
+                top: 100%;
                 left: 0;
-                z-index: 98;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+                padding-bottom: 1rem;
             }
+            
             .nav-links.active {
-                display: flex; /* Show when active */
+                display: flex;
             }
+
             nav a {
-                display: block;
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
                 width: 100%;
                 text-align: left;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -742,256 +635,394 @@
             </button>
             <div class="nav-links">
                 <!-- Updated href to data-section attribute -->
-                <a data-section="hero">Início</a> 
-                <a data-section="about">Sobre</a>
-                <a data-section="services">Serviços</a>
-                <a data-section="author">Autor</a>
-                <a data-section="recomendacoes">Recomendações</a>
-                <a data-section="hr-innovation-hub">HR Hub</a>
-                <a data-section="contact">Contacto</a>
+                <a href="#hero" data-section="hero">Início</a> 
+                <a href="#about" data-section="about">Sobre</a>
+                <a href="#services" data-section="services">Serviços</a>
+                <a href="#author" data-section="author">Autor</a>
+                <a href="#recomendacoes" data-section="recomendacoes">Recomendações</a>
+                <a href="#hr-innovation-hub" data-section="hr-innovation-hub">HR Hub</a>
+                <a href="#contact" data-section="contact">Contacto</a>
                 <a href="Calendario/index.html" class="btn btn-nav">Agendar</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Page Container -->
-    <div id="page-container">
-        <!-- Hero Section -->
-        <section id="hero" class="page-section active">
+    <main id="page-container">
+        <!-- Sections wrapped and given class 'page-section' -->
+        <section id="hero" class="page-section active"> <!-- Start with hero active -->
             <div class="container">
-                <h1 data-translate="hero_title">Inspiring Change, Humanizing Work</h1>
-                <p data-translate="hero_subtitle">Ajudamos a transformar o teu potencial em sucesso profissional e organizacional.</p>
-                <a href="Calendario/index.html" class="btn" data-translate="schedule_button">Agendar</a>
+                <h1>Inspiring Change, Humanizing Work</h1>
+                <p>Ajudamos a transformar o teu potencial em sucesso profissional e organizacional.</p>
+                <a href="Calendario/index.html" class="btn">Agendar</a>
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about" class="page-section">
             <div class="container">
+                <h2>Sobre a Share2Inspire</h2>
                 <div class="about-content">
-                    <h2 data-translate="about_title">Sobre a Share2Inspire</h2>
-                    <p data-translate="about_p1">A Share2Inspire nasceu da paixão por desenvolver pessoas e otimizar processos de Recursos Humanos. Acreditamos que o sucesso de qualquer organização reside no potencial dos seus colaboradores.</p>
-                    <p data-translate="about_p2">Com uma abordagem personalizada e foco em resultados, ajudamos indivíduos a alcançar os seus objetivos de carreira e empresas a construir equipas de alta performance, promovendo um ambiente de trabalho mais humano e inspirador.</p>
-                </div>
-                <div class="about-image">
-                    <img src="images/about-image.jpg" alt="Equipa Share2Inspire a colaborar">
+                    <p>A Share2Inspire é um catalisador de crescimento profissional fundado por Samuel Rolo, um especialista em transformação organizacional com mais de 14 anos de experiência na Europa, África e Américas. Através da Share2Inspire, o Samuel ajuda jovens profissionais a acelerar o início das suas carreiras e apoia profissionais seniores a navegar pela mudança com confiança e humanidade.</p>
+                    <p>A sua abordagem combina conhecimento técnico com uma profunda compreensão da dinâmica humana, criando soluções que promovem carreiras equilibradas e baseadas no bem-estar. Com uma sólida experiência em Consultoria e Transformação de RH, as suas perspetivas são especialmente valiosas para quem procura uma carreira em consultoria ou orientação sobre transformação organizacional, o futuro do trabalho, mudança e sustentabilidade humana.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="page-section">
             <div class="container">
-                <h2 data-translate="services_title">Os Nossos Serviços</h2>
+                <h2>Os Nossos Serviços</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <div class="service-icon"><img src="images/icons/career-coaching.png" alt="Career Coaching Icon"></div>
-                        <h3 data-translate="service1_title">Career Coaching</h3>
-                        <p data-translate="service1_desc">Orientação personalizada para definir e alcançar os teus objetivos de carreira.</p>
+                        <div class="service-icon"><img src="images/icons/coaching-icon.jpg" alt="Coaching Icon"></div>
+                        <h3>Kickstart Pro ! Express coaching</h3>
+                        <p>Sessões focadas para acelerar o seu desenvolvimento profissional e ultrapassar desafios específicos.</p>
+                        <a href="Calendario/index.html" class="btn" style="margin-top: auto;">Agendar</a>
                     </div>
                     <div class="service-card">
-                        <div class="service-icon"><img src="images/icons/cv-review.png" alt="CV Review Icon"></div>
-                        <h3 data-translate="service2_title">Revisão de CV e LinkedIn</h3>
-                        <p data-translate="service2_desc">Otimiza o teu perfil profissional para destacar as tuas competências e experiências.</p>
+                        <div class="service-icon"><img src="images/icons/cv-icon.png" alt="CV Review Icon"></div>
+                        <h3>Revisão de CV</h3>
+                        <p>Otimize o teu currículo para destacar as tuas competências e alcançar os teus objetivos de carreira.</p>
+                        <a href="Calendario/index.html" class="btn" style="margin-top: auto;">Agendar</a>
                     </div>
                     <div class="service-card">
-                        <div class="service-icon"><img src="images/icons/interview-prep.png" alt="Interview Preparation Icon"></div>
-                        <h3 data-translate="service3_title">Preparação para Entrevistas</h3>
-                        <p data-translate="service3_desc">Desenvolve a confiança e as técnicas necessárias para teres sucesso em entrevistas.</p>
+                        <div class="service-icon"><img src="images/icons/digital-icon.jpg" alt="Consulting Icon"></div>
+                        <h3>Aconselhamento para Transformações Organizacionais</h3>
+                        <p>Precisa de orientação estratégica para processos de mudança? Preencha o formulário abaixo.</p>
+                        <form id="consulting-request-form" style="margin-top: 1rem; text-align: left;">
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-name" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Nome:</label>
+                                <input type="text" id="consulting-name" name="name" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-challenge" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Breve descrição do desafio:</label>
+                                <textarea id="consulting-challenge" name="challenge" rows="3" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;"></textarea>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-availability" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Disponibilidade (Data e Hora):</label>
+                                <input type="datetime-local" id="consulting-availability" name="availability" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-phone" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Telefone:</label>
+                                <input type="tel" id="consulting-phone" name="phone" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-email" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Email:</label>
+                                <input type="email" id="consulting-email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="consulting-notes" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Notas adicionais:</label>
+                                <textarea id="consulting-notes" name="notes" rows="2" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;"></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="width: 100%; margin-top: 0;">Enviar Pedido</button>
+                        </form>
                     </div>
-                     <div class="service-card">
-                        <div class="service-icon"><img src="images/icons/hr-consulting.png" alt="HR Consulting Icon"></div>
-                        <h3 data-translate="service4_title">Consultoria de RH</h3>
-                        <p data-translate="service4_desc">Soluções estratégicas para otimizar processos e desenvolver o capital humano da tua empresa.</p>
+                    <div class="service-card survey-card-highlight">
+                        <div class="service-icon"><i class="fas fa-brain" style="color: var(--primary-color); font-size: 2.5rem;"></i></div>
+                        <h3>Descobre o Teu Arquétipo de Liderança</h3>
+                        <p>Responde ao nosso questionário interativo e descobre o teu estilo de liderança predominante.</p>
+                        <a href="questionario/index.html" class="btn" style="margin-top: 1rem;">Iniciar Questionário</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Author Section -->
         <section id="author" class="page-section">
             <div class="container">
-                 <div class="author-image">
-                    <img src="autor.png" alt="Samuel Rolo - Fundador da Share2Inspire">
-                </div>
-                <div class="author-content">
-                    <h2 data-translate="author_title">Sobre o Fundador</h2>
-                    <h3 data-translate="author_name">Samuel Rolo</h3>
-                    <p data-translate="author_p1">Com mais de 10 anos de experiência em Recursos Humanos e uma paixão genuína pelo desenvolvimento de talento, Samuel Rolo fundou a Share2Inspire com a missão de humanizar o trabalho e inspirar mudanças positivas.</p>
-                    <p data-translate="author_p2">A sua expertise abrange desde o recrutamento e seleção até à gestão de desempenho e desenvolvimento de liderança, sempre com um foco estratégico e humano.</p>
-                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" class="btn" data-translate="author_linkedin">Ver Perfil LinkedIn</a>
+                <h2>Sobre o Autor</h2>
+                <div class="autor-container">
+                    <div class="autor-foto"> <img src="autor.png" alt="Samuel Rolo"> </div>
+                    <div class="autor-bio">
+                        <h3>Samuel Rolo</h3>
+                        <p>Com mais de 14 anos de experiência em consultoria de capital humano e transformação organizacional, Samuel Rolo é um especialista apaixonado por ajudar pessoas e empresas a prosperar em ambientes de mudança.</p>
+                        <p>A sua experiência internacional e abordagem centrada no ser humano permitem-lhe criar soluções inovadoras e sustentáveis que impulsionam o crescimento e o bem-estar.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Recomendações Section -->
         <section id="recomendacoes" class="page-section">
             <div class="container">
-                <h2 data-translate="recommendations_title">Recomendações</h2>
-                <div class="recommendations-slider">
-                    <div class="recommendations-wrapper">
-                        <!-- Recommendation cards will be loaded here by JavaScript -->
-                    </div>
-                </div>
-                <button id="nav-arrow-left" class="nav-arrow" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                <button id="nav-arrow-right" class="nav-arrow" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+                <h2>Recomendações</h2>
+                <iframe src="testimonials_widget.html" width="100%" height="600" frameborder="0" sandbox="allow-same-origin allow-scripts"></iframe>
             </div>
         </section>
 
-        <!-- HR Innovation Hub Section -->
         <section id="hr-innovation-hub" class="page-section">
             <div class="container">
-                <h2 data-translate="hrhub_title">HR Innovation Hub</h2>
-                <p data-translate="hrhub_desc">Um espaço dedicado à partilha de conhecimento, tendências e melhores práticas em Recursos Humanos. Explore artigos, insights e ferramentas para impulsionar a inovação na gestão de pessoas.</p>
-                <!-- Link para uma futura página ou blog -->
-                <a href="#" class="btn" data-translate="hrhub_button">Explorar o Hub (Brevemente)</a>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="page-section">
-            <div class="container">
-                <h2 data-translate="contact_title">Contacto</h2>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/samuel_rolo_share2inspire/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img src="images/hr_innovation_hub_banner.png" alt="HR Innovation Hub Banner" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                    <h2 style="margin-bottom: 1rem;">HR Innovation Hub</h2>
+                    <p>Explore as últimas tendências, insights e estratégias em Gestão de Pessoas e Transformação Organizacional.</p>
+                </div>
+                <div class="latest-article" style="background-color: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--box-shadow); display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 2rem;">
+                    <div class="article-image" style="flex: 1 1 300px;">
+                        <img src="images/reskilling_article_image.png" alt="Reskilling Article Image" style="width: 100%; height: auto; border-radius: 8px;">
+                    </div>
+                    <div class="article-content" style="flex: 2 1 400px;">
+                        <h3 style="margin-bottom: 1rem;">Artigo em Destaque</h3>
+                        <h4 style="margin-bottom: 1rem;">Reskilling: An Inspiring Perspective from Both Individual and Organizational Standpoints</h4>
+                        <p style="margin-bottom: 1.5rem;">Num mundo em constante mudança, o reskilling torna-se crucial. Explore perspetivas sobre como indivíduos e organizações podem abraçar esta transformação...</p>
+                        <a href="https://www.linkedin.com/pulse/reskilling-inspiring-perspective-from-both-individual-samuel-rolo-2sdyf/?trackingId=ZUKrtIHBRPGcT0vZD6jHvw%3D%3D" target="_blank" class="btn">Ler Artigo Completo</a>
                     </div>
                 </div>
-                <!-- Formulário de Contacto pode ser adicionado aqui se necessário -->
+                <div style="text-align: center;">
+                    <a href="https://www.linkedin.com/newsletters/hr-innovation-hub-%F0%9F%92%A1-7258968797414342657" target="_blank" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Subscrever no LinkedIn</a>
+                </div>
             </div>
         </section>
 
-        <!-- Feedback Section -->
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2>Entre em Contacto</h2>
+                <div class="contact-info">
+                    <p>Tem alguma questão ou pretende discutir como podemos ajudar a sua organização ou carreira? Envie-nos uma mensagem!</p>
+                    <p>Email: <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                    <p>Siga-nos nas redes sociais para mais conteúdos e inspiração.</p>
+                     <div class="social-links">
+                            <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Arrows -->
+        <button id="nav-arrow-left" class="nav-arrow hidden"><i class="fas fa-chevron-left"></i></button>
+        <button id="nav-arrow-right" class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+
+    </main> <!-- End Page Container -->
+
+    <!-- Footer remains outside the page container -->
+    <footer class="site-footer">
+        <div class="container" style="height: auto; justify-content: initial;"> <!-- Override section container styles -->
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo_white.png" alt="Share2Inspire Logo Branco">
+                </div>
+                <div class="footer-links">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a data-section="hero">Início</a></li>
+                        <li><a data-section="about">Sobre</a></li>
+                        <li><a data-section="services">Serviços</a></li>
+                        <li><a data-section="author">Autor</a></li>
+                        <li><a data-section="recomendacoes">Recomendações</a></li>
+                        <li><a data-section="hr-innovation-hub">HR Hub</a></li>
+                        <li><a data-section="contact">Contacto</a></li>
+                        <li><a href="Calendario/index.html">Agendar</a></li>
+                        <li><a href="politica_privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="tabela_precos_cv/tabela_precos.html">Tabela de Preços - Revisão CV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/language-selector.js"></script>
+    <!-- Add script for section navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageContainer = document.getElementById('page-container');
+            const sections = Array.from(pageContainer.querySelectorAll('.page-section'));
+            const navLinks = document.querySelectorAll('nav a[data-section], footer a[data-section]');
+            const arrowLeft = document.getElementById('nav-arrow-left');
+            const arrowRight = document.getElementById('nav-arrow-right');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const navLinksContainer = document.querySelector('.nav-links');
+
+            let currentSectionIndex = 0;
+            const sectionIds = sections.map(section => section.id);
+
+            function updateArrows() {
+                arrowLeft.classList.toggle('hidden', currentSectionIndex === 0);
+                arrowRight.classList.toggle('hidden', currentSectionIndex === sections.length - 1);
+            }
+
+            function updateNavLinks(activeIndex) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.section === sections[activeIndex].id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            function showSection(indexToShow) {
+                if (indexToShow < 0 || indexToShow >= sections.length) return;
+
+                const currentSection = sections[currentSectionIndex];
+                const nextSection = sections[indexToShow];
+
+                // Determine direction for transition
+                const direction = indexToShow > currentSectionIndex ? 'next' : 'prev';
+
+                // Apply transition classes
+                sections.forEach((section, index) => {
+                    section.classList.remove('active', 'prev');
+                    if (index === indexToShow) {
+                        section.classList.add('active');
+                        // Reset transform based on direction (start from right or left)
+                        section.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+                        // Force reflow to apply start transform before transition
+                        void section.offsetWidth;
+                        section.style.transform = 'translateX(0)'; // Animate to center
+                    } else if (index === currentSectionIndex) {
+                        // Animate current section out
+                        section.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+                    }
+                });
+                
+                currentSectionIndex = indexToShow;
+                updateArrows();
+                updateNavLinks(currentSectionIndex);
+            }
+
+            arrowLeft.addEventListener('click', () => {
+                showSection(currentSectionIndex - 1);
+            });
+
+            arrowRight.addEventListener('click', () => {
+                showSection(currentSectionIndex + 1);
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetSectionId = link.dataset.section;
+                    const targetIndex = sectionIds.indexOf(targetSectionId);
+                    if (targetIndex !== -1) {
+                        showSection(targetIndex);
+                        // Close mobile menu if open
+                        if (navLinksContainer.classList.contains('active')) {
+                            navLinksContainer.classList.remove('active');
+                            mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                        }
+                    }
+                });
+            });
+
+            // Mobile Menu Toggle Logic (from navigation.js, adapted)
+            if (mobileMenuToggle && navLinksContainer) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    navLinksContainer.classList.toggle('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    if (navLinksContainer.classList.contains('active')) {
+                        icon.classList.replace('fa-bars', 'fa-times');
+                    } else {
+                        icon.classList.replace('fa-times', 'fa-bars');
+                    }
+                });
+            }
+
+            // Initial setup
+            updateArrows();
+            updateNavLinks(currentSectionIndex);
+            // Ensure initial active section is correctly positioned
+            sections[currentSectionIndex].style.transform = 'translateX(0)'; 
+        });
+    </script>
+
+</body>
+</html>
+
+
+        /* Feedback Section Styles */
+        #feedback {
+            background-color: var(--white);
+        }
+
+        .feedback-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .rating-stars {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-stars .star {
+            font-size: 2rem;
+            color: #ccc; /* Default star color */
+            cursor: pointer;
+            transition: color 0.2s ease;
+            margin: 0 0.2rem;
+        }
+
+        .rating-stars .star:hover,
+        .rating-stars .star.selected {
+            color: var(--primary-color); /* Gold for selected/hovered */
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            min-height: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-form .btn {
+            margin-top: 0; /* Remove default top margin */
+        }
+
+        #feedback-status {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+        #feedback-status.success {
+            color: green;
+        }
+        #feedback-status.error {
+            color: red;
+        }
+
+
+
         <section id="feedback" class="page-section">
             <div class="container">
-                <h2 data-translate="feedback_title">Deixe o seu Feedback</h2>
+                <h2>Dê o seu Feedback</h2>
                 <form id="feedback-form" class="feedback-form">
-                    <div class="rating-stars" data-translate="feedback_rating_label" aria-label="Classificação">
+                    <p>A sua opinião é importante para nós!</p>
+                    <div class="rating-stars" data-rating="0">
                         <span class="star" data-value="1"><i class="fas fa-star"></i></span>
                         <span class="star" data-value="2"><i class="fas fa-star"></i></span>
                         <span class="star" data-value="3"><i class="fas fa-star"></i></span>
                         <span class="star" data-value="4"><i class="fas fa-star"></i></span>
                         <span class="star" data-value="5"><i class="fas fa-star"></i></span>
                     </div>
-                    <input type="hidden" id="rating-value" name="rating" value="0">
-                    <textarea id="feedback-text" name="comment" rows="4" placeholder="Escreva aqui o seu comentário..." data-translate="feedback_textarea_placeholder" aria-label="Comentário"></textarea>
-                    <button type="submit" class="btn" data-translate="feedback_submit_button">Enviar Feedback</button>
-                    <p id="feedback-status" role="alert"></p>
+                    <textarea id="feedback-text" name="feedback-text" placeholder="Escreva aqui o seu comentário..." required></textarea>
+                    <button type="submit" class="btn">Submeter Feedback</button>
+                    <div id="feedback-status"></div>
                 </form>
             </div>
         </section>
 
-    </div> <!-- End Page Container -->
-
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-column footer-logo-about">
-                 <img src="images/logo_white.png" alt="Share2Inspire Logo Branco" class="footer-logo">
-                 <p data-translate="footer_about">Inspirando mudança, humanizando o trabalho.</p>
-            </div>
-            <div class="footer-column footer-links">
-                <h4 data-translate="footer_links_title">Links Úteis</h4>
-                <ul>
-                    <li><a data-section="hero" data-translate="footer_link_home">Início</a></li>
-                    <li><a data-section="about" data-translate="footer_link_about">Sobre</a></li>
-                    <li><a data-section="services" data-translate="footer_link_services">Serviços</a></li>
-                    <li><a data-section="author" data-translate="footer_link_author">Autor</a></li>
-                    <li><a data-section="recomendacoes" data-translate="footer_link_recommendations">Recomendações</a></li>
-                    <li><a data-section="hr-innovation-hub" data-translate="footer_link_hrhub">HR Hub</a></li>
-                    <li><a data-section="contact" data-translate="footer_link_contact">Contacto</a></li>
-                    <li><a href="Calendario/index.html" data-translate="footer_link_schedule">Agendar</a></li>
-                    <li><a href="politica_privacidade.html" target="_blank" data-translate="footer_link_privacy">Política de Privacidade</a></li>
-                    <li><a href="tabela_precos_cv/index.html" target="_blank" data-translate="footer_link_cv_pricing">Tabela de Preços - Revisão CV</a></li>
-                </ul>
-            </div>
-            <div class="footer-column footer-contact">
-                <h4 data-translate="footer_contact_title">Contacto</h4>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
-                <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/samuel_rolo_share2inspire/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
-    <script src="js/navigation.js"></script>
-    <!-- Add script for section navigation -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const pageContainer = document.getElementById('page-container');
-            const sections = document.querySelectorAll('.page-section');
-            const navLinks = document.querySelectorAll('nav a[data-section], .footer-links a[data-section]');
-            let currentSectionIndex = 0;
-            let isAnimating = false;
-
-            function showSection(index) {
-                if (isAnimating || index < 0 || index >= sections.length) return;
-                isAnimating = true;
-
-                const currentSection = sections[currentSectionIndex];
-                const nextSection = sections[index];
-
-                // Update active link
-                navLinks.forEach(link => link.classList.remove('active'));
-                const activeLink = document.querySelector(`nav a[data-section="${nextSection.id}"], .footer-links a[data-section="${nextSection.id}"]`);
-                if (activeLink) activeLink.classList.add('active');
-
-                // Determine direction
-                const direction = index > currentSectionIndex ? 'next' : 'prev';
-
-                // Add animation classes
-                if (currentSection) {
-                    currentSection.classList.remove('active');
-                    currentSection.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
-                }
-                nextSection.classList.add('active', direction === 'next' ? 'slide-in-right' : 'slide-in-left');
-
-                // Update current index
-                currentSectionIndex = index;
-
-                // Remove animation classes after animation ends
-                setTimeout(() => {
-                    if (currentSection) {
-                        currentSection.classList.remove('slide-out-left', 'slide-out-right');
-                    }
-                    nextSection.classList.remove('slide-in-left', 'slide-in-right');
-                    isAnimating = false;
-                }, 600); // Match CSS animation duration
-            }
-
-            // Initial section setup
-            if (sections.length > 0) {
-                sections[0].classList.add('active');
-                const initialActiveLink = document.querySelector(`nav a[data-section="${sections[0].id}"], .footer-links a[data-section="${sections[0].id}"]`);
-                if (initialActiveLink) initialActiveLink.classList.add('active');
-            }
-
-            // Event listeners for nav links
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('data-section');
-                    const targetIndex = Array.from(sections).findIndex(section => section.id === targetId);
-                    if (targetIndex !== -1) {
-                        showSection(targetIndex);
-                    }
-                });
-            });
-        });
-    </script>
-    <script src="js/recommendations.js"></script>
-    <script src="js/translate.js"></script>
-    <script src="js/feedback.js"></script>
-    <script src="js/image-error-handler.js"></script>
-
-</body>
+        <script src="js/navigation.js" defer></script>
+          <script src="js/feedback.js" defer></script>>
+    </body>
 </html>
-
