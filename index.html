@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share2Inspire - Inspiring Change, Humanizing Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Combined Styles -->
+    <style>
+        :root {
+            /* Updated Color Scheme */
+            --primary-color: #B8860B; /* DarkGoldenrod */
+            --secondary-color: #333333; /* Dark Gray/Near Black */
+            --accent-color: #D4AF37; /* Gold (alternative accent) */
+            --white: #ffffff;
+            --light-bg: #f8f8f8; /* Lighter Gray */
+            --dark-bg: #222222; /* Darker Gray/Near Black */
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+            --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            /* scroll-behavior: smooth; */ /* Removed for section-based nav */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            /* overflow: hidden; */ /* Prevent body scroll - REMOVED FOR TESTING */
+            background-color: var(--white);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%; /* Allow container to fill section height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+        }
+
+        /* Page Container for Sections */
+        #page-container {
+            flex-grow: 1; /* Take remaining vertical space */
+            position: relative;
+            overflow: hidden; /* Hide non-active sections */
+            width: 100%;
+        }
+
+        .page-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 3rem 0; /* Adjust padding for section content */
+            display: none; /* Use display none */
+            overflow-y: auto; /* Allow scrolling within section if content overflows */
+        }
+
+        .page-section.active {
+            display: block; /* Use display block */
+            z-index: 1;
+        }
+
+        /* .page-section.prev rule removed as transform is no longer used */
+        
+        /* Adjust specific section backgrounds/styles */
+        #hero {
+            background-color: var(--dark-bg);
+            color: var(--white);
+        }
+        #hero h1, #hero p, #hero h2 {
+             color: var(--white);
+        }
+        #hero h2::after {
+            background-color: var(--white);
+        }
+
+        #about {
+            background-color: var(--light-bg);
+        }
+        
+        #author {
+            background-color: var(--light-bg);
+        }
+
+        #recomendacoes {
+             /* Keep default white or adjust */
+        }
+        #recomendacoes iframe {
+            height: calc(100% - 100px); /* Adjust iframe height within section */
+            min-height: 400px;
+        }
+
+        #hr-innovation-hub {
+            background-color: var(--light-bg);
+        }
+
+        #contact {
+            background: linear-gradient(rgba(34, 34, 34, 0.9), rgba(34, 34, 34, 0.9));
+            color: var(--white);
+        }
+        #contact h2 {
+            color: var(--white);
+        }
+        #contact h2::after {
+            background-color: var(--white);
+        }
+        #contact p, #contact a {
+            color: var(--white);
+        }
+        #contact a:hover {
+            color: var(--primary-color);
+        }
+        #contact .social-links a {
+            background-color: var(--white);
+            color: var(--dark-bg);
+        }
+        #contact .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.9rem 1.8rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .btn:hover {
+            background: #A0740A;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+                
+        header {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            padding: 15px 0; /* Reduced padding */
+            background-color: var(--white);
+            position: relative; 
+            z-index: 100; /* Ensure header is above sections */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            margin-bottom: 10px; /* Reduced margin */
+            text-align: center;
+        }
+        
+        .logo {
+            max-width: 180px; /* Slightly smaller logo */
+            height: auto;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+        }
+        .language-selector .lang-flag img {
+            display: block; /* Remove extra space below image */
+            transition: transform 0.2s ease;
+        }
+        .language-selector .lang-flag:hover img {
+            transform: scale(1.1);
+        }
+        .language-selector .lang-flag.active {
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        nav {
+            background-color: var(--dark-bg);
+            text-align: center;
+            position: sticky;
+            top: 0; /* Stick below header */
+            z-index: 99; /* Below header, above sections */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0 1rem; /* Adjust padding */
+            height: auto; /* Override section container height */
+            justify-content: center; /* Override section container justify */
+        }
+        
+        nav a {
+            display: inline-block;
+            color: var(--white);
+            text-align: center;
+            padding: 0.8rem 1.2rem; /* Adjust padding */
+            text-decoration: none;
+            font-size: 1rem; /* Adjust font size */
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer; /* Indicate clickable */
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--primary-color);
+        }
+        
+        nav a.active {
+             border-bottom: 2px solid var(--primary-color);
+             color: var(--primary-color);
+        }
+
+        nav .btn-nav {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.6rem 1.2rem; 
+            border-radius: 20px; 
+            margin-left: 1rem; 
+            font-weight: 600;
+            box-shadow: none; 
+            border: 2px solid var(--primary-color);
+        }
+
+        nav .btn-nav:hover {
+            background-color: var(--white); 
+            color: var(--primary-color); 
+            transform: none; 
+            box-shadow: none;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+        
+        .service-card {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            min-width: 280px; 
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color); 
+            text-align: center; 
+        }
+
+        .survey-card-highlight {
+            transform: scale(1.03); 
+            background-color: var(--light-bg); 
+            border-top-color: var(--accent-color); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .survey-card-highlight:hover {
+             transform: translateY(-10px) scale(1.05); 
+             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .service-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-icon img {
+            max-width: 60px; 
+            height: auto;
+            display: inline-block;
+        }
+        
+        .autor-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .autor-foto {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .autor-foto img {
+            max-width: 280px;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border: 5px solid var(--white);
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .autor-foto img:hover {
+            transform: scale(1.05);
+        }
+        
+        .autor-bio {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .autor-bio h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .autor-bio h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+                
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+                
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--dark-bg);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+                
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: fixed;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 0.7;
+        }
+        .nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 1;
+        }
+        .nav-arrow.hidden {
+            opacity: 0;
+            visibility: hidden;
+            cursor: default;
+        }
+        #nav-arrow-left {
+            left: 20px;
+        }
+        #nav-arrow-right {
+            right: 20px;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem; /* Adjust padding */
+        }
+        
+        /* Media queries for responsividade */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            .page-section {
+                 padding: 2rem 0;
+            }
+            .services-grid {
+                gap: 1.5rem;
+            }
+            
+            .service-card {
+                flex-basis: calc(50% - 1rem);
+                min-width: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .autor-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .autor-bio h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            nav .container {
+                justify-content: space-between;
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--dark-bg);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding-bottom: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            nav a:last-child {
+                 border-bottom: none;
+            }
+
+            nav .btn-nav {
+                 margin: 1rem auto 0;
+                 display: block;
+                 width: fit-content;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .service-card {
+                flex-basis: 100%;
+                min-width: 100%;
+            }
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                bottom: 15px;
+            }
+            #nav-arrow-left {
+                left: 15px;
+            }
+            #nav-arrow-right {
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .page-section {
+                padding: 1.5rem 0;
+            }
+                        
+            .btn {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.95rem;
+            }
+            
+            .service-icon img {
+                max-width: 50px;
+            }
+
+            .logo {
+                max-width: 150px; /* Further reduce logo size */
+            }
+        }
+        
+    </style>
+    <link rel="stylesheet" href="css/language-selector.css"> <!-- Keep for potential specific styles -->
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-LM1JZ9LBY9"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-LM1JZ9LBY9'); </script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+             <img src="logo.png" alt="Share2Inspire Logo" class="logo">
+        </div>
+        <div class="language-selector">
+            <a href="#" id="lang-pt" class="lang-flag active" data-lang="pt">PT</a>
+            <a href="#" id="lang-en" class="lang-flag" data-lang="en">EN</a>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <!-- Updated href to data-section attribute -->
+                <a href="#hero">Início</a> 
+                <a href="#about">Sobre</a>
+                <a href="#services">Serviços</a>
+                <a href="#author">Autor</a>
+                <a href="#recomendacoes">Recomendações</a>
+                <a href="#hr-innovation-hub">HR Hub</a>
+                <a href="#contact">Contacto</a>
+                <a href="Calendario/index.html" class="btn btn-nav">Agendar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Page Container -->
+    <main id="page-container">
+        <!-- Sections wrapped and given class 'page-section' -->
+        <section id="hero" class="page-section active"> <!-- Start with hero active -->
+            <div class="container">
+                <h1>Inspiring Change, Humanizing Work</h1>
+                <p>Ajudamos a transformar o teu potencial em sucesso profissional e organizacional.</p>
+                <a href="Calendario/index.html" class="btn">Agendar</a>
+            </div>
+        </section>
+
+        <section id="about" class="page-section">
+            <div class="container">
+                <h2>Sobre a Share2Inspire</h2>
+                <div class="about-content">
+                    <p>A Share2Inspire é um catalisador de crescimento profissional fundado por Samuel Rolo, um especialista em transformação organizacional com mais de 14 anos de experiência na Europa, África e Américas. Através da Share2Inspire, o Samuel ajuda jovens profissionais a acelerar o início das suas carreiras e apoia profissionais seniores a navegar pela mudança com confiança e humanidade.</p>
+                    <p>A sua abordagem combina conhecimento técnico com uma profunda compreensão da dinâmica humana, criando soluções que promovem carreiras equilibradas e baseadas no bem-estar. Com uma sólida experiência em Consultoria e Transformação de RH, as suas perspetivas são especialmente valiosas para quem procura uma carreira em consultoria ou orientação sobre transformação organizacional, o futuro do trabalho, mudança e sustentabilidade humana.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="page-section">
+            <div class="container">
+                <h2>Os Nossos Serviços</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><img src="images/icons/coaching-icon.jpg" alt="Coaching Icon"></div>
+                        <h3>Kickstart Pro ! Express coaching</h3>
+                        <p>Sessões focadas para acelerar o seu desenvolvimento profissional e ultrapassar desafios específicos.</p>
+                        <a href="Calendario/index.html" class="btn" style="margin-top: auto;">Agendar</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><img src="images/icons/cv-icon.png" alt="CV Review Icon"></div>
+                        <h3>Revisão de CV</h3>
+                        <p>Otimize o teu currículo para destacar as tuas competências e alcançar os teus objetivos de carreira.</p>
+                        <a href="Calendario/index.html" class="btn" style="margin-top: auto;">Agendar</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><img src="images/icons/digital-icon.jpg" alt="Consulting Icon"></div>
+                        <h3>Aconselhamento para Transformações Organizacionais</h3>
+                        <p>Precisa de orientação estratégica para processos de mudança? Preencha o formulário abaixo.</p>
+                        <form id="consulting-request-form" style="margin-top: 1rem; text-align: left;">
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-name" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Nome:</label>
+                                <input type="text" id="consulting-name" name="name" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-challenge" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Breve descrição do desafio:</label>
+                                <textarea id="consulting-challenge" name="challenge" rows="3" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;"></textarea>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-availability" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Disponibilidade (Data e Hora):</label>
+                                <input type="datetime-local" id="consulting-availability" name="availability" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-phone" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Telefone:</label>
+                                <input type="tel" id="consulting-phone" name="phone" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0.8rem;">
+                                <label for="consulting-email" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Email:</label>
+                                <input type="email" id="consulting-email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label for="consulting-notes" style="display: block; margin-bottom: 0.3rem; font-weight: 500;">Notas adicionais:</label>
+                                <textarea id="consulting-notes" name="notes" rows="2" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem;"></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="width: 100%; margin-top: 0;">Enviar Pedido</button>
+                        </form>
+                    </div>
+                    <div class="service-card survey-card-highlight">
+                        <div class="service-icon"><i class="fas fa-brain" style="color: var(--primary-color); font-size: 2.5rem;"></i></div>
+                        <h3>Descobre o Teu Arquétipo de Liderança</h3>
+                        <p>Responde ao nosso questionário interativo e descobre o teu estilo de liderança predominante.</p>
+                        <a href="questionario/index.html" class="btn" style="margin-top: 1rem;">Iniciar Questionário</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="author" class="page-section">
+            <div class="container">
+                <h2>Sobre o Autor</h2>
+                <div class="autor-container">
+                    <div class="autor-foto"> <img src="autor.png" alt="Samuel Rolo"> </div>
+                    <div class="autor-bio">
+                        <h3>Samuel Rolo</h3>
+                        <p>Com mais de 14 anos de experiência em consultoria de capital humano e transformação organizacional, Samuel Rolo é um especialista apaixonado por ajudar pessoas e empresas a prosperar em ambientes de mudança.</p>
+                        <p>A sua experiência internacional e abordagem centrada no ser humano permitem-lhe criar soluções inovadoras e sustentáveis que impulsionam o crescimento e o bem-estar.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recomendacoes" class="page-section">
+            <div class="container">
+                <h2>Recomendações</h2>
+                <iframe src="testimonials_widget.html" width="100%" height="600" frameborder="0" sandbox="allow-same-origin allow-scripts"></iframe>
+            </div>
+        </section>
+
+        <section id="hr-innovation-hub" class="page-section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img src="images/hr_innovation_hub_banner.png" alt="HR Innovation Hub Banner" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                    <h2 style="margin-bottom: 1rem;">HR Innovation Hub</h2>
+                    <p>Explore as últimas tendências, insights e estratégias em Gestão de Pessoas e Transformação Organizacional.</p>
+                </div>
+                <div class="latest-article" style="background-color: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--box-shadow); display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 2rem;">
+                    <div class="article-image" style="flex: 1 1 300px;">
+                        <img src="images/reskilling_article_image.png" alt="Reskilling Article Image" style="width: 100%; height: auto; border-radius: 8px;">
+                    </div>
+                    <div class="article-content" style="flex: 2 1 400px;">
+                        <h3 style="margin-bottom: 1rem;">Artigo em Destaque</h3>
+                        <h4 style="margin-bottom: 1rem;">Reskilling: An Inspiring Perspective from Both Individual and Organizational Standpoints</h4>
+                        <p style="margin-bottom: 1.5rem;">Num mundo em constante mudança, o reskilling torna-se crucial. Explore perspetivas sobre como indivíduos e organizações podem abraçar esta transformação...</p>
+                        <a href="https://www.linkedin.com/pulse/reskilling-inspiring-perspective-from-both-individual-samuel-rolo-2sdyf/?trackingId=ZUKrtIHBRPGcT0vZD6jHvw%3D%3D" target="_blank" class="btn">Ler Artigo Completo</a>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://www.linkedin.com/newsletters/hr-innovation-hub-%F0%9F%92%A1-7258968797414342657" target="_blank" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Subscrever no LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2>Entre em Contacto</h2>
+                <div class="contact-info">
+                    <p>Tem alguma questão ou pretende discutir como podemos ajudar a sua organização ou carreira? Envie-nos uma mensagem!</p>
+                    <p>Email: <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                    <p>Siga-nos nas redes sociais para mais conteúdos e inspiração.</p>
+                     <div class="social-links">
+                            <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Arrows -->
+        <button id="nav-arrow-left" class="nav-arrow hidden"><i class="fas fa-chevron-left"></i></button>
+        <button id="nav-arrow-right" class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+
+    </main> <!-- End Page Container -->
+
+    <!-- Footer remains outside the page container -->
+    <footer class="site-footer">
+        <div class="container" style="height: auto; justify-content: initial;"> <!-- Override section container styles -->
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo_white.png" alt="Share2Inspire Logo Branco">
+                </div>
+                <div class="footer-links">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a data-section="hero">Início</a></li>
+                        <li><a data-section="about">Sobre</a></li>
+                        <li><a data-section="services">Serviços</a></li>
+                        <li><a data-section="author">Autor</a></li>
+                        <li><a data-section="recomendacoes">Recomendações</a></li>
+                        <li><a data-section="hr-innovation-hub">HR Hub</a></li>
+                        <li><a data-section="contact">Contacto</a></li>
+                        <li><a href="Calendario/index.html">Agendar</a></li>
+                        <li><a href="politica_privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="tabela_precos_cv/tabela_precos.html">Tabela de Preços - Revisão CV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/share2inspire_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+
+    <!-- Add script for section navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageContainer = document.getElementById('page-container');
+            const sections = Array.from(pageContainer.querySelectorAll('.page-section'));
+            const navLinks = document.querySelectorAll('nav a[data-section], footer a[data-section]');
+            const arrowLeft = document.getElementById('nav-arrow-left');
+            const arrowRight = document.getElementById('nav-arrow-right');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const navLinksContainer = document.querySelector('.nav-links');
+
+            let currentSectionIndex = 0;
+            const sectionIds = sections.map(section => section.id);
+
+            function updateArrows() {
+                arrowLeft.classList.toggle('hidden', currentSectionIndex === 0);
+                arrowRight.classList.toggle('hidden', currentSectionIndex === sections.length - 1);
+            }
+
+            function updateNavLinks(activeIndex) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.section === sections[activeIndex].id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            function showSection(indexToShow) {
+                if (indexToShow < 0 || indexToShow >= sections.length) return;
+
+                const currentSection = sections[currentSectionIndex];
+                const nextSection = sections[indexToShow];
+
+                // Determine direction for transition
+                const direction = indexToShow > currentSectionIndex ? 'next' : 'prev';
+
+                // Apply transition classes
+                sections.forEach((section, index) => {
+                    section.classList.remove('active', 'prev');
+                    if (index === indexToShow) {
+                        section.classList.add('active');
+                        // Reset transform based on direction (start from right or left)
+                        section.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+                        // Force reflow to apply start transform before transition
+                        void section.offsetWidth;
+                        section.style.transform = 'translateX(0)'; // Animate to center
+                    } else if (index === currentSectionIndex) {
+                        // Animate current section out
+                        section.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+                    }
+                });
+                
+                currentSectionIndex = indexToShow;
+                updateArrows();
+                updateNavLinks(currentSectionIndex);
+            }
+
+            arrowLeft.addEventListener('click', () => {
+                showSection(currentSectionIndex - 1);
+            });
+
+            arrowRight.addEventListener('click', () => {
+                showSection(currentSectionIndex + 1);
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetSectionId = link.dataset.section;
+                    const targetIndex = sectionIds.indexOf(targetSectionId);
+                    if (targetIndex !== -1) {
+                        showSection(targetIndex);
+                        // Close mobile menu if open
+                        if (navLinksContainer.classList.contains('active')) {
+                            navLinksContainer.classList.remove('active');
+                            mobileMenuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                        }
+                    }
+                });
+            });
+
+            // Mobile Menu Toggle Logic (from navigation.js, adapted)
+            if (mobileMenuToggle && navLinksContainer) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    navLinksContainer.classList.toggle('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    if (navLinksContainer.classList.contains('active')) {
+                        icon.classList.replace('fa-bars', 'fa-times');
+                    } else {
+                        icon.classList.replace('fa-times', 'fa-bars');
+                    }
+                });
+            }
+
+            // Initial setup
+            updateArrows();
+            updateNavLinks(currentSectionIndex);
+            // Ensure initial active section is correctly positioned
+            sections[currentSectionIndex].style.transform = 'translateX(0)'; 
+        });
+    </script>
+
+</body>
+</html>
+
+
+        /* Feedback Section Styles */
+        #feedback {
+            background-color: var(--white);
+        }
+
+        .feedback-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .rating-stars {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-stars .star {
+            font-size: 2rem;
+            color: #ccc; /* Default star color */
+            cursor: pointer;
+            transition: color 0.2s ease;
+            margin: 0 0.2rem;
+        }
+
+        .rating-stars .star:hover,
+        .rating-stars .star.selected {
+            color: var(--primary-color); /* Gold for selected/hovered */
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            min-height: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-form .btn {
+            margin-top: 0; /* Remove default top margin */
+        }
+
+        #feedback-status {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+        #feedback-status.success {
+            color: green;
+        }
+        #feedback-status.error {
+            color: red;
+        }
+
+
+
+        <section id="feedback" class="page-section">
+            <div class="container">
+                <h2>Dê o seu Feedback</h2>
+                <form id="feedback-form" class="feedback-form">
+                    <p>A sua opinião é importante para nós!</p>
+                    <div class="rating-stars" data-rating="0">
+                        <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                        <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                    </div>
+                    <textarea id="feedback-text" name="feedback-text" placeholder="Escreva aqui o seu comentário..." required></textarea>
+                    <button type="submit" class="btn">Submeter Feedback</button>
+                    <div id="feedback-status"></div>
+                </form>
+            </div>
+        </section>
+
+        <script src="js/navigation.js" defer></script>
+          <script src="js/feedback.js" defer></script>
+    </body>
+</html>
