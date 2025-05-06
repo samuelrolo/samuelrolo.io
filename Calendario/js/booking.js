@@ -231,7 +231,20 @@ document.addEventListener("DOMContentLoaded", function() {
     window.handleBookingSubmissionGlobal = handleBookingSubmission; // Expor globalmente se necessário
 
     // --- Função de Inicialização para Interações do Resumo de Coaching ---
-    function initializeCoachingSummaryInteractions() {
+    function initializeCoachingSummaryInteractions() {function initializeCoachingSummaryInteractions() {
+        console.log("DEBUG: Chamando initializeCoachingSummaryInteractions...");
+        // A variável coachingSummarySection já está definida globalmente neste script
+    
+        if (!coachingSummarySection) {
+            console.error("ERRO: coachingSummarySection não encontrada ao tentar inicializar interações.");
+            return;
+        }
+    
+        // ADICIONE A LINHA DE DEBUG AQUI:
+        console.log("DEBUG: innerHTML de coachingSummarySection DENTRO de initializeCoachingSummaryInteractions:", coachingSummarySection.innerHTML);
+    
+        const paymentOptionsCoachingDiv = coachingSummarySection.querySelector(".payment-options");
+        // ... resto da função ...    
         console.log("DEBUG: Chamando initializeCoachingSummaryInteractions...");
         // A variável coachingSummarySection já está definida globalmente neste script
 
