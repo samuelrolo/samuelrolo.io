@@ -3,20 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Share2Inspire - Conteúdo de Emergência</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css"> <!-- Link para o styles.css externo -->
-    <link rel="stylesheet" href="css/language-selector.css"> <!-- Link para o language-selector.css externo -->
-    <link rel="stylesheet" href="css/footer-styles.css"> <!-- Link para o footer-styles.css externo -->
+<<<<<<< HEAD
+    <title>Share2Inspire - Calendário de Marcações</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-top" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                 <a href="../index.html" class="back-link" style="color: var(--primary-color); text-decoration: none;"><i class="fas fa-arrow-left"></i> Voltar ao Site Principal</a>
+                 <h1 style="margin: 0;">Share2Inspire</h1>
+                 <span style="width: 150px;"></span> <!-- Spacer -->
+            </div>
+            <h2>Marcações</h2> <!-- Changed from Marcação de Sessões -->
+        </div>
+    </header>
 
+    <main class="container">
+        <!-- Ecrã de Seleção de Serviço -->
+        <section id="service-selection" class="selection-screen">
+            <h2>Escolha o Serviço Pretendido</h2>
+            <div class="service-options">
+                <div class="service-option" id="select-coaching">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Kickstart Pro ! Express coaching</h3>
+                    <p>Sessões de coaching focadas e rápidas para desbloquear o seu potencial.</p>
+                </div>
+                <div class="service-option" id="select-cv-review">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Revisão de CV / Preparação para Entrevista</h3>
+                    <p>Otimize o seu currículo ou prepare-se para entrevistas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fluxo de Coaching (inicialmente oculto) -->
+        <div id="coaching-flow" style="display: none;">
+            <!-- Intro and Price Summary Sections -->
+            <section class="intro">
+                <h2>Marque a tua Sessão - Kickstart Pro ! Express coaching</h2>
+                <p>Selecione o tipo de sessão, duração e horário disponível no calendário abaixo.</p>
+            </section>
+            <section class="price-summary">
+                <h3>Tabela de Preços - Kickstart Pro ! Express coaching</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Duração</th>
+                            <th>Preço Base</th>
+                            <th>Desconto (2+ sessões)</th>
+                            <th>Preço com Desconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>15 min</td><td>10€</td><td>N/A</td><td>10€</td></tr>
+                        <tr><td>30 min</td><td>20€</td><td>-2,5€ por sessão</td><td>17,5€ por sessão</td></tr>
+                        <tr><td>45 min</td><td>30€</td><td>-5€ por sessão</td><td>25€ por sessão</td></tr>
+                        <tr><td>60 min</td><td>40€</td><td>-7,5€ por sessão</td><td>32,5€ por sessão</td></tr>
+                    </tbody>
+                </table>
+                <div class="payment-policy">
+                    <p><strong>Política de Pagamento (Coaching):</strong> Para valores acima de 10€, é exigido apenas 50% do valor total no momento da reserva (mínimo 10€).</p>
+                </div>
+            </section>
+            <!-- Booking Container -->
+             <section class="booking-container">
+                 <div class="booking-options">
+                    <form id="booking-form">
+                        <div class="form-group" style="display: none;">
+                            <label for="service-type">Tipo de Serviço:</label>
+                            <select id="service-type" name="service-type" required><option value="coaching" selected>Kickstart Pro ! Express coaching</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-type">Tipo de Sessão:</label>
+                            <select id="session-type" name="session-type" required><option value="remote">Remota (Online)</option><option value="presential">Presencial (Distrito de Lisboa)</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-duration">Duração da Sessão:</label>
+                            <select id="session-duration" name="session-duration" required><option value="15">15 minutos - 10€</option><option value="30">30 minutos - 20€</option><option value="45">45 minutos - 30€</option><option value="60">60 minutos - 40€</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="session-quantity">Número de Sessões:</label>
+                            <select id="session-quantity" name="session-quantity" required><option value="1">1 sessão</option><option value="2">2 sessões</option><option value="3">3 sessões</option><option value="4">4 sessões</option><option value="5">5 sessões</option></select>
+                        </div>
+                        <div class="price-info">
+                            <p>Preço Base: <span id="base-price">10€</span></p>
+                            <p>Desconto: <span id="discount">0€</span></p>
+                            <p>Preço Final: <span id="final-price">10€</span></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="calendar-container"><div id="calendar"></div></div>
+            </section>
+
+            <!-- Booking Summary (Coaching) -->
+            <section class="booking-summary hidden" id="booking-summary-coaching">
+                 <h3>Resumo da Marcação</h3>
+                <div class="summary-details">
+                    <p><strong>Serviço:</strong> Kickstart Pro ! Express coaching</p>
+                    <p><strong>Tipo de Sessão:</strong> <span id="summary-type"></span></p>
+                    <p><strong>Duração:</strong> <span id="summary-duration"></span></p>
+                    <p><strong>Data e Hora:</strong> <span id="summary-datetime"></span></p>
+                    <p><strong>Número de Sessões:</strong> <span id="summary-quantity"></span></p>
+                    <p><strong>Preço Total:</strong> <span id="summary-price"></span></p>
+                    <p><strong>Tipo de Pagamento:</strong> <span id="payment-type">Pagamento Total</span></p>
+                    <p><strong>Valor a Pagar Agora:</strong> <span id="payment-amount"></span></p>
+                    <div id="remaining-payment-info" style="display: none;">
+                        <p><strong>Valor Restante:</strong> <span id="remaining-amount"></span> (a pagar no dia da sessão)</p>
+                    </div>
+                </div>
+                    <h4>Os Teus Dados</h4> <!-- Corrected from Seus Dados -->
+                    <form id="user-form-coaching">
+                        <div class="form-group"><label for="user-name-coaching">Nome Completo:</label><input type="text" id="user-name-coaching" name="user-name" required></div>
+                        <div class="form-group"><label for="user-email-coaching">Email:</label><input type="email" id="user-email-coaching" name="user-email" required></div>
+                        <div class="form-group"><label for="user-phone-coaching">Telefone (para MB WAY, se aplicável):</label><input type="tel" id="user-phone-coaching" name="user-phone" required></div>
+                        <div class="form-group"><label for="user-notes-coaching">Notas (opcional):</label><textarea id="user-notes-coaching" name="user-notes"></textarea></div>
+                    </form>
+                </div>
+                <div class="payment-options">
+                    <h4>Método de Pagamento</h4>
+                    <div class="payment-methods">
+                        <button class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
+                        <button class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
+                        <button class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
+                        <button class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
+                        <button class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button>
+                    </div>
+                    <div id="payment-details-coaching" class="hidden payment-details-area">
+                        <div id="mbway-instructions-coaching" class="payment-instructions hidden">
+                            <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-coaching"></strong>.</p>
+                        </div>
+                        <div id="mb-reference-coaching" class="payment-instructions hidden">
+                            <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
+                            <ul>
+                                <li><strong>Entidade:</strong> <span id="mb-entity-coaching"></span></li>
+                                <li><strong>Referência:</strong> <span id="mb-ref-coaching"></span></li>
+                                <li><strong>Valor:</strong> <span id="mb-amount-coaching"></span>€</li>
+                                <li><strong>Válido até:</strong> <span id="mb-expiry-coaching"></span></li>
+                            </ul>
+                            <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                        </div>
+                        <div id="payshop-reference-coaching" class="payment-instructions hidden">
+                            <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
+                            <ul>
+                                <li><strong>Referência:</strong> <span id="payshop-ref-coaching"></span></li>
+                                <li><strong>Valor:</strong> <span id="payshop-amount-coaching"></span>€</li>
+                                <li><strong>Válido até:</strong> <span id="payshop-expiry-coaching"></span></li>
+                            </ul>
+                             <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                        </div>
+                        <div id="other-payment-details-coaching" class="payment-instructions hidden">
+                            <!-- Details for Revolut/Bank Transfer will be shown by JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="terms-conditions">
+                    <div class="form-group">
+                        <input type="checkbox" id="terms-accept-coaching" name="terms-accept" required>
+                        <label for="terms-accept-coaching">Li e aceito os <a href="#" id="open-terms-modal-coaching">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
+                    </div>
+                </div>
+                <div class="booking-actions">
+                    <button id="back-button-coaching" class="btn btn-secondary">Voltar</button>
+                    <button id="confirm-booking-coaching" class="btn btn-primary">Confirmar Marcação</button> 
+                </div>
+            </section>
+            <!-- Booking Policies -->
+            <section class="booking-policies">
+                 <h3>Políticas de Marcação (Kickstart Pro ! Express coaching)</h3>
+                 <div class="policy-item"><h4><i class="fas fa-clock"></i> Antecedência Mínima</h4><p>Sessões remotas: 48 horas de antecedência</p><p>Sessões presenciais: 5 dias úteis para confirmação</p></div>
+                 <div class="policy-item"><h4><i class="fas fa-euro-sign"></i> Preços e Descontos</h4><p>15 min: 10€ | 30 min: 20€ | 45 min: 30€ | 60 min: 40€</p><p>Descontos: -2,5€ (30min), -5€ (45min), -7,5€ (60min) para 2+ sessões</p><p>Primeiras 10 vagas: 25% desconto | A cada 5 sessões: 1 grátis</p></div>
+                 <div class="policy-item"><h4><i class="fas fa-money-bill-wave"></i> Pagamento e Reembolso</h4><p>Pagamento no ato da marcação (50% para > 10€, mín 10€)</p><p>Sem reembolso para desistências</p><p>Reembolso parcial possível para sessões múltiplas canceladas</p></div>
+            </section>
+        </div>
+
+        <!-- Fluxo de Revisão de CV -->
+        <div id="cv-review-flow" style="display: none;">
+            <!-- Intro and Price Summary Sections -->
+            <section class="intro">
+                <h2>Revisão de CV / Preparação para Entrevista</h2>
+                <p>Selecione o serviço desejado, preencha os seus dados, anexe o seu CV (ou documento relevante) e adicione quaisquer notas.</p>
+            </section>
+            <section class="price-summary">
+                <h3>Tabela de Preços - Revisão de CV / Entrevista</h3>
+                <table class="price-table">
+                     <thead><tr><th>Serviço</th><th>Duração Estimada</th><th>Preço</th></tr></thead>
+                     <tbody>
+                         <tr><td>Revisão de CV Básica</td><td>30 min</td><td>25€</td></tr>
+                         <tr><td>Revisão de CV Completa</td><td>60 min</td><td>45€</td></tr>
+                         <tr><td>Preparação para Entrevista</td><td>45 min</td><td>35€</td></tr>
+                         <tr><td>Pacote Completo (CV + Entrevista)</td><td>90 min</td><td>70€</td></tr>
+                     </tbody>
+                </table>
+                <div class="payment-policy"><p><strong>Política de Pagamento:</strong> Pagamento integral no momento da solicitação.</p></div>
+            </section>
+
+            <!-- CV Review Form Container -->
+            <section class="cv-review-form-container">
+                <form id="cv-review-form">
+                    <div class="form-group">
+                        <label for="cv-service-selection">Selecione o Serviço:</label>
+                        <select id="cv-service-selection" name="cv-service-selection" required>
+                            <option value="" data-price="0">-- Escolha uma opção --</option>
+                            <option value="30-cv-basic" data-price="25">Revisão de CV Básica (30 min) - 25€</option>
+                            <option value="60-cv-complete" data-price="45">Revisão de CV Completa (60 min) - 45€</option>
+                            <option value="45-interview-prep" data-price="35">Preparação para Entrevista (45 min) - 35€</option>
+                            <option value="90-full-package" data-price="70">Pacote Completo (CV + Entrevista) (90 min) - 70€</option>
+                        </select>
+                    </div>
+                    <h4>Os Teus Dados</h4> <!-- Corrected from Seus Dados -->
+                    <div class="form-group"><label for="cv-user-name">Nome Completo:</label><input type="text" id="cv-user-name" name="cv-user-name" required></div>
+                    <div class="form-group"><label for="cv-user-email">Email:</label><input type="email" id="cv-user-email" name="cv-user-email" required></div>
+                    <div class="form-group"><label for="cv-user-phone">Telefone (para MB WAY, se aplicável):</label><input type="tel" id="cv-user-phone" name="cv-user-phone" required></div>
+                    <div class="form-group">
+                        <label for="cv-file-upload">Anexar CV (PDF, DOC, DOCX):</label>
+                        <input type="file" id="cv-file-upload" name="cv-file-upload" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <div class="form-group"><label for="cv-user-notes">Notas (opcional):</label><textarea id="cv-user-notes" name="cv-user-notes"></textarea></div>
+
+                    <div class="price-info">
+                        <p>Preço Final: <span id="cv-final-price">0€</span></p>
+                    </div>
+
+                    <div class="payment-options">
+                        <h4>Método de Pagamento</h4>
+                        <div class="payment-methods">
+                            <button type="button" class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
+                            <button type="button" class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
+                            <button type="button" class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
+                            <button type="button" class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
+                            <button type="button" class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button>
+                        </div>
+                        <div id="payment-details-cv" class="hidden payment-details-area">
+                            <div id="mbway-instructions-cv" class="payment-instructions hidden">
+                                <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-cv"></strong>.</p>
+                            </div>
+                            <div id="mb-reference-cv" class="payment-instructions hidden">
+                                <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
+                                <ul>
+                                    <li><strong>Entidade:</strong> <span id="mb-entity-cv"></span></li>
+                                    <li><strong>Referência:</strong> <span id="mb-ref-cv"></span></li>
+                                    <li><strong>Valor:</strong> <span id="mb-amount-cv"></span>€</li>
+                                    <li><strong>Válido até:</strong> <span id="mb-expiry-cv"></span></li>
+                                </ul>
+                                <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                            </div>
+                            <div id="payshop-reference-cv" class="payment-instructions hidden">
+                                <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
+                                <ul>
+                                    <li><strong>Referência:</strong> <span id="payshop-ref-cv"></span></li>
+                                    <li><strong>Valor:</strong> <span id="payshop-amount-cv"></span>€</li>
+                                    <li><strong>Válido até:</strong> <span id="payshop-expiry-cv"></span></li>
+                                </ul>
+                                 <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
+                            </div>
+                            <div id="other-payment-details-cv" class="payment-instructions hidden">
+                                <!-- Details for Revolut/Bank Transfer will be shown by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terms-conditions">
+                        <div class="form-group">
+                            <input type="checkbox" id="terms-accept-cv" name="terms-accept" required>
+                            <label for="terms-accept-cv">Li e aceito os <a href="#" id="open-terms-modal-cv">termos e condições</a>, incluindo a política de pagamento.</label>
+                        </div>
+                    </div>
+
+                    <div class="booking-actions">
+                        <button type="button" id="back-button-cv" class="btn btn-secondary">Voltar</button>
+                        <button type="submit" id="confirm-booking-cv" class="btn btn-primary">Confirmar Pedido</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- Confirmation Screen (Shared) -->
+        <section id="confirmation-screen" class="hidden confirmation-message">
+            <h2>Obrigado!</h2>
+            <p id="confirmation-text">A sua marcação/pedido foi recebido com sucesso. Receberá um e-mail de confirmação em breve.</p>
+            <p id="payment-confirmation-details"></p> <!-- For MB/Payshop/Other details -->
+            <a href="../index.html" class="btn">Voltar ao Site Principal</a>
+        </section>
+
+        <!-- Terms Modal (Shared) -->
+        <div id="terms-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Termos e Condições</h2>
+                <div id="terms-content">
+                    <!-- Content will be loaded dynamically based on flow -->
+                    <h4>Política de Pagamento</h4>
+                    <p id="modal-payment-policy"></p>
+                    <h4>Política de Reembolso e Cancelamento</h4>
+                    <p>Não são efetuados reembolsos em caso de desistência após a marcação. Para pacotes de sessões múltiplas, poderá ser considerado um reembolso parcial caso o cancelamento ocorra com antecedência suficiente (mínimo 72 horas antes da próxima sessão agendada), sujeito a análise caso a caso.</p>
+                    <h4>Privacidade</h4>
+                    <p>Os seus dados serão tratados com confidencialidade e utilizados apenas para fins relacionados com a marcação e prestação do serviço. Consulte a nossa <a href="../politica_privacidade.html" target="_blank">Política de Privacidade</a> completa.</p>
+=======
+    <title>Share2Inspire - Inspiring Change, Humanizing Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Combined Styles -->
     <style>
         :root {
-            --primary-color: #B8860B;
-            --secondary-color: #333333;
-            --accent-color: #D4AF37;
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
             --white: #ffffff;
-            --light-bg: #f8f8f8;
-            --dark-bg: #222222;
+            --light-bg: #f5f7fa;
+            --dark-bg: #34495e;
             --text-color: #333333;
             --transition: all 0.3s ease;
             --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -28,12 +326,15 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Open Sans', sans-serif;
             color: var(--text-color);
             line-height: 1.6;
-            background-color: var(--white);
-            /* overflow: auto; */ /* Permitir scroll */
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -41,7 +342,6 @@
             font-weight: 700;
             line-height: 1.3;
             margin-bottom: 1.5rem;
-            color: var(--secondary-color);
         }
         
         h1 {
@@ -51,6 +351,7 @@
         
         h2 {
             font-size: 2.2rem;
+            color: var(--secondary-color);
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
@@ -70,7 +371,6 @@
         
         p {
             margin-bottom: 1.5rem;
-            color: var(--text-color);
         }
         
         .container {
@@ -78,98 +378,23 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
-
-        #page-container {
-            /* flex-grow: 1; */ /* Removido para layout estático */
-            /* position: relative; */ /* Removido para layout estático */
-            /* overflow: hidden; */ /* Removido para layout estático */
-            width: 100%;
-        }
-
-        .page-section {
-            /* position: absolute; */ /* Removido para layout estático */
-            /* top: 0; */
-            /* left: 0; */
-            width: 100%;
-            /* height: 100%; */ /* Removido para altura automática */
-            padding: 3rem 0;
-            /* opacity: 0; */ /* Removido para visibilidade imediata */
-            /* visibility: hidden; */ /* Removido para visibilidade imediata */
-            /* transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; */ /* Removido */
-            /* transform: translateX(100%); */ /* Removido */
-            /* overflow-y: auto; */ /* Scroll natural da página tratará disto */
-            min-height: 300px; /* Para garantir algum espaço mínimo */
-            border-bottom: 1px solid #eee; /* Separador visual entre secções */
-        }
-
-        /* Remover a lógica de .active e .prev para visibilidade */
-        /* .page-section.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-            z-index: 1;
-            height: auto; 
-            min-height: 300px; 
-        }
-        .page-section.prev {
-            transform: translateX(-100%); 
-            z-index: 0;
-        } */
         
-        #hero {
+        section {
+            padding: 5rem 0;
+        }
+        
+        .hero-section {
             background-color: var(--dark-bg);
             color: var(--white);
-        }
-        #hero h1, #hero p, #hero h2 {
-             color: var(--white);
-        }
-        #hero h2::after {
-            background-color: var(--white);
-        }
-
-        #about {
-            background-color: var(--light-bg);
+            text-align: center;
+            padding: 8rem 0;
         }
         
-        #author {
+        .about-section {
             background-color: var(--light-bg);
+            padding: 5rem 0;
         }
-
-        #recomendacoes iframe {
-            width: 100%; /* Garantir que o iframe ocupa a largura */
-            min-height: 500px; /* Altura mínima para o conteúdo do iframe */
-            border: none; /* Remover borda do iframe */
-        }
-
-        #hr-innovation-hub {
-            background-color: var(--light-bg);
-        }
-
-        #contact {
-            background: linear-gradient(rgba(34, 34, 34, 0.9), rgba(34, 34, 34, 0.9));
-            color: var(--white);
-        }
-        #contact h2 {
-            color: var(--white);
-        }
-        #contact h2::after {
-            background-color: var(--white);
-        }
-        #contact p, #contact a {
-            color: var(--white);
-        }
-        #contact a:hover {
-            color: var(--primary-color);
-        }
-        #contact .social-links a {
-            background-color: var(--white);
-            color: var(--dark-bg);
-        }
-        #contact .social-links a:hover {
-            background-color: var(--primary-color);
-            color: var(--white);
-        }
-
+        
         .about-content {
             max-width: 800px;
             margin: 0 auto;
@@ -193,140 +418,71 @@
         }
         
         .btn:hover {
-            background: #A0740A;
+            background: #2980b9;
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
-                
-        header {
-            display: flex;
-            flex-direction: column; 
-            align-items: center; 
-            padding: 15px 0;
-            background-color: var(--white);
-            position: sticky; /* Fazer o header fixo no topo */
-            top: 0;
-            z-index: 1000; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .logo-container {
-            margin-bottom: 10px;
-            text-align: center;
-        }
         
-        .logo {
-            max-width: 180px;
-            height: auto;
-            transition: var(--transition);
-            display: inline-block;
-        }
-
-        .language-selector {
-            display: flex;
-            gap: 10px;
-        }
-        .language-selector .lang-flag img {
-            display: block;
-            transition: transform 0.2s ease;
-        }
-        .language-selector .lang-flag:hover img {
-            transform: scale(1.1);
-        }
-        .language-selector .lang-flag.active {
-            border-bottom: 2px solid var(--primary-color);
-        }
-
+        /* Footer styles moved to css/footer-styles.css */
+        
         nav {
             background-color: var(--dark-bg);
             text-align: center;
             position: sticky;
-            top: 100px; /* Ajustar para ficar abaixo do header, se o header tiver altura variável, pode precisar de JS */
-            z-index: 999; 
+            top: 0;
+            z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         nav .container {
             display: flex;
             justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            padding: 0 1rem;
         }
         
         nav a {
             display: inline-block;
             color: var(--white);
             text-align: center;
-            padding: 0.8rem 1.2rem;
+            padding: 1rem 1.5rem;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 500;
             transition: var(--transition);
             font-family: 'Montserrat', sans-serif;
-            cursor: pointer;
         }
         
-        nav a:hover,
-        nav a.active-link { /* Para navegação tradicional com IDs */
+        nav a:hover {
             background-color: rgba(255,255,255,0.1);
             color: var(--primary-color);
         }
         
-        nav .btn-nav {
-            background-color: var(--primary-color);
+        nav a.active {
+            background-color: var(--accent-color);
             color: var(--white);
-            padding: 0.6rem 1.2rem; 
-            border-radius: 20px; 
-            margin-left: 1rem; 
-            font-weight: 600;
-            box-shadow: none; 
-            border: 2px solid var(--primary-color);
-        }
-
-        nav .btn-nav:hover {
-            background-color: var(--white); 
-            color: var(--primary-color); 
-            transform: none; 
-            box-shadow: none;
         }
         
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             gap: 2rem;
-            align-items: stretch;
         }
         
         .service-card {
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            min-width: 280px; 
+            flex: 1;
+            min-width: 300px;
             padding: 2rem;
             background: var(--white);
             border-radius: 10px;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
-            border-top: 4px solid var(--primary-color); 
-            text-align: center; 
-        }
-
-        .survey-card-highlight {
-            transform: scale(1.03); 
-            background-color: var(--light-bg); 
-            border-top-color: var(--accent-color); 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2); 
+            border-top: 4px solid var(--primary-color);
         }
         
         .service-card:hover {
-            transform: translateY(-10px) scale(1.02); 
+            transform: translateY(-10px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-
-        .survey-card-highlight:hover {
-             transform: translateY(-10px) scale(1.05); 
-             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
         .service-card h3 {
@@ -343,9 +499,14 @@
         }
         
         .service-icon img {
-            max-width: 60px; 
+            max-width: 80px;
             height: auto;
             display: inline-block;
+        }
+        
+        .autor-section {
+            background-color: var(--light-bg);
+            padding: 5rem 0;
         }
         
         .autor-container {
@@ -396,13 +557,68 @@
             height: 3px;
             background-color: var(--primary-color);
         }
-                
+        
+        .contact-section {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('images/contact-bg.jpg') center/cover;
+            color: var(--white);
+            padding: 5rem 0;
+        }
+        
+        .contact-section h2 {
+            color: var(--white);
+        }
+        
+        .contact-section h2::after {
+            background-color: var(--white);
+        }
+        
         .contact-info {
             max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
-                
+        
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+        
         .social-links {
             margin-top: 2rem;
             display: flex;
@@ -418,7 +634,7 @@
             height: 40px;
             border-radius: 50%;
             background-color: var(--white);
-            color: var(--dark-bg);
+            color: var(--secondary-color);
             transition: var(--transition);
         }
         
@@ -427,363 +643,502 @@
             color: var(--white);
             transform: translateY(-3px);
         }
-                
-        /* Navigation Arrows - Removidas para layout estático */
-        /* .nav-arrow { ... } */
-
-        /* Mobile Menu Styles */
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .logo {
+            max-width: 220px;
+            height: auto;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        header {
+            text-align: center;
+            padding-top: 20px;
+        }
+        
+        .cta-section {
+            background-color: var(--light-bg);
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section .btn {
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+        }
+        
+        .survey-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        .survey-container.active {
+            display: block;
+        }
+        
+        .show-survey-btn {
+            display: block;
+            margin: 0 auto;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .show-survey-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Estilo para seções que estão sendo visualizadas */
+        section.viewing {
+            display: block;
+        }
+        
+        /* Formulários */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Estilos para o menu mobile */
         .mobile-menu-toggle {
-            display: none; /* Esconder por agora, pode ser reativado se necessário */
+            display: none;
             background: none;
             border: none;
             color: var(--white);
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 1rem;
+        }
+        
+        /* Media queries para responsividade */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .services-grid {
+                gap: 1.5rem;
+            }
+            
+            .service-card {
+                min-width: 250px;
+            }
         }
         
         @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .autor-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .autor-bio h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
             nav .container {
-                /* Ajustes para menu mobile se for reativado */
+                flex-direction: column;
+                align-items: center;
             }
+            
+            nav a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+            
             .nav-links {
-                /* Ajustes para menu mobile se for reativado */
+                display: none;
+                width: 100%;
+                flex-direction: column;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .service-card {
+                min-width: 100%;
             }
         }
-
-        /* Feedback Section Styles - Movido para aqui para organização */
-        .feedback-section {
-            background-color: #f9f9f9;
-            padding: 40px 20px;
-            text-align: center;
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero-section {
+                padding: 5rem 0;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.95rem;
+            }
+            
+            .service-icon img {
+                max-width: 60px;
+            }
         }
-        .feedback-section h2 {
-            color: #333;
-            margin-bottom: 30px;
+        
+        /* Estilos para formulário de agendamento */
+        .agendar-section {
+            background-color: var(--light-bg);
+            padding: 5rem 0;
         }
-        .feedback-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        
+        .agendar-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
         }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 500;
-        }
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-        }
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .form-group .char-counter {
-            font-size: 0.85rem;
-            color: #777;
-            text-align: right;
-            margin-top: 5px;
-        }
-        .rating-group {
+        
+        .form-row {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
-        .rating-group .star {
-            font-size: 2rem;
-            color: #ddd;
-            cursor: pointer;
-            transition: color 0.2s ease;
+        
+        .form-col {
+            flex: 1;
+            min-width: 250px;
         }
-        .rating-group .star:hover,
-        .rating-group .star.selected {
-            color: var(--primary-color);
+        
+        .question {
+            margin-bottom: 1.5rem;
         }
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
+        
+        .question label {
+            display: block;
+            margin-bottom: 0.5rem;
         }
-        .submit-btn:hover {
-            background-color: #A0740A;
+        
+        .question input[type="radio"] {
+            width: auto;
+            margin-right: 0.5rem;
         }
-        #feedback-response {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: 500;
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
         }
-        #feedback-response.success {
-            background-color: #e6ffed;
-            color: #28a745;
-            border: 1px solid #c3e6cb;
+        
+        .newsletter-form input {
+            flex: 1;
         }
-        #feedback-response.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+        
+        .newsletter-form button {
+            flex-shrink: 0;
         }
-
+        
+        @media (max-width: 576px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="css/language-selector.css">
+    <link rel="stylesheet" href="css/footer-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="js/image-error-handler.js"></script>
 </head>
 <body>
-
     <header>
         <div class="logo-container">
-            <a href="#hero"><img src="logo.png" alt="Share2Inspire Logo" class="logo"></a>
+            <img src="logo.png" alt="Share2Inspire Logo" class="logo" onerror="handleImageError(this)">
         </div>
         <div class="language-selector">
-            <a href="#" class="lang-flag active" data-lang="pt"><img src="images/pt_flag.png" alt="PT"></a>
-            <a href="#" class="lang-flag" data-lang="en"><img src="images/en_flag.png" alt="EN"></a>
+            <button id="translate-button" onclick="translateToEnglish()">Translate to English</button>
         </div>
     </header>
 
     <nav>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="container nav-links">
-            <a href="#hero" data-translate-key="nav_home">Início</a>
-            <a href="#about" data-translate-key="nav_about">Sobre</a>
-            <a href="#services" data-translate-key="nav_services">Serviços</a>
-            <a href="#author" data-translate-key="nav_author">Autor</a>
-            <a href="#recomendacoes" data-translate-key="nav_recommendations">Recomendações</a>
-            <a href="#hr-innovation-hub" data-translate-key="nav_hr_hub">HR Hub</a>
-            <a href="#contact" data-translate-key="nav_contact">Contacto</a>
-            <a href="#" class="btn btn-nav" id="show-survey-btn" data-translate-key="nav_agenda">Agendar</a>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#autor">Autor</a>
+            <a href="#contacto">Contacto</a>
+            <a href="precos.html">Preços</a>
+            <a href="Calendario/index.html" class="btn btn-nav">Agendar Sessão</a> <!-- Link para o calendário -->
         </div>
     </nav>
 
-    <div id="page-container">
-        <!-- Hero Section -->
-        <section id="hero" class="page-section">
-            <div class="container">
-                <h1 data-translate-key="hero_title">Share2Inspire</h1>
-                <p data-translate-key="hero_subtitle">Inspiring Change, Humanizing Work.</p>
-                <a href="#contact" class="btn" data-translate-key="hero_cta">Fale Connosco</a>
-            </div>
-        </section>
+    <section id="inicio" class="hero-section fade-in">
+        <div class="container">
+            <h1>Inspiring Change, Humanizing Work</h1>
+            <p>Transformando a gestão de pessoas e organizações através de soluções inovadoras e centradas no ser humano.</p>
+            <a href="#servicos" class="btn">Descubra os Nossos Serviços</a>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="about_title">Sobre a Share2Inspire</h2>
-                <div class="about-content">
-                    <p data-translate-key="about_text_1">A Share2Inspire dedica-se a transformar o mundo do trabalho através de soluções inovadoras em Recursos Humanos, coaching e consultoria. Acreditamos no poder da humanização e da inspiração para desbloquear o potencial máximo de indivíduos e organizações.</p>
-                    <p data-translate-key="about_text_2">Com uma abordagem centrada nas pessoas, ajudamos empresas a criar culturas mais fortes, equipas mais envolvidas e líderes mais eficazes. O nosso objetivo é simples: inspirar a mudança que leva a um trabalho mais significativo e gratificante para todos.</p>
+    <section id="sobre" class="about-section fade-in">
+        <div class="container">
+            <h2>Sobre a Share2Inspire</h2>
+            <div class="about-content">
+                <p>A Share2Inspire dedica-se a potenciar o capital humano nas organizações. Acreditamos que o sucesso empresarial sustentável passa por equipas motivadas, líderes inspiradores e uma cultura organizacional positiva.</p>
+                <p>Com uma abordagem personalizada e baseada em dados, ajudamos as empresas a enfrentar os desafios da transformação digital, a promover o bem-estar dos colaboradores e a alcançar resultados excecionais.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="fade-in">
+        <div class="container">
+            <h2>Os Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Consultoria em Capital Humano</h3>
+                    <p>Estratégias de talento, desenvolvimento organizacional, gestão de desempenho e compensação & benefícios.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Transformação Organizacional</h3>
+                    <p>Gestão da mudança, design organizacional, otimização de processos de RH e implementação de tecnologias.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Coaching & Desenvolvimento</h3>
+                    <p>Coaching executivo, desenvolvimento de liderança, programas de mentoring e formação personalizada.</p>
                 </div>
             </div>
-        </section>
+            <div style="text-align: center; margin-top: 2rem;">
+                 <a href="Calendario/index.html" class="btn">Agendar Sessão de Coaching ou Revisão de CV</a>
+            </div>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section id="services" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="services_title">Os Nossos Serviços</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon"><img src="images/icons/coaching-icon.jpg" alt="Coaching Icon"></div>
-                        <h3 data-translate-key="service_coaching_title">Coaching Executivo e de Carreira</h3>
-                        <p data-translate-key="service_coaching_desc">Programas personalizados para desenvolver liderança, otimizar performance e alcançar objetivos de carreira.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"><img src="images/icons/cv-icon.png" alt="CV Review Icon"></div>
-                        <h3 data-translate-key="service_cv_title">Consultoria de CV e LinkedIn</h3>
-                        <p data-translate-key="service_cv_desc">Otimização de currículos e perfis LinkedIn para destacar o seu valor no mercado de trabalho.</p>
-                    </div>
-                    <div class="service-card survey-card-highlight">
-                        <div class="service-icon"><img src="images/icons/digital-icon.jpg" alt="Consulting Icon"></div>
-                        <h3 data-translate-key="service_consulting_title">Consultoria Estratégica de RH</h3>
-                        <p data-translate-key="service_consulting_desc">Soluções para transformação digital de RH, gestão de talento e desenvolvimento organizacional.</p>
-                    </div>
+    <section id="autor" class="autor-section fade-in">
+        <div class="container">
+            <h2>O Autor</h2>
+            <div class="autor-container">
+                <div class="autor-foto">
+                    <img src="autor.png" alt="Foto de Samuel Rolo" onerror="handleImageError(this)">
                 </div>
-            </div>
-        </section>
-
-        <!-- Author Section -->
-        <section id="author" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="author_title">Sobre o Fundador</h2>
-                <div class="autor-container">
-                    <div class="autor-foto">
-                        <img src="autor.png" alt="Samuel Rolo">
-                    </div>
-                    <div class="autor-bio">
-                        <h3 data-translate-key="author_name">Samuel Rolo</h3>
-                        <p data-translate-key="author_bio_1">Com mais de uma década de experiência em consultoria de Recursos Humanos e uma paixão por ajudar pessoas e organizações a prosperar, Samuel Rolo fundou a Share2Inspire com a missão de humanizar o trabalho. A sua expertise abrange desde a transformação digital de RH até ao desenvolvimento de liderança e coaching de carreira.</p>
-                        <p data-translate-key="author_bio_2">Acredita que o sucesso sustentável advém de culturas organizacionais fortes, onde cada indivíduo se sente valorizado, inspirado e capacitado para contribuir com o seu melhor.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Recomendações Section -->
-        <section id="recomendacoes" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="recommendations_title">Recomendações</h2>
-                <iframe src="testimonials_widget.html" width="100%" height="600" frameborder="0" sandbox="allow-same-origin allow-scripts"></iframe>
-            </div>
-        </section>
-
-        <!-- HR Innovation Hub Section -->
-        <section id="hr-innovation-hub" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="hr_hub_title">HR Innovation Hub</h2>
-                <img src="images/hr_innovation_hub_banner.png" alt="HR Innovation Hub Banner" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
-                <p data-translate-key="hr_hub_desc_1">O HR Innovation Hub é um espaço dedicado à exploração das últimas tendências, ferramentas e melhores práticas em Recursos Humanos. Partilhamos insights, artigos e recursos para ajudar profissionais e organizações a navegar na vanguarda da inovação em RH.</p>
-                <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: var(--box-shadow); margin-top: 20px;">
-                    <h3 data-translate-key="hr_hub_article_title">Artigo em Destaque: O Futuro do Reskilling na Era Digital</h3>
-                    <img src="images/reskilling_article_image.png" alt="Reskilling Article Image" style="width: 100%; height: auto; border-radius: 8px;">
-                    <p data-translate-key="hr_hub_article_p1" style="margin-top:15px;">A rápida evolução tecnológica está a transformar o mercado de trabalho a um ritmo sem precedentes. Empresas e profissionais enfrentam o desafio constante de se adaptarem a novas funções, competências e modelos de trabalho. Neste contexto, o reskilling (requalificação) e o upskilling (atualização de competências) emergem como imperativos estratégicos.</p>
-                    <p data-translate-key="hr_hub_article_p2">Investir no desenvolvimento contínuo dos colaboradores não é apenas uma forma de reter talento, mas também de garantir a agilidade e a competitividade da organização. O futuro pertence àqueles que abraçam a aprendizagem ao longo da vida e se preparam para as profissões do amanhã, hoje.</p>
-                    <a href="#" class="btn" data-translate-key="hr_hub_article_cta">Ler Mais (Brevemente)</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="contact_title">Entre em Contacto</h2>
-                <div class="contact-info">
-                    <p data-translate-key="contact_intro">Tem alguma questão ou gostaria de saber mais sobre os nossos serviços? Adoraríamos ouvir de si!</p>
-                    <p><strong data-translate-key="contact_email_label">Email:</strong> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
-                    <p><strong data-translate-key="contact_phone_label">Telefone:</strong> <a href="tel:+351961925050">+351 961 925 050</a></p>
+                <div class="autor-bio">
+                    <h3>Samuel Rolo</h3>
+                    <p>Com mais de 12 anos de experiência em consultoria de Capital Humano e Transformação Organizacional, Samuel Rolo é apaixonado por ajudar pessoas e empresas a atingirem o seu potencial máximo. Tendo trabalhado com clientes de diversas indústrias e geografias, possui um profundo conhecimento dos desafios e oportunidades no mundo do trabalho atual.</p>
+                    <p>A sua abordagem combina rigor analítico com empatia, procurando sempre soluções práticas e sustentáveis que gerem impacto real. É um defensor da liderança humanizada e da criação de ambientes de trabalho onde todos possam prosperar.</p>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><img src="images/icons/linkedin-icon.png" alt="LinkedIn" style="width:20px; height:20px;"></a>
-                        <!-- Adicionar mais links sociais conforme necessário -->
+                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn de Samuel Rolo">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <!-- Adicionar outros links sociais se relevante -->
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Feedback Section -->
-        <section id="feedback" class="page-section feedback-section">
-            <div class="container">
-                <h2 data-translate-key="feedback_title">Deixe o seu Feedback</h2>
-                <form id="feedbackForm" class="feedback-form">
-                    <div class="form-group">
-                        <label for="name" data-translate-key="feedback_name_label">Nome:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" data-translate-key="feedback_email_label">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label data-translate-key="feedback_rating_label">Avaliação:</label>
-                        <div class="rating-group">
-                            <span class="star" data-value="1">&#9733;</span>
-                            <span class="star" data-value="2">&#9733;</span>
-                            <span class="star" data-value="3">&#9733;</span>
-                            <span class="star" data-value="4">&#9733;</span>
-                            <span class="star" data-value="5">&#9733;</span>
-                        </div>
-                        <input type="hidden" id="rating" name="rating" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="comments" data-translate-key="feedback_comments_label">Comentários (máx. 500 caracteres):</label>
-                        <textarea id="comments" name="comments" maxlength="500" required></textarea>
-                        <div class="char-counter" id="charCounter">0/500</div>
-                    </div>
-                    <button type="submit" class="submit-btn" data-translate-key="feedback_submit_btn">Enviar Feedback</button>
-                </form>
-                <div id="feedback-response"></div>
+    <section id="contacto" class="contact-section fade-in">
+        <div class="container">
+            <h2>Entre em Contacto</h2>
+            <div class="contact-info">
+                <p>Tem alguma questão ou gostaria de discutir como podemos ajudar a sua organização? Estamos à sua disposição.</p>
+                <p>
+                    <i class="fas fa-envelope"></i> Email: <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a>
+                </p>
+                <p>
+                    <i class="fas fa-phone"></i> Telefone: <a href="tel:+351961925050">+351 961 925 050</a>
+                </p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn de Samuel Rolo">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <!-- Adicionar outros links sociais -->
+>>>>>>> edcc7673ef2c05144e2346868d406d7344d5c16e
+                </div>
             </div>
-        </section>
+        </div>
 
-    </div> <!-- Fim de #page-container -->
+<<<<<<< HEAD
+    </main>
+=======
+    <section class="cta-section fade-in">
+        <div class="container">
+            <h2>Pronto para Transformar a Sua Organização?</h2>
+            <p>Agende uma sessão ou contacte-nos para saber mais.</p>
+            <a href="Calendario/index.html" class="btn">Agendar Agora</a>
+        </div>
+    </section>
+>>>>>>> edcc7673ef2c05144e2346868d406d7344d5c16e
 
+    <!-- Footer incluído via link CSS -->
     <footer>
         <div class="container">
+<<<<<<< HEAD
+            <p>&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/pt.js"></script> <!-- Portuguese locale -->
+    <!-- Booking Logic JS -->
+    <script src="js/calendar.js"></script>
+    <script src="js/booking.js"></script>
+=======
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/logo_white.png" alt="Share2Inspire Logo Branco">
+                    <img src="logo.png" alt="Share2Inspire Logo" onerror="handleImageError(this)"/>
                 </div>
                 <div class="footer-links">
-                    <h4 data-translate-key="footer_useful_links">Links Úteis</h4>
-                    <a href="#hero" data-translate-key="nav_home">Início</a>
-                    <a href="#about" data-translate-key="nav_about">Sobre</a>
-                    <a href="#services" data-translate-key="nav_services">Serviços</a>
-                    <a href="#author" data-translate-key="nav_author">Autor</a>
-                    <a href="#recomendacoes" data-translate-key="nav_recommendations">Recomendações</a>
-                    <a href="#hr-innovation-hub" data-translate-key="nav_hr_hub">HR Hub</a>
-                    <a href="#contact" data-translate-key="nav_contact">Contacto</a>
-                    <a href="#" id="footer-agenda-link" data-translate-key="nav_agenda">Agendar</a>
-                    <a href="politica_privacidade.html" data-translate-key="footer_privacy_policy">Política de Privacidade</a>
-                    <a href="tabela_precos_cv.html" data-translate-key="footer_price_table">Tabela de Preços - Revisão CV</a>
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="precos.html">Preços</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="politica_privacidade.html">Política de Privacidade</a></li>
+                        <li><a href="politica_privacidade.pdf" download="Politica_Privacidade_Share2Inspire.pdf">Download Política de Privacidade (PDF)</a></li>
+                    </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4 data-translate-key="footer_contact_us">Contacte-nos</h4>
-                    <p><a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
-                    <p><a href="tel:+351961925050">+351 961 925 050</a></p>
-                    <div class="social-links-footer">
-                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank"><img src="images/icons/linkedin-icon-white.png" alt="LinkedIn"></a>
-                    </div>
+                    <h4>Contacto & Informação Legal</h4>
+                    <p><i class="fas fa-envelope"></i> srshare2inspire@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +351 961 925 050</p>
+                    <p><a href="informacao_legal.pdf" target="_blank">Informação Legal</a></p>
+                    <p><a href="https://ec.europa.eu/consumers/odr/main/?event=main.home2.show" target="_blank">Resolução de Litígios em Linha</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-translate-key="footer_copyright">&copy; 2024 Share2Inspire. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- <script src="js/navigation.js" defer></script> --> <!-- Comentado para layout de emergência -->
-    <!-- <script src="js/language-selector.js"></script> --> <!-- Comentado porque o ficheiro está em falta -->
-    <script src="js/translate.js" defer></script>
-    <script src="js/feedback.js" defer></script>
-    <script src="js/image-error-handler.js" defer></script>
-
     <script>
-        // Pequeno script para scroll suave para âncoras (se a navegação for reativada ou para links internos)
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== "#" && href.length > 1) { // Não processar links vazios ou só com #
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                        // Atualizar links ativos na navegação tradicional
-                        document.querySelectorAll('nav a').forEach(link => link.classList.remove('active-link'));
-                        this.classList.add('active-link');
-                    }
-                }
-            });
-        });
+        // Script para menu mobile
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-        // Lógica para o botão Agendar no footer (se necessário)
-        const footerAgendaLink = document.getElementById('footer-agenda-link');
-        const showSurveyBtnMain = document.getElementById('show-survey-btn'); // Botão principal de agendar
-        if (footerAgendaLink && showSurveyBtnMain) {
-            footerAgendaLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                showSurveyBtnMain.click(); // Simula o clique no botão principal de agendar
+        if (mobileMenuToggle && navLinks) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
             });
         }
+
+        // Script para animação fade-in
+        const fadeInSections = document.querySelectorAll('.fade-in');
+        const options = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                entry.target.style.animation = `fadeIn 1s ease forwards`;
+                observer.unobserve(entry.target);
+            });
+        }, options);
+
+        fadeInSections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Script para tradução (placeholder)
+        function translateToEnglish() {
+            alert('Translation to English is not yet implemented.');
+            // Aqui iria a lógica de tradução
+        }
+
+        // Script para lidar com erros de imagem
+        function handleImageError(image) {
+            console.warn(`Image failed to load: ${image.src}. Hiding element.`);
+            image.style.display = 'none'; // Oculta a imagem se não carregar
+            // Opcional: Mostrar uma imagem placeholder
+            // image.src = 'path/to/placeholder.png'; 
+        }
+
     </script>
+    <script src="js/language-toggle.js"></script>
+    <script src="js/survey-widget-loader.js"></script>
+>>>>>>> edcc7673ef2c05144e2346868d406d7344d5c16e
 
 </body>
 </html>
