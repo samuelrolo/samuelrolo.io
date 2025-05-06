@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const userEmailCoachingInput = document.getElementById("user-email-coaching");
     const userPhoneCoachingInput = document.getElementById("user-phone-coaching");
     const userNotesCoachingInput = document.getElementById("user-notes-coaching");
+    console.log("DEBUG: coachingSummarySection ANTES de .querySelector('.payment-options'):", coachingSummarySection);
+    console.log("DEBUG: Resultado de coachingSummarySection.querySelector('.payment-options'):", coachingSummarySection ? coachingSummarySection.querySelector(".payment-options") : "coachingSummarySection tornou-se null AQUI");
     const paymentOptionsCoachingDiv = coachingSummarySection.querySelector(".payment-options");
     const paymentMethodsCoachingDiv = paymentOptionsCoachingDiv.querySelector(".payment-methods");
     const paymentDetailsCoachingDiv = document.getElementById("payment-details-coaching");
