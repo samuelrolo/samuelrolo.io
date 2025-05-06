@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // --- Coaching Flow Elements ---
     const coachingBookingContainer = coachingFlow.querySelector(".booking-container");
+    console.log("DEBUG: Tentando encontrar booking-summary-coaching:", document.getElementById("booking-summary-coaching"));
     const coachingSummarySection = document.getElementById("booking-summary-coaching");
     const coachingForm = document.getElementById("booking-form");
     const sessionTypeSelect = document.getElementById("session-type");
