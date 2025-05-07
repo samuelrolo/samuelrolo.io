@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Cache DOM elements that are static or globally needed
+    console.log("DEBUG: Tentando encontrar o botão de serviço de coaching:", document.getElementById("coaching-service-button"));
+    console.log("DEBUG: Tentando encontrar o botão de serviço de revisão de CV:", document.getElementById("cv-review-service-button"));
     const coachingServiceButton = document.getElementById("coaching-service-button");
     const cvReviewServiceButton = document.getElementById("cv-review-service-button");
 
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- Service Selection ---
     if (coachingServiceButton) {
         coachingServiceButton.addEventListener("click", () => {
+            console.log("DEBUG: Botão de serviço de Coaching CLICADO");
             showCoachingOptions();
             hideCvReviewOptions();
             if (calendarDiv) calendarDiv.classList.remove("hidden"); // Show calendar for coaching
@@ -45,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (cvReviewServiceButton) {
         cvReviewServiceButton.addEventListener("click", () => {
+            nsole.log("DEBUG: Botão de serviço de Revisão de CV CLICADO")
             showCvReviewOptions();
             hideCoachingOptions();
             if (calendarDiv) calendarDiv.classList.add("hidden"); // Hide calendar for CV review
