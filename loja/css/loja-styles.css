@@ -1,10 +1,13 @@
 :root {
-    --dourado: #C4A34F;
-    --bronze: #CD7F32;
-    --preto: #1a1a1a;
-    --cinza: #666;
-    --cinza-claro: #f4f4f4;
-    --branco: #fff;
+    --primary-color: #B8860B; /* DarkGoldenrod */
+    --secondary-color: #333333; /* Dark Gray/Near Black */
+    --accent-color: #D4AF37; /* Gold (alternative accent) */
+    --white: #ffffff;
+    --light-bg: #f8f8f8; /* Lighter Gray */
+    --dark-bg: #222222; /* Darker Gray/Near Black */
+    --text-color: #333333;
+    --light-gray-text: #7f8c8d;
+    --hover-gold: #A0740A; /* Darker gold for hover */
 }
 
 body {
