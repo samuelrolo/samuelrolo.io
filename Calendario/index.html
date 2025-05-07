@@ -72,7 +72,7 @@
             </section>
             <!-- Booking Container -->
              <section class="booking-container">
-                 <div class="booking-options">
+                <div class="booking-options" id="coaching-options">
                     <form id="booking-form">
                         <div class="form-group" style="display: none;">
                             <label for="service-type">Tipo de Serviço:</label>
@@ -227,7 +227,7 @@
                     <div class="price-info">
                         <p>Preço Final: <span id="cv-final-price">0€</span></p>
                     </div>
-
+                    <section id="booking-summary-cv-review" class="booking-summary hidden"></section>
                     <div class="payment-options">
                         <h4>Método de Pagamento</h4>
                         <div class="payment-methods">
@@ -236,7 +236,6 @@
                             <button type="button" class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
                             <button type="button" class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
                             <button type="button" class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button>
-                        </div>
                         <div id="payment-details-cv" class="hidden payment-details-area">
                             <div id="mbway-instructions-cv" class="payment-instructions hidden">
                                 <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-cv"></strong>.</p>
