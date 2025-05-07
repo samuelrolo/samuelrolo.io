@@ -1,0 +1,8 @@
+- [x] Recolher todos os detalhes sobre o e-book (ficheiro, título "GESTÃO DA MUDANÇA", descrição fornecida pelo utilizador, preço de 7,50€) e as preferências para a loja online (pagamento via ifthenpay, envio por e-mail via API Brevo após pagamento, necessidade de recolha de dados do cliente).
+- [x] Criar a estrutura base da secção da loja no website existente (samuelrolo.io), assegurando a compatibilidade com o repositório GitHub fornecido.
+- [x] Adicionar o e-book "GESTÃO DA MUDANÇA" como um produto na nova secção da loja, incluindo a sua descrição (a ser fornecida), imagem de capa (se disponível ou a criar) e preço (7,50€).
+- [x] Configurar o sistema de pagamento utilizando a integração com ifthenpay e desenvolver o formulário para captura dos dados do cliente (nome, e-mail).
+- [x] Criar e integrar módulo utilitário de envio de e-mail com a API da Brevo, e ligá-lo ao fluxo de pagamento no backend para envio automático do e-book.
+- [x] Corrigir erro de sintaxe no backend para permitir testes.
+- [-] Realizar testes exaustivos para validar todo o processo: visualização do produto, adição ao carrinho (se aplicável), preenchimento de dados, pagamento via ifthenpay, receção da confirmação de pagamento, envio e receção do e-mail com o e-book. (Fluxo lógico validado; integração real com ifthenpay para geração de link PayByLink pendente de verificação de chave/serviço pelo utilizador).
+- [ ] Apresentar a secção da loja finalizada ao utilizador, fornecer o acesso (URL da loja, detalhes de como gerir, se aplicável) e recolher feedback.
