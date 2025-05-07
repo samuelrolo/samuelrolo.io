@@ -1,159 +1,83 @@
+:root {
+    --dourado: #C5A200;
+    --dourado-claro: #F3E5AB;
+    --bronze: #CD7F32;
+    --preto: #000000;
+    --cinza: #666666;
+    --branco: #ffffff;
+    --cor-borda: #ccc;
+}
+
 /* Estilos gerais para a loja */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--dourado-claro);
+    color: var(--cinza);
 }
 
 header, footer {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--dourado);
+    color: var(--branco);
     padding: 1em 0;
     text-align: center;
 }
 
 header a, footer a {
-    color: #fff;
+    color: var(--branco);
     text-decoration: none;
 }
 
 main {
-    padding: 20px;
+    padding: 20px 15px;
     max-width: 1200px;
     margin: 20px auto;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: var(--branco);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Lista de produtos */
 .lista-produtos {
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    text-align: left;
 }
 
 .produto-item {
-    border: 1px solid #ddd;
+    border: 1px solid var(--cor-borda);
     padding: 15px;
-    margin: 15px;
-    display: inline-block;
-    width: calc(33.333% - 30px);
-    box-sizing: border-box;
-    vertical-align: top;
-    background-color: #fff;
+    background-color: var(--branco);
     min-height: 350px;
+    box-sizing: border-box;
 }
 
+/* Capa do produto */
 .produto-capa {
-    max-width: 100%;
-    height: auto;
-    max-height: 200px;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    display: block;
     margin-bottom: 10px;
 }
 
+/* Preço */
 .produto-preco {
     font-weight: bold;
-    color: #007bff;
+    color: var(--bronze);
     margin: 10px 0;
 }
 
-.btn-detalhes, .btn-comprar {
+/* Botões */
+.btn-detalhes,
+.btn-comprar {
     display: inline-block;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--dourado);
+    color: var(--branco);
     padding: 10px 15px;
     text-decoration: none;
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    font-size: 1em;
-}
-
-.btn-detalhes:hover, .btn-comprar:hover {
-    background-color: #0056b3;
-}
-
-/* Estilos para a página de detalhe do produto */
-.produto-detalhe {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.produto-info {
-    flex: 2;
-    display: flex;
-    gap: 20px;
-}
-
-.produto-capa-detalhe {
-    max-width: 300px;
-    height: auto;
-    object-fit: cover;
-}
-
-.produto-texto {
-    flex: 1;
-}
-
-.produto-descricao p, .produto-descricao ul {
-    text-align: justify;
-    line-height: 1.6;
-}
-
-.produto-descricao ul {
-    padding-left: 20px;
-}
-
-.formulario-compra {
-    flex: 1;
-    min-width: 300px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.formulario-compra h3 {
-    margin-top: 0;
-}
-
-.formulario-compra div {
-    margin-bottom: 15px;
-}
-
-.formulario-compra label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.formulario-compra input[type="text"],
-.formulario-compra input[type="email"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.aviso-pagamento {
-    font-size: 0.9em;
-    color: #555;
-    margin-top: 15px;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .produto-item {
-        width: calc(50% - 30px);
-    }
-    .produto-info {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .produto-item {
-        width: calc(100% - 30px);
-    }
-}
-
+    font-size: 1em
