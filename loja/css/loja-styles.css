@@ -1,65 +1,102 @@
-:root {
-    --primary-color: #B8860B; /* DarkGoldenrod */
-    --secondary-color: #333333; /* Dark Gray/Near Black */
-    --accent-color: #D4AF37; /* Gold (alternative accent) */
-    --white: #ffffff;
-    --light-bg: #f8f8f8; /* Lighter Gray */
-    --dark-bg: #222222; /* Darker Gray/Near Black */
-    --text-color: #333333;
-    --light-gray-text: #7f8c8d;
-    --hover-gold: #A0740A; /* Darker gold for hover */
-    --preto: #000000;
-    --branco: #ffffff;
-    --dourado: #D4AF37;
-    --bronze: #A0740A;
-    --cinza: #7f8c8d;
-    --cinza-claro: #f8f8f8;
-}
-
+/* Estilos Gerais */
 body {
-    font-family: sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    background-color: var(--cinza-claro);
-    color: var(--preto);
 }
 
-/* Header e logo */
-header {
-    background-color: var(--preto);
-    color: var(--branco);
-    padding: 1em 0;
+h1, h2, h3 {
+    color: #333;
+    font-weight: bold;
 }
 
-header .header-content {
+/* Estilo de input moderno */
+.input-moderno {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.input-moderno:focus {
+    border-color: #5a9bff;
+    outline: none;
+}
+
+/* Container do formulário */
+.input-container {
+    margin-bottom: 20px;
+}
+
+/* Botões */
+.btn-comprar {
+    background-color: #5a9bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-comprar:hover {
+    background-color: #4b87d3;
+}
+
+/* Layout do Produto */
+.produto-detalhe {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 20px;
 }
 
-.logo img {
-    height: 50px;
-    width: auto;
+.produto-capa-detalhe {
+    max-width: 300px;
+    border-radius: 8px;
 }
 
-header a {
-    color: var(--branco);
-    text-decoration: none;
+.produto-texto {
+    max-width: 600px;
+    padding-left: 20px;
+}
+
+.produto-preco {
+    font-size: 1.5rem;
+    color: #5a9bff;
+    font-weight: bold;
+}
+
+.produto-descricao {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
 }
 
 footer {
-    background-color: var(--preto);
-    color: var(--cinza);
-    padding: 1em 0;
+    background-color: #222;
+    color: white;
     text-align: center;
+    padding: 10px 0;
 }
 
-/* Conteúdo principal */
-main {
+header {
+    background-color: #fff;
     padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color
+    border-bottom: 1px solid #ddd;
+}
+
+header .logo img {
+    max-height: 50px;
+}
+
+header nav {
+    text-align: right;
+}
