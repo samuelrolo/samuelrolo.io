@@ -1,77 +1,194 @@
 :root {
-    --dourado: #C5A200;
-    --dourado-claro: #F3E5AB;
+    --dourado: #C4A34F;
     --bronze: #CD7F32;
-    --preto: #000000;
-    --cinza: #444444;
-    --cinza-claro: #EDEDED;
-    --branco: #ffffff;
+    --preto: #1a1a1a;
+    --cinza: #666;
+    --cinza-claro: #f4f4f4;
+    --branco: #fff;
 }
 
-/* Base geral */
 body {
-    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--cinza-claro);
-    color: var(--cinza);
+    color: var(--preto);
 }
 
-header, footer {
+/* Header e logo */
+header {
     background-color: var(--preto);
     color: var(--branco);
+    padding: 1em 0;
+}
+
+header .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+header a {
+    color: var(--branco);
+    text-decoration: none;
+}
+
+footer {
+    background-color: var(--preto);
+    color: var(--cinza);
     padding: 1em 0;
     text-align: center;
 }
 
-header a, footer a {
-    color: var(--dourado);
-    text-decoration: none;
-}
-
+/* Conteúdo principal */
 main {
     padding: 20px;
     max-width: 1200px;
     margin: 20px auto;
     background-color: var(--branco);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-/* Lista de produtos */
 .lista-produtos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    text-align: center;
 }
 
 .produto-item {
     border: 1px solid #ddd;
     padding: 15px;
+    margin: 15px;
+    display: inline-block;
+    width: calc(33.333% - 30px);
+    box-sizing: border-box;
+    vertical-align: top;
     background-color: var(--branco);
     min-height: 350px;
-    box-sizing: border-box;
+    transition: box-shadow 0.3s;
 }
 
-/* Imagem */
+.produto-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
 .produto-capa {
-    width: 100%;
-    height: 200px;
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
     object-fit: contain;
     margin-bottom: 10px;
 }
 
-/* Preço */
 .produto-preco {
     font-weight: bold;
     color: var(--dourado);
     margin: 10px 0;
 }
 
-/* Botões */
-.btn-detalhes,
-.btn-comprar {
+.btn-detalhes, .btn-comprar {
     display: inline-block;
-    background-color: var(--cinza);
-    color: var(--branco);
+    background-color: var(--dourado);
+    color: var(--preto);
     padding: 10px 15px;
-    text-decoration
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.btn-detalhes:hover, .btn-comprar:hover {
+    background-color: var(--bronze);
+    color: var(--branco);
+}
+
+/* Página de detalhe */
+.produto-detalhe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.produto-info {
+    flex: 2;
+    display: flex;
+    gap: 20px;
+}
+
+.produto-capa-detalhe {
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
+}
+
+.produto-texto {
+    flex: 1;
+}
+
+.produto-descricao p, .produto-descricao ul {
+    text-align: justify;
+    line-height: 1.6;
+    color: var(--cinza);
+}
+
+.produto-descricao ul {
+    padding-left: 20px;
+}
+
+.formulario-compra {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: var(--cinza-claro);
+}
+
+.formulario-compra h3 {
+    margin-top: 0;
+    color: var(--preto);
+}
+
+.formulario-compra label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formulario-compra input[type="text"],
+.formulario-compra input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.aviso-pagamento {
+    font-size: 0.9em;
+    color: var(--cinza);
+    margin-top: 15px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .produto-item {
+        width: calc(50% - 30px);
+    }
+    .produto-info {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .produto-item {
+        width: calc(100% - 30px);
+    }
+}
