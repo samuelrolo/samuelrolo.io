@@ -102,75 +102,59 @@
 
             <!-- Booking Summary (Coaching) -->
             <section class="booking-summary hidden" id="booking-summary-coaching">
-                 <h3>Resumo da Marcação</h3>
+                <h3>Resumo da Marcação</h3>
                 <div class="summary-details">
                     <p><strong>Serviço:</strong> Kickstart Pro ! Express coaching</p>
                     <p><strong>Tipo de Sessão:</strong> <span id="summary-type"></span></p>
                     <p><strong>Duração:</strong> <span id="summary-duration"></span></p>
-                    <p><strong>Data e Hora:</strong> <span id="summary-datetime"></span></p>
+                    <p><strong>Data e Hora:</strong> <span id="summary-datetime"></span></p> <!-- Este será preenchido -->
                     <p><strong>Número de Sessões:</strong> <span id="summary-quantity"></span></p>
-                    <p><strong>Preço Total:</strong> <span id="summary-price"></span></p>
-                    <p><strong>Tipo de Pagamento:</strong> <span id="payment-type">Pagamento Total</span></p>
-                    <p><strong>Valor a Pagar Agora:</strong> <span id="payment-amount"></span></p>
+                    <p><strong>Preço Total:</strong> <span id="summary-price"></span></p> <!-- Este será preenchido -->
+                    <p><strong>Tipo de Pagamento:</strong> <span id="payment-type"></span></p>
+                    <p><strong>Valor a Pagar Agora:</strong> <span id="payment-amount"></span></p> <!-- Este será preenchido -->
                     <div id="remaining-payment-info" style="display: none;">
                         <p><strong>Valor Restante:</strong> <span id="remaining-amount"></span> (a pagar no dia da sessão)</p>
                     </div>
                 </div>
-                    <h4>Os Seus Dados</h4> <!-- Corrected from Teus Dados -->
-                    <form id="user-form-coaching">
-                        <div class="form-group"><label for="user-name-coaching">Nome Completo:</label><input type="text" id="user-name-coaching" name="user-name" required></div>
-                        <div class="form-group"><label for="user-email-coaching">Email:</label><input type="email" id="user-email-coaching" name="user-email" required></div>
-                        <div class="form-group"><label for="user-phone-coaching">Telefone (para MB WAY, se aplicável):</label><input type="tel" id="user-phone-coaching" name="user-phone" required></div>
-                        <div class="form-group"><label for="user-notes-coaching">Notas (opcional):</label><textarea id="user-notes-coaching" name="user-notes"></textarea></div>
-                    </form>
-                </div>
-                <div class="payment-options">
+                <h4>Os Seus Dados</h4>
+                <form id="user-form-coaching">
+                    <div class="form-group"><label for="user-name-coaching">Nome Completo:</label><input type="text" id="user-name-coaching" name="user-name" required></div>
+                    <div class="form-group"><label for="user-email-coaching">Email:</label><input type="email" id="user-email-coaching" name="user-email" required></div>
+                    <div class="form-group"><label for="user-phone-coaching">Telefone (para MB WAY, se aplicável):</label><input type="tel" id="user-phone-coaching" name="user-phone" required></div>
+                    <!-- Pode adicionar user-notes-coaching se necessário -->
+                </form>
+           
+                <!-- INÍCIO DA ESTRUTURA CRUCIAL PARA PAYMENT OPTIONS -->
+                <div class="payment-options"> 
                     <h4>Método de Pagamento</h4>
                     <div class="payment-methods">
-                        <button class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
-                        <button class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
-                        <button class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
-                        <!-- Removed Revolut and Bank Transfer -->
+                        <button type="button" class="payment-method-button" data-method="mbway">
+                            <i class="fas fa-mobile-alt"></i> MB WAY
+                        </button>
+                        <!-- O booking.js irá ocultar estes outros botões -->
+                        <button type="button" class="payment-method-button" data-method="paypal" style="display: none;">
+                            <i class="fab fa-paypal"></i> PayPal
+                        </button>
+                        <button type="button" class="payment-method-button" data-method="transferencia" style="display: none;">
+                            <i class="fas fa-university"></i> Transferência Bancária
+                        </button>
                     </div>
-                    <div id="payment-details-coaching" class="hidden payment-details-area">
-                        <div id="mbway-instructions-coaching" class="payment-instructions hidden">
-                            <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-coaching"></strong>.</p>
-                        </div>
-                        <div id="mb-reference-coaching" class="payment-instructions hidden">
-                            <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
-                            <ul>
-                                <li><strong>Entidade:</strong> <span id="mb-entity-coaching"></span></li>
-                                <li><strong>Referência:</strong> <span id="mb-ref-coaching"></span></li>
-                                <li><strong>Valor:</strong> <span id="mb-amount-coaching"></span>€</li>
-                                <li><strong>Válido até:</strong> <span id="mb-expiry-coaching"></span></li>
-                            </ul>
-                            <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
-                        </div>
-                        <div id="payshop-reference-coaching" class="payment-instructions hidden">
-                            <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
-                            <ul>
-                                <li><strong>Referência:</strong> <span id="payshop-ref-coaching"></span></li>
-                                <li><strong>Valor:</strong> <span id="payshop-amount-coaching"></span>€</li>
-                                <li><strong>Válido até:</strong> <span id="payshop-expiry-coaching"></span></li>
-                            </ul>
-                             <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
-                        </div>
-                        <div id="other-payment-details-coaching" class="payment-instructions hidden">
-                            <!-- Details for Revolut/Bank Transfer will be shown by JS -->
-                        </div>
+                    <div id="mbway-instructions" class="payment-instructions hidden" style="display: none;">
+                        <p>Para pagamento por MB WAY, por favor, utilize o número: <strong>[961925050]</strong>.</p>
+                        <p>Após efetuar o pagamento, envie o comprovativo para <div srshare2inspire@gmail.com=""></div> para confirmar a sua marcação.</p>
                     </div>
                 </div>
-                <div class="terms-conditions">
-                    <div class="form-group">
-                        <input type="checkbox" id="terms-accept-coaching" name="terms-accept" required>
-                        <label for="terms-accept-coaching">Li e aceito os <a href="#" id="open-terms-modal-coaching">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
-                    </div>
+                <!-- FIM DA ESTRUTURA CRUCIAL PARA PAYMENT OPTIONS -->
+                <div class="terms-conditions-section">
+                    <input type="checkbox" id="terms-accept-coaching" name="terms-accept">
+                    <label for="terms-accept-coaching">Li e aceito os <a href="#" id="open-terms-modal-coaching">termos e condições</a>, incluindo a política de pagamento e reembolso.</label>
                 </div>
-                <div class="booking-actions">
-                    <button id="back-button-coaching" class="btn btn-secondary">Voltar</button>
-                    <button id="confirm-booking-coaching" class="btn btn-primary">Confirmar Marcação</button> 
+                <div class="summary-actions">
+                    <button type="button" class="back-button">Voltar</button>
+                    <button type="button" id="confirm-booking-coaching" class="confirm-button">Confirmar Marcação</button>
                 </div>
             </section>
+                </section>
             <!-- Booking Policies -->
             <section class="booking-policies">
                  <h3>Políticas de Marcação (Kickstart Pro ! Express coaching)</h3>
