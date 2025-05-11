@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descobre o Teu Arquétipo de Liderança | Share2inspire.pt</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure this path is correct or embed styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Colors from main site: --primary-color: #B8060B; --secondary-color: #333333; --accent-color: #D4AF37; --white: #ffffff; --light-bg: #f8f8f8; --dark-bg: #222222; --text-color: #333333; */
+        body {
+            font-family: 'Open Sans', sans-serif; /* Matching main site font */
+            background-color: #f8f8f8; /* --light-bg */
+            color: #333333; /* --text-color */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .survey-container {
+            background-color: #ffffff; /* --white */
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* --box-shadow from main site */
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid #e0e0e0; /* Light grey border */
+        }
+        .survey-header h1 {
+            color: #333333; /* --secondary-color (black) */
+            text-align: center;
+            font-family: 'Montserrat', sans-serif; /* Matching main site font */
+            font-weight: 700;
+        }
+        .survey-header h1 .accent {
+            color: #D4AF37; /* --accent-color (gold) */
+        }
+        .survey-header h2 {
+            text-align: center;
+            color: #555555; /* Slightly lighter black/grey */
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        .intro-text {
+            text-align: center;
+            color: #333333; /* --text-color */
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .progress-container {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0; /* Light grey */
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background-color: #D4AF37; /* --accent-color (gold) */
+            transition: width 0.4s ease;
+        }
+        .progress-text {
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 5px;
+            color: #555555;
+        }
+        .question-container {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #dddddd; /* Lighter grey border */
+            border-radius: 5px;
+            background-color: #fdfdfd; /* Very light grey, almost white */
+        }
+        .question-container h3 {
+            font-size: 1.1em;
+            color: #333333; /* --text-color */
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        .options-container div {
+            margin: 12px 0;
+        }
+        .options-container label {
+            margin-left: 8px;
+            cursor: pointer;
+            color: #333333; /* --text-color */
+        }
+        .survey-navigation button {
+            padding: 10px 20px;
+            background-color: #333333; /* --secondary-color (black) */
+            color: #ffffff; /* --white */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease; /* --transition from main site */
+        }
+        .survey-navigation button:hover:not(:disabled) {
+            background-color: #D4AF37; /* --accent-color (gold) on hover */
+            color: #ffffff;
+        }
+        .survey-navigation button:disabled {
+            background-color: #cccccc; /* Standard disabled grey */
+            color: #666666;
+        }
+        .survey-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        #results-container {
+            padding: 25px;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            background-color: #f8f8f8; /* --light-bg */
+            margin-top: 20px;
+        }
+        #results-container h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            /* Color will be set by JS based on archetype */
+        }
+        #results-container h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #333333;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        #results-container ul {
+            list-style-type: none;
+            padding-left: 0; /* Removed default padding */
+        }
+        #results-container ul li {
+            background-color: #e9ecef; /* Lighter grey for list items */
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 4px;
+            color: #333333;
+        }
+        #results-container p {
+            line-height: 1.6;
+            color: #333333;
+        }
+        .contact-button {
+            display: block; /* Make it full width for better touch target */
+            width: fit-content;
+            margin: 30px auto 0 auto; /* Centered */
+            padding: 12px 25px;
+            background-color: #D4AF37; /* --accent-color (gold) */
+            color: #ffffff; /* --white */
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .contact-button:hover {
+            background-color: #b89b31; /* Darker gold for hover */
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <header class="survey-header">
+            <h1>Descobre o Teu <span class="accent">Arquétipo de Liderança</span></h1>
+            <h2>Um questionário por Share2inspire.pt</h2>
+        </header>
+
+        <p class="intro-text">
+            Cada líder tem um estilo único que impacta a sua equipa e organização. 
+            Queres saber qual o teu arquétipo de liderança? Responde a este questionário 
+            e recebe um relatório personalizado com insights sobre os teus pontos fortes 
+            e áreas de desenvolvimento. Demora menos de 5 minutos!
+        </p>
+
+        <div id="survey-content-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">
+                    Pergunta <span id="current-question">1</span> de <span id="total-questions">20</span>
+                </div>
+            </div>
+
+            <div class="question-container active" data-question-id="0">
+                <h3>1. Quando enfrentas uma decisão difícil, como procedes?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q0_optA" name="q0" value="A"><label for="q0_optA">Confio na minha intuição e experiência.</label></div>
+                    <div><input type="radio" id="q0_optB" name="q0" value="B"><label for="q0_optB">Recolho o máximo de dados possíveis antes de decidir.</label></div>
+                    <div><input type="radio" id="q0_optC" name="q0" value="C"><label for="q0_optC">Consulto a equipa e ouço diferentes perspetivas.</label></div>
+                    <div><input type="radio" id="q0_optD" name="q0" value="D"><label for="q0_optD">Escolho a opção que melhor se alinha com os valores da empresa.</label></div>
+                </div>
+            </div>
+
+             <div class="question-container" data-question-id="1">
+                <h3>2. Como reages quando és pressionado a tomar uma decisão rápida?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q1_optA" name="q1" value="A"><label for="q1_optA">Sigo o meu instinto e assumo a responsabilidade.</label></div>
+                    <div><input type="radio" id="q1_optB" name="q1" value="B"><label for="q1_optB">Tento analisar rapidamente as opções disponíveis.</label></div>
+                    <div><input type="radio" id="q1_optC" name="q1" value="C"><label for="q1_optC">Procuro um consenso rápido com os membros chave da equipa.</label></div>
+                    <div><input type="radio" id="q1_optD" name="q1" value="D"><label for="q1_optD">Mantenho a calma e foco-me nos princípios fundamentais.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="2">
+                <h3>3. Qual o teu estilo de comunicação preferido?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q2_optA" name="q2" value="A"><label for="q2_optA">Direto e inspirador.</label></div>
+                    <div><input type="radio" id="q2_optB" name="q2" value="B"><label for="q2_optB">Claro, conciso e baseado em factos.</label></div>
+                    <div><input type="radio" id="q2_optC" name="q2" value="C"><label for="q2_optC">Aberto, encorajando o diálogo e feedback.</label></div>
+                    <div><input type="radio" id="q2_optD" name="q2" value="D"><label for="q2_optD">Consistente e alinhado com as mensagens da organização.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="3">
+                <h3>4. Como lidas com conflitos na equipa?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q3_optA" name="q3" value="A"><label for="q3_optA">Intervenho rapidamente para realinhar com a visão.</label></div>
+                    <div><input type="radio" id="q3_optB" name="q3" value="B"><label for="q3_optB">Analiso a causa raiz e proponho soluções lógicas.</label></div>
+                    <div><input type="radio" id="q3_optC" name="q3" value="C"><label for="q3_optC">Facilito a discussão para encontrar um consenso.</label></div>
+                    <div><input type="radio" id="q3_optD" name="q3" value="D"><label for="q3_optD">Reforço as regras e procedimentos para evitar futuras disputas.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="4">
+                <h3>5. Ao delegar tarefas, qual a tua principal preocupação?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q4_optA" name="q4" value="A"><label for="q4_optA">Que a pessoa se sinta motivada e veja o propósito.</label></div>
+                    <div><input type="radio" id="q4_optB" name="q4" value="B"><label for="q4_optB">Que a pessoa tenha as competências e recursos necessários.</label></div>
+                    <div><input type="radio" id="q4_optC" name="q4" value="C"><label for="q4_optC">Que a pessoa se sinta apoiada e possa colaborar.</label></div>
+                    <div><input type="radio" id="q4_optD" name="q4" value="D"><label for="q4_optD">Que a tarefa seja executada conforme os padrões estabelecidos.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="5">
+                <h3>6. Como encorajas a inovação na tua equipa?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q5_optA" name="q5" value="A"><label for="q5_optA">Apresentando visões audazes e desafiando o status quo.</label></div>
+                    <div><input type="radio" id="q5_optB" name="q5" value="B"><label for="q5_optB">Através da análise de dados para identificar oportunidades.</label></div>
+                    <div><input type="radio" id="q5_optC" name="q5" value="C"><label for="q5_optC">Criando um ambiente seguro para experimentar e partilhar ideias.</label></div>
+                    <div><input type="radio" id="q5_optD" name="q5" value="D"><label for="q5_optD">Implementando processos que suportem a melhoria contínua.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="6">
+                <h3>7. Qual a tua abordagem ao desenvolvimento dos membros da equipa?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q6_optA" name="q6" value="A"><label for="q6_optA">Inspirando-os a alcançar o seu potencial máximo.</label></div>
+                    <div><input type="radio" id="q6_optB" name="q6" value="B"><label for="q6_optB">Identificando lacunas de competências e providenciando formação específica.</label></div>
+                    <div><input type="radio" id="q6_optC" name="q6" value="C"><label for="q6_optC">Através de mentoring e coaching focado nas suas aspirações.</label></div>
+                    <div><input type="radio" id="q6_optD" name="q6" value="D"><label for="q6_optD">Garantindo que seguem os planos de carreira e desenvolvimento definidos.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="7">
+                <h3>8. Como preferes dar feedback?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q7_optA" name="q7" value="A"><label for="q7_optA">De forma motivadora, realçando o impacto positivo.</label></div>
+                    <div><input type="radio" id="q7_optB" name="q7" value="B"><label for="q7_optB">Objetivo e baseado em exemplos concretos e dados.</label></div>
+                    <div><input type="radio" id="q7_optC" name="q7" value="C"><label for="q7_optC">Numa conversa aberta, procurando entender a perspetiva do outro.</label></div>
+                    <div><input type="radio" id="q7_optD" name="q7" value="D"><label for="q7_optD">Regular e focado no cumprimento de metas e padrões.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="8">
+                <h3>9. Ao liderar uma mudança, em que te focas mais?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q8_optA" name="q8" value="A"><label for="q8_optA">Em comunicar a visão e os benefícios da mudança.</label></div>
+                    <div><input type="radio" id="q8_optB" name="q8" value="B"><label for="q8_optB">No planeamento detalhado e na minimização de riscos.</label></div>
+                    <div><input type="radio" id="q8_optC" name="q8" value="C"><label for="q8_optC">No apoio à equipa para se adaptar e ultrapassar resistências.</label></div>
+                    <div><input type="radio" id="q8_optD" name="q8" value="D"><label for="q8_optD">Na garantia de que a mudança é implementada de forma ordenada e consistente.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="9">
+                <h3>10. O que te motiva mais como líder?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q9_optA" name="q9" value="A"><label for="q9_optA">Realizar uma visão ambiciosa e inspirar outros.</label></div>
+                    <div><input type="radio" id="q9_optB" name="q9" value="B"><label for="q9_optB">Resolver problemas complexos e otimizar processos.</label></div>
+                    <div><input type="radio" id="q9_optC" name="q9" value="C"><label for="q9_optC">Ver a equipa crescer e alcançar objetivos em conjunto.</label></div>
+                    <div><input type="radio" id="q9_optD" name="q9" value="D"><label for="q9_optD">Manter a estabilidade e garantir o sucesso a longo prazo da organização.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="10">
+                <h3>11. Qual a tua postura perante o risco?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q10_optA" name="q10" value="A"><label for="q10_optA">Estou disposto a correr riscos calculados para alcançar grandes recompensas.</label></div>
+                    <div><input type="radio" id="q10_optB" name="q10" value="B"><label for="q10_optB">Prefiro analisar todos os dados antes de tomar uma decisão arriscada.</label></div>
+                    <div><input type="radio" id="q10_optC" name="q10" value="C"><label for="q10_optC">Consulto a equipa para avaliar os riscos e tomar uma decisão conjunta.</label></div>
+                    <div><input type="radio" id="q10_optD" name="q10" value="D"><label for="q10_optD">Prefiro abordagens mais conservadoras que garantam a estabilidade.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="11">
+                <h3>12. No dia-a-dia, onde está o teu foco principal?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q11_optA" name="q11" value="A"><label for="q11_optA">No futuro e nas novas oportunidades.</label></div>
+                    <div><input type="radio" id="q11_optB" name="q11" value="B"><label for="q11_optB">Na eficiência e na melhoria dos processos atuais.</label></div>
+                    <div><input type="radio" id="q11_optC" name="q11" value="C"><label for="q11_optC">Nas pessoas e nas relações dentro da equipa.</label></div>
+                    <div><input type="radio" id="q11_optD" name="q11" value="D"><label for="q11_optD">Na manutenção dos padrões e na consistência dos resultados.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="12">
+                <h3>13. Como preferes reconhecer o bom desempenho?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q12_optA" name="q12" value="A"><label for="q12_optA">Publicamente, inspirando outros com o exemplo.</label></div>
+                    <div><input type="radio" id="q12_optB" name="q12" value="B"><label for="q12_optB">Com base em métricas claras e resultados quantificáveis.</label></div>
+                    <div><input type="radio" id="q12_optC" name="q12" value="C"><label for="q12_optC">De forma personalizada, valorizando o esforço individual e da equipa.</label></div>
+                    <div><input type="radio" id="q12_optD" name="q12" value="D"><label for="q12_optD">Através de sistemas formais de recompensa e progressão.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="13">
+                <h3>14. Que tipo de ambiente de trabalho procuras fomentar?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q13_optA" name="q13" value="A"><label for="q13_optA">Dinâmico, criativo e orientado para o futuro.</label></div>
+                    <div><input type="radio" id="q13_optB" name="q13" value="B"><label for="q13_optB">Organizado, eficiente e focado em resultados.</label></div>
+                    <div><input type="radio" id="q13_optC" name="q13" value="C"><label for="q13_optC">Colaborativo, inclusivo e com forte espírito de equipa.</label></div>
+                    <div><input type="radio" id="q13_optD" name="q13" value="D"><label for="q13_optD">Estável, seguro e com regras claras.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="14">
+                <h3>15. Como reages a um fracasso da equipa?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q14_optA" name="q14" value="A"><label for="q14_optA">Vejo como uma oportunidade de aprendizagem para o futuro.</label></div>
+                    <div><input type="radio" id="q14_optB" name="q14" value="B"><label for="q14_optB">Analiso as causas para evitar que se repita.</label></div>
+                    <div><input type="radio" id="q14_optC" name="q14" value="C"><label for="q14_optC">Apoio a equipa e foco-me em reerguer a moral.</label></div>
+                    <div><input type="radio" id="q14_optD" name="q14" value="D"><label for="q14_optD">Reviso os processos para identificar falhas no sistema.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="15">
+                <h3>16. De onde consideras que vem a tua autoridade como líder?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q15_optA" name="q15" value="A"><label for="q15_optA">Da minha visão e capacidade de inspirar.</label></div>
+                    <div><input type="radio" id="q15_optB" name="q15" value="B"><label for="q15_optB">Do meu conhecimento técnico e experiência.</label></div>
+                    <div><input type="radio" id="q15_optC" name="q15" value="C"><label for="q15_optC">Da confiança e respeito que construo com a equipa.</label></div>
+                    <div><input type="radio" id="q15_optD" name="q15" value="D"><label for="q15_optD">Da minha posição e responsabilidade formal.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="16">
+                <h3>17. Qual é a tua prioridade máxima como líder?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q16_optA" name="q16" value="A"><label for="q16_optA">Inovar e levar a organização para o futuro.</label></div>
+                    <div><input type="radio" id="q16_optB" name="q16" value="B"><label for="q16_optB">Garantir a eficiência e a excelência operacional.</label></div>
+                    <div><input type="radio" id="q16_optC" name="q16" value="C"><label for="q16_optC">Desenvolver e capacitar as pessoas da equipa.</label></div>
+                    <div><input type="radio" id="q16_optD" name="q16" value="D"><label for="q16_optD">Assegurar a sustentabilidade e o cumprimento das regras.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="17">
+                <h3>18. Se tivesses de descrever o teu estilo de liderança numa palavra, qual seria?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q17_optA" name="q17" value="A"><label for="q17_optA">Inspirador.</label></div>
+                    <div><input type="radio" id="q17_optB" name="q17" value="B"><label for="q17_optB">Analítico.</label></div>
+                    <div><input type="radio" id="q17_optC" name="q17" value="C"><label for="q17_optC">Colaborativo.</label></div>
+                    <div><input type="radio" id="q17_optD" name="q17" value="D"><label for="q17_optD">Consistente.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="18">
+                <h3>19. Que legado gostarias de deixar como líder?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q18_optA" name="q18" value="A"><label for="q18_optA">Uma visão transformada em realidade.</label></div>
+                    <div><input type="radio" id="q18_optB" name="q18" value="B"><label for="q18_optB">Sistemas e processos altamente eficientes.</label></div>
+                    <div><input type="radio" id="q18_optC" name="q18" value="C"><label for="q18_optC">Uma equipa forte, unida e realizada.</label></div>
+                    <div><input type="radio" id="q18_optD" name="q18" value="D"><label for="q18_optD">Uma organização sólida e com valores bem estabelecidos.</label></div>
+                </div>
+            </div>
+
+            <div class="question-container" data-question-id="19">
+                <h3>20. Qual a tua principal preocupação ao definir uma visão de longo prazo?</h3>
+                <div class="options-container">
+                    <div><input type="radio" id="q19_optA" name="q19" value="A"><label for="q19_optA">Que seja inspiradora e motive a equipa.</label></div>
+                    <div><input type="radio" id="q19_optB" name="q19" value="B"><label for="q19_optB">Que seja realista e baseada em dados concretos.</label></div>
+                    <div><input type="radio" id="q19_optC" name="q19" value="C"><label for="q19_optC">Que todos se sintam parte dela e contribuam.</label></div>
+                    <div><input type="radio" id="q19_optD" name="q19" value="D"><label for="q19_optD">Que esteja alinhada com os valores e o propósito da organização.</label></div>
+                </div>
+            </div>
+
+            <div class="survey-navigation">
+                <button id="prev-btn" disabled>Anterior</button>
+                <button id="next-btn" disabled>Próxima</button>
+            </div>
+        </div>
+
+        <div id="results-container" style="display: none;">
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
