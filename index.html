@@ -1,262 +1,113 @@
-<html><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Share2Inspire - Inspiring Change by Sharing (lamp)</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="icon" href="images/favicon.png" type="image/png">
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="logo">
-                    <a href="#hero"><img src="images/logo_white.png" alt="Share2Inspire Logo"></a>
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share2Inspire - Samuel Rolo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+</head>
+<body>
+    <header>
+        <!-- Navegação Principal (a definir melhor no CSS) -->
+        <nav>
+            <div class="logo">
+                <img src="images/logo_white.png" alt="Share2Inspire Logo" id="nav-logo">
+                <span>Share2Inspire</span>
+            </div>
+            <ul>
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#sobre-fundador">Sobre o Fundador</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#loja">Loja</a></li>
+                <li><a href="#contactos">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Secção Hero -->
+        <section id="hero" class="hero-section">
+            <h1>Share2Inspire</h1>
+            <p>Samuel Rolo | Humanizing Work</p>
+            <p>Transformando Pessoas e Organizações.</p>
+            <!-- Poderá ter um Call to Action aqui -->
+        </section>
+
+        <!-- Secção Sobre o Fundador -->
+        <section id="sobre-fundador" class="content-section">
+            <h2>Sobre o Fundador</h2>
+            <div class="fundador-content">
+                <!-- Conteúdo sobre o Samuel Rolo (a extrair do site antigo ou a ser fornecido) -->
+                <p>[Texto sobre o fundador aqui - a extrair do conteúdo anterior da secção 'Sobre o Autor']</p>
+            </div>
+            <div class="recomendacoes">
+                <h3>Recomendações</h3>
+                <!-- Recomendações (a extrair do testimonials_widget.html antigo ou a ser fornecido) -->
+                <p>[Conteúdo das recomendações aqui]</p>
+            </div>
+        </section>
+
+        <!-- Secção Serviços -->
+        <section id="servicos" class="content-section">
+            <h2>Serviços</h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <div class="servico-icon"><!-- Ícone dourado moderno --></div>
+                    <h3>Consultoria</h3>
+                    <p>Realização de projetos de consultoria à medida das necessidades do cliente.</p>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="#hero" data-translate-key="nav_home">Início</a></li>
-                    <li><a href="#about" data-translate-key="nav_about">Sobre</a></li>
-                    <li><a href="#services" data-translate-key="nav_services">Serviços</a></li>
-                    <li><a href="#loja" data-translate-key="nav_store">Loja</a></li>
-                    <li><a href="#author" data-translate-key="nav_author">Autor</a></li>
-                    <li><a href="#recomendacoes" data-translate-key="nav_recommendations">Recomendações</a></li>
-                    <li><a href="#hr-innovation-hub" data-translate-key="nav_hr_hub">HR Innovation Hub</a></li>
-                    <li><a href="#contact" data-translate-key="nav_contact">Contacto</a></li>
-                </ul>
-                <div class="nav-buttons">
-                    <button id="show-survey-btn" class="cta-button" data-translate-key="nav_schedule_session" style="background-color: #B8860B; color: white;">Agendar Sessão</button>
-                    <div class="language-selector">
-                        <button id="lang-pt" data-lang="pt">PT</button>
-                        <button id="lang-en" data-lang="en">EN</button>
-                    </div>
-                    <div class="ebook-highlight" style="margin-top: 10px; text-align: right;">
-                        <a href="https://pay.hotmart.com/O99582309U?bid=1746977704121" target="_blank" style="color: var(--primary-color, #B8860B); text-decoration: none; font-size: 0.9em; padding: 5px; border: 1px solid var(--primary-color, #B8860B); border-radius: 4px;" data-translate-key="nav_ebook_available">e-Book já disponível</a>
-                    </div>
+                <div class="servico-card">
+                    <div class="servico-icon"><!-- Ícone dourado moderno --></div>
+                    <h3>Aconselhamento de Carreira</h3>
+                    <p>Kickstart Pro | Express Coaching e Orientação em processos de recrutamento e revisão/construção de CVs.</p>
                 </div>
-            </nav>
-        </header>
-
-        <div id="page-container"> <!-- Adicionado para o footer fixo -->
-        <!-- Hero Section -->
-        <section id="hero" class="page-section">
-            <div class="hero-content">
-                <h1 data-translate-key="hero_title">Share2Inspire</h1>
-                <p data-translate-key="hero_subtitle">Inspiring Change by Sharing</p>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="about_title">Sobre Nós</h2>
-                <p data-translate-key="about_text_1">Na Share2Inspire, acreditamos que a partilha de conhecimento e experiências é a chave para o crescimento pessoal e profissional. A nossa missão é inspirar a mudança positiva através de serviços de consultoria, coaching e formação de alta qualidade.</p>
-                <p data-translate-key="about_text_2">Com uma abordagem personalizada e focada nas necessidades de cada cliente, ajudamos indivíduos e organizações a alcançar o seu pleno potencial e a construir um futuro mais promissor.</p>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="services_title">Serviços</h2>
-                <div class="services-grid">
-                    <div class="service-item">
-                        <i class="fas fa-users-cog service-icon"></i>
-                        <h3 data-translate-key="service_consulting_title">Consultoria de Pessoas e Transformação Organizacional</h3>
-                        <p data-translate-key="service_consulting_desc">Potenciamos o teu capital humano e otimizamos a tua estrutura para um futuro de sucesso.</p>
-                        <a href="#contact" class="learn-more-btn" data-translate-key="service_learn_more">Sabe Mais</a>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-lightbulb service-icon"></i>
-                        <h3 data-translate-key="service_coaching_title">Kick-Start Pro | Express Coaching</h3>
-                        <p data-translate-key="service_coaching_desc">Sessões individuais para te ajudar a definir e alcançar os teus objetivos.</p>
-                        <a href="#show-survey-btn" class="learn-more-btn schedule-now-btn" data-translate-key="service_schedule_now">Agenda Agora</a>
-                    </div>
-              </div>
-            </div>
-        </section>
-
-        <!-- Loja Section -->
-        <section id="loja" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="store_title">Loja</h2>
-                <div class="loja-item">
-                  <img src="loja/capa-e-book.jpg" alt="Capa do E-book" class="loja-img" onerror="this.style.display='none'">
-                    <div class="loja-content">
-                        <h3 data-translate-key="store_ebook_title">Desbloqueia o Teu Potencial: Um Guia Prático</h3>
-                        <p data-translate-key="store_ebook_desc">Descobre estratégias eficazes e ferramentas práticas para o teu desenvolvimento pessoal e profissional. Este e-book é o teu companheiro ideal na jornada para alcançar novos patamares de sucesso e realização.</p>
-                        <a onclick="return false;" href="https://pay.hotmart.com/O99582309U?checkoutMode=2" class="hotmart-fb hotmart__button-checkout"><img src='https://static.hotmart.com/img/btn-buy-green.png' alt='Comprar Agora'></a>
-                    </div>
+                <div class="servico-card">
+                    <div class="servico-icon"><!-- Ícone dourado moderno --></div>
+                    <h3>Construção de Conteúdos Digitais</h3>
+                    <p>Construção de conteúdos de formação, políticas, documentos internos, peças de comunicação.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Author Section -->
-        <section id="author" class="page-section">
-            <div class="container author-content">
-                <div class="author-image">
-                    <img src="https://raw.githubusercontent.com/samuelrolo/samuelrolo.io/main/autor.png" alt="Samuel Rolo" onerror="this.style.display='none'">
+        <!-- Secção Loja -->
+        <section id="loja" class="content-section">
+            <h2>Loja</h2>
+            <div class="loja-grid">
+                <div class="loja-item-card" id="ebook-card">
+                    <h3>E-book</h3>
+                    <p>[Descrição do E-book aqui - a extrair do conteúdo anterior]</p>
+                    <a href="#" class="btn-loja">Saber Mais / Adquirir</a>
                 </div>
-                <div class="author-bio">
-                    <h2 data-translate-key="author_title">Sobre o Fundador <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn" style="text-decoration: none; color: inherit;"><i class="fab fa-linkedin-in"></i></a></h2>
-                    <p data-translate-key="author_bio_1">Samuel Rolo, fundador da Share2Inspire, é um especialista em desenvolvimento de liderança e gestão de talentos com mais de uma década de experiência. A tua paixão por inspirar outros a alcançar o seu potencial máximo é a força motriz por detrás de cada projeto e iniciativa.</p>
-                    <p data-translate-key="author_bio_2">Com uma abordagem prática e focada em resultados, Samuel combina conhecimentos teóricos sólidos com uma vasta experiência no terreno, ajudando líderes e equipas a transformar desafios em oportunidades de crescimento.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Recomendações Section -->
-        <section id="recomendacoes" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="recommendations_title">Recomendações</h2>
-                <iframe src="testimonials_widget.html" title="Recomendações dos Clientes" style="width:100%; height:600px; border:none;" loading="lazy"></iframe>
-            </div>
-        </section>
-
-        <!-- HR Innovation Hub Section -->
-        <section id="hr-innovation-hub" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="hr_hub_title">HR Innovation Hub</h2>
-                <p data-translate-key="hr_hub_text">Um espaço dedicado à partilha de ideias, tendências e melhores práticas na área de Recursos Humanos. Junte-se à conversa e contribua para a inovação em RH.</p>
-                <a href="#" class="btn" data-translate-key="hr_hub_subscribe">Subscrever Newsletter</a>
-            </div>
-        </section>
-
-        <!-- Feedback Section -->
-        <section id="feedback" class="page-section">
-            <div class="container">
-                <h2 data-translate-key="feedback_title">Partilha o Teu Feedback</h2>
-                <form id="feedback-form" action="mailto:srshare2inspire@gmail.com" method="post" enctype="text/plain">
-                    <div class="form-group rating-group">
-                        <label data-translate-key="feedback_rating_label">Avaliação:</label>
-                        <div>
-                            <span class="star" data-value="1"><i class="fas fa-star"></i></span>
-                            <span class="star" data-value="2"><i class="fas fa-star"></i></span>
-                            <span class="star" data-value="3"><i class="fas fa-star"></i></span>
-                            <span class="star" data-value="4"><i class="fas fa-star"></i></span>
-                            <span class="star" data-value="5"><i class="fas fa-star"></i></span>
-                        </div>
-                        <input type="hidden" name="rating" id="rating-value" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="name" data-translate-key="feedback_name_label">Nome:</label>
-                        <input type="text" id="name" name="name" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" data-translate-key="feedback_email_label">Email:</label>
-                        <input type="email" id="email" name="email" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-translate-key="feedback_message_label">Mensagem:</label>
-                        <textarea id="message" name="message" rows="4" required=""></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn" data-translate-key="feedback_submit_btn">Submeter Feedback</button>
-                </form>
-                <div id="feedback-response"></div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="page-section">
-            <div class="container contact-info">
-                <h2 data-translate-key="contact_title">Contacto</h2>
-                <p data-translate-key="contact_text">Tens alguma questão ou gostarias de saber mais sobre os nossos serviços? Entra em contacto connosco. Estamos aqui para ajudar!</p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
-                <p><i class="fas fa-phone"></i> <a href="tel:+351961925050">+351 961 925 050</a></p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <!-- Adicionar mais links sociais conforme necessário -->
+                <div class="loja-item-card" id="survey-card">
+                    <h3>Survey/Questionário dos Arquétipos de Liderança</h3>
+                    <p>[Breve descrição do survey/questionário aqui]</p>
+                    <!-- O formulário/widget do survey será integrado aqui ou linkado -->
+                    <a href="#" class="btn-loja">Aceder ao Questionário</a>
                 </div>
             </div>
         </section>
-    </div> <!-- Fim de #page-container -->
+
+        <!-- Secção Contactos -->
+        <section id="contactos" class="content-section">
+            <h2>Contactos</h2>
+            <p>Entre em contacto para explorarmos como podemos colaborar.</p>
+            <div class="contactos-details">
+                <p>Email: <a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/company/share2inspirept/" target="_blank">Share2Inspire no LinkedIn</a></p>
+                <p>Instagram: <a href="https://www.instagram.com/share2inspire_?igsh=Y28ybnNpY251MW9p&utm_source=qr" target="_blank">@share2inspire_</a></p>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="images/logo_white.png" alt="Share2Inspire Logo Branco">
-                </div>
-                <div class="footer-links">
-                    <h4 data-translate-key="footer_useful_links">Links Úteis</h4>
-                    <a href="#hero" data-translate-key="nav_home">Início</a>
-                    <a href="#about" data-translate-key="nav_about">Sobre</a>
-                    <a href="#services" data-translate-key="nav_services">Serviços</a>
-                    <a href="#loja" data-translate-key="nav_store">Loja</a>
-                    <a href="#author" data-translate-key="nav_author">Autor</a>
-                    <a href="#recomendacoes" data-translate-key="nav_recommendations">Recomendações</a>
-                    <a href="#hr-innovation-hub" data-translate-key="nav_hr_hub">HR Hub</a>
-                    <a href="#contact" data-translate-key="nav_contact">Contacto</a>
-                    <a href="Calendario/index.html" id="footer-agenda-link" data-translate-key="nav_agenda">Agendar</a>
-                    <a href="politica_privacidade.html" data-translate-key="footer_privacy_policy">Política de Privacidade</a>
-                    <a href="tabela_precos_cv/tabela_precos_final.html" data-translate-key="footer_price_table">Tabela de Preços - Revisão CV</a>
-                </div>
-                <div class="footer-contact">
-                    <h4 data-translate-key="footer_contact_us">Contacta-nos</h4>
-                    <p><a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
-                    <p><a href="tel:+351961925050">+351 961 925 050</a></p>
-                    <div class="social-links-footer">
-                        <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p data-translate-key="footer_copyright">© 2025 Share2Inspire. Todos os direitos reservados.</p>
-            </div>
-        </div>
+        <p>&copy; 2025 Share2Inspire - Samuel Rolo. Todos os direitos reservados.</p>
+        <!-- Widget de Feedback Discreto (se não for o survey da loja) -->
+        <!-- Se o survey da loja for o feedback, esta secção pode ser removida ou adaptada --> 
     </footer>
 
-    <script src="js/translate.js" defer=""></script>
-    <script src="js/feedback.js" defer=""></script>
-    <script src="js/image-error-handler.js" defer=""></script>
-
-    <script>
-        document.querySelectorAll('nav a[href^="#"], footer a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== "#" && href.length > 1) {
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                        document.querySelectorAll('nav a').forEach(link => link.classList.remove('active-link'));
-                        if(this.closest('nav')){
-                            this.classList.add('active-link');
-                        }
-                    }
-                }
-            });
-        });
-
-        const footerAgendaLink = document.getElementById('footer-agenda-link');
-        const showSurveyBtnMain = document.getElementById('show-survey-btn');
-        if (footerAgendaLink && showSurveyBtnMain) {
-            footerAgendaLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                showSurveyBtnMain.click(); 
-            });
-        }
-
-        // Script para funcionalidade das estrelas
-        const stars = document.querySelectorAll('#feedback-form .star');
-        const ratingValueInput = document.getElementById('rating-value');
-
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                const value = parseInt(star.dataset.value);
-                ratingValueInput.value = value;
-                stars.forEach(s => {
-                    if (parseInt(s.dataset.value) <= value) {
-                        s.style.color = 'gold'; // Cor dourada para estrelas selecionadas
-                    } else {
-                        s.style.color = '#ddd'; // Cor original para estrelas não selecionadas
-                    }
-                });
-            });
-        });
-    </script>
-
-
-
-
-</body></html>
+    <script src="js/main.js"></script>
+    <!-- Se o survey/questionário for um widget JS separado, adicionar o script aqui -->
+</body>
+</html>

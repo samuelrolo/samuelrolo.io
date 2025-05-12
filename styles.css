@@ -1,370 +1,236 @@
-/* Extracted and modified from Newsletter/index.html */
-:root {
-    /* Inherit from main site or define locally */
-    --primary-color: #B8860B; /* DarkGoldenrod */
-    --secondary-color: #333333; /* Dark Gray/Near Black */
-    --accent-color: #D4AF37; /* Gold (alternative accent) */
-    --white: #ffffff;
-    --light-bg: #f8f8f8; /* Lighter Gray */
-    --dark-bg: #222222; /* Darker Gray/Near Black */
-    --text-color: #333333;
-    --light-gray-text: #7f8c8d;
-    --hover-gold: #A0740A; /* Darker gold for hover */
-}
-
+/* Geral */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
+    font-family: 'Arial', sans-serif; /* Tipo de letra base, pode ser alterado */
     margin: 0;
     padding: 0;
-    background-color: var(--light-bg); /* Use light-bg */
+    line-height: 1.6;
+    color: #333; /* Cor de texto principal */
+    background-color: #f4f4f4; /* Cor de fundo suave */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
 }
 
-/* Container for main page content sections */
-#page-container {
-    flex-grow: 1; /* Allows container to grow if body is flex */
-    position: relative; /* Needed for absolute positioned children */
-    width: 100%;
-    /* Added min-height to ensure space for absolute positioned sections */
-    /* Adjust 301px based on the actual combined height of sticky header + nav */
-    min-height: calc(100vh - 301px);
-}
-
+/* Cabeçalho e Navegação */
 header {
-    background-color: var(--white);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    background: #fff; /* Fundo branco para o cabeçalho */
+    color: #333;
+    padding-top: 20px;
+    min-height: 70px;
+    border-bottom: 3px solid #B08D57; /* Dourado - Exemplo, ajustar HEX */
 }
 
-.logo {
-    max-width: 180px;
-    height: auto;
+header a {
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
 }
 
-.hero {
-    background-color: var(--primary-color); /* Changed from blue */
-    color: var(--white);
-    padding: 60px 0;
+header ul {
+    padding: 0;
+    list-style: none;
+    text-align: center; /* Centralizar itens da navegação */
+}
+
+header li {
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header .logo {
     text-align: center;
-    margin-bottom: 40px;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto 30px;
-}
-
-.stats {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin: 40px 0;
-}
-
-.stat-card {
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    padding: 25px;
-    text-align: center;
-    flex: 1;
-    min-width: 200px;
-    max-width: 250px;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--primary-color); /* Changed from blue */
     margin-bottom: 10px;
 }
 
-.stat-label {
-    font-size: 1rem;
-    color: var(--light-gray-text);
+header #nav-logo {
+    height: 50px; /* Ajustar tamanho do logo */
+    margin-bottom: 5px;
 }
 
-.featured-post {
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-    margin-bottom: 50px;
-}
-
-.featured-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-.featured-content {
-    padding: 30px;
-}
-
-.featured-title {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: var(--secondary-color); /* Changed from dark blue-gray */
-}
-
-.featured-date {
-    color: var(--light-gray-text);
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-}
-
-.featured-excerpt {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    line-height: 1.7;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: var(--primary-color); /* Changed from blue */
-    color: var(--white);
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
+header .logo span {
+    display: block;
+    font-size: 1.5em;
     font-weight: bold;
-    transition: background-color 0.3s;
+    color: #B08D57; /* Dourado */
 }
 
-.cta-button:hover {
-    background-color: var(--hover-gold); /* Changed from darker blue */
+/* Secção Hero */
+.hero-section {
+    background: #B08D57; /* Dourado como fundo */
+    color: #fff; /* Texto branco no fundo dourado */
+    padding: 60px 0;
+    text-align: center;
 }
 
-.previous-posts {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
+.hero-section h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+}
+
+/* Secções de Conteúdo Geral */
+.content-section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+    margin-bottom: 20px; /* Espaço entre secções */
+}
+
+.content-section h2 {
+    color: #B08D57; /* Títulos de secção em dourado */
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+/* Secção Sobre o Fundador */
+#sobre-fundador .fundador-content,
+#sobre-fundador .recomendacoes {
+    text-align: left;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #B08D57;
+}
+
+#sobre-fundador .recomendacoes h3 {
+    color: #333;
     margin-top: 30px;
 }
 
-.post-card {
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+/* Secção Serviços */
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    text-align: left;
 }
 
-.post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-.post-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.post-content {
+.servico-card {
+    background: #fff;
     padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.post-title {
-    font-size: 1.3rem;
+.servico-card .servico-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #fff; /* Fundo branco para o ícone */
+    border: 2px solid #B08D57; /* Borda dourada */
+    border-radius: 50%; /* Ícone circular */
+    margin: 0 auto 15px auto; /* Centralizar ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Placeholder para o ícone dourado - usar SVG ou Font Icon */
+    font-size: 2em; 
+    color: #B08D57;
+}
+
+.servico-card h3 {
+    color: #B08D57;
     margin-bottom: 10px;
-    color: var(--secondary-color); /* Changed from dark blue-gray */
 }
 
-.post-date {
-    color: var(--light-gray-text);
-    margin-bottom: 15px;
-    font-size: 0.9rem;
+/* Secção Loja */
+.loja-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    text-align: left;
 }
 
-.post-excerpt {
-    margin-bottom: 15px;
-    line-height: 1.6;
+.loja-item-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.post-link {
-    color: var(--primary-color); /* Changed from blue */
+.loja-item-card h3 {
+    color: #B08D57;
+    margin-bottom: 10px;
+}
+
+.btn-loja {
+    display: inline-block;
+    background: #B08D57;
+    color: #fff;
+    padding: 10px 15px;
     text-decoration: none;
-    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.post-link:hover {
+.btn-loja:hover {
+    background: #8c6f40; /* Dourado mais escuro no hover */
+}
+
+/* Secção Contactos */
+#contactos .contactos-details p {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+#contactos .contactos-details a {
+    color: #B08D57;
+    text-decoration: none;
+}
+
+#contactos .contactos-details a:hover {
     text-decoration: underline;
 }
 
-.subscribe-section {
-    background-color: var(--secondary-color); /* Changed from dark blue-gray */
-    color: var(--white);
-    padding: 60px 0;
-    text-align: center;
-    margin: 50px 0;
-}
-
-.subscribe-form {
-    max-width: 500px;
-    margin: 30px auto 0;
-    display: flex; /* Use flexbox for alignment */
-}
-
-.form-input {
-    flex-grow: 1; /* Allow input to grow */
-    padding: 12px 15px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    font-size: 1rem;
-}
-
-.subscribe-button {
-    background-color: var(--primary-color); /* Changed from blue */
-    color: var(--white);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.subscribe-button:hover {
-    background-color: var(--hover-gold);
-}
-
+/* Rodapé */
 footer {
-    background-color: var(--dark-bg); /* Changed from darker blue-gray */
-    color: var(--white);
-    padding: 30px 0;
+    background: #333;
+    color: #fff;
     text-align: center;
+    padding: 20px;
+    margin-top: 20px;
 }
 
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
+/* Responsividade */
+@media(max-width: 768px) {
+    header ul {
+        text-align: center;
     }
-    
-    .hero p {
-        font-size: 1rem;
+    header li {
+        display: block;
+        padding: 10px 0;
     }
-    
-    .stats {
-        flex-direction: column;
-        align-items: center;
+    .hero-section h1 {
+        font-size: 2.5em;
     }
-    
-    .stat-card {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .featured-title {
-        font-size: 1.5rem;
-    }
-    
-    .featured-excerpt {
-        font-size: 1rem;
-    }
-    
-    .previous-posts {
-        grid-template-columns: 1fr;
-    }
-    
-    .subscribe-form {
-        flex-direction: column; /* Stack on mobile */
-        gap: 10px;
-    }
-
-    .form-input {
-        width: 100%; /* Full width on mobile */
-        border-radius: 5px; /* Adjust radius */
-        box-sizing: border-box; /* Include padding in width */
-    }
-    
-    .subscribe-button {
-        width: 100%; /* Full width on mobile */
-        border-radius: 5px; /* Adjust radius */
+    .servicos-grid,
+    .loja-grid {
+        grid-template-columns: 1fr; /* Uma coluna em ecrãs menores */
     }
 }
 
-
-
-/* Regras para as secções de conteúdo principal (Adicionadas) */
-.page-section {
-  padding: 4rem 0px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%; /* Mantido, mas pode precisar de ajuste se causar problemas */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.6s ease 0s, visibility 0.6s ease 0s;
-  overflow-y: auto;
-  background-color: var(--white);
+/* Estilos para o widget de feedback discreto (a ser definido) */
+.feedback-widget {
+    /* Estilos para o widget discreto no final da página */
+    /* Exemplo: 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #B08D57;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    */
 }
 
-.page-section.active {
-  opacity: 1;
-  visibility: visible;
-  z-index: 1;
-  height: auto; /* CORREÇÃO: Permite que a altura se ajuste ao conteúdo */
-  min-height: 300px; /* Adicionado: Garante uma altura mínima para secções com pouco conteúdo */
-}
-
-/* Media queries para ajustar padding em ecrãs menores (Adicionadas) */
-@media (max-width: 992px) {
-  .page-section {
-    padding: 3rem 0px;
-  }
-}
-
-@media (max-width: 768px) {
-  .page-section {
-    padding: 1.5rem 0px;
-  }
-}
-
-
-
-
-/* Regra para ícones Font Awesome dourados */
-.service-icon,
-.fab.fa-linkedin-in,
-.fas.fa-envelope,
-.fas.fa-phone,
-.fas.fa-star {
-    color: #B8860B; /* Cor dourada principal */
-}
-
-/* Ajuste para estrelas de feedback não selecionadas, se necessário, para manter a cor cinza */
-#feedback-form .rating-group .star i.fas.fa-star {
-    /* A cor será controlada pelo JavaScript, mas podemos definir um padrão aqui se não for selecionada */
-    color: #ddd; /* Cor para estrela não selecionada */
-}
-
-#feedback-form .rating-group .star[style*="color: gold"] i.fas.fa-star,
-#feedback-form .rating-group .star.selected i.fas.fa-star {
-    color: gold !important; /* Assegurar que o JS ou classes de seleção têm precedência para estrelas ativas */
-}
