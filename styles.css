@@ -48,7 +48,7 @@ header .logo {
 }
 
 header #nav-logo {
-    height: 50px; /* Ajustar tamanho do logo */
+    height: 80px; /* Ajustar tamanho do logo - aumentado */
     margin-bottom: 5px;
 }
 
