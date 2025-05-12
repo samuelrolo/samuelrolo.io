@@ -1,11 +1,11 @@
 /* Geral */
 body {
-    font-family: 'Arial', sans-serif; /* Tipo de letra base, pode ser alterado */
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    color: #333; /* Cor de texto principal */
-    background-color: #f4f4f4; /* Cor de fundo suave */
+    color: #333;
+    background-color: #f4f4f4;
 }
 
 .container {
@@ -17,11 +17,14 @@ body {
 
 /* Cabeçalho e Navegação */
 header {
-    background: #fff; /* Fundo branco para o cabeçalho */
+    background: #fff;
     color: #333;
     padding-top: 20px;
     min-height: 70px;
-    border-bottom: 3px solid #B08D57; /* Dourado - Exemplo, ajustar HEX */
+    border-bottom: 3px solid #B08D57;
+    position: sticky; /* Torna o cabeçalho fixo */
+    top: 0;
+    z-index: 1000; /* Garante que o cabeçalho fica por cima de outros elementos */
 }
 
 header a {
@@ -34,7 +37,7 @@ header a {
 header ul {
     padding: 0;
     list-style: none;
-    text-align: center; /* Centralizar itens da navegação */
+    text-align: center;
 }
 
 header li {
@@ -48,7 +51,7 @@ header .logo {
 }
 
 header #nav-logo {
-    height: 80px; /* Ajustar tamanho do logo - aumentado */
+    height: 60px; /* Tamanho do logo ajustado */
     margin-bottom: 5px;
 }
 
@@ -56,19 +59,20 @@ header .logo span {
     display: block;
     font-size: 1.5em;
     font-weight: bold;
-    color: #B08D57; /* Dourado */
+    color: #B08D57;
 }
 
 /* Secção Hero */
 .hero-section {
-    background: #B08D57; /* Dourado como fundo */
-    color: #fff; /* Texto branco no fundo dourado */
-    padding: 60px 0;
+    background: #B08D57;
+    color: #fff;
+    padding: 80px 0 60px 0; /* Aumentar padding superior para compensar header fixo */
     text-align: center;
+    margin-top: 70px; /* Adiciona margem para não ficar por baixo do header fixo */
 }
 
 .hero-section h1 {
-    font-size: 3em;
+    font-size: 2.8em; /* Ajuste ligeiro */
     margin-bottom: 10px;
 }
 
@@ -81,21 +85,44 @@ header .logo span {
     padding: 40px 20px;
     text-align: center;
     background-color: #fff;
-    margin-bottom: 20px; /* Espaço entre secções */
+    margin-bottom: 20px;
 }
 
 .content-section h2 {
-    color: #B08D57; /* Títulos de secção em dourado */
+    color: #B08D57;
     margin-bottom: 30px;
-    font-size: 2.5em;
+    font-size: 2.2em; /* Ajuste ligeiro */
 }
 
 /* Secção Sobre o Fundador */
-#sobre-fundador .fundador-content,
-#sobre-fundador .recomendacoes {
+#sobre-fundador .fundador-content {
+    display: flex; /* Para alinhar imagem e texto lado a lado */
+    align-items: flex-start; /* Alinha itens ao topo */
     text-align: left;
     max-width: 800px;
     margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #B08D57;
+    gap: 20px; /* Espaço entre imagem e texto */
+}
+
+#sobre-fundador .fundador-content img {
+    width: 150px; /* Tamanho da foto do fundador */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* Garante que a imagem cobre o espaço sem distorcer */
+    margin-bottom: 0; /* Remove margem inferior se não for necessária */
+}
+
+#sobre-fundador .fundador-content div p {
+    margin-top: 0; /* Remove margem superior do primeiro parágrafo */
+}
+
+#sobre-fundador .recomendacoes {
+    text-align: left;
+    max-width: 800px;
+    margin: 40px auto 20px auto; /* Aumentar margem superior */
     padding: 20px;
     background-color: #f9f9f9;
     border-left: 5px solid #B08D57;
@@ -103,58 +130,130 @@ header .logo span {
 
 #sobre-fundador .recomendacoes h3 {
     color: #333;
-    margin-top: 30px;
+    margin-top: 0; /* Remover margem se já houver espaçamento da secção */
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.recomendacao-card {
+    display: flex;
+    align-items: center; /* Alinha verticalmente foto e texto */
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    gap: 20px; /* Espaço entre foto e conteúdo do testemunho */
+}
+
+.recomendacao-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.recomendacao-foto {
+    width: 120px; /* Tamanho ajustado para as fotos das recomendações */
+    height: 120px;
+    border-radius: 50%; /* Fotos circulares */
+    object-fit: cover; /* Garante que a imagem preenche o círculo sem distorcer */
+    border: 3px solid #B08D57; /* Borda dourada discreta */
+    flex-shrink: 0; /* Evita que a imagem encolha */
+}
+
+.recomendacao-conteudo {
+    flex-grow: 1; /* Permite que o texto ocupe o espaço restante */
+}
+
+.recomendacao-texto {
+    font-style: italic;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.recomendacao-autor {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.recomendacao-cargo {
+    font-size: 0.9em;
+    color: #777;
 }
 
 /* Secção Serviços */
 .servicos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajuste para cards um pouco menores */
+    gap: 25px;
     text-align: left;
 }
 
 .servico-card {
     background: #fff;
-    padding: 20px;
+    padding: 25px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servico-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .servico-card .servico-icon {
-    width: 60px;
-    height: 60px;
-    background-color: #fff; /* Fundo branco para o ícone */
-    border: 2px solid #B08D57; /* Borda dourada */
-    border-radius: 50%; /* Ícone circular */
-    margin: 0 auto 15px auto; /* Centralizar ícone */
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Placeholder para o ícone dourado - usar SVG ou Font Icon */
-    font-size: 2em; 
+    font-size: 1.8em; 
     color: #B08D57;
 }
 
 .servico-card h3 {
     color: #B08D57;
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.servico-card p {
+    text-align: center;
+    font-size: 0.95em;
 }
 
 /* Secção Loja */
 .loja-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     text-align: left;
 }
 
 .loja-item-card {
     background: #f9f9f9;
-    padding: 20px;
+    padding: 25px;
     border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.loja-item-card .ebook-cover {
+    width: 100%;
+    max-width: 200px; /* Limita o tamanho da capa do e-book */
+    height: auto;
     border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .loja-item-card h3 {
@@ -166,15 +265,107 @@ header .logo span {
     display: inline-block;
     background: #B08D57;
     color: #fff;
-    padding: 10px 15px;
+    padding: 12px 20px;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 15px;
     transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .btn-loja:hover {
-    background: #8c6f40; /* Dourado mais escuro no hover */
+    background: #8c6f40;
+}
+
+/* Secção Feedback Widget */
+#feedback-widget-section {
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+#feedback-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#feedback-form .rating-stars {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#feedback-form .rating-stars span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#feedback-form .rating-stars input[type="radio"] {
+    display: none; /* Esconde os radios originais */
+}
+
+#feedback-form .rating-stars label {
+    font-size: 2em;
+    color: #ddd; /* Cor das estrelas vazias */
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* Estilo para estrelas selecionadas e hover */
+#feedback-form .rating-stars input[type="radio"]:checked ~ label, /* Estrelas selecionadas e as seguintes */
+#feedback-form .rating-stars label:hover, /* Estrela sob hover */
+#feedback-form .rating-stars label:hover ~ label /* Estrelas seguintes à que está sob hover */
+{
+    color: #B08D57; /* Dourado */
+}
+
+/* Inverte a ordem para o efeito de preenchimento da esquerda para a direita */
+#feedback-form .rating-stars {
+    direction: rtl;
+}
+#feedback-form .rating-stars label {
+    display: inline-block; /* Para que o direction rtl funcione bem */
+}
+
+#feedback-form div label[for="feedback-text"] {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+#feedback-form textarea {
+    width: calc(100% - 20px); /* Ajusta para padding interno */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+
+.btn-form {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-form:hover {
+    background: #555;
+}
+
+#feedback-message {
+    margin-top: 15px;
+    font-weight: bold;
 }
 
 /* Secção Contactos */
@@ -197,8 +388,20 @@ footer {
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 25px 20px;
     margin-top: 20px;
+}
+
+footer .legal-links a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9em;
+}
+
+footer .legal-links a:hover {
+    color: #fff;
+    text-decoration: underline;
 }
 
 /* Responsividade */
@@ -211,26 +414,29 @@ footer {
         padding: 10px 0;
     }
     .hero-section h1 {
-        font-size: 2.5em;
+        font-size: 2.2em;
+    }
+    .content-section h2 {
+        font-size: 1.8em;
+    }
+    #sobre-fundador .fundador-content {
+        flex-direction: column; /* Empilha imagem e texto em ecrãs menores */
+        align-items: center; /* Centraliza itens empilhados */
+    }
+    #sobre-fundador .fundador-content img {
+        margin-bottom: 15px;
+    }
+    .recomendacao-card {
+        flex-direction: column; /* Empilha foto e texto */
+        align-items: center; /* Centraliza itens */
+        text-align: center; /* Centraliza texto */
+    }
+    .recomendacao-foto {
+        margin-bottom: 15px;
     }
     .servicos-grid,
     .loja-grid {
-        grid-template-columns: 1fr; /* Uma coluna em ecrãs menores */
+        grid-template-columns: 1fr;
     }
-}
-
-/* Estilos para o widget de feedback discreto (a ser definido) */
-.feedback-widget {
-    /* Estilos para o widget discreto no final da página */
-    /* Exemplo: 
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #B08D57;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    */
 }
 
