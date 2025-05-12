@@ -248,9 +248,12 @@ header .logo span {
 }
 
 .loja-item-card .ebook-cover {
-    width: 100%;
-    max-width: 200px; /* Limita o tamanho da capa do e-book */
-    height: auto;
+    max-width: 220px; /* Ajustado para melhor controlo do tamanho */
+    width: auto;    /* Permite que o browser determine a largura com base na altura e proporção, até ao max-width */
+    height: auto;   /* Mantém a proporção */
+    display: block; /* Para permitir a centralização com margem automática */
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 5px;
     margin-bottom: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
