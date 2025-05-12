@@ -346,3 +346,25 @@ footer {
   }
 }
 
+
+
+
+/* Regra para ícones Font Awesome dourados */
+.service-icon,
+.fab.fa-linkedin-in,
+.fas.fa-envelope,
+.fas.fa-phone,
+.fas.fa-star {
+    color: #B8860B; /* Cor dourada principal */
+}
+
+/* Ajuste para estrelas de feedback não selecionadas, se necessário, para manter a cor cinza */
+#feedback-form .rating-group .star i.fas.fa-star {
+    /* A cor será controlada pelo JavaScript, mas podemos definir um padrão aqui se não for selecionada */
+    color: #ddd; /* Cor para estrela não selecionada */
+}
+
+#feedback-form .rating-group .star[style*="color: gold"] i.fas.fa-star,
+#feedback-form .rating-group .star.selected i.fas.fa-star {
+    color: gold !important; /* Assegurar que o JS ou classes de seleção têm precedência para estrelas ativas */
+}
