@@ -5,7 +5,9 @@ body {
     padding: 0;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Cor de fundo geral suave */
+    padding-top: 430px; /* Espaço para o header fixo. Ajustar conforme altura final do header */
+    padding-left: 250px; /* Espaço para o menu lateral fixo */
 }
 
 .container {
@@ -15,66 +17,112 @@ body {
     padding: 0 20px;
 }
 
-/* Cabeçalho e Navegação */
+/* Cabeçalho Fixo Superior */
 header {
-    background: #fff;
+    background: #fff; /* Fundo branco para o header */
     color: #333;
-    padding-top: 15px;
-    min-height: 430px; /* Ajustado para o logo de 360px + margens e menu */
-    border-bottom: 3px solid #B08D57;
-    position: sticky;
+    min-height: 430px; /* Altura para acomodar o logo grande */
+    border-bottom: 3px solid #B08D57; /* Linha dourada */
+    position: fixed; /* Mudar para fixed para o header principal */
     top: 0;
+    left: 0; /* Alinhar à esquerda */
+    right: 0; /* Estender por toda a largura */
     z-index: 1000;
-    text-align: center; /* Centralizar conteúdo do header */
-}
-
-header a {
-    color: #333;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-}
-
-header ul {
-    padding: 0;
-    list-style: none;
-    margin-top: 15px; /* Espaço entre logo/nome e menu */
-}
-
-header li {
-    display: inline;
-    padding: 0 20px 0 20px;
-}
-
-header .logo-container {
-    display: inline-block; /* Para permitir centralização se necessário */
-    margin-bottom: 10px;
+    text-align: center;
+    display: flex; /* Para centralizar o logo verticalmente se necessário */
+    flex-direction: column;
+    justify-content: center; /* Centralizar conteúdo do header */
+    align-items: center;
 }
 
 header #nav-logo {
-    height: 360px; /* Aumentado para 360px conforme solicitado */
-    margin-bottom: 10px; /* Ajuste de espaço para o menu abaixo */
-    vertical-align: middle;
+    height: 360px;
+    margin-bottom: 10px;
 }
 
-header .logo-container span {
+/* Remover a antiga navegação do header superior */
+header nav ul {
+    display: none; 
+}
+
+/* Menu Lateral Fixo */
+.sidebar-menu {
+    width: 250px; /* Largura do menu lateral */
+    position: fixed;
+    top: 430px; /* Abaixo do header fixo. Ajustar conforme altura final do header */
+    left: 0;
+    bottom: 0;
+    background-color: #000000; /* Fundo preto para o menu lateral */
+    padding-top: 20px;
+    z-index: 999; /* Abaixo do header, mas acima do conteúdo */
+    overflow-y: auto; /* Scroll se o conteúdo do menu for grande */
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li a {
     display: block;
-    font-size: 1.3em; /* Aumentado para melhor visibilidade */
-    font-weight: bold;
-    color: #B08D57;
-    margin-top: -5px; /* Aproximar do logo S */
+    padding: 15px 20px;
+    color: #FFFFFF; /* Texto branco */
+    text-decoration: none;
+    font-size: 1.1em;
+    border-bottom: 1px solid #333; /* Separador subtil */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Secção Hero */
+.sidebar-menu li a:hover {
+    background-color: #B08D57; /* Dourado no hover */
+    color: #000000; /* Texto preto no hover para contraste com dourado */
+}
+
+.sidebar-menu li a.active {
+    background-color: #B08D57; /* Dourado para item ativo */
+    color: #FFFFFF; /* Texto branco para item ativo */
+    font-weight: bold;
+}
+
+/* Conteúdo Principal com Menu Lateral */
+.content-with-sidebar {
+    /* padding-left: 250px; /* Espaço para o menu lateral - já está no body */
+    padding-top: 20px; /* Espaço acima do conteúdo da página */
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-left: 0; /* O padding-left no body já faz o trabalho */
+}
+
+.page-section {
+    background-color: #fff;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.page-section h2 { /* General Page Titles */
+    font-size: 2.8em; /* Consistent with Services title */
+    color: #000000; /* Black color for strong contrast */
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #B08D57; /* Gold underline */
+    display: inline-block;
+}
+
+
+/* Secção Hero (apenas no index.html) */
 .hero-section {
     background: #B08D57;
     color: #fff;
-    padding: 80px 0 60px 0;
+    padding: 60px 20px; /* Ajustar padding se necessário */
     text-align: center;
-    margin-top: 80px; /* Para compensar header fixo */
+    /* margin-top: já não é necessário com padding-top no body */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Adicionado para centrar verticalmente o conteúdo */
+    justify-content: center;
 }
 
 .hero-section h1 {
@@ -83,14 +131,14 @@ header .logo-container span {
 }
 
 .hero-section p {
-    font-size: 2.4em; /* Duplicado conforme solicitado */
-    text-transform: uppercase; /* Maiúsculas conforme solicitado */
-    font-weight: bold; /* Negrito conforme solicitado */
-    /* text-align: center; já é herdado de .hero-section */
+    font-size: 2.4em;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-/* Secções de Conteúdo Geral */
+/* Secções de Conteúdo Geral (revisão para .page-section) */
 .content-section {
+    /* Esta classe pode ser gradualmente substituída por .page-section ou estilos específicos */
     padding: 40px 20px;
     text-align: center;
     background-color: #fff;
@@ -105,7 +153,9 @@ header .logo-container span {
     font-size: 2.2em;
 }
 
-/* Secção Sobre o Fundador */
+/* Ajustes para #sobre-fundador, #servicos, #loja, #contactos dentro das suas páginas */
+/* (Muitos destes estilos podem ser mantidos, mas o seletor de ID pode não ser mais necessário se for a única secção na página) */
+
 #sobre-fundador .fundador-content {
     display: flex;
     align-items: flex-start;
@@ -131,7 +181,6 @@ header .logo-container span {
     margin-top: 0;
 }
 
-/* Experiência Profissional */
 .experiencia-profissional {
     text-align: left;
     max-width: 900px;
@@ -190,7 +239,6 @@ header .logo-container span {
     color: #444;
 }
 
-/* Recomendações */
 #sobre-fundador .recomendacoes {
     text-align: left;
     max-width: 900px;
@@ -256,14 +304,18 @@ header .logo-container span {
 
 /* Secção Serviços - Ajustes para Destaque */
 #servicos {
-    background-color: #f9f9f9;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    /* background-color: #f9f9f9; /* Pode ser removido se a página tiver fundo branco */
+    padding-top: 0; /* Ajustado pois .page-section já tem padding */
+    padding-bottom: 0; /* Ajustado */
 }
 
-#servicos h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
+#servicos h2 { /* Title for Services page/section */
+    font-size: 2.8em; /* Slightly larger */
+    color: #000000; /* Black color for strong contrast */
+    margin-bottom: 20px; /* Adjust margin */
+    padding-bottom: 15px; /* Space for border */
+    border-bottom: 3px solid #B08D57; /* Gold underline */
+    display: inline-block; /* To make border only as wide as text */
 }
 
 .servicos-grid {
@@ -315,7 +367,7 @@ header .logo-container span {
     line-height: 1.7;
 }
 
-/* Modal para Pedido de Serviço */
+/* Modal para Pedido de Serviço (manter se necessário) */
 .modal {
     display: none;
     position: fixed;
@@ -403,7 +455,7 @@ header .logo-container span {
 }
 
 .loja-item-card .ebook-cover {
-    max-width: 300px; /* Aumentado para melhor visualização */
+    max-width: 300px;
     width: auto;
     height: auto;
     display: block;
@@ -420,20 +472,20 @@ header .logo-container span {
     font-size: 1.3em;
 }
 
-.btn-loja, .hotmart__button-checkout {
+.btn-loja, .hotmart__button-checkout, .btn-gold {
     display: inline-block;
     background: #B08D57;
-    color: #fff !important; /* Hotmart widget might override */
+    color: #fff !important; 
     padding: 12px 20px;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 15px;
     transition: background-color 0.3s ease;
     font-weight: bold;
-    border: none; /* For Hotmart button */
+    border: none; 
 }
 
-.btn-loja:hover, .hotmart__button-checkout:hover {
+.btn-loja:hover, .hotmart__button-checkout:hover, .btn-gold:hover {
     background: #8c6f40;
 }
 
@@ -441,7 +493,42 @@ header .logo-container span {
     vertical-align: middle;
 }
 
-/* Secção Feedback Widget */
+/* Survey Widget Container */
+.survey-widget-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.survey-widget-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    height: 90%;
+    max-height: 700px;
+    position: relative;
+}
+
+.close-survey-widget {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Secção Feedback Widget (manter se necessário) */
 #feedback-widget-section {
     background-color: #f9f9f9;
     border-top: 1px solid #eee;
@@ -527,7 +614,7 @@ header .logo-container span {
 #feedback-message {
     margin-top: 15px;
     font-weight: bold;
-    display: none; /* Initially hidden, shown by JS */
+    display: none; 
 }
 
 /* Secção Contactos */
@@ -543,8 +630,8 @@ header .logo-container span {
 #contactos .contactos-details a {
     color: #B08D57;
     text-decoration: none;
-    font-size: 1.8em; /* Tamanho dos ícones */
-    margin: 0 10px;
+    font-size: 2.5em; /* Aumentar tamanho dos ícones de contacto */
+    margin: 0 15px; /* Aumentar espaçamento entre ícones */
 }
 
 #contactos .contactos-details a:hover {
@@ -553,38 +640,71 @@ header .logo-container span {
 
 /* Rodapé */
 footer {
-    background: #333;
-    color: #fff;
+    background: #000000; /* Fundo preto para o rodapé */
+    color: #FFFFFF; /* Texto branco */
     text-align: center;
     padding: 25px 20px;
-    margin-top: 20px;
+    /* margin-top: 20px; /* Removido, pois o conteúdo principal terá seu próprio espaçamento */
+    /* position: fixed; /* Não fixar o rodapé */
+    /* bottom: 0; */
+    /* width: calc(100% - 250px); /* Ajustar largura se o menu lateral estiver presente */
+    /* margin-left: 250px; */
+    border-top: 3px solid #B08D57; /* Linha dourada no topo do rodapé */
 }
 
-footer .legal-links a {
-    color: #ccc;
+footer a {
+    color: #B08D57; /* Links dourados no rodapé */
     text-decoration: none;
-    margin: 0 10px;
-    font-size: 0.9em;
 }
 
-footer .legal-links a:hover {
-    color: #fff;
+footer a:hover {
     text-decoration: underline;
 }
 
 /* Responsividade */
 @media(max-width: 768px) {
-    header ul {
-        text-align: center;
+    body {
+        padding-left: 0; /* Remover padding para menu lateral em mobile */
+        padding-top: 100px; /* Ajustar para header menor em mobile */
     }
-    header li {
+
+    header {
+        min-height: 100px; /* Header menor em mobile */
+        /* position: static; /* Header pode não ser fixo em mobile para mais espaço */
+    }
+
+    header #nav-logo {
+        height: 80px; /* Logo menor no header em mobile */
+    }
+
+    .sidebar-menu {
+        width: 100%;
+        height: auto;
+        position: static; /* Menu lateral vira barra superior ou menu hamburguer */
+        top: auto;
+        background-color: #000;
+        padding-top: 0;
+        /* display: none; /* Esconder por padrão, mostrar com JS (hamburguer) */
+    }
+
+    .sidebar-menu.open {
         display: block;
-        padding: 10px 0;
     }
+
+    .sidebar-menu li a {
+        text-align: center;
+        border-bottom: 1px solid #333;
+    }
+
+    .content-with-sidebar {
+        padding-left: 15px; /* Ajustar padding em mobile */
+        padding-right: 15px;
+    }
+
     .hero-section h1 {
         font-size: 2.2em;
     }
-    .content-section h2 {
+    .page-section h2, .content-section h2 {
         font-size: 1.8em;
     }
     #sobre-fundador .fundador-content {
@@ -619,20 +739,23 @@ footer .legal-links a:hover {
         width: 90%;
         margin: 20% auto;
     }
+
+    footer {
+        /* width: 100%; */
+        /* margin-left: 0; */
+    }
 }
 
-
-
-/* Tentativa de personalização do botão Hotmart */
+/* Tentativa de personalização do botão Hotmart (manter) */
 .hotmart__button-checkout,
 .hotmart__button-checkout:hover,
 .hotmart__button-checkout:focus {
-    background-color: #B08D57 !important; /* Cor dourada principal do site */
-    color: #ffffff !important; /* Texto branco para contraste */
-    border: 1px solid #B08D57 !important; /* Borda dourada para consistência */
+    background-color: #B08D57 !important; 
+    color: #ffffff !important; 
+    border: 1px solid #B08D57 !important; 
 }
 
-/* Para garantir que o texto dentro do botão também seja branco, se houver spans ou outros elementos */
 .hotmart__button-checkout * {
     color: #ffffff !important;
 }
+
