@@ -403,7 +403,7 @@ header .logo-container span {
 }
 
 .loja-item-card .ebook-cover {
-    max-width: 200px;
+    max-width: 300px; /* Aumentado para melhor visualização */
     width: auto;
     height: auto;
     display: block;
@@ -621,3 +621,18 @@ footer .legal-links a:hover {
     }
 }
 
+
+
+/* Tentativa de personalização do botão Hotmart */
+.hotmart__button-checkout,
+.hotmart__button-checkout:hover,
+.hotmart__button-checkout:focus {
+    background-color: #B08D57 !important; /* Cor dourada principal do site */
+    color: #ffffff !important; /* Texto branco para contraste */
+    border: 1px solid #B08D57 !important; /* Borda dourada para consistência */
+}
+
+/* Para garantir que o texto dentro do botão também seja branco, se houver spans ou outros elementos */
+.hotmart__button-checkout * {
+    color: #ffffff !important;
+}
