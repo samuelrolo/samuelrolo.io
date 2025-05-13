@@ -19,12 +19,13 @@ body {
 header {
     background: #fff;
     color: #333;
-    padding-top: 20px;
-    min-height: 70px;
+    padding-top: 15px;
+    min-height: 430px; /* Ajustado para o logo de 360px + margens e menu */
     border-bottom: 3px solid #B08D57;
-    position: sticky; /* Torna o cabeçalho fixo */
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Garante que o cabeçalho fica por cima de outros elementos */
+    z-index: 1000;
+    text-align: center; /* Centralizar conteúdo do header */
 }
 
 header a {
@@ -37,7 +38,7 @@ header a {
 header ul {
     padding: 0;
     list-style: none;
-    text-align: center;
+    margin-top: 15px; /* Espaço entre logo/nome e menu */
 }
 
 header li {
@@ -45,39 +46,47 @@ header li {
     padding: 0 20px 0 20px;
 }
 
-header .logo {
-    text-align: center;
+header .logo-container {
+    display: inline-block; /* Para permitir centralização se necessário */
     margin-bottom: 10px;
 }
 
 header #nav-logo {
-    height: 60px; /* Tamanho do logo ajustado */
-    margin-bottom: 5px;
+    height: 360px; /* Aumentado para 360px conforme solicitado */
+    margin-bottom: 10px; /* Ajuste de espaço para o menu abaixo */
+    vertical-align: middle;
 }
 
-header .logo span {
+header .logo-container span {
     display: block;
-    font-size: 1.5em;
+    font-size: 1.3em; /* Aumentado para melhor visibilidade */
     font-weight: bold;
     color: #B08D57;
+    margin-top: -5px; /* Aproximar do logo S */
 }
 
 /* Secção Hero */
 .hero-section {
     background: #B08D57;
     color: #fff;
-    padding: 80px 0 60px 0; /* Aumentar padding superior para compensar header fixo */
+    padding: 80px 0 60px 0;
     text-align: center;
-    margin-top: 70px; /* Adiciona margem para não ficar por baixo do header fixo */
+    margin-top: 80px; /* Para compensar header fixo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Adicionado para centrar verticalmente o conteúdo */
 }
 
 .hero-section h1 {
-    font-size: 2.8em; /* Ajuste ligeiro */
+    font-size: 2.8em;
     margin-bottom: 10px;
 }
 
 .hero-section p {
-    font-size: 1.2em;
+    font-size: 2.4em; /* Duplicado conforme solicitado */
+    text-transform: uppercase; /* Maiúsculas conforme solicitado */
+    font-weight: bold; /* Negrito conforme solicitado */
+    /* text-align: center; já é herdado de .hero-section */
 }
 
 /* Secções de Conteúdo Geral */
@@ -86,63 +95,127 @@ header .logo span {
     text-align: center;
     background-color: #fff;
     margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .content-section h2 {
     color: #B08D57;
     margin-bottom: 30px;
-    font-size: 2.2em; /* Ajuste ligeiro */
+    font-size: 2.2em;
 }
 
 /* Secção Sobre o Fundador */
 #sobre-fundador .fundador-content {
-    display: flex; /* Para alinhar imagem e texto lado a lado */
-    align-items: flex-start; /* Alinha itens ao topo */
+    display: flex;
+    align-items: flex-start;
     text-align: left;
-    max-width: 800px;
+    max-width: 900px;
     margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
+    padding: 25px;
+    background-color: #fdfdfd;
     border-left: 5px solid #B08D57;
-    gap: 20px; /* Espaço entre imagem e texto */
+    gap: 25px;
+    border-radius: 5px;
 }
 
 #sobre-fundador .fundador-content img {
-    width: 150px; /* Tamanho da foto do fundador */
+    width: 150px;
     height: 150px;
     border-radius: 50%;
-    object-fit: cover; /* Garante que a imagem cobre o espaço sem distorcer */
-    margin-bottom: 0; /* Remove margem inferior se não for necessária */
+    object-fit: cover;
+    border: 3px solid #B08D57;
 }
 
 #sobre-fundador .fundador-content div p {
-    margin-top: 0; /* Remove margem superior do primeiro parágrafo */
+    margin-top: 0;
 }
 
+/* Experiência Profissional */
+.experiencia-profissional {
+    text-align: left;
+    max-width: 900px;
+    margin: 40px auto 20px auto;
+    padding: 25px;
+    background-color: #fdfdfd;
+    border-left: 5px solid #B08D57;
+    border-radius: 5px;
+}
+
+.experiencia-profissional h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.experiencia-card {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    gap: 20px;
+}
+
+.experiencia-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.experiencia-logo {
+    width: 60px;
+    height: auto;
+    max-height: 60px;
+    object-fit: contain;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.experiencia-detalhes h4 {
+    color: #B08D57;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+
+.experiencia-detalhes p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+.experiencia-detalhes p strong {
+    color: #444;
+}
+
+/* Recomendações */
 #sobre-fundador .recomendacoes {
     text-align: left;
-    max-width: 800px;
-    margin: 40px auto 20px auto; /* Aumentar margem superior */
-    padding: 20px;
-    background-color: #f9f9f9;
+    max-width: 900px;
+    margin: 40px auto 20px auto;
+    padding: 25px;
+    background-color: #fdfdfd;
     border-left: 5px solid #B08D57;
+    border-radius: 5px;
 }
 
 #sobre-fundador .recomendacoes h3 {
     color: #333;
-    margin-top: 0; /* Remover margem se já houver espaçamento da secção */
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 25px;
     text-align: center;
     font-size: 1.8em;
 }
 
 .recomendacao-card {
     display: flex;
-    align-items: center; /* Alinha verticalmente foto e texto */
+    align-items: center;
     margin-bottom: 25px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
-    gap: 20px; /* Espaço entre foto e conteúdo do testemunho */
+    gap: 20px;
 }
 
 .recomendacao-card:last-child {
@@ -152,16 +225,16 @@ header .logo span {
 }
 
 .recomendacao-foto {
-    width: 120px; /* Tamanho ajustado para as fotos das recomendações */
+    width: 120px;
     height: 120px;
-    border-radius: 50%; /* Fotos circulares */
-    object-fit: cover; /* Garante que a imagem preenche o círculo sem distorcer */
-    border: 3px solid #B08D57; /* Borda dourada discreta */
-    flex-shrink: 0; /* Evita que a imagem encolha */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #B08D57;
+    flex-shrink: 0;
 }
 
 .recomendacao-conteudo {
-    flex-grow: 1; /* Permite que o texto ocupe o espaço restante */
+    flex-grow: 1;
 }
 
 .recomendacao-texto {
@@ -181,51 +254,133 @@ header .logo span {
     color: #777;
 }
 
-/* Secção Serviços */
+/* Secção Serviços - Ajustes para Destaque */
+#servicos {
+    background-color: #f9f9f9;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#servicos h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
 .servicos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajuste para cards um pouco menores */
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     text-align: left;
 }
 
 .servico-card {
     background: #fff;
-    padding: 25px;
+    padding: 30px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .servico-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 .servico-card .servico-icon {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background-color: #fff;
     border: 2px solid #B08D57;
     border-radius: 50%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 25px auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8em; 
+    font-size: 2.2em;
     color: #B08D57;
 }
 
 .servico-card h3 {
     color: #B08D57;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     text-align: center;
+    font-size: 1.5em;
 }
 
 .servico-card p {
     text-align: center;
-    font-size: 0.95em;
+    font-size: 1.05em;
+    line-height: 1.7;
+}
+
+/* Modal para Pedido de Serviço */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#service-request-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#service-request-form input[type="text"],
+#service-request-form input[type="email"],
+#service-request-form input[type="tel"],
+#service-request-form select,
+#service-request-form textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#service-request-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#service-request-message {
+    margin-top: 15px;
+    font-weight: bold;
 }
 
 /* Secção Loja */
@@ -237,7 +392,7 @@ header .logo span {
 }
 
 .loja-item-card {
-    background: #f9f9f9;
+    background: #fdfdfd;
     padding: 25px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -248,10 +403,10 @@ header .logo span {
 }
 
 .loja-item-card .ebook-cover {
-    max-width: 220px; /* Ajustado para melhor controlo do tamanho */
-    width: auto;    /* Permite que o browser determine a largura com base na altura e proporção, até ao max-width */
-    height: auto;   /* Mantém a proporção */
-    display: block; /* Para permitir a centralização com margem automática */
+    max-width: 200px;
+    width: auto;
+    height: auto;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
@@ -262,22 +417,28 @@ header .logo span {
 .loja-item-card h3 {
     color: #B08D57;
     margin-bottom: 10px;
+    font-size: 1.3em;
 }
 
-.btn-loja {
+.btn-loja, .hotmart__button-checkout {
     display: inline-block;
     background: #B08D57;
-    color: #fff;
+    color: #fff !important; /* Hotmart widget might override */
     padding: 12px 20px;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 15px;
     transition: background-color 0.3s ease;
     font-weight: bold;
+    border: none; /* For Hotmart button */
 }
 
-.btn-loja:hover {
+.btn-loja:hover, .hotmart__button-checkout:hover {
     background: #8c6f40;
+}
+
+.hotmart__button-checkout img {
+    vertical-align: middle;
 }
 
 /* Secção Feedback Widget */
@@ -307,30 +468,27 @@ header .logo span {
 }
 
 #feedback-form .rating-stars input[type="radio"] {
-    display: none; /* Esconde os radios originais */
+    display: none;
 }
 
 #feedback-form .rating-stars label {
     font-size: 2em;
-    color: #ddd; /* Cor das estrelas vazias */
+    color: #ddd;
     cursor: pointer;
     transition: color 0.2s ease;
 }
 
-/* Estilo para estrelas selecionadas e hover */
-#feedback-form .rating-stars input[type="radio"]:checked ~ label, /* Estrelas selecionadas e as seguintes */
-#feedback-form .rating-stars label:hover, /* Estrela sob hover */
-#feedback-form .rating-stars label:hover ~ label /* Estrelas seguintes à que está sob hover */
-{
-    color: #B08D57; /* Dourado */
+#feedback-form .rating-stars input[type="radio"]:checked ~ label,
+#feedback-form .rating-stars label:hover,
+#feedback-form .rating-stars label:hover ~ label {
+    color: #B08D57;
 }
 
-/* Inverte a ordem para o efeito de preenchimento da esquerda para a direita */
 #feedback-form .rating-stars {
     direction: rtl;
 }
 #feedback-form .rating-stars label {
-    display: inline-block; /* Para que o direction rtl funcione bem */
+    display: inline-block;
 }
 
 #feedback-form div label[for="feedback-text"] {
@@ -341,7 +499,7 @@ header .logo span {
 }
 
 #feedback-form textarea {
-    width: calc(100% - 20px); /* Ajusta para padding interno */
+    width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -369,21 +527,28 @@ header .logo span {
 #feedback-message {
     margin-top: 15px;
     font-weight: bold;
+    display: none; /* Initially hidden, shown by JS */
 }
 
 /* Secção Contactos */
+#contactos .contactos-details {
+    margin-top: 20px;
+}
+
 #contactos .contactos-details p {
     font-size: 1.1em;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 #contactos .contactos-details a {
     color: #B08D57;
     text-decoration: none;
+    font-size: 1.8em; /* Tamanho dos ícones */
+    margin: 0 10px;
 }
 
 #contactos .contactos-details a:hover {
-    text-decoration: underline;
+    color: #8c6f40;
 }
 
 /* Rodapé */
@@ -423,16 +588,25 @@ footer .legal-links a:hover {
         font-size: 1.8em;
     }
     #sobre-fundador .fundador-content {
-        flex-direction: column; /* Empilha imagem e texto em ecrãs menores */
-        align-items: center; /* Centraliza itens empilhados */
+        flex-direction: column;
+        align-items: center;
     }
     #sobre-fundador .fundador-content img {
         margin-bottom: 15px;
     }
+    .experiencia-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .experiencia-logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
     .recomendacao-card {
-        flex-direction: column; /* Empilha foto e texto */
-        align-items: center; /* Centraliza itens */
-        text-align: center; /* Centraliza texto */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
     .recomendacao-foto {
         margin-bottom: 15px;
@@ -440,6 +614,10 @@ footer .legal-links a:hover {
     .servicos-grid,
     .loja-grid {
         grid-template-columns: 1fr;
+    }
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
     }
 }
 
