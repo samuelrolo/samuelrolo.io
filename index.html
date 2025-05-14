@@ -37,7 +37,17 @@
             <h1>PARTILHAR PARA INSPIRAR A MUDANÇA</h1>
             <p class="hero-subtitle">SHARE2INSPIRE | Samuel Rolo</p>
         </section>
-
+ <script src= document.addEventListener("DOMContentLoaded", function() {
+        const menuToggle = document.querySelector(".menu-toggle");
+    const menuItems = document.querySelector(".menu-items");
+    if (menuToggle && menuItems) {
+        menuToggle.addEventListener("click", function() {
+            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
+            menuToggle.setAttribute("aria-expanded", !isExpanded);
+            menuItems.classList.toggle("active");
+        });
+    }
+});
         <section id="intro" class="page-section intro-section">
             <h2>Bem-vindo/a à SHARE2INSPIRE</h2>
             <p>A SHARE2INSPIRE nasceu do propósito de Samuel Rolo em apoiar <strong>Pessoas</strong> e <strong>Organizações</strong> a abraçar a mudança com mais <strong>confiança e humanidade</strong>.</p>
