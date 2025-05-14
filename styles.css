@@ -58,7 +58,7 @@ header {
 }
 
 #header-logo {
-    height: 18.75rem; /* Altura inicial do logo, pode ser ajustada */
+    height: 37.5rem; /* Duplicado de 18.75rem para aumentar o tamanho */
     width: auto;
 }
 
@@ -101,7 +101,7 @@ nav.top-nav ul li a.active {
     background-color: #333; /* Cor de fundo original da barra, ajuste se necessário */
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Alinha o logo (se houver) e o menu/botão */
+    justify-content: center; /* ALTERADO PARA CENTRAR O CONTEÚDO */
     align-items: center;
     position: relative; /* Para posicionamento absoluto do menu dropdown */
 }
