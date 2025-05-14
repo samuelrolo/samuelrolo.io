@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHARE2INSPIRE - Samuel Rolo</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Assumindo que styles.css contém os estilos do menu responsivo -->
     <link rel="icon" href="images/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://static.hotmart.com/css/hotmart-fb.min.css">
@@ -16,20 +16,20 @@
             <img src="images/logo_white.png" alt="SHARE2INSPIRE Logo" id="header-logo">
         </div>
         <nav class="top-nav">
-    <!-- Botão Hambúrguer (apenas visível em ecrãs pequenos) -->
+            <!-- Botão Hambúrguer (apenas visível em ecrãs pequenos) -->
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
                 <span class="hamburger-icon"></span>
             </button>
 
-        <ul class="menu-items">
-            <li><a href="#hero">Início</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#sobre-fundador">Sobre</a></li>
-            <li><a href="#loja">Loja</a></li>
-            <li><a href="#agendar">Agendar</a></li>
-            <li><a href="#contactos">Contactos</a></li>
-        </ul>
-</nav>
+            <ul class="menu-items">
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#sobre-fundador">Sobre</a></li>
+                <li><a href="#loja">Loja</a></li>
+                <li><a href="#agendar">Agendar</a></li>
+                <li><a href="#contactos">Contactos</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -37,17 +37,7 @@
             <h1>PARTILHAR PARA INSPIRAR A MUDANÇA</h1>
             <p class="hero-subtitle">SHARE2INSPIRE | Samuel Rolo</p>
         </section>
- <script src= document.addEventListener("DOMContentLoaded", function() {
-        const menuToggle = document.querySelector(".menu-toggle");
-    const menuItems = document.querySelector(".menu-items");
-    if (menuToggle && menuItems) {
-        menuToggle.addEventListener("click", function() {
-            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
-            menuToggle.setAttribute("aria-expanded", !isExpanded);
-            menuItems.classList.toggle("active");
-        });
-    }
-});
+
         <section id="intro" class="page-section intro-section">
             <h2>Bem-vindo/a à SHARE2INSPIRE</h2>
             <p>A SHARE2INSPIRE nasceu do propósito de Samuel Rolo em apoiar <strong>Pessoas</strong> e <strong>Organizações</strong> a abraçar a mudança com mais <strong>confiança e humanidade</strong>.</p>
@@ -208,6 +198,25 @@
                 <a href="https://www.instagram.com/share2inspire_" target="_blank" title="Visitar Instagram @share2inspire_" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </section>
+
+        <!-- Formulário de Feedback com Estrelas movido para dentro do main e antes do footer -->
+        <section id="feedback-section" class="page-section">
+            <h2>Dá-nos o teu Feedback</h2>
+            <p>A tua opinião é importante para nós! Avalia a tua experiência com o site e serviços oferecidos.</p>
+            <form id="feedback-form">
+                <div class="star-rating" style="text-align: center;"> <!-- Adicionado style para centralizar -->
+                    <i class="far fa-star" data-value="1"></i>
+                    <i class="far fa-star" data-value="2"></i>
+                    <i class="far fa-star" data-value="3"></i>
+                    <i class="far fa-star" data-value="4"></i>
+                    <i class="far fa-star" data-value="5"></i>
+                </div>
+                <input type="hidden" name="rating" id="rating-value" value="0">
+                <textarea name="comment" placeholder="Deixa o teu comentário aqui..."></textarea>
+                <button type="submit" class="btn-gold">Enviar Feedback</button>
+            </form>
+            <div id="feedback-message"></div>
+        </section>
     </main>
 
     <footer>
@@ -261,29 +270,22 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- Script do Menu Responsivo -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menuItems = document.querySelector(".menu-items");
+
+        if (menuToggle && menuItems) {
+            menuToggle.addEventListener("click", function() {
+                const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
+                menuToggle.setAttribute("aria-expanded", !isExpanded);
+                menuItems.classList.toggle("active");
+            });
+        }
+    });
+    </script>
+
+    <script src="js/main.js"></script> <!-- Script principal do utilizador -->
 </body>
 </html>
-
-<!-- Formulário de Feedback com Estrelas -->
-<section id="feedback-section" class="page-section">
-    <h2>Dá-nos o teu Feedback</h2>
-    <p>A tua opinião é importante para nós! Avalia a tua experiência com o site e sertviços oferecidos.</p>
-    <form id="feedback-form">
-        <div class="star-rating">
-                    <div class="star-rating"> <!-- Queremos isto centrado -->
-            <i class="fas fa-star" data-value="1"></i>
-            <i class="fas fa-star" data-value="2"></i>
-            <i class="fas fa-star" data-value="3"></i>
-            <i class="fas fa-star" data-value="4"></i>
-            <i class="fas fa-star" data-value="5"></i>
-        </div>
-        <textarea id="feedback-text" name="feedback-text" rows="4" placeholder="Deixe o seu comentário (opcional)"></textarea>
-        <button type="submit" class="btn-gold">Enviar Feedback</button>
-    </form>
-    <div id="feedback-message" style="display:none; margin-top: 1rem;"></div>
-</section>
-
-    </main>
-
-    <footer>
