@@ -1,348 +1,823 @@
-/* Extracted and modified from Newsletter/index.html */
-:root {
-    /* Inherit from main site or define locally */
-    --primary-color: #B8860B; /* DarkGoldenrod */
-    --secondary-color: #333333; /* Dark Gray/Near Black */
-    --accent-color: #D4AF37; /* Gold (alternative accent) */
-    --white: #ffffff;
-    --light-bg: #f8f8f8; /* Lighter Gray */
-    --dark-bg: #222222; /* Darker Gray/Near Black */
-    --text-color: #333333;
-    --light-gray-text: #7f8c8d;
-    --hover-gold: #A0740A; /* Darker gold for hover */
+"""@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global Typography Settings */
+h1, h2, h3, h4, h5, h6 {
+    /* font-family is inherited from body or set by specific rules like .page-section h... */
+    /* Setting a base weight, can be overridden by more specific rules. */
+    font-weight: 700;
 }
 
+button, input, select, textarea {
+    font-family: 'Poppins', sans-serif; /* Ensure Poppins for all form elements */
+    font-weight: 400; /* Default regular weight for form elements, can be overridden */
+}
+/* End Global Typography Settings */"""
+
+/* Geral */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--light-bg); /* Use light-bg */
+    line-height: 1.6;
+    color: #e0e0e0; /* Texto principal claro para fundos escuros */
+    background-color: #121212; /* Fundo geral escuro (preto suave) */
+    font-weight: 400; /* Peso regular para o corpo do texto */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
 }
 
-/* Container for main page content sections */
-#page-container {
-    flex-grow: 1; /* Allows container to grow if body is flex */
-    position: relative; /* Needed for absolute positioned children */
-    width: 100%;
-    /* Added min-height to ensure space for absolute positioned sections */
-    /* Adjust 301px based on the actual combined height of sticky header + nav */
-    min-height: calc(100vh - 301px);
-}
-
+/* Novo Cabeçalho Fixo Superior */
 header {
-    background-color: var(--white);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 15px 0;
-    position: sticky;
+    background: #fff; /* Fundo branco para o header */
+    color: #333;
+    padding: 10px 0; /* Espaçamento interno do header */
+    border-bottom: 1px solid #ddd; /* Linha separadora subtil */
+    position: fixed;
     top: 0;
-    z-index: 100;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column; /* Logo acima, menu abaixo */
+    align-items: center; /* Centralizar logo e menu */
 }
 
-.logo {
-    max-width: 180px;
-    height: auto;
+.logo-container {
+    padding: 10px 20px;
 }
 
-.hero {
-    background-color: var(--primary-color); /* Changed from blue */
-    color: var(--white);
-    padding: 60px 0;
-    text-align: center;
-    margin-bottom: 40px;
+#header-logo {
+    height: 60px; /* Altura inicial do logo, pode ser ajustada */
+    width: auto;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+/* Nova Barra de Navegação Superior */
+nav.top-nav {
+    background-color: #A8875F; /* Dourado fosco */
+    width: 100%;
+    padding: 5px 0; /* Pequeno padding vertical para a barra de navegação */
 }
 
-.hero p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto 30px;
-}
-
-.stats {
+nav.top-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin: 40px 0;
 }
 
-.stat-card {
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    padding: 25px;
-    text-align: center;
-    flex: 1;
-    min-width: 200px;
-    max-width: 250px;
+nav.top-nav ul li a {
+    color: #000000; /* Texto preto para contraste com dourado fosco */
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    font-weight: 600; /* Peso semi-bold para links de navegação */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--primary-color); /* Changed from blue */
-    margin-bottom: 10px;
+nav.top-nav ul li a:hover {
+    background-color: #000000; /* Fundo preto no hover */
+    color: #A8875F; /* Texto dourado fosco no hover */
 }
 
-.stat-label {
-    font-size: 1rem;
-    color: var(--light-gray-text);
+nav.top-nav ul li a.active {
+    background-color: #000000; /* Fundo preto para item ativo */
+    color: #B08D57; /* Texto dourado mais vivo para item ativo */
+    font-weight: 700; /* Peso bold para item ativo */
 }
 
-.featured-post {
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-    margin-bottom: 50px;
+/* Conteúdo Principal - Ajustar padding-top para o header fixo */
+main {
+    padding-top: 150px; /* Valor inicial, ajustar conforme altura final do header + nav */
 }
 
-.featured-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-.featured-content {
-    padding: 30px;
-}
-
-.featured-title {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: var(--secondary-color); /* Changed from dark blue-gray */
-}
-
-.featured-date {
-    color: var(--light-gray-text);
+.page-section {
+    background-color: #1f1f1f; /* Fundo escuro para secções, ligeiramente mais claro que o body */
+    padding: 40px 20px;
     margin-bottom: 20px;
-    font-size: 0.9rem;
+    border-radius: 8px;
+    text-align: center;
+    color: #e0e0e0; /* Texto claro para secções com fundo escuro */
 }
 
-.featured-excerpt {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    line-height: 1.7;
+.page-section h1, .page-section h2, .page-section h3, .page-section h4 {
+    font-family: 'Poppins', sans-serif; /* Garantir que Poppins é usada para todos os cabeçalhos */
 }
 
-.cta-button {
+.page-section h2 { 
+    font-size: 2.5em;
+    color: #B08D57; /* Títulos em dourado */
+    margin-bottom: 30px; /* Aumentar margem para dar mais respiro */
+    padding-bottom: 15px;
+    border-bottom: 3px solid #A8875F; /* Sublinhado dourado fosco */
     display: inline-block;
-    background-color: var(--primary-color); /* Changed from blue */
-    color: var(--white);
+    font-weight: 700; /* Peso bold para títulos de secção */
+}
+
+/* Secção Hero */
+.hero-section {
+    background: #B08D57; /* Dourado principal */
+    color: #fff;
+    padding: 25px 20px; /* Padding vertical reduzido */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 150px; /* Altura mínima reduzida */
+}
+
+.hero-section h1 {
+    font-size: 2.2em; /* Fonte ligeiramente reduzida */
+    margin-bottom: 8px;
+    font-weight: 700; /* Peso bold */
+}
+
+.hero-section .hero-subtitle {
+    font-size: 1.6em; /* Fonte ligeiramente reduzida */
+    text-transform: uppercase;
+    font-weight: 600; /* Peso semi-bold */
+}
+
+/* Secção Introdutória */
+.intro-section {
+    text-align: center;
+}
+
+.intro-section h2 {
+    font-size: 2.2em;
+    /* color: #333; */ /* Comentado para herdar cor dourada padrão de .page-section h2 */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.intro-section p {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.cta-buttons a.btn {
+    display: inline-block;
     padding: 12px 25px;
+    margin: 10px;
     border-radius: 5px;
     text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    font-weight: 600; /* Peso semi-bold para botões */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.cta-button:hover {
-    background-color: var(--hover-gold); /* Changed from darker blue */
+.cta-buttons a.btn-primary {
+    background-color: #B08D57;
+    color: #fff;
 }
 
-.previous-posts {
+.cta-buttons a.btn-primary:hover {
+    background-color: #8c6f40;
+    transform: translateY(-2px);
+}
+
+.cta-buttons a.btn-secondary {
+    background-color: #333;
+    color: #fff;
+}
+
+.cta-buttons a.btn-secondary:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+
+/* Secção Serviços */
+#servicos .servicos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 30px;
+    text-align: left;
+    margin-top: 20px;
 }
 
-.post-card {
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+#servicos .servico-card {
+    background: #2c2c2c; /* Fundo mais escuro para cartões de serviço */
+    padding: 30px;
+    border: 1px solid #444; /* Borda subtil */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra mais pronunciada em fundo escuro */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e0e0e0; /* Texto claro para cartões */
 }
 
-.post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+#servicos .servico-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
 
-.post-image {
-    width: 100%;
-    height: 200px;
+#servicos .servico-card .servico-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #333; /* Fundo do ícone */
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    color: #B08D57;
+}
+
+#servicos .servico-card h3 {
+    color: #B08D57;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600; /* Peso semi-bold para títulos de cartão */
+}
+
+#servicos .servico-card p {
+    text-align: center;
+    font-size: 1.05em;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* Secção Sobre o Fundador */
+#sobre-fundador .fundador-content {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: #2c2c2c; /* Fundo mais escuro */
+    border-left: 5px solid #B08D57;
+    gap: 25px;
+    border-radius: 5px;
+    color: #e0e0e0;
+}
+
+#sobre-fundador .fundador-foto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     object-fit: cover;
+    border: 3px solid #B08D57;
+    flex-shrink: 0;
 }
 
-.post-content {
-    padding: 20px;
+#sobre-fundador .fundador-texto p {
+    margin-top: 0;
+    font-size: 1.05em;
+    font-weight: 400;
 }
 
-.post-title {
-    font-size: 1.3rem;
+#sobre-fundador .experiencia-profissional {
+    text-align: left;
+    max-width: 900px;
+    margin: 40px auto 20px auto;
+    padding: 25px;
+    background-color: #2c2c2c; /* Fundo mais escuro */
+    border-left: 5px solid #B08D57;
+    border-radius: 5px;
+    color: #e0e0e0;
+}
+
+#sobre-fundador .experiencia-profissional h3 {
+    color: #B08D57; /* Cor dourada para o título */
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+#sobre-fundador .experiencia-card {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444; /* Borda mais escura */
+    gap: 20px;
+}
+
+#sobre-fundador .experiencia-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#sobre-fundador .experiencia-logo {
+    width: 60px;
+    height: auto;
+    max-height: 60px;
+    object-fit: contain;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+#sobre-fundador .experiencia-detalhes h4 {
+    color: #B08D57;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#sobre-fundador .experiencia-detalhes p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    font-weight: 400;
+}
+
+#sobre-fundador .recomendacoes {
+    text-align: left;
+    max-width: 900px;
+    margin: 40px auto 20px auto;
+    padding: 25px;
+    background-color: #2c2c2c; /* Fundo mais escuro */
+    border-left: 5px solid #B08D57;
+    border-radius: 5px;
+    color: #e0e0e0;
+}
+
+#sobre-fundador .recomendacoes h3 {
+    color: #B08D57; /* Cor dourada */
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+#sobre-fundador .recomendacao-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #444; /* Borda mais escura */
+    gap: 20px;
+}
+
+#sobre-fundador .recomendacao-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#sobre-fundador .recomendacao-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #B08D57;
+    flex-shrink: 0;
+}
+
+#sobre-fundador .recomendacao-conteudo {
+    flex-grow: 1;
+}
+
+#sobre-fundador .recomendacao-texto {
+    font-style: italic;
     margin-bottom: 10px;
-    color: var(--secondary-color); /* Changed from dark blue-gray */
+    color: #cccccc; /* Texto da recomendação mais claro */
+    font-weight: 300; /* Peso light para itálico */
 }
 
-.post-date {
-    color: var(--light-gray-text);
+#sobre-fundador .recomendacao-autor {
+    font-weight: 600; /* Semi-bold para autor */
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+#sobre-fundador .recomendacao-cargo {
+    font-size: 0.9em;
+    color: #aaaaaa; /* Cargo mais subtil */
+    font-weight: 400;
+}
+
+/* Dashboard Destaque */
+.dashboard-destaque {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #2a2a2a; /* Fundo um pouco mais claro para o dashboard */
+    border-radius: 8px;
+}
+
+.dashboard-item {
+    background-color: #333333;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    color: #e0e0e0;
+    border-left: 4px solid #B08D57;
+}
+
+.dashboard-item i {
+    font-size: 1.8em;
+    color: #B08D57;
+    margin-bottom: 10px;
+}
+
+.dashboard-item .dashboard-number {
+    font-size: 1.6em;
+    font-weight: 700; /* Bold para números */
+    color: #ffffff;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dashboard-item .dashboard-highlight {
+    font-size: 1.2em;
+    font-weight: 600; /* Semi-bold para destaque */
+    color: #B08D57; /* Destaque dourado para texto especial */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dashboard-item .dashboard-text {
+    font-size: 0.9em;
+    color: #cccccc;
+    font-weight: 400;
+}
+
+
+/* Secção Loja */
+#loja .loja-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+#loja .loja-item-card {
+    background: #2c2c2c; /* Fundo mais escuro */
+    padding: 25px;
+    border: 1px solid #444; /* Borda subtil */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+#loja .ebook-cover {
+    max-width: 250px; /* Ajustar tamanho da capa */
+    height: auto;
+    border-radius: 5px;
     margin-bottom: 15px;
-    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.post-excerpt {
+#loja .loja-item-card h3 {
+    color: #B08D57;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+#loja .loja-item-card p {
+    font-size: 1em;
     margin-bottom: 15px;
-    line-height: 1.6;
+    font-weight: 400;
 }
 
-.post-link {
-    color: var(--primary-color); /* Changed from blue */
+.btn-gold, .hotmart__button-checkout, .btn-form {
+    display: inline-block;
+    background: #B08D57;
+    color: #fff !important; 
+    padding: 12px 20px;
     text-decoration: none;
-    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    font-weight: 600; /* Semi-bold para botões */
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
 }
 
-.post-link:hover {
+.btn-gold:hover, .hotmart__button-checkout:hover, .btn-form:hover {
+    background: #8c6f40;
+}
+
+.hotmart__button-checkout img {
+    vertical-align: middle;
+}
+
+#loja .survey-card .servico-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #B08D57;
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Survey Widget Container */
+.survey-widget-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 3000;
+    display: none; /* Começa oculto */
+    align-items: center;
+    justify-content: center;
+}
+
+.survey-widget-content {
+    background-color: #1f1f1f; /* Fundo escuro para o widget */
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    height: 90%;
+    max-height: 700px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #e0e0e0;
+}
+
+.close-survey-widget {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #B08D57; /* Cor dourada para o botão de fechar */
+    cursor: pointer;
+}
+
+/* Secção Agendar */
+#agendar p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+#agendar .btn-primary {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* Secção Contactos */
+#contactos p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+#contactos .contactos-details a {
+    color: #B08D57;
+    text-decoration: none;
+    font-size: 2.8em; 
+    margin: 0 20px;
+}
+
+#contactos .contactos-details a:hover {
+    color: #8c6f40;
+}
+
+/* Rodapé */
+footer {
+    background: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 3px solid #B08D57;
+    font-weight: 400;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #B08D57;
+    text-decoration: none;
+    font-weight: 500; /* Medium para links no rodapé */
+}
+
+footer a:hover {
     text-decoration: underline;
 }
 
-.subscribe-section {
-    background-color: var(--secondary-color); /* Changed from dark blue-gray */
-    color: var(--white);
-    padding: 60px 0;
+/* Modal de Pedido de Serviço */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+}
+
+.modal-content {
+    background-color: #2c2c2c; /* Fundo escuro para modal */
+    margin: 10% auto; 
+    padding: 30px;
+    border: 1px solid #555; /* Borda mais escura */
+    width: 80%; 
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+    color: #e0e0e0;
+}
+
+.modal-content h3 {
+    color: #B08D57;
     text-align: center;
-    margin: 50px 0;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 600;
 }
 
-.subscribe-form {
-    max-width: 500px;
-    margin: 30px auto 0;
-    display: flex; /* Use flexbox for alignment */
-}
-
-.form-input {
-    flex-grow: 1; /* Allow input to grow */
-    padding: 12px 15px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    font-size: 1rem;
-}
-
-.subscribe-button {
-    background-color: var(--primary-color); /* Changed from blue */
-    color: var(--white);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 1rem;
+.close-button {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    transition: background-color 0.3s;
 }
 
-.subscribe-button:hover {
-    background-color: var(--hover-gold);
+.close-button:hover,
+.close-button:focus {
+    color: #B08D57; /* Dourado no hover */
+    text-decoration: none;
+    cursor: pointer;
 }
 
-footer {
-    background-color: var(--dark-bg); /* Changed from darker blue-gray */
-    color: var(--white);
-    padding: 30px 0;
+#service-request-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500; /* Medium para labels */
+}
+
+#service-request-form input[type="text"],
+#service-request-form input[type="email"],
+#service-request-form input[type="tel"],
+#service-request-form select,
+#service-request-form textarea {
+    width: calc(100% - 22px); /* Ajustar para padding e borda */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+}
+
+#service-request-form textarea {
+    resize: vertical;
+}
+
+#service-request-form button.btn-form {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+}
+
+#service-request-message p {
     text-align: center;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 4px;
 }
 
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+#service-request-message .success {
+    background-color: #3a5a3a; /* Verde escuro para sucesso */
+    color: #d4eed4;
 }
 
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
+#service-request-message .error {
+    background-color: #5a3a3a; /* Vermelho escuro para erro */
+    color: #eed4d4;
+}
+
+#service-request-message .error a {
+    color: #f0b0b0; /* Link mais claro na mensagem de erro */
+    text-decoration: underline;
+}
+
+
+/* Responsividade */
+@media(max-width: 768px) {
+    main {
+        padding-top: 180px; /* Ajustar para header maior em mobile devido ao menu empilhado */
     }
-    
-    .hero p {
-        font-size: 1rem;
+
+    header {
+        padding: 5px 0;
     }
-    
-    .stats {
+
+    #header-logo {
+        height: 50px;
+    }
+
+    nav.top-nav ul {
+        flex-direction: column; /* Menu empilhado em mobile */
+        align-items: center;
+    }
+
+    nav.top-nav ul li a {
+        padding: 8px 15px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(0,0,0,0.1); /* Separador leve no menu mobile */
+    }
+    nav.top-nav ul li:last-child a {
+        border-bottom: none;
+    }
+
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    .hero-section .hero-subtitle {
+        font-size: 1.5em;
+    }
+
+    .page-section h2 {
+        font-size: 2em;
+    }
+
+    #sobre-fundador .fundador-content {
         flex-direction: column;
         align-items: center;
     }
-    
-    .stat-card {
-        width: 100%;
-        max-width: 100%;
+    #sobre-fundador .fundador-foto {
+        margin-bottom: 15px;
     }
-    
-    .featured-title {
-        font-size: 1.5rem;
+    #sobre-fundador .experiencia-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    
-    .featured-excerpt {
-        font-size: 1rem;
+    #sobre-fundador .experiencia-logo {
+        margin-right: 0;
+        margin-bottom: 10px;
     }
-    
-    .previous-posts {
-        grid-template-columns: 1fr;
+    #sobre-fundador .recomendacao-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    
-    .subscribe-form {
-        flex-direction: column; /* Stack on mobile */
-        gap: 10px;
+    #sobre-fundador .recomendacao-foto {
+        margin-bottom: 10px;
     }
 
-    .form-input {
-        width: 100%; /* Full width on mobile */
-        border-radius: 5px; /* Adjust radius */
-        box-sizing: border-box; /* Include padding in width */
+    #servicos .servicos-grid,
+    #loja .loja-grid {
+        grid-template-columns: 1fr; /* Uma coluna em mobile */
     }
-    
-    .subscribe-button {
-        width: 100%; /* Full width on mobile */
-        border-radius: 5px; /* Adjust radius */
+
+    .dashboard-destaque {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajuste para mobile */
+    }
+
+    .dashboard-item i {
+        font-size: 1.5em;
+    }
+
+    .dashboard-item .dashboard-number {
+        font-size: 1.3em;
+    }
+
+    .dashboard-item .dashboard-highlight {
+        font-size: 1em;
+    }
+
+    .dashboard-item .dashboard-text {
+        font-size: 0.8em;
+    }
+
+    .modal-content {
+        margin: 5% auto;
+        width: 90%;
     }
 }
-
-
-
-/* Regras para as secções de conteúdo principal (Adicionadas) */
-.page-section {
-  padding: 4rem 0px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%; /* Mantido, mas pode precisar de ajuste se causar problemas */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.6s ease 0s, visibility 0.6s ease 0s;
-  overflow-y: auto;
-  background-color: var(--white);
-}
-
-.page-section.active {
-  opacity: 1;
-  visibility: visible;
-  z-index: 1;
-  height: auto; /* CORREÇÃO: Permite que a altura se ajuste ao conteúdo */
-  min-height: 300px; /* Adicionado: Garante uma altura mínima para secções com pouco conteúdo */
-}
-
-/* Media queries para ajustar padding em ecrãs menores (Adicionadas) */
-@media (max-width: 992px) {
-  .page-section {
-    padding: 3rem 0px;
-  }
-}
-
-@media (max-width: 768px) {
-  .page-section {
-    padding: 1.5rem 0px;
-  }
-}
-
