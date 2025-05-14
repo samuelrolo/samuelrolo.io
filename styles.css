@@ -1023,6 +1023,46 @@ footer a:hover {
     min-height: 5rem; /* Altura mínima */
 }
 
+/* Secção de Feedback - Ajustes de Alinhamento */
+#feedback-form {
+    display: flex; /* Usar flexbox para o formulário */
+    flex-direction: column; /* Empilhar os itens do formulário verticalmente */
+    align-items: center; /* Centrar os itens (estrelas, textarea, botão) horizontalmente */
+    width: 100%; /* Garantir que o formulário ocupa a largura disponível */
+}
+
+#feedback-form .star-rating {
+    margin-bottom: 15px; /* Espaço abaixo das estrelas */
+    /* As estrelas (o div .star-rating) já estarão centradas devido ao align-items: center no #feedback-form */
+    /* Se quiser centrar o texto/ícones DENTRO do .star-rating, caso não estejam: */
+    /* text-align: center; */ 
+}
+
+#feedback-form textarea {
+    width: 100%; /* Fazer a textarea ocupar a largura do seu contentor */
+    max-width: 600px; /* Definir uma largura máxima para a textarea para não ficar demasiado larga em ecrãs grandes */
+    margin-bottom: 20px; /* Espaço abaixo da textarea */
+    /* Mantenha outros estilos que já tenha para a textarea */
+}
+
+#feedback-form button[type="submit"] {
+    /* O botão já estará centrado devido ao align-items: center no #feedback-form */
+    /* Se por alguma razão não estiver, pode tentar adicionar: */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* display: block; */ /* ou inline-block */
+}
+
+/* Opcional: Garantir que o parágrafo introdutório da secção também está centrado */
+#feedback-section > p {
+    text-align: center;
+    max-width: 700px; /* Para melhor legibilidade */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px; /* Espaço antes do formulário */
+}
+
+
 #feedback-form button.btn-gold {
     margin-top: 0.625rem;
 }
