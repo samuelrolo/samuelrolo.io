@@ -7,11 +7,31 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+=======
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Global Typography Settings */
+h1, h2, h3, h4, h5, h6 {
+    /* font-family is inherited from body or set by specific rules like .page-section h... */
+    /* Setting a base weight, can be overridden by more specific rules. */
+    font-weight: 700;
+}
+
+>>>>>>> develop
 button, input, select, textarea {
     font-family: 'Poppins', sans-serif; /* Ensure Poppins for all form elements */
     font-weight: 400; /* Default regular weight for form elements, can be overridden */
 }
 /* End Global Typography Settings */"""
+=======
+/* End Global Typography Settings */
+>>>>>>> develop
 
 /* Geral */
 body {
@@ -28,14 +48,22 @@ body {
     width: 80%;
     margin: auto;
     overflow: hidden;
+ HEAD
     padding: 0 20px;
+=======
+    padding: 0 1.25rem;
+>>>>>>> develop
 }
 
 /* Novo Cabeçalho Fixo Superior */
 header {
     background: #fff; /* Fundo branco para o header */
     color: #333;
+ HEAD
     padding: 10px 0; /* Espaçamento interno do header */
+=======
+    padding: 0.625rem 0; /* Espaçamento interno do header */
+>>>>>>> develop
     border-bottom: 1px solid #ddd; /* Linha separadora subtil */
     position: fixed;
     top: 0;
@@ -53,6 +81,13 @@ header {
 
 #header-logo {
     height: 60px; /* Altura inicial do logo, pode ser ajustada */
+=======
+    padding: 0.625rem 1.25rem;
+}
+
+#header-logo {
+    height: 3.75rem; /* Altura inicial do logo, pode ser ajustada */
+>>>>>>> develop
     width: auto;
 }
 
@@ -61,6 +96,9 @@ nav.top-nav {
     background-color: #A8875F; /* Dourado fosco */
     width: 100%;
     padding: 5px 0; /* Pequeno padding vertical para a barra de navegação */
+=======
+    padding: 0.3125rem 0; /* Pequeno padding vertical para a barra de navegação */
+>>>>>>> develop
 }
 
 nav.top-nav ul {
@@ -167,6 +205,101 @@ main {
     padding: 12px 25px;
     margin: 10px;
     border-radius: 5px;
+=======
+    padding: 0.625rem 1.25rem;
+    display: block;
+    font-weight: 600; /* Peso semi-bold para links de navegação */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav.top-nav ul li a:hover {
+    background-color: #000000; /* Fundo preto no hover */
+    color: #A8875F; /* Texto dourado fosco no hover */
+}
+
+nav.top-nav ul li a.active {
+    background-color: #000000; /* Fundo preto para item ativo */
+    color: #B08D57; /* Texto dourado mais vivo para item ativo */
+    font-weight: 700; /* Peso bold para item ativo */
+}
+
+/* Conteúdo Principal - Ajustar padding-top para o header fixo */
+main {
+    padding-top: 9.375rem; /* Valor inicial, ajustar conforme altura final do header + nav */
+}
+
+.page-section {
+    background-color: #1f1f1f; /* Fundo escuro para secções, ligeiramente mais claro que o body */
+    padding: 2.5rem 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    color: #e0e0e0; /* Texto claro para secções com fundo escuro */
+}
+
+.page-section h1, .page-section h2, .page-section h3, .page-section h4 {
+    font-family: 'Poppins', sans-serif; /* Garantir que Poppins é usada para todos os cabeçalhos */
+}
+
+.page-section h2 { 
+    font-size: 2.5em;
+    color: #B08D57; /* Títulos em dourado */
+    margin-bottom: 1.875rem; /* Aumentar margem para dar mais respiro */
+    padding-bottom: 0.9375rem;
+    border-bottom: 3px solid #A8875F; /* Sublinhado dourado fosco */
+    display: inline-block;
+    font-weight: 700; /* Peso bold para títulos de secção */
+}
+
+/* Secção Hero */
+.hero-section {
+    background: #B08D57; /* Dourado principal */
+    color: #fff;
+    padding: 1.5625rem 1.25rem; /* Padding vertical reduzido */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 9.375rem; /* Altura mínima reduzida */
+}
+
+.hero-section h1 {
+    font-size: 2.2em; /* Fonte ligeiramente reduzida */
+    margin-bottom: 0.5rem;
+    font-weight: 700; /* Peso bold */
+}
+
+.hero-section .hero-subtitle {
+    font-size: 1.6em; /* Fonte ligeiramente reduzida */
+    text-transform: uppercase;
+    font-weight: 600; /* Peso semi-bold */
+}
+
+/* Secção Introdutória */
+.intro-section {
+    text-align: center;
+}
+
+.intro-section h2 {
+    font-size: 2.2em;
+    /* color: #333; */ /* Comentado para herdar cor dourada padrão de .page-section h2 */
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+}
+
+.intro-section p {
+    max-width: 50.0rem;
+    margin: 0 auto 1.25rem auto;
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.cta-buttons a.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5625rem;
+    margin: 0.625rem;
+    border-radius: 0.3125rem;
+>>>>>>> develop
     text-decoration: none;
     font-weight: 600; /* Peso semi-bold para botões */
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -180,6 +313,9 @@ main {
 .cta-buttons a.btn-primary:hover {
     background-color: #8c6f40;
     transform: translateY(-2px);
+=======
+    transform: translateY(-0.125rem);
+>>>>>>> develop
 }
 
 .cta-buttons a.btn-secondary {
@@ -189,25 +325,42 @@ main {
 
 .cta-buttons a.btn-secondary:hover {
     background-color: #555;
+<<<<<<< HEAD
     transform: translateY(-2px);
+=======
+    transform: translateY(-0.125rem);
 }
 
 
 /* Secção Serviços */
 #servicos .servicos-grid {
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     text-align: left;
     margin-top: 20px;
+=======
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1.875rem;
+    text-align: left;
+    margin-top: 1.25rem;
+>>>>>>> develop
 }
 
 #servicos .servico-card {
     background: #2c2c2c; /* Fundo mais escuro para cartões de serviço */
+<<<<<<< HEAD
     padding: 30px;
     border: 1px solid #444; /* Borda subtil */
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra mais pronunciada em fundo escuro */
+=======
+    padding: 1.875rem;
+    border: 1px solid #444; /* Borda subtil */
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.25); /* Sombra suave */
+>>>>>>> develop
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     display: flex;
@@ -217,6 +370,7 @@ main {
 }
 
 #servicos .servico-card:hover {
+<<<<<<< HEAD
     transform: translateY(-8px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
@@ -228,6 +382,19 @@ main {
     border: 2px solid #B08D57;
     border-radius: 50%;
     margin-bottom: 25px;
+=======
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.375rem 0.9375rem rgba(0,0,0,0.25); /* Sombra suave no hover */
+}
+
+#servicos .servico-card .servico-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    background-color: #333; /* Fundo do ícone */
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    margin-bottom: 1.5625rem;
+>>>>>>> develop
     display: flex;
     align-items: center;
     justify-content: center;
@@ -237,7 +404,11 @@ main {
 
 #servicos .servico-card h3 {
     color: #B08D57;
+<<<<<<< HEAD
     margin-bottom: 15px;
+=======
+    margin-bottom: 0.9375rem;
+>>>>>>> develop
     text-align: center;
     font-size: 1.5em;
     font-weight: 600; /* Peso semi-bold para títulos de cartão */
@@ -255,6 +426,7 @@ main {
     display: flex;
     align-items: flex-start;
     text-align: left;
+<<<<<<< HEAD
     max-width: 900px;
     margin: 20px auto;
     padding: 25px;
@@ -262,12 +434,26 @@ main {
     border-left: 5px solid #B08D57;
     gap: 25px;
     border-radius: 5px;
+=======
+    max-width: 56.25rem;
+    margin: 1.25rem auto;
+    padding: 1.5625rem;
+    background-color: #2c2c2c; /* Fundo mais escuro */
+    border-left: 5px solid #B08D57;
+    gap: 1.5625rem;
+    border-radius: 0.3125rem;
+>>>>>>> develop
     color: #e0e0e0;
 }
 
 #sobre-fundador .fundador-foto {
+<<<<<<< HEAD
     width: 150px;
     height: 150px;
+=======
+    width: 9.375rem;
+    height: 9.375rem;
+>>>>>>> develop
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #B08D57;
@@ -282,6 +468,7 @@ main {
 
 #sobre-fundador .experiencia-profissional {
     text-align: left;
+<<<<<<< HEAD
     max-width: 900px;
     margin: 40px auto 20px auto;
     padding: 25px;
@@ -497,15 +684,240 @@ main {
     font-weight: 400;
 }
 
+=======
+    max-width: 56.25rem;
+    margin: 2.5rem auto 1.25rem auto;
+    padding: 1.5625rem;
+    background-color: #2c2c2c; /* Fundo mais escuro */
+    border-left: 5px solid #B08D57;
+    border-radius: 0.3125rem;
+    color: #e0e0e0;
+}
+
+#sobre-fundador .experiencia-profissional h3 {
+    color: #B08D57; /* Cor dourada para o título */
+    margin-top: 0;
+    margin-bottom: 1.5625rem;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+#sobre-fundador .experiencia-card {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5625rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #444; /* Borda mais escura */
+    gap: 1.25rem;
+}
+
+#sobre-fundador .experiencia-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#sobre-fundador .experiencia-logo {
+    width: 3.75rem;
+    height: auto;
+    max-height: 3.75rem;
+    object-fit: contain;
+    margin-right: 0.9375rem;
+    flex-shrink: 0;
+}
+
+#sobre-fundador .experiencia-detalhes h4 {
+    color: #B08D57;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+#sobre-fundador .experiencia-detalhes p {
+    margin-bottom: 0.3125rem;
+    font-size: 0.95em;
+    font-weight: 400;
+}
+
+#sobre-fundador .recomendacoes {
+    text-align: left;
+    max-width: 56.25rem;
+    margin: 2.5rem auto 1.25rem auto;
+    padding: 1.5625rem;
+    background-color: #2c2c2c; /* Fundo mais escuro */
+    border-left: 5px solid #B08D57;
+    border-radius: 0.3125rem;
+    color: #e0e0e0;
+}
+
+#sobre-fundador .recomendacoes h3 {
+    color: #B08D57; /* Cor dourada */
+    margin-top: 0;
+    margin-bottom: 1.5625rem;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+#sobre-fundador .recomendacao-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5625rem;
+    padding-bottom: 0.9375rem;
+    border-bottom: 1px solid #444; /* Borda mais escura */
+    gap: 1.25rem;
+}
+
+#sobre-fundador .recomendacao-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#sobre-fundador .recomendacao-foto {
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #B08D57;
+    flex-shrink: 0;
+}
+
+#sobre-fundador .recomendacao-conteudo {
+    flex-grow: 1;
+}
+
+#sobre-fundador .recomendacao-texto {
+    font-style: italic;
+    margin-bottom: 0.625rem;
+    color: #cccccc; /* Texto da recomendação mais claro */
+    font-weight: 300; /* Peso light para itálico */
+}
+
+#sobre-fundador .recomendacao-autor {
+    font-weight: 600; /* Semi-bold para autor */
+    color: #e0e0e0;
+    margin-bottom: 0.3125rem;
+}
+
+#sobre-fundador .recomendacao-cargo {
+    font-size: 0.9em;
+    color: #aaaaaa; /* Cargo mais subtil */
+    font-weight: 400;
+}
+
+/* Dashboard Destaque */
+.dashboard-destaque {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.875rem;
+    margin-bottom: 1.875rem;
+    padding: 1.25rem;
+    background-color: #2a2a2a; /* Fundo um pouco mais claro para o dashboard */
+    border-radius: 0.5rem;
+}
+
+.dashboard-item {
+    background-color: #333333;
+    padding: 0.9375rem;
+    border-radius: 0.375rem;
+    text-align: center;
+    color: #e0e0e0;
+    border-left: 4px solid #B08D57;
+}
+
+.dashboard-item i {
+    font-size: 1.8em;
+    color: #B08D57;
+    margin-bottom: 0.625rem;
+}
+
+.dashboard-item .dashboard-number {
+    font-size: 1.6em;
+    font-weight: 700; /* Bold para números */
+    color: #ffffff;
+    display: block;
+    margin-bottom: 0.3125rem;
+}
+
+.dashboard-item .dashboard-highlight {
+    font-size: 1.2em;
+    font-weight: 600; /* Semi-bold para destaque */
+    color: #B08D57; /* Destaque dourado para texto especial */
+    display: block;
+    margin-bottom: 0.3125rem;
+}
+
+.dashboard-item .dashboard-text {
+    font-size: 0.9em;
+    color: #cccccc;
+    font-weight: 400;
+}
+
+
+/* Secção Loja */
+#loja .loja-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+    gap: 1.5625rem;
+    text-align: left;
+    margin-top: 1.25rem;
+}
+
+#loja .loja-item-card {
+    background: #2c2c2c; /* Fundo mais escuro */
+    padding: 1.5625rem;
+    border: 1px solid #444; /* Borda subtil */
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+#loja .ebook-cover {
+    max-width: 15.625rem; /* Ajustar tamanho da capa */
+    height: auto;
+    border-radius: 0.3125rem;
+    margin-bottom: 0.9375rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0,0,0,0.1);
+}
+
+#loja .loja-item-card h3 {
+    color: #B08D57;
+    margin-bottom: 0.625rem;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+#loja .loja-item-card p {
+    font-size: 1em;
+    margin-bottom: 0.9375rem;
+    font-weight: 400;
+}
+
+>>>>>>> develop
 .btn-gold, .hotmart__button-checkout, .btn-form {
     display: inline-block;
     background: #B08D57;
     color: #fff !important; 
+<<<<<<< HEAD
     padding: 12px 20px;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
     transition: background-color 0.3s ease;
+=======
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    border-radius: 0.3125rem;
+    margin-top: 0.625rem;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+>>>>>>> develop
     font-weight: 600; /* Semi-bold para botões */
     border: none;
     cursor: pointer;
@@ -521,10 +933,17 @@ main {
 }
 
 #loja .survey-card .servico-icon {
+<<<<<<< HEAD
     width: 50px;
     height: 50px;
     font-size: 1.8em;
     margin-bottom: 15px;
+=======
+    width: 3.125rem;
+    height: 3.125rem;
+    font-size: 1.8em;
+    margin-bottom: 0.9375rem;
+>>>>>>> develop
     color: #B08D57;
     border: 2px solid #B08D57;
     border-radius: 50%;
@@ -549,6 +968,7 @@ main {
 
 .survey-widget-content {
     background-color: #1f1f1f; /* Fundo escuro para o widget */
+<<<<<<< HEAD
     padding: 20px;
     border-radius: 8px;
     width: 90%;
@@ -557,13 +977,28 @@ main {
     max-height: 700px;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+=======
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 50.0rem;
+    height: 90%;
+    max-height: 43.75rem;
+    position: relative;
+    box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.3);
+>>>>>>> develop
     color: #e0e0e0;
 }
 
 .close-survey-widget {
     position: absolute;
+<<<<<<< HEAD
     top: 10px;
     right: 20px;
+=======
+    top: 0.625rem;
+    right: 1.25rem;
+>>>>>>> develop
     font-size: 2em;
     font-weight: bold;
     color: #B08D57; /* Cor dourada para o botão de fechar */
@@ -573,7 +1008,11 @@ main {
 /* Secção Agendar */
 #agendar p {
     font-size: 1.1em;
+<<<<<<< HEAD
     margin-bottom: 20px;
+=======
+    margin-bottom: 1.25rem;
+>>>>>>> develop
     font-weight: 400;
 }
 
@@ -585,7 +1024,11 @@ main {
 /* Secção Contactos */
 #contactos p {
     font-size: 1.1em;
+<<<<<<< HEAD
     margin-bottom: 20px;
+=======
+    margin-bottom: 1.25rem;
+>>>>>>> develop
     font-weight: 400;
 }
 
@@ -593,7 +1036,11 @@ main {
     color: #B08D57;
     text-decoration: none;
     font-size: 2.8em; 
+<<<<<<< HEAD
     margin: 0 20px;
+=======
+    margin: 0 1.25rem;
+>>>>>>> develop
 }
 
 #contactos .contactos-details a:hover {
@@ -605,13 +1052,21 @@ footer {
     background: #000000;
     color: #FFFFFF;
     text-align: center;
+<<<<<<< HEAD
     padding: 30px 20px;
+=======
+    padding: 1.875rem 1.25rem;
+>>>>>>> develop
     border-top: 3px solid #B08D57;
     font-weight: 400;
 }
 
 footer p {
+<<<<<<< HEAD
     margin: 5px 0;
+=======
+    margin: 0.3125rem 0;
+>>>>>>> develop
 }
 
 footer a {
@@ -640,11 +1095,19 @@ footer a:hover {
 .modal-content {
     background-color: #2c2c2c; /* Fundo escuro para modal */
     margin: 10% auto; 
+<<<<<<< HEAD
     padding: 30px;
     border: 1px solid #555; /* Borda mais escura */
     width: 80%; 
     max-width: 600px;
     border-radius: 8px;
+=======
+    padding: 1.875rem;
+    border: 1px solid #555; /* Borda mais escura */
+    width: 80%; 
+    max-width: 37.5rem;
+    border-radius: 0.5rem;
+>>>>>>> develop
     position: relative;
     color: #e0e0e0;
 }
@@ -653,14 +1116,22 @@ footer a:hover {
     color: #B08D57;
     text-align: center;
     margin-top: 0;
+<<<<<<< HEAD
     margin-bottom: 25px;
+=======
+    margin-bottom: 1.5625rem;
+>>>>>>> develop
     font-weight: 600;
 }
 
 .close-button {
     color: #aaaaaa;
     float: right;
+<<<<<<< HEAD
     font-size: 28px;
+=======
+    font-size: 1.75rem;
+>>>>>>> develop
     font-weight: bold;
 }
 
@@ -673,7 +1144,11 @@ footer a:hover {
 
 #service-request-form label {
     display: block;
+<<<<<<< HEAD
     margin-bottom: 8px;
+=======
+    margin-bottom: 0.5rem;
+>>>>>>> develop
     font-weight: 500; /* Medium para labels */
 }
 
@@ -682,11 +1157,19 @@ footer a:hover {
 #service-request-form input[type="tel"],
 #service-request-form select,
 #service-request-form textarea {
+<<<<<<< HEAD
     width: calc(100% - 22px); /* Ajustar para padding e borda */
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #555;
     border-radius: 4px;
+=======
+    width: calc(100% - 1.375rem); /* Ajustar para padding e borda */
+    padding: 0.625rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #555;
+    border-radius: 0.25rem;
+>>>>>>> develop
     background-color: #333;
     color: #e0e0e0;
     font-family: 'Poppins', sans-serif;
@@ -699,33 +1182,56 @@ footer a:hover {
 
 #service-request-form button.btn-form {
     width: 100%;
+<<<<<<< HEAD
     padding: 12px;
+=======
+    padding: 0.75rem;
+>>>>>>> develop
     font-size: 1.1em;
 }
 
 #service-request-message p {
     text-align: center;
+<<<<<<< HEAD
     padding: 10px;
     margin-top: 15px;
     border-radius: 4px;
 }
 
 #service-request-message .success {
+=======
+    padding: 0.625rem;
+    margin-top: 0.625rem;
+    border-radius: 0.3125rem;
+}
+
+#service-request-message.success p {
+>>>>>>> develop
     background-color: #3a5a3a; /* Verde escuro para sucesso */
     color: #d4eed4;
 }
 
+<<<<<<< HEAD
 #service-request-message .error {
+=======
+#service-request-message.error p {
+>>>>>>> develop
     background-color: #5a3a3a; /* Vermelho escuro para erro */
     color: #eed4d4;
 }
 
+<<<<<<< HEAD
 #service-request-message .error a {
     color: #f0b0b0; /* Link mais claro na mensagem de erro */
+=======
+#service-request-message.error p a {
+    color: #f0b0b0; /* Link vermelho claro para erro */
+>>>>>>> develop
     text-decoration: underline;
 }
 
 
+<<<<<<< HEAD
 /* Responsividade */
 @media(max-width: 768px) {
     main {
@@ -821,3 +1327,315 @@ footer a:hover {
         width: 90%;
     }
 }
+=======
+/* Media Queries para Responsividade */
+@media (max-width: 48.0rem) { /* 768px */
+    .container {
+        width: 90%;
+        padding: 0 0.9375rem;
+    }
+
+    header {
+        padding: 0.3125rem 0;
+    }
+
+    #header-logo {
+        height: 3.125rem;
+    }
+
+    nav.top-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav.top-nav ul li a {
+        padding: 0.625rem 0.9375rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    main {
+        padding-top: 12.5rem; /* Ajustar para novo header móvel mais alto */
+    }
+
+    .page-section h2 {
+        font-size: 2em;
+        padding-bottom: 0.625rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-section {
+        padding: 1.25rem 0.9375rem;
+        min-height: auto;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8em;
+    }
+
+    .hero-section .hero-subtitle {
+        font-size: 1.2em;
+    }
+
+    .intro-section p {
+        font-size: 1em;
+    }
+
+    .cta-buttons a.btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9em;
+        margin: 0.3125rem;
+    }
+
+    #servicos .servicos-grid {
+        grid-template-columns: 1fr; /* Uma coluna em mobile */
+        gap: 1.25rem;
+    }
+
+    #servicos .servico-card {
+        padding: 1.25rem;
+    }
+
+    #servicos .servico-card .servico-icon {
+        width: 3.125rem;
+        height: 3.125rem;
+        font-size: 1.8em;
+        margin-bottom: 1.25rem;
+    }
+
+    #servicos .servico-card h3 {
+        font-size: 1.3em;
+    }
+
+    #sobre-fundador .fundador-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.25rem;
+        gap: 1.25rem;
+    }
+
+    #sobre-fundador .fundador-foto {
+        width: 7.5rem;
+        height: 7.5rem;
+        margin-bottom: 0.9375rem;
+    }
+
+    #sobre-fundador .experiencia-profissional,
+    #sobre-fundador .recomendacoes {
+        padding: 1.25rem;
+    }
+
+    #sobre-fundador .experiencia-card,
+    #sobre-fundador .recomendacao-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.9375rem;
+    }
+
+    #sobre-fundador .experiencia-logo {
+        margin-right: 0;
+        margin-bottom: 0.625rem;
+    }
+
+    #sobre-fundador .recomendacao-foto {
+        width: 6.25rem;
+        height: 6.25rem;
+        margin-bottom: 0.9375rem;
+    }
+
+    .dashboard-destaque {
+        grid-template-columns: 1fr; /* Uma coluna em mobile */
+        gap: 0.9375rem;
+        padding: 0.9375rem;
+    }
+
+    .dashboard-item {
+        padding: 0.9375rem;
+    }
+
+    #loja .loja-grid {
+        grid-template-columns: 1fr; /* Uma coluna em mobile */
+        gap: 1.25rem;
+    }
+
+    #loja .loja-item-card {
+        padding: 1.25rem;
+    }
+
+    #loja .ebook-cover {
+        max-width: 12.5rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 15% auto;
+        padding: 1.25rem;
+    }
+
+    .close-button {
+        font-size: 1.5rem;
+    }
+
+    #service-request-form input[type="text"],
+    #service-request-form input[type="email"],
+    #service-request-form input[type="tel"],
+    #service-request-form select,
+    #service-request-form textarea {
+        width: calc(100% - 1.25rem); /* Ajustar para padding e borda */
+        font-size: 0.9em;
+    }
+
+    #contactos .contactos-details a {
+        font-size: 2.2em;
+        margin: 0 0.625rem;
+    }
+
+    footer {
+        padding: 1.25rem 0.9375rem;
+    }
+}
+
+@media (max-width: 28.125rem) { /* 450px - Ajustes ainda menores */
+    .page-section h2 {
+        font-size: 1.8em;
+    }
+
+    .hero-section h1 {
+        font-size: 1.6em;
+    }
+
+    .hero-section .hero-subtitle {
+        font-size: 1em;
+    }
+
+    main {
+        padding-top: 11.25rem; /* Ajustar para header móvel */
+    }
+}
+
+
+
+
+/* Estilos para o Carrossel de Recomendações */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 56.25rem; /* Mesma largura máxima da secção de recomendações */
+    margin: 1.25rem auto;
+    overflow: hidden;
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box; /* Para incluir padding e border no width/height */
+    /* O estilo do .recomendacao-card já está definido, apenas garantimos que ele é um slide */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 0.625rem;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 1.5em;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+    left: 0.625rem;
+}
+
+.carousel-button.next {
+    right: 0.625rem;
+}
+
+/* Ajustes para .recomendacao-card dentro do carrossel se necessário */
+#recomendacoes .carousel-slide .recomendacao-card {
+    margin-bottom: 0; /* Remover margem inferior se o card estiver dentro do slide */
+    width: 100%; /* Garantir que ocupa todo o espaço do slide */
+}
+
+
+
+
+/* Estilos para o Formulário de Feedback com Estrelas */
+#feedback-section {
+    text-align: center;
+}
+
+.star-rating {
+    direction: rtl; /* Faz as estrelas preencherem da direita para a esquerda */
+    display: inline-block;
+    padding: 0.625rem 0;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ddd; /* Cor da estrela vazia */
+    font-size: 2.5em; /* Tamanho das estrelas */
+    padding: 0 0.125rem;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label { /* Aplica hover às estrelas à esquerda da selecionada */
+    color: #B08D57; /* Cor da estrela preenchida/hover (dourado) */
+}
+
+#feedback-form textarea {
+    width: 100%;
+    max-width: 31.25rem; /* Limitar largura da textarea */
+    padding: 0.625rem;
+    margin-top: 0.9375rem;
+    margin-bottom: 0.9375rem;
+    border: 1px solid #555;
+    border-radius: 0.25rem;
+    background-color: #333;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    resize: vertical;
+    min-height: 5rem; /* Altura mínima */
+}
+
+#feedback-form button.btn-gold {
+    margin-top: 0.625rem;
+}
+
+#feedback-message {
+    padding: 0.625rem;
+    border-radius: 0.3125rem;
+    font-weight: 500;
+}
+
+#feedback-message.success {
+    background-color: #3a5a3a; /* Verde escuro para sucesso */
+    color: #d4eed4;
+}
+
+#feedback-message.error {
+    background-color: #5a3a3a; /* Vermelho escuro para erro */
+    color: #eed4d4;
+}
+
