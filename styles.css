@@ -96,6 +96,139 @@ nav.top-nav ul li a.active {
     color: #B08D57; /* Texto dourado mais vivo para item ativo */
     font-weight: 700; /* Peso bold para item ativo */
 }
+/* Estilos base para a navegação */
+.top-nav {
+    background-color: #333; /* Cor de fundo original da barra, ajuste se necessário */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Alinha o logo (se houver) e o menu/botão */
+    align-items: center;
+    position: relative; /* Para posicionamento absoluto do menu dropdown */
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Por defeito, os itens estão em linha para ecrãs maiores */
+}
+
+.menu-items li {
+    margin-left: 20px;
+}
+
+.menu-items li:first-child {
+    margin-left: 0;
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: #fff; /* Cor original dos links, ajuste se necessário */
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-items a:hover {
+    background-color: #555; /* Cor de hover, ajuste se necessário */
+    border-radius: 4px;
+}
+
+/* Botão Hambúrguer */
+.menu-toggle {
+    display: none; /* Escondido por defeito em ecrãs maiores */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff; /* Cor do ícone hambúrguer */
+    position: relative;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff; /* Cor do ícone hambúrguer */
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, bottom 0.3s ease-in-out;
+}
+
+.hamburger-icon::before {
+    top: -8px;
+}
+
+.hamburger-icon::after {
+    bottom: -8px;
+}
+
+/* Estilos para ecrãs pequenos (Mobile) */
+@media (max-width: 768px) { /* Ponto de quebra, ajuste conforme necessário */
+    .menu-items {
+        display: none; /* Esconde os itens do menu */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Posiciona abaixo da barra de navegação */
+        left: 0;
+        width: 100%;
+        background-color: #333; /* Cor de fundo do menu expandido */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Animação de "slide down" */
+        z-index: 1000;
+    }
+
+    .menu-items.active {
+        display: flex; /* Mostra os itens quando ativo */
+        max-height: 500px; /* Altura máxima para permitir a animação. Ajuste conforme o número de itens. */
+    }
+
+    .menu-items li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #444; /* Separador entre itens */
+    }
+
+    .menu-items li:last-child {
+        border-bottom: none;
+    }
+
+    .menu-items a {
+        display: block;
+        padding: 15px;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block; /* Mostra o botão hambúrguer */
+    }
+
+    /* Animação do ícone hambúrguer para "X" quando ativo */
+    .menu-toggle[aria-expanded="true"] .hamburger-icon {
+        background-color: transparent; /* Linha do meio desaparece */
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon::before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+    }
+}
 
 /* Conteúdo Principal - Ajustar padding-top para o header fixo */
 main {
