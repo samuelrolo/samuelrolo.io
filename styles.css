@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 html {
   box-sizing: border-box;
 }
@@ -8,14 +10,12 @@ html {
 
 /* Global Typography Settings */
 h1, h2, h3, h4, h5, h6 {
-    /* font-family is inherited from body or set by specific rules like .page-section h... */
-    /* Setting a base weight, can be overridden by more specific rules. */
     font-weight: 700;
 }
 
 button, input, select, textarea {
-    font-family: 'Poppins', sans-serif; /* Ensure Poppins for all form elements */
-    font-weight: 400; /* Default regular weight for form elements, can be overridden */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 /* End Global Typography Settings */
 
@@ -25,9 +25,9 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    color: #e0e0e0; /* Texto principal claro para fundos escuros */
-    background-color: #121212; /* Fundo geral escuro (preto suave) */
-    font-weight: 400; /* Peso regular para o corpo do texto */
+    color: #e0e0e0;
+    background-color: #121212;
+    font-weight: 400;
 }
 
 .container {
@@ -37,84 +37,89 @@ body {
     padding: 0 1.25rem;
 }
 
-/* Novo Cabeçalho Fixo Superior */
-header {
-    background: #fff; /* Fundo branco para o header */
-    color: #333;
-    padding: 0.625rem 0; /* Espaçamento interno do header */
-    border-bottom: 1px solid #ddd; /* Linha separadora subtil */
-    position: fixed;
+/* Novo Cabeçalho com Slider */
+header#main-header {
+    position: relative; /* Can be 'fixed' or 'sticky' if needed, adjust main padding-top accordingly */
+    width: 100%;
+    height: 450px; /* Adjust height as needed for the banners */
+    overflow: hidden;
+    color: #fff; /* Default text color for overlay content */
+}
+
+.header-slider-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    z-index: 1000;
+    z-index: 1;
+}
+
+.header-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.header-slide.active {
+    opacity: 1;
+}
+
+.header-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Let content define height, or set specific height */
+    z-index: 2;
     display: flex;
-    flex-direction: column; /* Logo acima, menu abaixo */
-    align-items: center; /* Centralizar logo e menu */
+    flex-direction: column; /* Logo at top, nav below */
+    align-items: center; /* Center logo and nav horizontally */
+    padding: 1.25rem; /* 20px */
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.3); /* Optional: slight dark overlay for readability */
 }
 
 .logo-container {
-    padding: 0.625rem 1.25rem;
+    margin-bottom: 1rem; /* Space between logo and nav */
 }
 
 #header-logo {
-    height: 37.5rem; /* Duplicado de 18.75rem para aumentar o tamanho */
+    height: 3.75rem; /* 60px */
     width: auto;
 }
 
-/* Nova Barra de Navegação Superior */
+/* Navegação (adaptada para overlay e responsividade) */
 nav.top-nav {
-    background-color: #A8875F; /* Dourado fosco */
     width: 100%;
-    padding: 0.3125rem 0; /* Pequeno padding vertical para a barra de navegação */
-}
-
-nav.top-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center;
-}
-
-nav.top-nav ul li a {
-    color: #000000; /* Texto preto para contraste com dourado fosco */
-    text-decoration: none;
-    padding: 0.625rem 1.25rem;
-    display: block;
-    font-weight: 600; /* Peso semi-bold para links de navegação */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-nav.top-nav ul li a:hover {
-    background-color: #000000; /* Fundo preto no hover */
-    color: #A8875F; /* Texto dourado fosco no hover */
-}
-
-nav.top-nav ul li a.active {
-    background-color: #000000; /* Fundo preto para item ativo */
-    color: #B08D57; /* Texto dourado mais vivo para item ativo */
-    font-weight: 700; /* Peso bold para item ativo */
-}
-/* Estilos base para a navegação */
-.top-nav {
-    background-color: #333; /* Cor de fundo original da barra, ajuste se necessário */
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center; /* ALTERADO PARA CENTRAR O CONTEÚDO */
+    justify-content: center; /* Center the nav content (menu button or menu items) */
     align-items: center;
-    position: relative; /* Para posicionamento absoluto do menu dropdown */
+    position: relative; /* For absolute positioning of dropdown menu */
+    background-color: rgba(51, 51, 51, 0.7); /* Semi-transparent background for nav bar */
+    padding: 0.5rem 0; /* 8px padding */
+    border-radius: 0.3125rem; /* 5px */
 }
 
 .menu-items {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Por defeito, os itens estão em linha para ecrãs maiores */
+    display: flex;
 }
 
 .menu-items li {
-    margin-left: 20px;
+    margin-left: 1.25rem; /* 20px */
 }
 
 .menu-items li:first-child {
@@ -123,31 +128,35 @@ nav.top-nav ul li a.active {
 
 .menu-items a {
     text-decoration: none;
-    color: #fff; /* Cor original dos links, ajuste se necessário */
-    font-weight: bold;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.625rem 1rem; /* 10px 16px */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
 }
 
-.menu-items a:hover {
-    background-color: #555; /* Cor de hover, ajuste se necessário */
-    border-radius: 4px;
+.menu-items a:hover,
+.menu-items a.active {
+    background-color: #B08D57; /* Gold color for hover/active */
+    color: #121212;
+    border-radius: 0.25rem; /* 4px */
 }
 
 /* Botão Hambúrguer */
 .menu-toggle {
-    display: none; /* Escondido por defeito em ecrãs maiores */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
+    z-index: 1001; /* Ensure it's above other nav elements if needed */
 }
 
 .hamburger-icon {
     display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #fff; /* Cor do ícone hambúrguer */
+    width: 1.5625rem; /* 25px */
+    height: 0.1875rem; /* 3px */
+    background-color: #fff;
     position: relative;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
@@ -157,148 +166,84 @@ nav.top-nav ul li a.active {
     content: '';
     display: block;
     width: 100%;
-    height: 3px;
-    background-color: #fff; /* Cor do ícone hambúrguer */
+    height: 0.1875rem; /* 3px */
+    background-color: #fff;
     position: absolute;
     left: 0;
     transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, bottom 0.3s ease-in-out;
 }
 
 .hamburger-icon::before {
-    top: -8px;
+    top: -0.5rem; /* -8px */
 }
 
 .hamburger-icon::after {
-    bottom: -8px;
+    bottom: -0.5rem; /* -8px */
 }
 
-/* Estilos para ecrãs pequenos (Mobile) */
-@media (max-width: 768px) { /* Ponto de quebra, ajuste conforme necessário */
-    .menu-items {
-        display: none; /* Esconde os itens do menu */
-        flex-direction: column;
-        position: absolute;
-        top: 100%; /* Posiciona abaixo da barra de navegação */
-        left: 0;
-        width: 100%;
-        background-color: #333; /* Cor de fundo do menu expandido */
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Animação de "slide down" */
-        z-index: 1000;
-    }
-
-    .menu-items.active {
-        display: flex; /* Mostra os itens quando ativo */
-        max-height: 500px; /* Altura máxima para permitir a animação. Ajuste conforme o número de itens. */
-    }
-
-    .menu-items li {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid #444; /* Separador entre itens */
-    }
-
-    .menu-items li:last-child {
-        border-bottom: none;
-    }
-
-    .menu-items a {
-        display: block;
-        padding: 15px;
-        width: 100%;
-    }
-
-    .menu-toggle {
-        display: block; /* Mostra o botão hambúrguer */
-    }
-
-    /* Animação do ícone hambúrguer para "X" quando ativo */
-    .menu-toggle[aria-expanded="true"] .hamburger-icon {
-        background-color: transparent; /* Linha do meio desaparece */
-    }
-
-    .menu-toggle[aria-expanded="true"] .hamburger-icon::before {
-        transform: rotate(45deg);
-        top: 0;
-    }
-
-    .menu-toggle[aria-expanded="true"] .hamburger-icon::after {
-        transform: rotate(-45deg);
-        bottom: 0;
-    }
-}
-
-/* Conteúdo Principal - Ajustar padding-top para o header fixo */
+/* Conteúdo Principal - Ajustar padding-top para o header */
 main {
-    padding-top: 9.375rem; /* Valor inicial, ajustar conforme altura final do header + nav */
+    padding-top: 0; /* Header is relative, not fixed, so no main padding needed unless header becomes fixed */
+    /* If header#main-header becomes fixed, add padding-top: <header_height>; e.g., 450px */
 }
 
 .page-section {
-    background-color: #1f1f1f; /* Fundo escuro para secções, ligeiramente mais claro que o body */
+    background-color: #1f1f1f;
     padding: 2.5rem 1.25rem;
     margin-bottom: 1.25rem;
     border-radius: 0.5rem;
     text-align: center;
-    color: #e0e0e0; /* Texto claro para secções com fundo escuro */
+    color: #e0e0e0;
 }
 
 .page-section h1, .page-section h2, .page-section h3, .page-section h4 {
-    font-family: 'Poppins', sans-serif; /* Garantir que Poppins é usada para todos os cabeçalhos */
+    font-family: 'Poppins', sans-serif;
 }
 
-.page-section h2 { 
+.page-section h2 {
     font-size: 2.5em;
-    color: #B08D57; /* Títulos em dourado */
-    margin-bottom: 1.875rem; /* Aumentar margem para dar mais respiro */
+    color: #B08D57;
+    margin-bottom: 1.875rem;
     padding-bottom: 0.9375rem;
-    border-bottom: 3px solid #A8875F; /* Sublinhado dourado fosco */
+    border-bottom: 3px solid #A8875F;
     display: inline-block;
-    font-weight: 700; /* Peso bold para títulos de secção */
 }
 
-/* Secção Hero */
-.hero-section {
-    background: #B08D57; /* Dourado principal */
+/* Secção Hero (Esta secção pode ser o próprio header slider ou uma secção abaixo) */
+/* Se #hero é o slider, os estilos abaixo podem não ser necessários ou precisam de ajuste */
+/* Se #hero é uma secção separada abaixo do header slider, estes estilos são para ela */
+section#hero.hero-section.page-section {
+    /* Estes estilos são para uma secção #hero que NÃO é o slider */
+    /* Se o slider é o hero, remova ou ajuste esta secção no HTML e CSS */
+    background: #B08D57; 
     color: #fff;
-    padding: 1.5625rem 1.25rem; /* Padding vertical reduzido */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 9.375rem; /* Altura mínima reduzida */
+    padding: 1.5625rem 1.25rem; 
+    min-height: auto; /* Ajustar se for uma secção separada */
+    margin-top: 0; /* Se o header não for fixo e esta for a primeira secção */
 }
 
-.hero-section h1 {
-    font-size: 2.2em; /* Fonte ligeiramente reduzida */
+section#hero.hero-section.page-section h1 {
+    font-size: 2.2em;
     margin-bottom: 0.5rem;
-    font-weight: 700; /* Peso bold */
 }
 
-.hero-section .hero-subtitle {
-    font-size: 1.6em; /* Fonte ligeiramente reduzida */
+section#hero.hero-section.page-section .hero-subtitle {
+    font-size: 1.6em;
     text-transform: uppercase;
-    font-weight: 600; /* Peso semi-bold */
+    font-weight: 600;
 }
+
 
 /* Secção Introdutória */
-.intro-section {
-    text-align: center;
-}
-
 .intro-section h2 {
     font-size: 2.2em;
-    /* color: #333; */ /* Comentado para herdar cor dourada padrão de .page-section h2 */
     margin-bottom: 1.25rem;
-    font-weight: 700;
 }
 
 .intro-section p {
-    max-width: 50.0rem;
+    max-width: 50rem;
     margin: 0 auto 1.25rem auto;
     font-size: 1.1em;
-    font-weight: 400;
 }
 
 .cta-buttons a.btn {
@@ -307,7 +252,7 @@ main {
     margin: 0.625rem;
     border-radius: 0.3125rem;
     text-decoration: none;
-    font-weight: 600; /* Peso semi-bold para botões */
+    font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -331,7 +276,6 @@ main {
     transform: translateY(-0.125rem);
 }
 
-
 /* Secção Serviços */
 #servicos .servicos-grid {
     display: grid;
@@ -342,28 +286,28 @@ main {
 }
 
 #servicos .servico-card {
-    background: #2c2c2c; /* Fundo mais escuro para cartões de serviço */
+    background: #2c2c2c;
     padding: 1.875rem;
-    border: 1px solid #444; /* Borda subtil */
+    border: 1px solid #444;
     border-radius: 0.625rem;
-    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.25); /* Sombra suave */
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #e0e0e0; /* Texto claro para cartões */
+    color: #e0e0e0;
 }
 
 #servicos .servico-card:hover {
     transform: translateY(-0.5rem);
-    box-shadow: 0 0.375rem 0.9375rem rgba(0,0,0,0.25); /* Sombra suave no hover */
+    box-shadow: 0 0.375rem 0.9375rem rgba(0,0,0,0.25);
 }
 
 #servicos .servico-card .servico-icon {
     width: 3.75rem;
     height: 3.75rem;
-    background-color: #333; /* Fundo do ícone */
+    background-color: #333;
     border: 2px solid #B08D57;
     border-radius: 50%;
     margin-bottom: 1.5625rem;
@@ -379,14 +323,13 @@ main {
     margin-bottom: 0.9375rem;
     text-align: center;
     font-size: 1.5em;
-    font-weight: 600; /* Peso semi-bold para títulos de cartão */
+    font-weight: 600;
 }
 
 #servicos .servico-card p {
     text-align: center;
     font-size: 1.05em;
     line-height: 1.7;
-    font-weight: 400;
 }
 
 /* Secção Sobre o Fundador */
@@ -397,7 +340,7 @@ main {
     max-width: 56.25rem;
     margin: 1.25rem auto;
     padding: 1.5625rem;
-    background-color: #2c2c2c; /* Fundo mais escuro */
+    background-color: #2c2c2c;
     border-left: 5px solid #B08D57;
     gap: 1.5625rem;
     border-radius: 0.3125rem;
@@ -416,7 +359,6 @@ main {
 #sobre-fundador .fundador-texto p {
     margin-top: 0;
     font-size: 1.05em;
-    font-weight: 400;
 }
 
 #sobre-fundador .experiencia-profissional {
@@ -424,644 +366,101 @@ main {
     max-width: 56.25rem;
     margin: 2.5rem auto 1.25rem auto;
     padding: 1.5625rem;
-    background-color: #2c2c2c; /* Fundo mais escuro */
+    background-color: #2c2c2c;
     border-left: 5px solid #B08D57;
     border-radius: 0.3125rem;
     color: #e0e0e0;
 }
 
 #sobre-fundador .experiencia-profissional h3 {
-    color: #B08D57; /* Cor dourada para o título */
-    margin-top: 0;
-    margin-bottom: 1.5625rem;
-    text-align: center;
-    font-size: 1.8em;
-    font-weight: 600;
-}
-
-#sobre-fundador .experiencia-card {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1.5625rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid #444; /* Borda mais escura */
-    gap: 1.25rem;
-}
-
-#sobre-fundador .experiencia-card:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-#sobre-fundador .experiencia-logo {
-    width: 3.75rem;
-    height: auto;
-    max-height: 3.75rem;
-    object-fit: contain;
-    margin-right: 0.9375rem;
-    flex-shrink: 0;
-}
-
-#sobre-fundador .experiencia-detalhes h4 {
     color: #B08D57;
     margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.2em;
-    font-weight: 600;
-}
-
-#sobre-fundador .experiencia-detalhes p {
-    margin-bottom: 0.3125rem;
-    font-size: 0.95em;
-    font-weight: 400;
-}
-
-#sobre-fundador .recomendacoes {
-    text-align: left;
-    max-width: 56.25rem;
-    margin: 2.5rem auto 1.25rem auto;
-    padding: 1.5625rem;
-    background-color: #2c2c2c; /* Fundo mais escuro */
-    border-left: 5px solid #B08D57;
-    border-radius: 0.3125rem;
-    color: #e0e0e0;
-}
-
-#sobre-fundador .recomendacoes h3 {
-    color: #B08D57; /* Cor dourada */
-    margin-top: 0;
     margin-bottom: 1.5625rem;
     text-align: center;
     font-size: 1.8em;
-    font-weight: 600;
-}
-
-#sobre-fundador .recomendacao-card {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5625rem;
-    padding-bottom: 0.9375rem;
-    border-bottom: 1px solid #444; /* Borda mais escura */
-    gap: 1.25rem;
-}
-
-#sobre-fundador .recomendacao-card:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
+    border-bottom: none; /* Remove default page-section h2 border */
     padding-bottom: 0;
 }
 
-#sobre-fundador .recomendacao-foto {
-    width: 7.5rem;
-    height: 7.5rem;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #B08D57;
-    flex-shrink: 0;
+.experiencia-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background-color: #333;
+    border-radius: 0.3125rem;
 }
 
-#sobre-fundador .recomendacao-conteudo {
-    flex-grow: 1;
+.experiencia-logo {
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-right: 1rem;
+    object-fit: contain;
 }
 
-#sobre-fundador .recomendacao-texto {
-    font-style: italic;
-    margin-bottom: 0.625rem;
-    color: #cccccc; /* Texto da recomendação mais claro */
-    font-weight: 300; /* Peso light para itálico */
-}
-
-#sobre-fundador .recomendacao-autor {
-    font-weight: 600; /* Semi-bold para autor */
-    color: #e0e0e0;
+.experiencia-detalhes h4 {
+    color: #B08D57;
+    margin-top: 0;
     margin-bottom: 0.3125rem;
+    font-size: 1.2em;
 }
 
-#sobre-fundador .recomendacao-cargo {
-    font-size: 0.9em;
-    color: #aaaaaa; /* Cargo mais subtil */
-    font-weight: 400;
+.experiencia-detalhes p {
+    margin: 0.25rem 0;
+    font-size: 0.95em;
 }
 
 /* Dashboard Destaque */
 .dashboard-destaque {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
-    gap: 1.25rem;
-    margin-top: 1.875rem;
-    margin-bottom: 1.875rem;
-    padding: 1.25rem;
-    background-color: #2a2a2a; /* Fundo um pouco mais claro para o dashboard */
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); /* 200px */
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #333;
     border-radius: 0.5rem;
 }
 
 .dashboard-item {
-    background-color: #333333;
-    padding: 0.9375rem;
-    border-radius: 0.375rem;
+    background-color: #2c2c2c;
+    padding: 1rem;
+    border-radius: 0.3125rem;
     text-align: center;
-    color: #e0e0e0;
-    border-left: 4px solid #B08D57;
+    border: 1px solid #444;
 }
 
 .dashboard-item i {
     font-size: 1.8em;
     color: #B08D57;
-    margin-bottom: 0.625rem;
-}
-
-.dashboard-item .dashboard-number {
-    font-size: 1.6em;
-    font-weight: 700; /* Bold para números */
-    color: #ffffff;
-    display: block;
-    margin-bottom: 0.3125rem;
-}
-
-.dashboard-item .dashboard-highlight {
-    font-size: 1.2em;
-    font-weight: 600; /* Semi-bold para destaque */
-    color: #B08D57; /* Destaque dourado para texto especial */
-    display: block;
-    margin-bottom: 0.3125rem;
-}
-
-.dashboard-item .dashboard-text {
-    font-size: 0.9em;
-    color: #cccccc;
-    font-weight: 400;
-}
-
-
-/* Secção Loja */
-#loja .loja-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
-    gap: 1.5625rem;
-    text-align: left;
-    margin-top: 1.25rem;
-}
-
-#loja .loja-item-card {
-    background: #2c2c2c; /* Fundo mais escuro */
-    padding: 1.5625rem;
-    border: 1px solid #444; /* Borda subtil */
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-#loja .ebook-cover {
-    max-width: 15.625rem; /* Ajustar tamanho da capa */
-    height: auto;
-    border-radius: 0.3125rem;
-    margin-bottom: 0.9375rem;
-    box-shadow: 0 0.125rem 0.3125rem rgba(0,0,0,0.1);
-}
-
-#loja .loja-item-card h3 {
-    color: #B08D57;
-    margin-bottom: 0.625rem;
-    font-size: 1.3em;
-    font-weight: 600;
-}
-
-#loja .loja-item-card p {
-    font-size: 1em;
-    margin-bottom: 0.9375rem;
-    font-weight: 400;
-}
-
-.btn-gold, .hotmart__button-checkout, .btn-form {
-    display: inline-block;
-    background: #B08D57;
-    color: #fff !important; 
-    padding: 0.75rem 1.25rem;
-    text-decoration: none;
-    border-radius: 0.3125rem;
-    margin-top: 0.625rem;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    font-weight: 600; /* Semi-bold para botões */
-    border: none;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-}
-
-.btn-gold:hover, .hotmart__button-checkout:hover, .btn-form:hover {
-    background: #8c6f40;
-}
-
-.hotmart__button-checkout img {
-    vertical-align: middle;
-}
-
-#loja .survey-card .servico-icon {
-    width: 3.125rem;
-    height: 3.125rem;
-    font-size: 1.8em;
-    margin-bottom: 0.9375rem;
-    color: #B08D57;
-    border: 2px solid #B08D57;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Survey Widget Container */
-.survey-widget-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    z-index: 3000;
-    display: none; /* Começa oculto */
-    align-items: center;
-    justify-content: center;
-}
-
-.survey-widget-content {
-    background-color: #1f1f1f; /* Fundo escuro para o widget */
-    padding: 1.25rem;
-    border-radius: 0.5rem;
-    width: 90%;
-    max-width: 50.0rem;
-    height: 90%;
-    max-height: 43.75rem;
-    position: relative;
-    box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.3);
-    color: #e0e0e0;
-}
-
-.close-survey-widget {
-    position: absolute;
-    top: 0.625rem;
-    right: 1.25rem;
-    font-size: 2em;
-    font-weight: bold;
-    color: #B08D57; /* Cor dourada para o botão de fechar */
-    cursor: pointer;
-}
-
-/* Secção Agendar */
-#agendar p {
-    font-size: 1.1em;
-    margin-bottom: 1.25rem;
-    font-weight: 400;
-}
-
-#agendar .btn-primary {
-    font-size: 1.1em;
-    font-weight: 600;
-}
-
-/* Secção Contactos */
-#contactos p {
-    font-size: 1.1em;
-    margin-bottom: 1.25rem;
-    font-weight: 400;
-}
-
-#contactos .contactos-details a {
-    color: #B08D57;
-    text-decoration: none;
-    font-size: 2.8em; 
-    margin: 0 1.25rem;
-}
-
-#contactos .contactos-details a:hover {
-    color: #8c6f40;
-}
-
-/* Rodapé */
-footer {
-    background: #000000;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 1.875rem 1.25rem;
-    border-top: 3px solid #B08D57;
-    font-weight: 400;
-}
-
-footer p {
-    margin: 0.3125rem 0;
-}
-
-footer a {
-    color: #B08D57;
-    text-decoration: none;
-    font-weight: 500; /* Medium para links no rodapé */
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Modal de Pedido de Serviço */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 2000; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.6); 
-}
-
-.modal-content {
-    background-color: #2c2c2c; /* Fundo escuro para modal */
-    margin: 10% auto; 
-    padding: 1.875rem;
-    border: 1px solid #555; /* Borda mais escura */
-    width: 80%; 
-    max-width: 37.5rem;
-    border-radius: 0.5rem;
-    position: relative;
-    color: #e0e0e0;
-}
-
-.modal-content h3 {
-    color: #B08D57;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 1.5625rem;
-    font-weight: 600;
-}
-
-.close-button {
-    color: #aaaaaa;
-    float: right;
-    font-size: 1.75rem;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: #B08D57; /* Dourado no hover */
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#service-request-form label {
-    display: block;
     margin-bottom: 0.5rem;
-    font-weight: 500; /* Medium para labels */
 }
 
-#service-request-form input[type="text"],
-#service-request-form input[type="email"],
-#service-request-form input[type="tel"],
-#service-request-form select,
-#service-request-form textarea {
-    width: calc(100% - 1.375rem); /* Ajustar para padding e borda */
-    padding: 0.625rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid #555;
-    border-radius: 0.25rem;
-    background-color: #333;
-    color: #e0e0e0;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1em;
+.dashboard-number, .dashboard-highlight {
+    display: block;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
 }
 
-#service-request-form textarea {
-    resize: vertical;
+.dashboard-text {
+    display: block;
+    font-size: 0.85em;
+    color: #ccc;
 }
 
-#service-request-form button.btn-form {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1.1em;
+/* Recomendações */
+.recomendacoes {
+    /* Styles for recommendations section */
 }
 
-#service-request-message p {
-    text-align: center;
-    padding: 0.625rem;
-    margin-top: 0.625rem;
-    border-radius: 0.3125rem;
-}
-
-#service-request-message.success p {
-    background-color: #3a5a3a; /* Verde escuro para sucesso */
-    color: #d4eed4;
-}
-
-#service-request-message.error p {
-    background-color: #5a3a3a; /* Vermelho escuro para erro */
-    color: #eed4d4;
-}
-
-#service-request-message.error p a {
-    color: #f0b0b0; /* Link vermelho claro para erro */
-    text-decoration: underline;
-}
-
-
-/* Media Queries para Responsividade */
-@media (max-width: 48.0rem) { /* 768px */
-    .container {
-        width: 90%;
-        padding: 0 0.9375rem;
-    }
-
-    header {
-        padding: 0.3125rem 0;
-    }
-
-    #header-logo {
-        height: 3.125rem;
-    }
-
-    nav.top-nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav.top-nav ul li a {
-        padding: 0.625rem 0.9375rem;
-        text-align: center;
-        width: 100%;
-    }
-    
-    main {
-        padding-top: 12.5rem; /* Ajustar para novo header móvel mais alto */
-    }
-
-    .page-section h2 {
-        font-size: 2em;
-        padding-bottom: 0.625rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .hero-section {
-        padding: 1.25rem 0.9375rem;
-        min-height: auto;
-    }
-
-    .hero-section h1 {
-        font-size: 1.8em;
-    }
-
-    .hero-section .hero-subtitle {
-        font-size: 1.2em;
-    }
-
-    .intro-section p {
-        font-size: 1em;
-    }
-
-    .cta-buttons a.btn {
-        padding: 0.625rem 1.25rem;
-        font-size: 0.9em;
-        margin: 0.3125rem;
-    }
-
-    #servicos .servicos-grid {
-        grid-template-columns: 1fr; /* Uma coluna em mobile */
-        gap: 1.25rem;
-    }
-
-    #servicos .servico-card {
-        padding: 1.25rem;
-    }
-
-    #servicos .servico-card .servico-icon {
-        width: 3.125rem;
-        height: 3.125rem;
-        font-size: 1.8em;
-        margin-bottom: 1.25rem;
-    }
-
-    #servicos .servico-card h3 {
-        font-size: 1.3em;
-    }
-
-    #sobre-fundador .fundador-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 1.25rem;
-        gap: 1.25rem;
-    }
-
-    #sobre-fundador .fundador-foto {
-        width: 7.5rem;
-        height: 7.5rem;
-        margin-bottom: 0.9375rem;
-    }
-
-    #sobre-fundador .experiencia-profissional,
-    #sobre-fundador .recomendacoes {
-        padding: 1.25rem;
-    }
-
-    #sobre-fundador .experiencia-card,
-    #sobre-fundador .recomendacao-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0.9375rem;
-    }
-
-    #sobre-fundador .experiencia-logo {
-        margin-right: 0;
-        margin-bottom: 0.625rem;
-    }
-
-    #sobre-fundador .recomendacao-foto {
-        width: 6.25rem;
-        height: 6.25rem;
-        margin-bottom: 0.9375rem;
-    }
-
-    .dashboard-destaque {
-        grid-template-columns: 1fr; /* Uma coluna em mobile */
-        gap: 0.9375rem;
-        padding: 0.9375rem;
-    }
-
-    .dashboard-item {
-        padding: 0.9375rem;
-    }
-
-    #loja .loja-grid {
-        grid-template-columns: 1fr; /* Uma coluna em mobile */
-        gap: 1.25rem;
-    }
-
-    #loja .loja-item-card {
-        padding: 1.25rem;
-    }
-
-    #loja .ebook-cover {
-        max-width: 12.5rem;
-    }
-
-    .modal-content {
-        width: 90%;
-        margin: 15% auto;
-        padding: 1.25rem;
-    }
-
-    .close-button {
-        font-size: 1.5rem;
-    }
-
-    #service-request-form input[type="text"],
-    #service-request-form input[type="email"],
-    #service-request-form input[type="tel"],
-    #service-request-form select,
-    #service-request-form textarea {
-        width: calc(100% - 1.25rem); /* Ajustar para padding e borda */
-        font-size: 0.9em;
-    }
-
-    #contactos .contactos-details a {
-        font-size: 2.2em;
-        margin: 0 0.625rem;
-    }
-
-    footer {
-        padding: 1.25rem 0.9375rem;
-    }
-}
-
-@media (max-width: 28.125rem) { /* 450px - Ajustes ainda menores */
-    .page-section h2 {
-        font-size: 1.8em;
-    }
-
-    .hero-section h1 {
-        font-size: 1.6em;
-    }
-
-    .hero-section .hero-subtitle {
-        font-size: 1em;
-    }
-
-    main {
-        padding-top: 11.25rem; /* Ajustar para header móvel */
-    }
-}
-
-
-
-
-/* Estilos para o Carrossel de Recomendações */
 .carousel-container {
     position: relative;
-    width: 100%;
-    max-width: 56.25rem; /* Mesma largura máxima da secção de recomendações */
-    margin: 1.25rem auto;
+    max-width: 50rem; /* 800px */
+    margin: auto;
     overflow: hidden;
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 .carousel-slides {
@@ -1069,29 +468,55 @@ footer a:hover {
     transition: transform 0.5s ease-in-out;
 }
 
-.carousel-slide {
+.recomendacao-card.carousel-slide {
     min-width: 100%;
-    box-sizing: border-box; /* Para incluir padding e border no width/height */
-    /* O estilo do .recomendacao-card já está definido, apenas garantimos que ele é um slide */
+    box-sizing: border-box;
+    padding: 1.25rem;
+    display: flex; /* For layout of photo and content */
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.recomendacao-foto {
+    width: 6.25rem; /* 100px */
+    height: 6.25rem; /* 100px */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #B08D57;
+}
+
+.recomendacao-conteudo {
+    text-align: left;
+}
+
+.recomendacao-texto {
+    font-style: italic;
+    margin-bottom: 0.625rem;
+    font-size: 1em;
+}
+
+.recomendacao-autor {
+    font-weight: bold;
+    color: #B08D57;
+    font-size: 1.1em;
+}
+
+.recomendacao-cargo {
+    font-size: 0.9em;
+    color: #ccc;
 }
 
 .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0.5);
     color: white;
     border: none;
     padding: 0.625rem;
     cursor: pointer;
+    border-radius: 50%;
     z-index: 100;
-    font-size: 1.5em;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s ease;
-}
-
-.carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .carousel-button.prev {
@@ -1102,117 +527,598 @@ footer a:hover {
     right: 0.625rem;
 }
 
-/* Ajustes para .recomendacao-card dentro do carrossel se necessário */
-#recomendacoes .carousel-slide .recomendacao-card {
-    margin-bottom: 0; /* Remover margem inferior se o card estiver dentro do slide */
-    width: 100%; /* Garantir que ocupa todo o espaço do slide */
+/* Loja */
+#loja .loja-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1.875rem;
+    margin-top: 1.25rem;
 }
 
-
-
-
-/* Estilos para o Formulário de Feedback com Estrelas */
-#feedback-section {
+#loja .loja-item-card {
+    background: #2c2c2c;
+    padding: 1.875rem;
+    border-radius: 0.625rem;
     text-align: center;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.25);
 }
 
-.star-rating {
-    direction: rtl; /* Faz as estrelas preencherem da direita para a esquerda */
+#loja .ebook-cover {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.3125rem;
+    margin-bottom: 1rem;
+    border: 2px solid #B08D57;
+}
+
+#loja .loja-item-card h3 {
+    color: #B08D57;
+    margin-bottom: 0.625rem;
+    font-size: 1.5em;
+}
+
+#loja .loja-item-card p {
+    margin-bottom: 1.25rem;
+    font-size: 1.05em;
+}
+
+.btn-gold, .hotmart__button-checkout {
     display: inline-block;
-    padding: 0.625rem 0;
-}
-
-.star-rating input[type="radio"] {
-    display: none;
-}
-
-.star-rating label {
-    color: #ddd; /* Cor da estrela vazia */
-    font-size: 2.5em; /* Tamanho das estrelas */
-    padding: 0 0.125rem;
+    background-color: #B08D57;
+    color: #fff !important; /* Important to override Hotmart styles if needed */
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 0.3125rem;
+    font-weight: 600;
+    border: none;
     cursor: pointer;
-    transition: color 0.2s ease-in-out;
+    transition: background-color 0.3s ease;
 }
 
-.star-rating input[type="radio"]:checked ~ label,
-.star-rating label:hover,
-.star-rating label:hover ~ label { /* Aplica hover às estrelas à esquerda da selecionada */
-    color: #B08D57; /* Cor da estrela preenchida/hover (dourado) */
+.btn-gold:hover, .hotmart__button-checkout:hover {
+    background-color: #8c6f40;
+}
+
+#loja .survey-card .servico-icon {
+    /* Reusing servico-icon style, ensure it's defined or copy here */
+    width: 3.75rem;
+    height: 3.75rem;
+    background-color: #333;
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    margin: 0 auto 1.5625rem auto; /* Centered icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    color: #B08D57;
+}
+
+/* Agendar e Contactos */
+#agendar a.btn-primary,
+#contactos a {
+    /* General styling for these links if needed */
+}
+
+#contactos .contactos-details {
+    margin-top: 1.25rem;
+}
+
+#contactos .contactos-details a {
+    color: #B08D57;
+    font-size: 2em;
+    margin: 0 0.625rem;
+    transition: color 0.3s ease;
+}
+
+#contactos .contactos-details a:hover {
+    color: #8c6f40;
+}
+
+/* Footer */
+footer {
+    background: #1f1f1f;
+    color: #ccc;
+    text-align: center;
+    padding: 1.875rem 1.25rem;
+    margin-top: 1.25rem;
+    border-top: 1px solid #333;
+}
+
+footer .footer-content p {
+    margin: 0.3125rem 0;
+    font-size: 0.9em;
+}
+
+footer .footer-content a {
+    color: #B08D57;
+    text-decoration: none;
+}
+
+footer .footer-content a:hover {
+    text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal, .survey-widget-container {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content, .survey-widget-content {
+    background-color: #2c2c2c;
+    margin: 10% auto;
+    padding: 1.875rem;
+    border: 1px solid #555;
+    width: 80%;
+    max-width: 37.5rem; /* 600px */
+    border-radius: 0.5rem;
+    position: relative;
+    color: #e0e0e0;
+}
+
+.close-button, .close-survey-widget {
+    color: #aaa;
+    float: right;
+    font-size: 1.75em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus,
+.close-survey-widget:hover,
+.close-survey-widget:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+#service-request-form label {
+    display: block;
+    margin-top: 0.625rem;
+    color: #B08D57;
+    font-weight: 600;
+}
+
+#service-request-form input[type="text"],
+#service-request-form input[type="email"],
+#service-request-form input[type="tel"],
+#service-request-form select,
+#service-request-form textarea {
+    width: 100%;
+    padding: 0.625rem;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.625rem;
+    border: 1px solid #555;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+#service-request-form textarea {
+    resize: vertical;
+}
+
+.btn-form.btn-gold-icon {
+    /* Assuming .btn-gold styles are applied, add icon specific if needed */
+    margin-top: 1rem;
+}
+
+#service-request-message {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Survey Widget Iframe */
+.survey-widget-content iframe {
+    border-radius: 0.3125rem;
+}
+
+/* Feedback Section */
+#feedback-section {
+    /* General page-section styles apply */
+}
+
+#feedback-form .star-rating {
+    margin-bottom: 1rem;
+    text-align: center; /* Ensure stars are centered */
+}
+
+#feedback-form .star-rating i {
+    font-size: 2em;
+    color: #ccc; /* Default star color */
+    cursor: pointer;
+    padding: 0 0.2rem;
+    transition: color 0.2s ease;
+}
+
+#feedback-form .star-rating i.selected,
+#feedback-form .star-rating i:hover,
+#feedback-form .star-rating i:hover ~ i { /* Makes stars light up on hover from left to right */
+    color: #B08D57; /* Gold color for selected/hovered stars */
 }
 
 #feedback-form textarea {
     width: 100%;
-    max-width: 31.25rem; /* Limitar largura da textarea */
-    padding: 0.625rem;
-    margin-top: 0.9375rem;
-    margin-bottom: 0.9375rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
     border: 1px solid #555;
     border-radius: 0.25rem;
+    box-sizing: border-box;
+    min-height: 6.25rem; /* 100px */
     background-color: #333;
     color: #e0e0e0;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1em;
     resize: vertical;
-    min-height: 5rem; /* Altura mínima */
-}
-
-/* Secção de Feedback - Ajustes de Alinhamento */
-#feedback-form {
-    display: flex; /* Usar flexbox para o formulário */
-    flex-direction: column; /* Empilhar os itens do formulário verticalmente */
-    align-items: center; /* Centrar os itens (estrelas, textarea, botão) horizontalmente */
-    width: 100%; /* Garantir que o formulário ocupa a largura disponível */
-}
-
-#feedback-form .star-rating {
-    margin-bottom: 15px; /* Espaço abaixo das estrelas */
-    /* As estrelas (o div .star-rating) já estarão centradas devido ao align-items: center no #feedback-form */
-    /* Se quiser centrar o texto/ícones DENTRO do .star-rating, caso não estejam: */
-    /* text-align: center; */ 
-}
-
-#feedback-form textarea {
-    width: 100%; /* Fazer a textarea ocupar a largura do seu contentor */
-    max-width: 600px; /* Definir uma largura máxima para a textarea para não ficar demasiado larga em ecrãs grandes */
-    margin-bottom: 20px; /* Espaço abaixo da textarea */
-    /* Mantenha outros estilos que já tenha para a textarea */
-}
-
-#feedback-form button[type="submit"] {
-    /* O botão já estará centrado devido ao align-items: center no #feedback-form */
-    /* Se por alguma razão não estiver, pode tentar adicionar: */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-    /* display: block; */ /* ou inline-block */
-}
-
-/* Opcional: Garantir que o parágrafo introdutório da secção também está centrado */
-#feedback-section > p {
-    text-align: center;
-    max-width: 700px; /* Para melhor legibilidade */
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px; /* Espaço antes do formulário */
-}
-
-
-#feedback-form button.btn-gold {
-    margin-top: 0.625rem;
 }
 
 #feedback-message {
-    padding: 0.625rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* HR Innovation Hub Section Specific Styles */
+#hr-innovation-hub .container {
+    width: 100%; /* Override default container width for full-width feel if needed */
+    max-width: 75rem; /* 1200px, adjust as needed */
+    margin: auto;
+    padding: 0 1rem; /* Add some padding for smaller screens */
+}
+
+#hr-innovation-hub .newsletter-hero {
+    text-align: center;
+    padding: 2.5rem 1.25rem;
+    background-color: #2a2a2a; /* Slightly different dark shade */
+    border-bottom: 1px solid #444;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 0.5rem;
+}
+
+#hr-innovation-hub .newsletter-hero h2 {
+    font-size: 2.2rem;
+    color: #B08D57;
+    margin-bottom: 0.9375rem;
+    border-bottom: none; /* Override page-section h2 style */
+    padding-bottom: 0;
+}
+
+#hr-innovation-hub .newsletter-hero p {
+    font-size: 1.1rem;
+    color: #ccc;
+    max-width: 50rem;
+    margin: 0 auto 1.5625rem auto;
+}
+
+#hr-innovation-hub .newsletter-hero .btn-primary {
+    margin-top: 0.625rem;
+    background-color: #B08D57;
+    border-color: #B08D57;
+}
+
+#hr-innovation-hub .newsletter-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 2.5rem 0;
+    padding: 0 1.25rem;
+}
+
+#hr-innovation-hub .newsletter-stat-card {
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding: 1.25rem;
+    text-align: center;
+    flex-basis: 13.75rem; /* 220px */
+    margin-bottom: 1.25rem;
+    border: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-stat-card div:first-child {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #B08D57;
+    margin-bottom: 0.3125rem;
+}
+
+#hr-innovation-hub .newsletter-stat-card div:last-child {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+#hr-innovation-hub .newsletter-featured-post {
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 3.125rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-featured-post img {
+    width: 100%;
+    max-width: 50rem; /* 800px */
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-featured-post > div {
+    padding: 1.875rem;
+    text-align: center;
+    max-width: 50rem;
+}
+
+#hr-innovation-hub .newsletter-featured-post h3 {
+    font-size: 1.9rem;
+    margin-bottom: 0.625rem;
+    color: #B08D57;
+}
+
+#hr-innovation-hub .newsletter-featured-post p:first-of-type {
+    color: #aaa;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+}
+
+#hr-innovation-hub .newsletter-featured-post p:last-of-type {
+    font-size: 1.05rem;
+    margin-bottom: 1.5625rem;
+    line-height: 1.7;
+    color: #ccc;
+}
+
+#hr-innovation-hub .newsletter-featured-post .btn-secondary {
+    background-color: #555;
+    border-color: #555;
+    color: #fff;
+}
+#hr-innovation-hub .newsletter-featured-post .btn-secondary:hover {
+    background-color: #444;
+}
+
+#hr-innovation-hub h3.section-title {
+    text-align:center;
+    margin-top: 3.125rem;
+    margin-bottom: 1.875rem;
+    font-size: 2rem;
+    color: #B08D57;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+#hr-innovation-hub .newsletter-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); /* 320px */
+    gap: 1.875rem;
+    margin-bottom: 3.125rem;
+}
+
+#hr-innovation-hub .newsletter-post-card {
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-post-card img {
+    width: 100%;
+    height: 13.75rem; /* 220px */
+    object-fit: cover;
+}
+
+#hr-innovation-hub .newsletter-post-card > div {
+    padding: 1.5625rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#hr-innovation-hub .newsletter-post-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.625rem;
+    color: #B08D57;
+}
+
+#hr-innovation-hub .newsletter-post-card p:first-of-type {
+    color: #aaa;
+    margin-bottom: 0.9375rem;
+    font-size: 0.85rem;
+}
+
+#hr-innovation-hub .newsletter-post-card p:nth-of-type(2) {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    color: #ccc;
+    flex-grow: 1;
+}
+
+#hr-innovation-hub .newsletter-post-card .post-link {
+    color: #B08D57;
+    text-decoration: none;
+    font-weight: bold;
+    align-self: flex-start;
+}
+#hr-innovation-hub .newsletter-post-card .post-link:hover {
+    text-decoration: underline;
+}
+
+#hr-innovation-hub .newsletter-subscribe-section {
+    background-color: #343a40;
+    color: white;
+    padding: 3.75rem 1.25rem;
+    text-align: center;
+    margin: 3.125rem 0 0 0; /* Adjusted margin */
+    border-radius: 0.5rem;
+}
+
+#hr-innovation-hub .newsletter-subscribe-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    color: #fff;
+}
+
+#hr-innovation-hub .newsletter-subscribe-section p {
+    margin-bottom: 1.875rem;
+    font-size: 1.1rem;
+    max-width: 37.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #f0f0f0;
+}
+
+#hr-innovation-hub .newsletter-subscribe-form {
+    max-width: 34.375rem; /* 550px */
+    margin: 0 auto;
+    display: flex;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     border-radius: 0.3125rem;
-    font-weight: 500;
+    overflow: hidden;
 }
 
-#feedback-message.success {
-    background-color: #3a5a3a; /* Verde escuro para sucesso */
-    color: #d4eed4;
+#hr-innovation-hub .newsletter-subscribe-form input[type="email"] {
+    flex-grow: 1;
+    padding: 0.9375rem 1.25rem;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+    margin:0; /* Reset margin */
 }
 
-#feedback-message.error {
-    background-color: #5a3a3a; /* Vermelho escuro para erro */
-    color: #eed4d4;
+#hr-innovation-hub .newsletter-subscribe-form button[type="submit"] {
+    border-radius: 0 0.3125rem 0.3125rem 0;
+    white-space: nowrap;
+    padding: 0.9375rem 1.5625rem;
+    font-size: 1rem;
+    background-color: #B08D57;
+    border-color: #B08D57;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin:0; /* Reset margin */
+}
+
+/* Responsive menu styles */
+@media (max-width: 768px) { /* Ponto de quebra, ajuste conforme necessário */
+    header#main-header {
+        height: 350px; /* Adjust header height for mobile */
+    }
+    .header-overlay {
+        justify-content: flex-start; /* Align logo and nav to top on mobile */
+    }
+    nav.top-nav {
+        justify-content: flex-end; /* Align menu toggle to the right */
+        background-color: transparent; /* Make nav bar transparent, rely on overlay bg */
+        padding: 0.5rem; 
+    }
+    .menu-items {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% + 5px); /* Position below the nav.top-nav bar */
+        left: 0;
+        right: 0; /* Make it full width */
+        width: auto; /* Override width:100% if it causes issues with padding */
+        margin: 0 0.5rem; /* Add some horizontal margin */
+        background-color: rgba(30, 30, 30, 0.95); /* Darker, more opaque background for dropdown */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), padding 0.4s ease; 
+        z-index: 999; /* Ensure it's below menu-toggle if it has higher z-index */
+        border-radius: 0 0 0.3125rem 0.3125rem;
+        padding: 0 1rem;
+    }
+
+    .menu-items.active {
+        display: flex;
+        max-height: 31.25rem; /* 500px, adjust as needed */
+        padding: 0.5rem 1rem; /* Add padding when active */
+    }
+
+    .menu-items li {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #444;
+    }
+
+    .menu-items li:last-child {
+        border-bottom: none;
+    }
+
+    .menu-items a {
+        display: block;
+        padding: 1rem;
+        width: 100%;
+        color: #f0f0f0;
+    }
+    .menu-items a:hover, .menu-items a.active {
+        background-color: #B08D57;
+        color: #121212;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon {
+        background-color: transparent;
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon::before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+    }
+    
+    /* Adjustments for smaller screens */
+    .page-section h2 {
+        font-size: 2em;
+    }
+    .intro-section p, #servicos .servico-card p, #sobre-fundador .fundador-texto p {
+        font-size: 1em;
+    }
+    #sobre-fundador .fundador-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    #sobre-fundador .fundador-foto {
+        margin-bottom: 1rem;
+    }
+    .dashboard-destaque {
+        grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr)); /* 150px */
+    }
+    .recomendacao-card.carousel-slide {
+        flex-direction: column;
+        text-align: center;
+    }
+    .recomendacao-foto {
+        margin-bottom: 1rem;
+    }
+    .recomendacao-conteudo {
+        text-align: center;
+    }
 }
 

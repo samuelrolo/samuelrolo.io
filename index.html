@@ -5,32 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHARE2INSPIRE - Samuel Rolo</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="styles.css"> <!-- Assumindo que styles.css contém os estilos do menu responsivo -->
+    <link rel="stylesheet" href="styles.css"> 
     <link rel="icon" href="images/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://static.hotmart.com/css/hotmart-fb.min.css">
 </head>
 <body>
-    <header>
+    <header id="main-header">
+    <div class="header-slider-container">
+        <div class="header-slide active">
+            <img src="images/BANNER1.png" alt="Banner Share2Inspire 1">
+        </div>
+        <div class="header-slide">
+            <img src="images/BANNER2.png" alt="Banner Share2Inspire 2">
+        </div>
+        <div class="header-slide">
+            <img src="images/BANNER3.png" alt="Banner Share2Inspire 3">
+        </div>
+        <div class="header-slide">
+            <img src="images/BANNER4.png" alt="Banner Share2Inspire 4">
+        </div>
+    </div>
+    <div class="header-overlay">
         <div class="logo-container">
             <img src="images/logo_white.png" alt="SHARE2INSPIRE Logo" id="header-logo">
         </div>
         <nav class="top-nav">
-            <!-- Botão Hambúrguer (apenas visível em ecrãs pequenos) -->
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
                 <span class="hamburger-icon"></span>
             </button>
-
             <ul class="menu-items">
                 <li><a href="#hero">Início</a></li>
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#sobre-fundador">Sobre</a></li>
+                <li><a href="#hr-innovation-hub">HR Hub</a></li>
                 <li><a href="#loja">Loja</a></li>
                 <li><a href="#agendar">Agendar</a></li>
                 <li><a href="#contactos">Contactos</a></li>
             </ul>
         </nav>
-    </header>
+    </div>
+</header>
 
     <main>
         <section id="hero" class="hero-section page-section">
@@ -77,7 +92,6 @@
                 <div class="fundador-texto">
                     <p>Samuel Rolo, fundador da SHARE2INSPIRE, é especialista em desenvolvimento de <span style="color: #B08D57;">Transformação Organizacional</span>, <span style="color: #B08D57;">Gestão da Mudança</span> e <span style="color: #B08D57;">Desenvolvimento Pessoal</span>, com mais de uma década de consultoria de Human Capital para Europa, África e América.</p>
                     <p>Com uma abordagem prática e focada em resultados, Samuel combina conhecimentos teóricos sólidos com uma vasta experiência no terreno, ajudando líderes e equipas a transformar desafios em oportunidades de crescimento.</p>
-                    <!-- DASHBOARD START -->
                     <div class="dashboard-destaque">
                         <div class="dashboard-item">
                             <i class="fas fa-briefcase"></i>
@@ -115,7 +129,6 @@
                             <span class="dashboard-text">Referência em Portugal (RH/Transformação)</span>
                         </div>
                     </div>
-                    <!-- DASHBOARD END -->
                 </div>
             </div>
             <div class="experiencia-profissional">
@@ -157,10 +170,126 @@
                                 <p class="recomendacao-cargo">Human Resources Manager at Sublime Hotels</p>
                             </div>
                         </div>
-                        <!-- Adicionar mais .recomendacao-card .carousel-slide conforme necessário -->
                     </div>
                     <button class="carousel-button prev" aria-label="Anterior">&lt;</button>
                     <button class="carousel-button next" aria-label="Seguinte">&gt;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="hr-innovation-hub" class="page-section">
+            <div class="container"> 
+                <div class="newsletter-hero" style="text-align: center; padding: 40px 20px; background-color: #f8f9fa; border-bottom: 1px solid #e9ecef; margin-top: 40px; margin-bottom: 40px;">
+                    <h2 style="font-size: 2.2rem; color: #343a40; margin-bottom: 15px;">HR Innovation Hub</h2>
+                    <p style="font-size: 1.1rem; color: #6c757d; max-width: 800px; margin: 0 auto 25px auto;">Uma newsletter mensal sobre liderança, gestão de pessoas e transformação organizacional.</p>
+                    <a href="#hr-subscribe" class="btn btn-primary" style="margin-top: 10px;">Subscrever Newsletter</a>
+                </div>
+                <div class="newsletter-stats" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin: 40px 0; padding: 0 20px;">
+                    <div class="newsletter-stat-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 20px; text-align: center; flex-basis: 220px; margin-bottom: 20px;">
+                        <div style="font-size: 2.2rem; font-weight: bold; color: #B08D57; margin-bottom: 5px;">1.326</div>
+                        <div style="font-size: 0.9rem; color: #555;">Subscritores</div>
+                    </div>
+                    <div class="newsletter-stat-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 20px; text-align: center; flex-basis: 220px; margin-bottom: 20px;">
+                        <div style="font-size: 2.2rem; font-weight: bold; color: #B08D57; margin-bottom: 5px;">2.645</div>
+                        <div style="font-size: 0.9rem; color: #555;">Visualizações de Artigos</div>
+                    </div>
+                    <div class="newsletter-stat-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 20px; text-align: center; flex-basis: 220px; margin-bottom: 20px;">
+                        <div style="font-size: 2.2rem; font-weight: bold; color: #B08D57; margin-bottom: 5px;">1.254</div>
+                        <div style="font-size: 0.9rem; color: #555;">Novos Subscritores (Último Ano)</div>
+                    </div>
+                    <div class="newsletter-stat-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 20px; text-align: center; flex-basis: 220px; margin-bottom: 20px;">
+                        <div style="font-size: 2.2rem; font-weight: bold; color: #B08D57; margin-bottom: 5px;">7.963</div>
+                        <div style="font-size: 0.9rem; color: #555;">Impressões Totais</div>
+                    </div>
+                </div>
+                <div class="newsletter-featured-post" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 15px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 50px; display: flex; flex-direction: column; align-items: center;">
+                    <img src="images/disability-inclusion.jpg" alt="Disability Inclusion in the Workplace" style="width: 100%; max-width: 800px; height: auto; object-fit: cover; border-bottom: 1px solid #eee;">
+                    <div style="padding: 30px; text-align: center; max-width: 800px;">
+                        <h3 style="font-size: 1.9rem; margin-bottom: 10px; color: #343a40;">Disability Inclusion: Construindo Locais de Trabalho Verdadeiramente Inclusivos</h3>
+                        <p style="color: #6c757d; margin-bottom: 20px; font-size: 0.9rem;">Próxima Edição - Maio 2025</p>
+                        <p style="font-size: 1.05rem; margin-bottom: 25px; line-height: 1.7;">Na próxima edição da nossa newsletter, vamos explorar como as organizações podem criar ambientes de trabalho verdadeiramente inclusivos para pessoas com deficiência. Discutiremos estratégias práticas para eliminar barreiras físicas e culturais, implementar acomodações razoáveis e aproveitar os talentos únicos que as pessoas com deficiência trazem para o local de trabalho. Também examinaremos casos de estudo de empresas que estão liderando o caminho em inclusão e como isso beneficiou não apenas os seus colaboradores, mas também os seus resultados.</p>
+                        <a href="#hr-subscribe" class="btn btn-secondary">Subscrever Agora</a>
+                    </div>
+                </div>
+                <h3 style="text-align:center; margin-top: 50px; margin-bottom: 30px; font-size: 2rem; color: #343a40;">Edições Recentes</h3>
+                <div class="newsletter-posts-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                    <div class="newsletter-post-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/invisible-work.jpg" alt="Understanding the Invisible Work Within Organizations" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: #343a40;">Understanding the Invisible Work Within Organizations</h4>
+                                <p style="color: #6c757d; margin-bottom: 15px; font-size: 0.85rem;">15 de Abril de 2025</p>
+                                <p style="font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6;">Nesta edição, exploramos o trabalho invisível que sustenta as organizações - aquelas tarefas e responsabilidades que raramente são reconhecidas mas são essenciais para o funcionamento eficaz das equipas e empresas.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/pulse/understanding-invisible-work-within-organizations-samuel-rolo" class="post-link" target="_blank" style="color: #B08D57; text-decoration: none; font-weight: bold; align-self: flex-start;">Ler mais →</a>
+                        </div>
+                    </div>
+                    <div class="newsletter-post-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/tech-human.jpg" alt="Leadership: Blending Tech and Human Touch" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: #343a40;">Leadership: Blending Tech and Human Touch</h4>
+                                <p style="color: #6c757d; margin-bottom: 15px; font-size: 0.85rem;">15 de Março de 2025</p>
+                                <p style="font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6;">Como podem os líderes modernos equilibrar a adoção de novas tecnologias com a manutenção do elemento humano essencial na gestão de equipas? Esta edição explora este desafio crescente.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/pulse/leadership-blending-tech-human-touch-samuel-rolo" class="post-link" target="_blank" style="color: #B08D57; text-decoration: none; font-weight: bold; align-self: flex-start;">Ler mais →</a>
+                        </div>
+                    </div>
+                    <div class="newsletter-post-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/start-strong.jpg" alt="Start Strong in 2025" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: #343a40;">Start Strong in 2025: Estratégias para um Ano de Sucesso</h4>
+                                <p style="color: #6c757d; margin-bottom: 15px; font-size: 0.85rem;">15 de Fevereiro de 2025</p>
+                                <p style="font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6;">Começar o ano com o pé direito é essencial para o sucesso a longo prazo. Nesta edição, partilhamos estratégias práticas para líderes e equipas definirem objetivos eficazes e manterem o momentum.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/pulse/start-strong-2025-samuel-rolo" class="post-link" target="_blank" style="color: #B08D57; text-decoration: none; font-weight: bold; align-self: flex-start;">Ler mais →</a>
+                        </div>
+                    </div>
+                </div>
+                <h3 style="text-align:center; margin-top: 50px; margin-bottom: 30px; font-size: 2rem; color: #343a40;">Edições Anteriores</h3>
+                <div class="newsletter-posts-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                    <div class="newsletter-post-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/mudanca.png" alt="Leading Through Uncertainty" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: #343a40;">Leading Through Uncertainty: Gerindo a Mudança em Tempos de Incerteza</h4>
+                                <p style="color: #6c757d; margin-bottom: 15px; font-size: 0.85rem;">15 de Janeiro de 2025</p>
+                                <p style="font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6;">Neste artigo, exploramos estratégias práticas para líderes que precisam navegar por processos de transformação organizacional em ambientes voláteis e incertos.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/pulse/gerir-mudan%C3%A7a-em-tempos-de-incerteza-samuel-rolo-akgwf" class="post-link" target="_blank" style="color: #B08D57; text-decoration: none; font-weight: bold; align-self: flex-start;">Ler mais →</a>
+                        </div>
+                    </div>
+                     <div class="newsletter-post-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/power.png" alt="Lições de Resiliência" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: #343a40;">Lições de Resiliência: Liderança e Vulnerabilidade</h4>
+                                <p style="color: #6c757d; margin-bottom: 15px; font-size: 0.85rem;">15 de Dezembro de 2024</p>
+                                <p style="font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6;">A vulnerabilidade autêntica pode ser uma das ferramentas mais poderosas no arsenal de um líder moderno. Descubra como a resiliência e a abertura podem transformar equipas.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/pulse/leadership-grown-from-pain-power-vulnerability-personal-samuel-rolo-nlivf" class="post-link" target="_blank" style="color: #B08D57; text-decoration: none; font-weight: bold; align-self: flex-start;">Ler mais →</a>
+                        </div>
+                    </div>
+                     <div class="newsletter-post-card" style="background-color: white; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/desafios.png" alt="Transformar desafios em oportunidades" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: #343a40;">Transformar desafios em oportunidades: Uma espécie de biografia</h4>
+                                <p style="color: #6c757d; margin-bottom: 15px; font-size: 0.85rem;">7 de Novembro de 2024</p>
+                                <p style="font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6;">A mudança é uma constante na vida e, muitas vezes, pode ser desafiante lidar com a mesma. Nesta edição especial, partilho a minha jornada pessoal de transformação.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/pulse/transformar-desafios-em-oportunidades-uma-esp%C3%A9cie-de-biografia-rolo-bwe5c" class="post-link" target="_blank" style="color: #B08D57; text-decoration: none; font-weight: bold; align-self: flex-start;">Ler mais →</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="hr-subscribe" class="newsletter-subscribe-section" style="background-color: #343a40; color: white; padding: 60px 20px; text-align: center; margin: 50px -20px 0 -20px; border-radius: 8px;">
+                    <h3 style="font-size: 2rem; margin-bottom: 20px;">Subscreva a Newsletter</h3>
+                    <p style="margin-bottom: 30px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">Receba mensalmente insights sobre liderança, gestão de pessoas e transformação organizacional.</p>
+                    <form class="newsletter-subscribe-form" style="max-width: 550px; margin: 0 auto; display: flex; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-radius: 5px; overflow: hidden;">
+                        <input type="email" placeholder="O seu melhor email" style="flex-grow: 1; padding: 15px 20px; border: none; font-size: 1rem; color: #333;">
+                        <button type="submit" class="btn btn-primary" style="border-radius: 0 5px 5px 0; white-space: nowrap; padding: 15px 25px; font-size: 1rem; background-color: #B08D57; border-color: #B08D57;">Subscrever</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -199,12 +328,11 @@
             </div>
         </section>
 
-        <!-- Formulário de Feedback com Estrelas movido para dentro do main e antes do footer -->
         <section id="feedback-section" class="page-section">
             <h2>Dá-nos o teu Feedback</h2>
             <p>A tua opinião é importante para nós! Avalia a tua experiência com o site e serviços oferecidos.</p>
             <form id="feedback-form">
-                <div class="star-rating" style="text-align: center;"> <!-- Adicionado style para centralizar -->
+                <div class="star-rating" style="text-align: center;">
                     <i class="far fa-star" data-value="1"></i>
                     <i class="far fa-star" data-value="2"></i>
                     <i class="far fa-star" data-value="3"></i>
@@ -221,7 +349,7 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 SHARE2INSPIRE por Samuel Rolo. Todos os direitos reservados.</p>
+            <p>&copy; 2025 SHARE2INSPIRE por Samuel Rolo. Todos os direitos reservados.</p>
             <p>
                 <a href="politica_privacidade.pdf" target="_blank">Política de Privacidade</a> | 
                 <a href="informacao_legal.pdf" target="_blank">Informação Legal</a>
@@ -229,7 +357,6 @@
         </div>
     </footer>
 
-    <!-- Modal de Pedido de Serviço -->
     <div id="service-request-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -240,29 +367,22 @@
                     <option value="CONSULTORIA">Consultoria</option>
                     <option value="CONSTRUÇÃO DE CONTEÚDOS DIGITAIS">Construção de Conteúdos Digitais</option>
                 </select>
-
                 <label for="name">Nome:</label>
                 <input type="text" id="name" name="name" required>
-
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-
                 <label for="phone">Telefone (Opcional):</label>
                 <input type="tel" id="phone" name="phone">
-
                 <label for="details">Breve Enquadramento:</label>
                 <textarea id="details" name="details" rows="4" required></textarea>
-
                 <label for="proposal">Proposta (Opcional) / Enquadramento Detalhado:</label>
                 <textarea id="proposal" name="proposal" rows="6"></textarea>
-
                 <button type="submit" class="btn-form btn-gold-icon"><i class="fas fa-star"></i> Submeter pedido</button>
             </form>
             <div id="service-request-message"></div>
         </div>
     </div>
 
-    <!-- Modal/Widget do Questionário -->
     <div id="survey-widget-container" class="survey-widget-container">
         <div class="survey-widget-content">
             <span class="close-survey-widget">&times;</span>
@@ -270,22 +390,6 @@
         </div>
     </div>
 
-    <!-- Script do Menu Responsivo -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const menuToggle = document.querySelector(".menu-toggle");
-        const menuItems = document.querySelector(".menu-items");
-
-        if (menuToggle && menuItems) {
-            menuToggle.addEventListener("click", function() {
-                const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
-                menuToggle.setAttribute("aria-expanded", !isExpanded);
-                menuItems.classList.toggle("active");
-            });
-        }
-    });
-    </script>
-
-    <script src="js/main.js"></script> <!-- Script principal do utilizador -->
+    <script src="js/main.js"></script>
 </body>
 </html>
