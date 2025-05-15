@@ -229,9 +229,9 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
         const archetypeKey = calculateArchetype();
-        const result = archetypes[archetypeKey];
+        const dominantResult = archetypes[archetypeKey];
 
-        if (!result) {
+        if (!dominantResult) {
             console.error("[SurveyLOG] Archetype result not found for key:", archetypeKey);
             resultsContainer.innerHTML = "<p>Não foi possível determinar o seu arquétipo. Por favor, tente novamente.</p>";
             if (surveyContentContainer) surveyContentContainer.style.display = "none";
@@ -239,38 +239,59 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        let answersHtml = "<ul style='text-align: left; list-style-position: inside;'>";
-        for (let i = 0; i < totalQuestions; i++) {
-            const questionTextElement = questionContainers[i] ? questionContainers[i].querySelector("h3") : null;
-            const questionText = questionTextElement ? questionTextElement.textContent.substring(0, 50) + "..." : `Questão ${i + 1}`;
-            const answerValue = userAnswers[i] || "Não respondida";
-            answersHtml += `<li>${questionText}: Opção ${answerValue}</li>`;
-        }
-        answersHtml += "</ul>";
-
-        const email = "srshare2inspire@gmail.com";
-        const subject = "Pedido de Reunião - Análise Arquétipo de Liderança";
-        const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
-
-        resultsContainer.innerHTML = `
-            <div style="padding: 20px; border: 1px solid #dddddd; border-radius: 8px; background-color: #f8f8f8;">
-                <h2 style="color: ${result.color};"><i class="fas ${result.icon}" style="margin-right: 10px; color: ${result.iconColor};"></i>O Teu Arquétipo: ${result.name} (${result.title})</h2>
-                <p>${result.description}</p>
+        // Prepare HTML for all archetypes
+        let allArchetypesHtml = "";
+        
+        // First show the dominant archetype
+        allArchetypesHtml += `
+            <div style="padding: 20px; margin-bottom: 30px; border: 2px solid ${dominantResult.iconColor}; border-radius: 8px; background-color: #f8f8f8;">
+                <h2 style="color: ${dominantResult.color};"><i class="fas ${dominantResult.icon}" style="margin-right: 10px; color: ${dominantResult.iconColor};"></i>O Teu Arquétipo Dominante: ${dominantResult.name} (${dominantResult.title})</h2>
+                <p>${dominantResult.description}</p>
                 <h3>Pontos Fortes:</h3>
-                <ul>${result.strengths.map(s => `<li>${s}</li>`).join("")}</ul>
+                <ul>${dominantResult.strengths.map(s => `<li>${s}</li>`).join("")}</ul>
                 <h3>Pontos a Desenvolver:</h3>
-                <ul>${result.weaknesses.map(w => `<li>${w}</li>`).join("")}</ul>
-                <p><strong>Dica de Crescimento:</strong> ${result.growthTip}</p>
-                <hr>
-                <h3>Respostas Submetidas:</h3>
-                ${answersHtml}
-                <p style="margin-top: 20px; font-style: italic;">Este é um resultado preliminar.</p>
-                <a href="${mailtoLink}" class="contact-button" target="_blank">Marcar Reunião de Análise</a>
+                <ul>${dominantResult.weaknesses.map(w => `<li>${w}</li>`).join("")}</ul>
+                <p><strong>Dica de Crescimento:</strong> ${dominantResult.growthTip}</p>
+            </div>
+            <h2 style="margin-top: 30px; text-align: center;">Outros Arquétipos de Liderança</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Conhece todos os arquétipos e as suas características</p>
+        `;
+        
+        // Then show all other archetypes
+        for (const key in archetypes) {
+            if (key !== archetypeKey) { // Skip the dominant one as it's already shown
+                const archetype = archetypes[key];
+                allArchetypesHtml += `
+                    <div style="padding: 20px; margin-bottom: 20px; border: 1px solid #dddddd; border-radius: 8px; background-color: #f8f8f8;">
+                        <h3 style="color: ${archetype.color};"><i class="fas ${archetype.icon}" style="margin-right: 10px; color: ${archetype.iconColor};"></i>${archetype.name} (${archetype.title})</h3>
+                        <p>${archetype.description}</p>
+                        <details>
+                            <summary style="cursor: pointer; color: #D4AF37; font-weight: bold; margin: 10px 0;">Ver mais detalhes</summary>
+                            <div style="padding: 10px 0;">
+                                <h4>Pontos Fortes:</h4>
+                                <ul>${archetype.strengths.map(s => `<li>${s}</li>`).join("")}</ul>
+                                <h4>Pontos a Desenvolver:</h4>
+                                <ul>${archetype.weaknesses.map(w => `<li>${w}</li>`).join("")}</ul>
+                                <p><strong>Dica de Crescimento:</strong> ${archetype.growthTip}</p>
+                            </div>
+                        </details>
+                    </div>
+                `;
+            }
+        }
+        
+        // Add call-to-action at the end
+        allArchetypesHtml += `
+            <div style="text-align: center; margin-top: 30px; padding: 20px; border: 1px solid #D4AF37; border-radius: 8px; background-color: #f8f8f8;">
+                <h3>Queres analisar os resultados com um profissional e perceber como maximizar o teu potencial em função do teu arquétipo?</h3>
+                <a href="/agendar.html" class="contact-button" style="display: inline-block; margin-top: 15px; padding: 12px 25px; background-color: #D4AF37; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 1em; text-align: center; transition: background-color 0.3s ease;">Agendar Sessão</a>
             </div>
         `;
+
+        resultsContainer.innerHTML = allArchetypesHtml;
         if (surveyContentContainer) surveyContentContainer.style.display = "none";
         resultsContainer.style.display = "block";
-        console.log("[SurveyLOG] Results displayed.");
+        console.log("[SurveyLOG] All archetypes results displayed.");
     }
 
     init();
