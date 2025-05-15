@@ -77,9 +77,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (serviceRequestForm) {
         serviceRequestForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            const nameInput = this.querySelector("input[name='name']");
-            const emailInput = this.querySelector("input[name='email']");
-            const detailsInput = this.querySelector("textarea[name='details']");
+            const nameInput = this.querySelector("input[name=\'name\']");
+            const emailInput = this.querySelector("input[name=\'email\']");
+            const detailsInput = this.querySelector("textarea[name=\'details\']");
             
             // Clear previous messages
             if (serviceRequestMessage) {
@@ -99,8 +99,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Service Request Submitted:", {
                 name: nameInput.value,
                 email: emailInput.value,
-                phone: this.querySelector("input[name='phone']").value,
-                service_type: this.querySelector("select[name='service_type']").value,
+                phone: this.querySelector("input[name=\'phone\']").value,
+                service_type: this.querySelector("select[name=\'service_type\']").value,
                 details: detailsInput.value
             });
 
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
         feedbackForm.addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
             
-            const ratingInput = this.querySelector("input[name='rating']:checked");
+            const ratingInput = this.querySelector("input[name=\'rating\']:checked");
             const feedbackTextInput = this.querySelector("#feedback-text");
 
             // Clear previous messages
@@ -164,6 +164,75 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             this.reset(); // Reset form after successful (simulated) submission
         });
+    }
+
+    // Survey Widget Modal Logic (Loja Page)
+    const openSurveyButton = document.getElementById("open-survey-widget");
+    const surveyWidgetContainer = document.getElementById("survey-widget-container");
+    const closeSurveyButton = surveyWidgetContainer ? surveyWidgetContainer.querySelector(".close-survey-widget") : null;
+
+    if (openSurveyButton && surveyWidgetContainer) {
+        openSurveyButton.addEventListener("click", function() {
+            surveyWidgetContainer.style.display = "block";
+        });
+    }
+
+    if (closeSurveyButton && surveyWidgetContainer) {
+        closeSurveyButton.addEventListener("click", function() {
+            surveyWidgetContainer.style.display = "none";
+        });
+    }
+
+    // Close survey widget if clicked outside of its content
+    if (surveyWidgetContainer) {
+        surveyWidgetContainer.addEventListener("click", function(event) {
+            if (event.target === surveyWidgetContainer) { // Clicked on the overlay
+                surveyWidgetContainer.style.display = "none";
+            }
+        });
+    }
+
+    // Recommendations Carousel Logic
+    const carousel = document.querySelector(".carousel-container");
+    if (carousel) {
+        const slidesContainer = carousel.querySelector(".carousel-slides");
+        const slides = Array.from(slidesContainer.children);
+        const nextButton = carousel.querySelector(".carousel-button.next");
+        const prevButton = carousel.querySelector(".carousel-button.prev");
+        let currentIndex = 0;
+        const slideWidth = slides[0] ? slides[0].getBoundingClientRect().width : 0; // Assuming all slides have the same width
+
+        // Arrange slides next to each other
+        // slidesContainer.style.width = `${slideWidth * slides.length}px`; // Set total width for flex items
+
+        const moveToSlide = (targetIndex) => {
+            if (!slidesContainer) return;
+            slidesContainer.style.transform = `translateX(-${targetIndex * 100}%)`; // Use percentage for responsiveness
+            currentIndex = targetIndex;
+        };
+
+        if (nextButton && prevButton) {
+            nextButton.addEventListener("click", () => {
+                let newIndex = currentIndex + 1;
+                if (newIndex >= slides.length) {
+                    newIndex = 0; // Loop to the first slide
+                }
+                moveToSlide(newIndex);
+            });
+
+            prevButton.addEventListener("click", () => {
+                let newIndex = currentIndex - 1;
+                if (newIndex < 0) {
+                    newIndex = slides.length - 1; // Loop to the last slide
+                }
+                moveToSlide(newIndex);
+            });
+        }
+        
+        // Initialize carousel position
+        if(slides.length > 0) {
+             moveToSlide(0);
+        }
     }
 });
 
