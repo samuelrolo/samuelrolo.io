@@ -1,6 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Banner Slider Functionality
+    const headerSlides = document.querySelectorAll('.header-slide');
+    let currentSlideIndex = 0;
+    
+    function showSlide(index) {
+        headerSlides.forEach(slide => slide.classList.remove('active'));
+        headerSlides[index].classList.add('active');
+    }
+    
+    function nextSlide() {
+        currentSlideIndex = (currentSlideIndex + 1) % headerSlides.length;
+        showSlide(currentSlideIndex);
+    }
+    
+    // Iniciar o slider automático se houver slides
+    if (headerSlides.length > 0) {
+        setInterval(nextSlide, 5000); // Muda a cada 5 segundos
+    }
     // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll("header nav ul li a[href^=\'#\']"); // Target only hash links
+    const navLinks = document.querySelectorAll("header nav ul li a[href^='#']"); // Target only hash links
     navLinks.forEach(link => {
         link.addEventListener("click", function(e) {
             const targetId = this.getAttribute("href");
@@ -13,6 +31,20 @@ document.addEventListener("DOMContentLoaded", function() {
                         top: targetElement.offsetTop - scrollOffset,
                         behavior: "smooth"
                     });
+                    
+                    // Close mobile menu if open
+                    const menuItems = document.querySelector(".menu-items");
+                    if (menuItems && menuItems.classList.contains("active")) {
+                        menuItems.classList.remove("active");
+                        const menuToggle = document.querySelector(".menu-toggle");
+                        if (menuToggle) {
+                            menuToggle.setAttribute("aria-expanded", "false");
+                            const hamburgerIcon = menuToggle.querySelector(".hamburger-icon");
+                            if (hamburgerIcon) {
+                                hamburgerIcon.classList.remove("active");
+                            }
+                        }
+                    }
                 }
             } 
         });
@@ -21,15 +53,25 @@ document.addEventListener("DOMContentLoaded", function() {
     // Mobile Menu Toggle
     const menuToggle = document.querySelector(".menu-toggle");
     const menuItems = document.querySelector(".menu-items");
+    const hamburgerIcon = document.querySelector(".hamburger-icon");
 
-    if (menuToggle && menuItems) {
-        menuToggle.addEventListener("click", function() {
+    if (menuToggle && menuItems && hamburgerIcon) {
+        menuToggle.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
             menuToggle.setAttribute("aria-expanded", !isExpanded);
             menuItems.classList.toggle("active");
-            const hamburgerIcon = menuToggle.querySelector(".hamburger-icon");
-            if (hamburgerIcon) {
-                hamburgerIcon.classList.toggle("active");
+            hamburgerIcon.classList.toggle("active");
+            console.log("Menu toggle clicked, isExpanded:", !isExpanded);
+        });
+        
+        // Fechar menu ao clicar fora
+        document.addEventListener("click", function(e) {
+            if (menuItems.classList.contains("active") && !menuItems.contains(e.target) && !menuToggle.contains(e.target)) {
+                menuItems.classList.remove("active");
+                hamburgerIcon.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
             }
         });
     }
@@ -83,9 +125,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (serviceRequestForm) {
         serviceRequestForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            const nameInput = this.querySelector("input[name=\'name\']");
-            const emailInput = this.querySelector("input[name=\'email\']");
-            const detailsInput = this.querySelector("textarea[name=\'details\']");
+            const nameInput = this.querySelector("input[name='name']");
+            const emailInput = this.querySelector("input[name='email']");
+            const detailsInput = this.querySelector("textarea[name='details']");
             
             if (serviceRequestMessage) {
                 serviceRequestMessage.textContent = "";
@@ -104,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Service Request Submitted:", {
                 name: nameInput.value,
                 email: emailInput.value,
-                phone: this.querySelector("input[name=\'phone\']") ? this.querySelector("input[name=\'phone\']").value : \'\',
-                service_type: this.querySelector("select[name=\'service_type\']") ? this.querySelector("select[name=\'service_type\']").value : \'\',
+                phone: this.querySelector("input[name='phone']") ? this.querySelector("input[name='phone']").value : '',
+                service_type: this.querySelector("select[name='service_type']") ? this.querySelector("select[name='service_type']").value : '',
                 details: detailsInput.value
             });
 
@@ -117,47 +159,25 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Feedback Stars Interaction
+    // Feedback Stars Interaction - Improved
     const starRatingContainer = document.querySelector(".star-rating");
     if (starRatingContainer) {
         const stars = starRatingContainer.querySelectorAll(".fa-star");
         const ratingValueInput = document.getElementById("rating-value");
 
-        stars.forEach(star => {
-            star.addEventListener("mouseover", function() {
-                resetStarsVisual();
-                const currentValue = parseInt(this.dataset.value);
-                highlightStars(currentValue);
+        // Initialize with proper classes
+        function resetStarsVisual() {
+            stars.forEach(star => {
+                star.classList.remove("fas");
+                star.classList.remove("selected");
+                star.classList.add("far");
             });
-
-            star.addEventListener("mouseout", function() {
-                resetStarsVisual();
-                const selectedRating = parseInt(ratingValueInput.value);
-                if (selectedRating > 0) {
-                    highlightStars(selectedRating);
-                }
-            });
-
-            star.addEventListener("click", function() {
-                const currentValue = parseInt(this.dataset.value);
-                ratingValueInput.value = currentValue;
-                resetStarsVisual();
-                highlightStars(currentValue);
-                updateAriaChecked(currentValue);
-            });
-            
-            // Keyboard accessibility
-            star.addEventListener("keydown", function(event) {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    this.click();
-                }
-            });
-        });
+        }
 
         function highlightStars(value) {
             stars.forEach(star => {
-                if (parseInt(star.dataset.value) <= value) {
+                const starValue = parseInt(star.dataset.value);
+                if (starValue <= value) {
                     star.classList.remove("far"); // empty star
                     star.classList.add("fas"); // full star
                     star.classList.add("selected");
@@ -168,24 +188,57 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
         }
-
-        function resetStarsVisual() {
-            stars.forEach(star => {
-                star.classList.remove("fas");
-                star.classList.remove("selected");
-                star.classList.add("far");
-            });
-        }
         
         function updateAriaChecked(selectedValue) {
             stars.forEach(star => {
-                if (parseInt(star.dataset.value) === selectedValue) {
-                    star.setAttribute("aria-checked", "true");
-                } else {
-                    star.setAttribute("aria-checked", "false");
-                }
+                const starValue = parseInt(star.dataset.value);
+                star.setAttribute("aria-checked", starValue === selectedValue ? "true" : "false");
             });
         }
+
+        // Apply initial state if there's a saved value
+        if (ratingValueInput && ratingValueInput.value && parseInt(ratingValueInput.value) > 0) {
+            highlightStars(parseInt(ratingValueInput.value));
+            updateAriaChecked(parseInt(ratingValueInput.value));
+        }
+
+        stars.forEach(star => {
+            // Hover effect
+            star.addEventListener("mouseover", function() {
+                resetStarsVisual();
+                const currentValue = parseInt(this.dataset.value);
+                highlightStars(currentValue);
+            });
+
+            // Restore selected state on mouseout
+            star.addEventListener("mouseout", function() {
+                resetStarsVisual();
+                const selectedRating = ratingValueInput && ratingValueInput.value ? parseInt(ratingValueInput.value) : 0;
+                if (selectedRating > 0) {
+                    highlightStars(selectedRating);
+                }
+            });
+
+            // Click to select
+            star.addEventListener("click", function() {
+                const currentValue = parseInt(this.dataset.value);
+                if (ratingValueInput) {
+                    ratingValueInput.value = currentValue;
+                }
+                resetStarsVisual();
+                highlightStars(currentValue);
+                updateAriaChecked(currentValue);
+                console.log("Star rating selected:", currentValue);
+            });
+            
+            // Keyboard accessibility
+            star.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    this.click();
+                }
+            });
+        });
     }
 
     const feedbackForm = document.getElementById("feedback-form");
@@ -194,15 +247,15 @@ document.addEventListener("DOMContentLoaded", function() {
     if (feedbackForm) {
         feedbackForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            const ratingInput = this.querySelector("input[name=\'rating\']:checked");
-            const feedbackTextInput = this.querySelector("#feedback-text");
+            const ratingInput = document.getElementById("rating-value");
+            const feedbackTextInput = this.querySelector("textarea[name='comment']");
 
             if (feedbackMessage) {
                 feedbackMessage.textContent = "";
                 feedbackMessage.style.display = "none";
             }
 
-            if (!ratingInput) {
+            if (!ratingInput || !ratingInput.value || parseInt(ratingInput.value) < 1) {
                 if (feedbackMessage) {
                     feedbackMessage.textContent = "Por favor, selecione uma avaliação (1-5 estrelas).";
                     feedbackMessage.style.color = "red";
@@ -228,17 +281,29 @@ document.addEventListener("DOMContentLoaded", function() {
                 feedbackMessage.style.color = "green";
                 feedbackMessage.style.display = "block";
             }
+            
+            // Reset form and stars
             this.reset();
+            if (ratingInput) ratingInput.value = "0";
+            const stars = document.querySelectorAll(".star-rating .fa-star");
+            stars.forEach(star => {
+                star.classList.remove("fas", "selected");
+                star.classList.add("far");
+                star.setAttribute("aria-checked", "false");
+            });
         });
     }
 
+    // Survey Widget Functionality
     const openSurveyButton = document.getElementById("open-survey-widget");
     const surveyWidgetContainer = document.getElementById("survey-widget-container");
     const closeSurveyButton = surveyWidgetContainer ? surveyWidgetContainer.querySelector(".close-survey-widget") : null;
 
     if (openSurveyButton && surveyWidgetContainer) {
-        openSurveyButton.addEventListener("click", function() {
+        openSurveyButton.addEventListener("click", function(event) {
+            event.preventDefault();
             surveyWidgetContainer.style.display = "block";
+            console.log("Survey widget opened");
         });
     }
 
@@ -249,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (surveyWidgetContainer) {
-        surveyWidgetContainer.addEventListener("click", function(event) {
+        window.addEventListener("click", function(event) {
             if (event.target === surveyWidgetContainer) {
                 surveyWidgetContainer.style.display = "none";
             }
@@ -314,6 +379,7 @@ document.addEventListener("DOMContentLoaded", function() {
             slides = Array.from(slidesContainer.children);
             if (slides.length > 0) {
                 moveToSlide(0);
+                console.log(`Loaded ${slides.length} recommendations`);
             }
         };
 
@@ -323,6 +389,7 @@ document.addEventListener("DOMContentLoaded", function() {
             currentIndex = targetIndex;
         };
 
+        // Load recommendations from JSON file
         fetch('linkedin_recommendations.json')
             .then(response => {
                 if (!response.ok) {
@@ -333,6 +400,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 if (data.recommendations && Array.isArray(data.recommendations)) {
                     populateRecommendations(data.recommendations);
+                    console.log("Recommendations loaded successfully");
                 } else {
                     console.error('JSON data is not in the expected format or recommendations array is missing.');
                     if (slidesContainer) slidesContainer.innerHTML = '<p style="color:white; text-align:center;">Formato de recomendações inválido.</p>';
@@ -353,6 +421,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     newIndex = 0;
                 }
                 moveToSlide(newIndex);
+                console.log("Next recommendation clicked, showing index:", newIndex);
             });
 
             prevButton.addEventListener("click", () => {
@@ -362,6 +431,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     newIndex = slides.length - 1;
                 }
                 moveToSlide(newIndex);
+                console.log("Previous recommendation clicked, showing index:", newIndex);
             });
         }
     }
@@ -387,20 +457,38 @@ document.addEventListener("DOMContentLoaded", function() {
             showSlide(currentSlide);
         }
 
-        // Adicionar transição CSS para animação mais fluida
-        slides.forEach(slide => {
-            slide.style.transition = "opacity 1s ease-in-out";
-        });
-
+        // Initialize slider
         if (slides.length > 0) {
-            showSlide(currentSlide); // Show the first slide initially
-            const sliderInterval = setInterval(nextSlide, slideInterval);
-            
-            // Garantir que o intervalo é limpo se o usuário sair da página
-            window.addEventListener('beforeunload', () => {
-                clearInterval(sliderInterval);
-            });
+            showSlide(0);
+            setInterval(nextSlide, slideInterval);
+            console.log("Header slider initialized with", slides.length, "slides");
         }
     }
-});
 
+    // Center LinkedIn Subscribe Button
+    const linkedinButton = document.querySelector(".linkedin-button");
+    if (linkedinButton) {
+        linkedinButton.style.display = "block";
+        linkedinButton.style.margin = "0 auto";
+        linkedinButton.style.textAlign = "center";
+        console.log("LinkedIn button centered");
+    }
+
+    // Initialize survey widget if it exists
+    const surveyWidget = document.getElementById("survey-widget-container");
+    if (surveyWidget && !surveyWidget.innerHTML.trim()) {
+        surveyWidget.innerHTML = `
+            <div class="survey-widget">
+                <span class="close-survey-widget">&times;</span>
+                <h3>Questionário dos Arquétipos de Liderança</h3>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfQGcnL-qWxE8bGP5tJBMQUCjFWYiKtxQebMFfUyDo9PzOUmQ/viewform?embedded=true" 
+                        width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">
+                    A carregar…
+                </iframe>
+            </div>
+        `;
+        console.log("Survey widget initialized");
+    }
+
+    console.log("Document fully loaded and all scripts initialized");
+});

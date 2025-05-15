@@ -46,6 +46,7 @@ header#main-header {
     overflow: visible; /* Permitir que o menu dropdown não seja cortado se o header tiver overflow:hidden */
 }
 
+/* Slider de Banners no Cabeçalho */
 .header-slider-container {
     width: 100%;
     height: 100%;
@@ -181,16 +182,16 @@ nav.top-nav {
 }
 
 /* Estilos para o menu ativo (mobile) */
-.menu-toggle.active .hamburger-icon {
+.hamburger-icon.active {
     background-color: transparent; /* Linha do meio desaparece */
 }
 
-.menu-toggle.active .hamburger-icon::before {
+.hamburger-icon.active::before {
     top: 0;
     transform: rotate(45deg);
 }
 
-.menu-toggle.active .hamburger-icon::after {
+.hamburger-icon.active::after {
     bottom: 0;
     transform: rotate(-45deg);
 }
@@ -214,12 +215,14 @@ nav.top-nav {
 
     nav.top-nav {
         width: auto; /* Nav não ocupa toda a largura */
+        position: static;
     }
 
     .menu-toggle {
         display: block; /* Mostrar botão hambúrguer */
-        position: static; /* Remover posicionamento absoluto */
+        position: relative; /* Permitir posicionamento correto */
         transform: none;
+        z-index: 1002; /* Garantir que está acima do menu */
     }
 
     .menu-items {
@@ -232,10 +235,11 @@ nav.top-nav {
         background-color: rgba(31, 31, 31, 0.95); /* Fundo para o menu dropdown */
         padding: 1rem 0;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 1001; /* Garantir que está acima de outros elementos */
     }
 
     .menu-items.active {
-        display: flex; /* Mostrar itens quando o menu está ativo */
+        display: flex !important; /* Mostrar itens quando o menu está ativo, com !important para garantir */
     }
 
     .menu-items li {
@@ -495,11 +499,12 @@ section#hero.hero-section.page-section .hero-subtitle {
 }
 
 .dashboard-item {
-    background-color: #2c2c2c;
+    background-color: #ffffff;
     padding: 1rem;
     border-radius: 0.3125rem;
     text-align: center;
-    border: 1px solid #444;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-item i {
@@ -512,13 +517,13 @@ section#hero.hero-section.page-section .hero-subtitle {
     display: block;
     font-size: 1.5em;
     font-weight: 700;
-    color: #fff;
+    color: #B08D57;
 }
 
 .dashboard-text {
     display: block;
     font-size: 0.85em;
-    color: #ccc;
+    color: #333333;
 }
 
 /* Recomendações */
