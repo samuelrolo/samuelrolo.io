@@ -37,66 +37,32 @@ body {
     padding: 0 1.25rem;
 }
 
-/* Novo Cabeçalho com Slider */
+/* Header com Logo */
 header#main-header {
     position: relative;
     width: 100%;
-    height: 225px; /* Altura definida para os banners */
     color: #fff;
-    overflow: visible; /* Permitir que o menu dropdown não seja cortado se o header tiver overflow:hidden */
+    background-color: #121212;
+    overflow: visible;
+    padding: 15px 0;
 }
 
-/* Slider de Banners no Cabeçalho */
-.header-slider-container {
+.header-content {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; /* Slider fica atrás do overlay */
-    overflow: hidden; /* Garante que as imagens do slider não ultrapassam o header */
-}
-
-.header-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.header-slide.active {
-    opacity: 1;
-}
-
-.header-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Cobre a área do slide, pode cortar partes da imagem */
-}
-
-.header-overlay {
-    position: relative; /* Para que o z-index funcione corretamente sobre o slider */
-    z-index: 10; /* Overlay (nav) fica à frente do slider */
-    width: 100%;
-    padding: 1rem; /* Espaçamento interno */
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.2); /* Um leve fundo para melhor legibilidade do nav */
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
 }
 
 /* Logo no header */
 .logo-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
+    background-color: transparent;
 }
 
 #header-logo {
@@ -203,19 +169,14 @@ nav.top-nav {
 
 /* Media Query para Mobile */
 @media (max-width: 768px) {
-    .header-overlay {
+    .header-content {
         flex-direction: row; /* Menu hambúrguer à direita */
-        justify-content: flex-end; /* Menu hambúrguer à direita */
+        justify-content: space-between; /* Logo à esquerda, menu à direita */
         align-items: center;
         padding: 0.5rem 1rem; /* Menor padding em mobile */
-        background-color: rgba(0, 0, 0, 0.7); /* Fundo mais escuro para melhor visibilidade */
     }
 
     .logo-container {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
         margin-bottom: 0;
         height: 50px;
         width: auto;
@@ -285,7 +246,7 @@ nav.top-nav {
     }
     
     .intro-carousel-container {
-        height: 200px;
+        height: 250px;
     }
 }
 
@@ -383,6 +344,7 @@ section#hero.hero-section.page-section .hero-subtitle {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     margin-bottom: 1rem;
+    background-color: #121212;
 }
 
 .intro-slide {
@@ -402,7 +364,8 @@ section#hero.hero-section.page-section .hero-subtitle {
 .intro-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #121212;
 }
 
 .intro-carousel-dots {
