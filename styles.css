@@ -1139,3 +1139,94 @@ footer .footer-content a:hover {
     }
 }
 
+
+
+/* HR Innovation Hub Section - Dark Theme Override */
+#hr-innovation-hub .newsletter-hero {
+    background-color: #1f1f1f !important;
+    border-bottom: 1px solid #333 !important;
+}
+
+#hr-innovation-hub .newsletter-hero h2 {
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-hero p {
+    color: #e0e0e0 !important;
+}
+
+#hr-innovation-hub .newsletter-stat-card {
+    background-color: #2c2c2c !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3) !important;
+    border: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-stat-card div:first-of-type {
+    color: #B08D57 !important; /* Number, already gold, ensure it stays */
+}
+#hr-innovation-hub .newsletter-stat-card div:last-of-type {
+    color: #ccc !important; /* Text description */
+}
+
+#hr-innovation-hub .newsletter-featured-post {
+    background-color: #2c2c2c !important;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.3) !important;
+    border: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post img {
+    border-bottom: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post div > h3 {
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post div > p[style*="font-size: 0.9rem"] { /* Date/Edition paragraph */
+    color: #aaa !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post div > p[style*="font-size: 1.05rem"] { /* Summary paragraph */
+    color: #e0e0e0 !important;
+}
+
+#hr-innovation-hub > h3[style*="text-align:center"] { /* "Edições Recentes" title */
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-post-card {
+    background-color: #2c2c2c !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3) !important;
+    border: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-post-card div > h4 {
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-post-card div > p[style*="font-size: 0.85rem"] { /* Date paragraph in post card */
+    color: #aaa !important;
+}
+
+#hr-innovation-hub .newsletter-post-card div > p[style*="font-size: 0.95rem"] { /* Summary paragraph in post card */
+    color: #e0e0e0 !important;
+}
+
+
+
+/* Specific styling for HR Innovation Hub Stats Cards (White Background) */
+#hr-innovation-hub .newsletter-stats .newsletter-stat-card {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important; /* Light border for white card */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1) !important; /* Lighter shadow for white card */
+    border-radius: 8px; /* Ensure consistent border radius */
+}
+
+#hr-innovation-hub .newsletter-stats .newsletter-stat-card div:first-of-type { /* Number */
+    color: #B08D57 !important; /* Gold color for numbers */
+}
+
+#hr-innovation-hub .newsletter-stats .newsletter-stat-card div:last-of-type { /* Text description */
+    color: #495057 !important; /* Dark grey text for readability on white background */
+}
+

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHARE2INSPIRE - Samuel Rolo</title>
+    <meta name="description" content="Consultoria e coaching por Samuel Rolo. Desenvolvimento humano, transformação organizacional e liderança consciente.">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="styles.css"> 
     <link rel="icon" href="images/favicon.png" type="image/png">
@@ -14,16 +15,16 @@
     <header id="main-header">
     <div class="header-slider-container">
         <div class="header-slide active">
-            <img src="images/BANNER1.png" alt="Banner Share2Inspire 1">
+            <img src="images/BANNER1.png" alt="Banner Share2Inspire 1" loading="lazy">
         </div>
         <div class="header-slide">
-            <img src="images/BANNER2.png" alt="Banner Share2Inspire 2">
+            <img src="images/BANNER2.png" alt="Banner Share2Inspire 2" loading="lazy">
         </div>
         <div class="header-slide">
-            <img src="images/BANNER3.png" alt="Banner Share2Inspire 3">
+            <img src="images/BANNER3.png" alt="Banner Share2Inspire 3" loading="lazy">
         </div>
         <div class="header-slide">
-            <img src="images/BANNER4.png" alt="Banner Share2Inspire 4">
+            <img src="images/BANNER4.png" alt="Banner Share2Inspire 4" loading="lazy">
         </div>
     </div> <!-- Fecho do header-slider-container -->
         <nav class="top-nav">
@@ -313,12 +314,12 @@
             <h2>Dá-nos o teu Feedback</h2>
             <p>A tua opinião é importante para nós! Avalia a tua experiência com o site e serviços oferecidos.</p>
             <form id="feedback-form">
-                <div class="star-rating" style="text-align: center;">
-                    <i class="far fa-star" data-value="1"></i>
-                    <i class="far fa-star" data-value="2"></i>
-                    <i class="far fa-star" data-value="3"></i>
-                    <i class="far fa-star" data-value="4"></i>
-                    <i class="far fa-star" data-value="5"></i>
+                <div class="star-rating" style="text-align: center;" role="radiogroup" aria-label="Avaliação de 1 a 5 estrelas">
+                    <i class="far fa-star" data-value="1" role="radio" aria-label="Avaliar como 1 estrela" aria-checked="false" tabindex="0"></i>
+                    <i class="far fa-star" data-value="2" role="radio" aria-label="Avaliar como 2 estrelas" aria-checked="false" tabindex="0"></i>
+                    <i class="far fa-star" data-value="3" role="radio" aria-label="Avaliar como 3 estrelas" aria-checked="false" tabindex="0"></i>
+                    <i class="far fa-star" data-value="4" role="radio" aria-label="Avaliar como 4 estrelas" aria-checked="false" tabindex="0"></i>
+                    <i class="far fa-star" data-value="5" role="radio" aria-label="Avaliar como 5 estrelas" aria-checked="false" tabindex="0"></i>
                 </div>
                 <input type="hidden" name="rating" id="rating-value" value="0">
                 <textarea name="comment" placeholder="Deixa o teu comentário aqui..."></textarea>

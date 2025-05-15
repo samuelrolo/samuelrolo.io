@@ -117,6 +117,77 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Feedback Stars Interaction
+    const starRatingContainer = document.querySelector(".star-rating");
+    if (starRatingContainer) {
+        const stars = starRatingContainer.querySelectorAll(".fa-star");
+        const ratingValueInput = document.getElementById("rating-value");
+
+        stars.forEach(star => {
+            star.addEventListener("mouseover", function() {
+                resetStarsVisual();
+                const currentValue = parseInt(this.dataset.value);
+                highlightStars(currentValue);
+            });
+
+            star.addEventListener("mouseout", function() {
+                resetStarsVisual();
+                const selectedRating = parseInt(ratingValueInput.value);
+                if (selectedRating > 0) {
+                    highlightStars(selectedRating);
+                }
+            });
+
+            star.addEventListener("click", function() {
+                const currentValue = parseInt(this.dataset.value);
+                ratingValueInput.value = currentValue;
+                resetStarsVisual();
+                highlightStars(currentValue);
+                updateAriaChecked(currentValue);
+            });
+            
+            // Keyboard accessibility
+            star.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        function highlightStars(value) {
+            stars.forEach(star => {
+                if (parseInt(star.dataset.value) <= value) {
+                    star.classList.remove("far"); // empty star
+                    star.classList.add("fas"); // full star
+                    star.classList.add("selected");
+                } else {
+                    star.classList.remove("fas");
+                    star.classList.remove("selected");
+                    star.classList.add("far");
+                }
+            });
+        }
+
+        function resetStarsVisual() {
+            stars.forEach(star => {
+                star.classList.remove("fas");
+                star.classList.remove("selected");
+                star.classList.add("far");
+            });
+        }
+        
+        function updateAriaChecked(selectedValue) {
+            stars.forEach(star => {
+                if (parseInt(star.dataset.value) === selectedValue) {
+                    star.setAttribute("aria-checked", "true");
+                } else {
+                    star.setAttribute("aria-checked", "false");
+                }
+            });
+        }
+    }
+
     const feedbackForm = document.getElementById("feedback-form");
     const feedbackMessage = document.getElementById("feedback-message");
 
@@ -316,9 +387,19 @@ document.addEventListener("DOMContentLoaded", function() {
             showSlide(currentSlide);
         }
 
+        // Adicionar transição CSS para animação mais fluida
+        slides.forEach(slide => {
+            slide.style.transition = "opacity 1s ease-in-out";
+        });
+
         if (slides.length > 0) {
             showSlide(currentSlide); // Show the first slide initially
-            setInterval(nextSlide, slideInterval);
+            const sliderInterval = setInterval(nextSlide, slideInterval);
+            
+            // Garantir que o intervalo é limpo se o usuário sair da página
+            window.addEventListener('beforeunload', () => {
+                clearInterval(sliderInterval);
+            });
         }
     }
 });
