@@ -79,25 +79,14 @@ header#main-header {
 
 .header-overlay {
     position: relative; /* Para que o z-index funcione corretamente sobre o slider */
-    z-index: 10; /* Overlay (logo e nav) fica à frente do slider */
+    z-index: 10; /* Overlay (nav) fica à frente do slider */
     width: 100%;
     padding: 1rem; /* Espaçamento interno */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.2); /* Um leve fundo para melhor legibilidade do logo/nav */
-}
-
-.logo-container {
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-#header-logo {
-    height: 50px; /* Ajustar conforme necessário */
-    width: auto;
-    max-width: 200px; /* Evitar que o logo fique muito grande */
+    background-color: rgba(0, 0, 0, 0.2); /* Um leve fundo para melhor legibilidade do nav */
 }
 
 /* Navegação (adaptada para overlay e responsividade) */
@@ -199,18 +188,10 @@ nav.top-nav {
 /* Media Query para Mobile */
 @media (max-width: 768px) {
     .header-overlay {
-        flex-direction: row; /* Logo e botão lado a lado */
-        justify-content: space-between; /* Espaçar logo e botão */
+        flex-direction: row; /* Menu hambúrguer à direita */
+        justify-content: flex-end; /* Menu hambúrguer à direita */
         align-items: center;
         padding: 0.5rem 1rem; /* Menor padding em mobile */
-    }
-
-    .logo-container {
-        margin-bottom: 0;
-    }
-
-    #header-logo {
-        height: 40px; /* Logo um pouco menor em mobile */
     }
 
     nav.top-nav {
