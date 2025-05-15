@@ -39,11 +39,11 @@ body {
 
 /* Novo Cabeçalho com Slider */
 header#main-header {
-    position: relative; /* Can be 'fixed' or 'sticky' if needed, adjust main padding-top accordingly */
+    position: relative;
     width: 100%;
-    height: 225px; /* Adjust height as needed for the banners - REDUZIDO PARA 50% */
-    overflow: hidden;
-    color: #fff; /* Default text color for overlay content */
+    height: 225px; /* Altura definida para os banners */
+    color: #fff;
+    overflow: visible; /* Permitir que o menu dropdown não seja cortado se o header tiver overflow:hidden */
 }
 
 .header-slider-container {
@@ -52,7 +52,8 @@ header#main-header {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 1; /* Slider fica atrás do overlay */
+    overflow: hidden; /* Garante que as imagens do slider não ultrapassam o header */
 }
 
 .header-slide {
@@ -72,90 +73,88 @@ header#main-header {
 .header-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Cobre a área do slide, pode cortar partes da imagem */
 }
 
 .header-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative; /* Para que o z-index funcione corretamente sobre o slider */
+    z-index: 10; /* Overlay (logo e nav) fica à frente do slider */
     width: 100%;
-    height: auto; /* Let content define height, or set specific height */
-    z-index: 2;
-    display: flex;
-    flex-direction: column; /* Logo at top, nav below */
-    align-items: center; /* Center logo and nav horizontally */
-    padding: 1.25rem; /* 20px */
+    padding: 1rem; /* Espaçamento interno */
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.3); /* Optional: slight dark overlay for readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2); /* Um leve fundo para melhor legibilidade do logo/nav */
 }
 
 .logo-container {
-    margin-bottom: 1rem; /* Space between logo and nav */
+    margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 #header-logo {
-    height: 3.75rem; /* 60px */
+    height: 50px; /* Ajustar conforme necessário */
     width: auto;
+    max-width: 200px; /* Evitar que o logo fique muito grande */
 }
 
 /* Navegação (adaptada para overlay e responsividade) */
 nav.top-nav {
     width: 100%;
     display: flex;
-    justify-content: center; /* Center the nav content (menu button or menu items) */
+    justify-content: center;
     align-items: center;
-    position: relative; /* For absolute positioning of dropdown menu */
-    background-color: rgba(51, 51, 51, 0.7); /* Semi-transparent background for nav bar */
-    padding: 0.5rem 0; /* 8px padding */
-    border-radius: 0.3125rem; /* 5px */
+    position: relative;
 }
 
 .menu-items {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: flex; /* Por defeito para desktop */
+    flex-direction: row; /* Itens em linha no desktop */
+    align-items: center;
 }
 
 .menu-items li {
-    margin-left: 1.25rem; /* 20px */
-}
-
-.menu-items li:first-child {
-    margin-left: 0;
+    margin: 0 0.5rem; /* Espaçamento horizontal entre itens */
 }
 
 .menu-items a {
     text-decoration: none;
     color: #fff;
     font-weight: 600;
-    padding: 0.625rem 1rem; /* 10px 16px */
+    padding: 0.5rem 1rem;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: block;
+    border-radius: 4px;
 }
 
 .menu-items a:hover,
-.menu-items a.active {
-    background-color: #B08D57; /* Gold color for hover/active */
+.menu-items a.active-link { /* Renomeado para evitar conflito com .header-slide.active */
+    background-color: #B08D57;
     color: #121212;
-    border-radius: 0.25rem; /* 4px */
 }
 
 /* Botão Hambúrguer */
 .menu-toggle {
-    display: none;
+    display: none; /* Escondido por defeito, aparece em mobile */
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.625rem; /* 10px */
-    z-index: 1001; /* Ensure it's above other nav elements if needed */
+    padding: 0.5rem;
+    z-index: 1001; 
+    position: absolute; /* Para posicionar no canto se necessário */
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .hamburger-icon {
     display: block;
-    width: 1.5625rem; /* 25px */
-    height: 0.1875rem; /* 3px */
+    width: 25px;
+    height: 3px;
     background-color: #fff;
     position: relative;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -166,7 +165,7 @@ nav.top-nav {
     content: '';
     display: block;
     width: 100%;
-    height: 0.1875rem; /* 3px */
+    height: 3px;
     background-color: #fff;
     position: absolute;
     left: 0;
@@ -174,11 +173,85 @@ nav.top-nav {
 }
 
 .hamburger-icon::before {
-    top: -0.5rem; /* -8px */
+    top: -8px;
 }
 
 .hamburger-icon::after {
-    bottom: -0.5rem; /* -8px */
+    bottom: -8px;
+}
+
+/* Estilos para o menu ativo (mobile) */
+.menu-toggle.active .hamburger-icon {
+    background-color: transparent; /* Linha do meio desaparece */
+}
+
+.menu-toggle.active .hamburger-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.menu-toggle.active .hamburger-icon::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+/* Media Query para Mobile */
+@media (max-width: 768px) {
+    .header-overlay {
+        flex-direction: row; /* Logo e botão lado a lado */
+        justify-content: space-between; /* Espaçar logo e botão */
+        align-items: center;
+        padding: 0.5rem 1rem; /* Menor padding em mobile */
+    }
+
+    .logo-container {
+        margin-bottom: 0;
+    }
+
+    #header-logo {
+        height: 40px; /* Logo um pouco menor em mobile */
+    }
+
+    nav.top-nav {
+        width: auto; /* Nav não ocupa toda a largura */
+    }
+
+    .menu-toggle {
+        display: block; /* Mostrar botão hambúrguer */
+        position: static; /* Remover posicionamento absoluto */
+        transform: none;
+    }
+
+    .menu-items {
+        display: none; /* Esconder itens do menu por defeito */
+        flex-direction: column; /* Itens em coluna quando abertos */
+        position: absolute;
+        top: 100%; /* Abaixo do .header-overlay */
+        left: 0;
+        width: 100%;
+        background-color: rgba(31, 31, 31, 0.95); /* Fundo para o menu dropdown */
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .menu-items.active {
+        display: flex; /* Mostrar itens quando o menu está ativo */
+    }
+
+    .menu-items li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-items a {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu-items li:last-child a {
+        border-bottom: none;
+    }
 }
 
 /* Conteúdo Principal - Ajustar padding-top para o header */
