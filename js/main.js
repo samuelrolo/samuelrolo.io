@@ -17,6 +17,36 @@ document.addEventListener("DOMContentLoaded", function() {
     if (headerSlides.length > 0) {
         setInterval(nextSlide, 5000); // Muda a cada 5 segundos
     }
+    
+    // Carrossel da secção intro
+    const introSlides = document.querySelectorAll('.intro-slide');
+    const introDots = document.querySelectorAll('.dot');
+    let introCurrentSlide = 0;
+    
+    function showIntroSlide(index) {
+        introSlides.forEach(slide => slide.classList.remove('active'));
+        introDots.forEach(dot => dot.classList.remove('active'));
+        
+        introCurrentSlide = (index + introSlides.length) % introSlides.length;
+        introSlides[introCurrentSlide].classList.add('active');
+        introDots[introCurrentSlide].classList.add('active');
+    }
+    
+    function nextIntroSlide() {
+        showIntroSlide(introCurrentSlide + 1);
+    }
+    
+    // Adicionar evento de clique aos dots
+    introDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showIntroSlide(index);
+        });
+    });
+    
+    // Mudar slide a cada 5 segundos se houver slides
+    if (introSlides.length > 0) {
+        setInterval(nextIntroSlide, 5000);
+    }
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll("header nav ul li a[href^='#']"); // Target only hash links
     navLinks.forEach(link => {
@@ -344,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 img.classList.add('recomendacao-foto');
                 // Handle image loading errors gracefully
                 img.onerror = function() {
-                    this.alt = `Erro ao carregar imagem de ${rec.name}`;
+                    this.alt = `Foto de ${rec.name}`;
                     this.src = 'images/default_avatar.png'; // Provide a fallback image path
                     console.warn(`Failed to load image: ${rec.avatar}. Using fallback.`);
                 };

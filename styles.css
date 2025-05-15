@@ -89,6 +89,22 @@ header#main-header {
     background-color: rgba(0, 0, 0, 0.2); /* Um leve fundo para melhor legibilidade do nav */
 }
 
+/* Logo no header */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+}
+
+#header-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
 /* Navegação (adaptada para overlay e responsividade) */
 nav.top-nav {
     width: 100%;
@@ -192,6 +208,22 @@ nav.top-nav {
         justify-content: flex-end; /* Menu hambúrguer à direita */
         align-items: center;
         padding: 0.5rem 1rem; /* Menor padding em mobile */
+        background-color: rgba(0, 0, 0, 0.7); /* Fundo mais escuro para melhor visibilidade */
+    }
+
+    .logo-container {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-bottom: 0;
+        height: 50px;
+        width: auto;
+        padding: 5px;
+    }
+
+    #header-logo {
+        height: 40px;
     }
 
     nav.top-nav {
@@ -207,20 +239,24 @@ nav.top-nav {
     }
 
     .menu-items {
-        display: none; /* Esconder itens do menu por defeito */
-        flex-direction: column; /* Itens em coluna quando abertos */
-        position: absolute;
-        top: 100%; /* Abaixo do .header-overlay */
-        left: 0;
-        width: 100%;
-        background-color: rgba(31, 31, 31, 0.95); /* Fundo para o menu dropdown */
-        padding: 1rem 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        z-index: 1001; /* Garantir que está acima de outros elementos */
+        position: fixed; /* Fixo na tela */
+        top: 0;
+        right: -100%; /* Esconder fora da tela */
+        width: 80%; /* Largura do menu */
+        max-width: 300px;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 60px; /* Espaço para o botão fechar */
+        transition: right 0.3s ease;
+        z-index: 1001;
+        overflow-y: auto; /* Permitir rolagem se o menu for muito longo */
+        display: flex; /* Sempre flex, mas escondido pela posição */
     }
 
     .menu-items.active {
-        display: flex !important; /* Mostrar itens quando o menu está ativo, com !important para garantir */
+        right: 0; /* Mostrar menu */
     }
 
     .menu-items li {
@@ -231,11 +267,25 @@ nav.top-nav {
 
     .menu-items a {
         padding: 1rem;
+        width: 100%;
+        display: block;
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .menu-items li:last-child a {
         border-bottom: none;
+    }
+    
+    .intro-content {
+        flex-direction: column;
+    }
+    
+    .intro-text, .intro-carousel {
+        width: 100%;
+    }
+    
+    .intro-carousel-container {
+        height: 200px;
     }
 }
 
@@ -296,6 +346,82 @@ section#hero.hero-section.page-section .hero-subtitle {
 .intro-section h2 {
     font-size: 2.2em;
     margin-bottom: 1.25rem;
+}
+
+.intro-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.intro-text {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.intro-text p {
+    margin-bottom: 1.25rem;
+    font-size: 1.1em;
+}
+
+.intro-carousel {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.intro-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.intro-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.intro-slide.active {
+    opacity: 1;
+}
+
+.intro-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.intro-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #B08D57;
 }
 
 .intro-section p {
@@ -676,7 +802,7 @@ section#hero.hero-section.page-section .hero-subtitle {
 
 /* LinkedIn Button Style */
 .libutton {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   padding: 7px;
@@ -689,6 +815,7 @@ section#hero.hero-section.page-section .hero-subtitle {
   border-radius: 16px;
   background-color: #0A66C2;
   font-family: "SF Pro Text", Helvetica, sans-serif;
+  margin: 0 auto;
 }
 
 /* Footer */
