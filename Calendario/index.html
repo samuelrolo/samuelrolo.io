@@ -19,11 +19,11 @@
                  <h1 style="margin: 0;">Share2Inspire</h1>
                  <span style="width: 150px;"></span> <!-- Spacer -->
             </div>
-            <h2>Marcações</h2> <!-- Changed from Marcação de Sessões -->
+            <h2 style="margin-top: 5px; margin-bottom: 20px;">Marcações</h2> <!-- Ajustado espaçamento -->
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" style="padding-top: 20px;">
         <!-- Ecrã de Seleção de Serviço -->
         <section id="service-selection" class="selection-screen">
             <h2>Escolha o Serviço Pretendido</h2>
@@ -125,23 +125,27 @@
                 </form>
            
                 <!-- INÍCIO DA ESTRUTURA CRUCIAL PARA PAYMENT OPTIONS -->
-                <div class="payment-options"> 
+                <div class="payment-section">
                     <h4>Método de Pagamento</h4>
                     <div class="payment-methods">
-                        <button type="button" class="payment-method-button" data-method="mbway">
-                            <i class="fas fa-mobile-alt"></i> MB WAY
-                        </button>
-                        <!-- O booking.js irá ocultar estes outros botões -->
-                        <button type="button" class="payment-method-button" data-method="paypal" style="display: none;">
-                            <i class="fab fa-paypal"></i> PayPal
-                        </button>
-                        <button type="button" class="payment-method-button" data-method="transferencia" style="display: none;">
-                            <i class="fas fa-university"></i> Transferência Bancária
-                        </button>
-                    </div>
-                    <div id="mbway-instructions" class="payment-instructions hidden" style="display: none;">
-                        <p>Para pagamento por MB WAY, por favor, utilize o número: <strong>[961925050]</strong>.</p>
-                        <p>Após efetuar o pagamento, envie o comprovativo para <div srshare2inspire@gmail.com=""></div> para confirmar a sua marcação.</p>
+                        <div class="payment-method-options">
+                            <div class="payment-method" data-method="mb">
+                                <i class="fas fa-university"></i>
+                                <span>Multibanco</span>
+                            </div>
+                            <div class="payment-method" data-method="mbway">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>MB WAY</span>
+                            </div>
+                            <div class="payment-method" data-method="payshop">
+                                <i class="fas fa-store"></i>
+                                <span>Payshop</span>
+                            </div>
+                            <div class="payment-method" data-method="bank-transfer">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Transferência Bancária</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- FIM DA ESTRUTURA CRUCIAL PARA PAYMENT OPTIONS -->
@@ -212,60 +216,30 @@
                         <p>Preço Final: <span id="cv-final-price">0€</span></p>
                     </div>
                     <section id="booking-summary-cv-review" class="booking-summary hidden"></section>
-                    <div class="payment-options">
+                    <div class="payment-section">
                         <h4>Método de Pagamento</h4>
                         <div class="payment-methods">
-                            <button type="button" class="payment-method" data-method="mbway"><i class="fas fa-mobile-alt"></i> MB WAY</button>
-                            <button type="button" class="payment-method" data-method="mb"><i class="fas fa-university"></i> Multibanco</button>
-                            <button type="button" class="payment-method" data-method="payshop"><i class="fas fa-store"></i> Payshop</button>
-                            <button type="button" class="payment-method" data-method="revolut"><i class="fab fa-revolut"></i> Revolut</button>
-                            <button type="button" class="payment-method" data-method="bank-transfer"><i class="fas fa-landmark"></i> Transferência Bancária</button>
-                        <div id="payment-details-cv" class="hidden payment-details-area">
-                            <div id="mbway-instructions-cv" class="payment-instructions hidden">
-                                <p>Pagamento MB WAY iniciado. Por favor, confirme na sua aplicação MB WAY no telemóvel <strong id="mbway-phone-cv"></strong>.</p>
-                            </div>
-                            <div id="mb-reference-cv" class="payment-instructions hidden">
-                                <p>Por favor, utilize os seguintes dados para pagamento Multibanco:</p>
-                                <ul>
-                                    <li><strong>Entidade:</strong> <span id="mb-entity-cv"></span></li>
-                                    <li><strong>Referência:</strong> <span id="mb-ref-cv"></span></li>
-                                    <li><strong>Valor:</strong> <span id="mb-amount-cv"></span>€</li>
-                                    <li><strong>Válido até:</strong> <span id="mb-expiry-cv"></span></li>
-                                </ul>
-                                <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
-                            </div>
-                            <div id="payshop-reference-cv" class="payment-instructions hidden">
-                                <p>Por favor, dirija-se a um agente Payshop com os seguintes dados:</p>
-                                <ul>
-                                    <li><strong>Referência:</strong> <span id="payshop-ref-cv"></span></li>
-                                    <li><strong>Valor:</strong> <span id="payshop-amount-cv"></span>€</li>
-                                    <li><strong>Válido até:</strong> <span id="payshop-expiry-cv"></span></li>
-                                </ul>
-                                 <p>Guarde estes dados. A confirmação da marcação ocorrerá após validação do pagamento.</p>
-                            </div>
-                            <div id="other-payment-details-cv" class="payment-instructions hidden">
-                                <!-- Details for Revolut/Bank Transfer will be shown by JS -->
+                            <div class="payment-method-options">
+                                <div class="payment-method" data-method="mb">
+                                    <i class="fas fa-university"></i>
+                                    <span>Multibanco</span>
+                                </div>
+                                <div class="payment-method" data-method="mbway">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>MB WAY</span>
+                                </div>
+                                <div class="payment-method" data-method="payshop">
+                                    <i class="fas fa-store"></i>
+                                    <span>Payshop</span>
+                                </div>
+                                <div class="payment-method" data-method="bank-transfer">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>Transferência Bancária</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="terms-conditions">
-                        <div class="form-group">
-                            <input type="checkbox" id="terms-accept-cv" name="terms-accept" required>
-                            <label for="terms-accept-cv">Li e aceito os <a href="#" id="open-terms-modal-cv">termos e condições</a>, incluindo a política de pagamento.</label>
-                        </div>
-                    </div>
-
-                    <div class="booking-actions">
-                        <button type="button" id="back-button-cv" class="btn btn-secondary">Voltar</button>
-                        <button type="submit" id="confirm-booking-cv" class="btn btn-primary">Confirmar Pedido</button>
-                    </div>
-                </form>
-            </section>
-        </div>
-
-        <!-- Confirmation Screen (Shared) -->
-        <section id="confirmation-screen" class="hidden confirmation-message">
+                    <div class="confirmation-message">
             <h2>Obrigado!</h2>
             <p id="confirmation-text">A sua marcação/pedido foi recebido com sucesso. Receberá um e-mail de confirmação em breve.</p>
             <p id="payment-confirmation-details"></p> <!-- For MB/Payshop/Other details -->
