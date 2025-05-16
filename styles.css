@@ -66,7 +66,7 @@ header#main-header {
 }
 
 #header-logo {
-    height: 60px;
+    height: 160px;
     width: auto;
     object-fit: contain;
 }
@@ -178,13 +178,13 @@ nav.top-nav {
 
     .logo-container {
         margin-bottom: 0;
-        height: 50px;
+        height: 80px;
         width: auto;
         padding: 5px;
     }
 
     #header-logo {
-        height: 40px;
+        height: 70px;
     }
 
     nav.top-nav {
