@@ -2,7 +2,7 @@
 async function loadNewsletterContent() {
     try {
         // Carregar o ficheiro JSON
-        const response = await fetch('newsletter_content.json');
+        const response = await fetch('newsletter_content .json');
         if (!response.ok) {
             throw new Error('Erro ao carregar o conteúdo da newsletter');
         }
@@ -18,9 +18,27 @@ async function loadNewsletterContent() {
         updateStats(data.stats);
     } catch (error) {
         console.error('Erro:', error);
+        // Tentar carregar com o nome de ficheiro alternativo se o primeiro falhar
+        try {
+            const alternativeResponse = await fetch('newsletter_content.json');
+            if (!alternativeResponse.ok) {
+                throw new Error('Erro ao carregar o conteúdo alternativo da newsletter');
+            }
+            const alternativeData = await alternativeResponse.json();
+            
+            // Renderizar o artigo em destaque
+            renderFeaturedArticle(alternativeData.featuredArticle);
+            
+            // Renderizar a grelha de artigos
+            renderArticlesGrid(alternativeData.articles);
+            
+            // Atualizar as estatísticas
+            updateStats(alternativeData.stats);
+        } catch (alternativeError) {
+            console.error('Erro ao carregar conteúdo alternativo:', alternativeError);
+        }
     }
 }
-
 // Função para renderizar o artigo em destaque
 function renderFeaturedArticle(article) {
     const featuredPostContainer = document.querySelector('.newsletter-featured-post');
@@ -36,7 +54,6 @@ function renderFeaturedArticle(article) {
         </div>
     `;
 }
-
 // Função para renderizar a grelha de artigos
 function renderArticlesGrid(articles) {
     const postsGrid = document.querySelector('.newsletter-posts-grid');
@@ -66,7 +83,6 @@ function renderArticlesGrid(articles) {
         postsGrid.appendChild(articleCard);
     });
 }
-
 // Função para atualizar as estatísticas da newsletter
 function updateStats(stats) {
     // Atualizar o número de subscritores
@@ -85,6 +101,5 @@ function updateStats(stats) {
     const impressionsElement = document.querySelector('.newsletter-stat-card:nth-child(3) div:nth-child(2)');
     if (impressionsElement) impressionsElement.textContent = stats.totalImpressions;
 }
-
 // Carregar o conteúdo quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', loadNewsletterContent);
