@@ -1650,3 +1650,78 @@ footer .footer-content a:hover {
     color: #dc3545;
     border: 1px solid #dc3545;
 }
+
+/* Estilos para a secção Sobre o Fundador redesenhada */
+.fundador-foto-grande {
+    width: 300px;
+    height: auto;
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.social-links-fundador {
+    margin: 15px 0;
+}
+
+.social-links-fundador a {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 24px;
+    color: #B08D57;
+    transition: all 0.3s ease;
+}
+
+.social-links-fundador a:hover {
+    color: #8a6d42;
+    transform: scale(1.1);
+}
+
+.saber-mais-link {
+    margin: 20px 0;
+}
+
+.btn-saber-mais {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid #B08D57;
+    color: #B08D57;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.btn-saber-mais i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.btn-saber-mais:hover {
+    background-color: #B08D57;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .fundador-foto-grande {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
+        width: 250px;
+    }
+    
+    .fundador-texto {
+        text-align: center;
+    }
+    
+    .social-links-fundador {
+        text-align: center;
+    }
+    
+    .saber-mais-link {
+        text-align: center;
+    }
+}
