@@ -1471,3 +1471,182 @@ footer .footer-content a:hover {
         width: 100%;
     }
 }
+
+.areas-chave-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.area-chave-card {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.area-chave-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-color: #B08D57;
+}
+
+.area-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #121212;
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #B08D57;
+}
+
+.area-chave-card h3 {
+    color: #B08D57;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.area-chave-card p {
+    color: #e0e0e0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.experiencia-profissional {
+    margin-top: 2rem;
+}
+
+.experiencia-card {
+    display: flex;
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.experiencia-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: #B08D57;
+}
+
+.experiencia-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 1.5rem;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.experiencia-detalhes {
+    flex: 1;
+}
+
+.experiencia-detalhes h4 {
+    color: #B08D57;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.experiencia-detalhes p {
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+}
+
+.ver-mais-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .areas-chave-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .experiencia-card {
+        flex-direction: column;
+    }
+    
+    .experiencia-logo {
+        margin: 0 auto 1rem;
+    }
+    
+    .experiencia-detalhes {
+        text-align: center;
+    }
+}
+
+/* Estilos para o formulário de feedback */
+#feedback-section {
+    padding: 3rem 0;
+}
+
+#feedback-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.star-rating {
+    font-size: 2rem;
+    margin: 1.5rem 0;
+    color: #ddd;
+}
+
+.star-rating i {
+    cursor: pointer;
+    margin: 0 0.2rem;
+    transition: color 0.3s ease;
+}
+
+.star-rating i:hover {
+    color: #B08D57;
+}
+
+#feedback-text {
+    width: 100%;
+    min-height: 120px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    resize: vertical;
+}
+
+#feedback-message {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    border-radius: 5px;
+    display: none;
+}
+
+.feedback-sending {
+    background-color: #333;
+    color: #fff;
+}
+
+.feedback-success {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.feedback-error {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}

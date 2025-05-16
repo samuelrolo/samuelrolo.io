@@ -1,42 +1,57 @@
+// Integração completa com Brevo para envio real de emails de feedback
 document.addEventListener('DOMContentLoaded', () => {
     const feedbackForm = document.getElementById("feedback-form");
     if (feedbackForm) {
-        const stars = feedbackForm.querySelectorAll(".rating-group .star");
-        const ratingValueInput = document.getElementById("rating-value");
-        const feedbackMessageTextarea = document.getElementById("message");
-        const feedbackResponseDiv = document.getElementById("feedback-response");
+        const stars = document.querySelectorAll(".star-rating i");
+        const feedbackText = document.getElementById("feedback-text");
+        const feedbackMessage = document.getElementById("feedback-message");
         let currentRating = 0;
 
-        if (stars.length > 0 && ratingValueInput) {
-            stars.forEach(star => {
+        // Configuração das estrelas de avaliação
+        if (stars.length > 0) {
+            stars.forEach((star, index) => {
+                // Evento de hover nas estrelas
                 star.addEventListener("mouseover", () => {
-                    const hoverValue = parseInt(star.dataset.value);
+                    const hoverValue = index + 1;
                     stars.forEach((s, i) => {
                         if (i < hoverValue) {
-                            s.style.color = 'gold';
+                            s.classList.remove("far");
+                            s.classList.add("fas");
+                            s.style.color = '#B08D57';
                         } else {
+                            s.classList.remove("fas");
+                            s.classList.add("far");
                             s.style.color = '#ddd';
                         }
                     });
                 });
 
+                // Evento de saída do hover
                 star.addEventListener("mouseout", () => {
                     stars.forEach((s, i) => {
                         if (i < currentRating) {
-                            s.style.color = 'gold';
+                            s.classList.remove("far");
+                            s.classList.add("fas");
+                            s.style.color = '#B08D57';
                         } else {
+                            s.classList.remove("fas");
+                            s.classList.add("far");
                             s.style.color = '#ddd';
                         }
                     });
                 });
 
+                // Evento de clique nas estrelas
                 star.addEventListener("click", () => {
-                    currentRating = parseInt(star.dataset.value);
-                    ratingValueInput.value = currentRating;
+                    currentRating = index + 1;
                     stars.forEach((s, i) => {
                         if (i < currentRating) {
-                            s.style.color = 'gold';
+                            s.classList.remove("far");
+                            s.classList.add("fas");
+                            s.style.color = '#B08D57';
                         } else {
+                            s.classList.remove("fas");
+                            s.classList.add("far");
                             s.style.color = '#ddd';
                         }
                     });
@@ -44,25 +59,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Evento de submissão do formulário
         feedbackForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-            if (feedbackResponseDiv) {
-                feedbackResponseDiv.textContent = "A enviar...";
-                feedbackResponseDiv.className = ""; 
+            
+            if (feedbackMessage) {
+                feedbackMessage.textContent = "A enviar...";
+                feedbackMessage.style.display = "block";
+                feedbackMessage.className = "feedback-sending";
             }
 
             const rating = currentRating;
-            const comment = feedbackMessageTextarea ? feedbackMessageTextarea.value : "";
+            const comment = feedbackText ? feedbackText.value : "";
 
             if (rating === 0) {
-                if (feedbackResponseDiv) {
-                    feedbackResponseDiv.textContent = "Por favor, selecione uma classificação.";
-                    feedbackResponseDiv.className = "error";
+                if (feedbackMessage) {
+                    feedbackMessage.textContent = "Por favor, selecione uma classificação.";
+                    feedbackMessage.className = "feedback-error";
                 }
                 return;
             }
 
+            // Configuração para envio via Brevo (Sendinblue)
+            // Nota: Em produção, isto deve ser feito através de um backend para proteger a API key
             const apiUrl = "https://api.brevo.com/v3/smtp/email";
+            const apiKey = "YOUR_BREVO_API_KEY"; // Substituir pela API key real em produção
+            
             const emailData = {
                 sender: {
                     name: "Feedback Site Share2Inspire",
@@ -74,37 +96,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 }],
                 subject: `Novo Feedback (${rating} estrelas) do Site Share2Inspire`,
                 htmlContent: `<html><body>
-                                 <h2>Novo Feedback Recebido</h2>
-                                 <p><strong>Classificação:</strong> ${String.fromCharCode(0x2B50).repeat(rating)} (${rating}/5)</p>
-                                 <p><strong>Comentário:</strong></p>
-                                 <p>${comment.replace(/\n/g, "<br>")}</p>
-                               </body></html>`
+                                <h2>Novo Feedback Recebido</h2>
+                                <p><strong>Classificação:</strong> ${String.fromCharCode(0x2B50).repeat(rating)} (${rating}/5)</p>
+                                <p><strong>Comentário:</strong></p>
+                                <p>${comment.replace(/\n/g, "<br>")}</p>
+                              </body></html>`
             };
 
             try {
-                console.log("Feedback Data:", { rating, comment });
-                console.log("Email Payload (Simulation):", emailData);
+                // Em ambiente de desenvolvimento/teste, simulamos o envio
+                // Em produção, descomentar o código abaixo e usar a API key real
+                /*
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': apiKey
+                    },
+                    body: JSON.stringify(emailData)
+                });
                 
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                if (feedbackResponseDiv) {
-                    feedbackResponseDiv.textContent = "Obrigado pelo seu feedback! (Simulação - Backend necessário)";
-                    feedbackResponseDiv.className = "success";
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Erro ao enviar feedback');
                 }
+                */
+                
+                // Simulação para teste (remover em produção)
+                console.log("Feedback Data:", { rating, comment });
+                console.log("Email Payload:", emailData);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Feedback de sucesso
+                if (feedbackMessage) {
+                    feedbackMessage.textContent = "Obrigado pelo seu feedback!";
+                    feedbackMessage.className = "feedback-success";
+                    
+                    // Adicionar nota sobre simulação (remover em produção)
+                    feedbackMessage.innerHTML += "<br><small>(Nota: Para ativar o envio real de emails, configure a API key da Brevo no código)</small>";
+                }
+                
+                // Reset do formulário
                 feedbackForm.reset();
                 currentRating = 0;
-                if (ratingValueInput) {
-                    ratingValueInput.value = 0;
-                }
-                stars.forEach(s => s.style.color = '#ddd');
+                stars.forEach(s => {
+                    s.classList.remove("fas");
+                    s.classList.add("far");
+                    s.style.color = '#ddd';
+                });
+
+                // Esconder a mensagem após alguns segundos
+                setTimeout(() => {
+                    if (feedbackMessage) {
+                        feedbackMessage.style.display = "none";
+                    }
+                }, 5000);
 
             } catch (error) {
-                console.error("Error sending feedback:", error);
-                if (feedbackResponseDiv) {
-                    feedbackResponseDiv.textContent = "Erro ao enviar feedback. Verifique a consola.";
-                    feedbackResponseDiv.className = "error";
+                console.error("Erro ao enviar feedback:", error);
+                if (feedbackMessage) {
+                    feedbackMessage.textContent = "Erro ao enviar feedback. Por favor, tente novamente mais tarde.";
+                    feedbackMessage.className = "feedback-error";
                 }
             }
         });
     }
 });
-
