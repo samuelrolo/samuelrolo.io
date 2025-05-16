@@ -1,0 +1,1381 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Global Typography Settings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+button, input, select, textarea {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+/* End Global Typography Settings */
+
+/* Geral */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #e0e0e0;
+    background-color: #121212;
+    font-weight: 400;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 1.25rem;
+}
+
+/* Header com Logo */
+header#main-header {
+    position: relative;
+    width: 100%;
+    color: #fff;
+    background-color: #121212;
+    overflow: visible;
+    padding: 15px 0;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+}
+
+/* Logo no header */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: transparent;
+}
+
+#header-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Navegação (adaptada para overlay e responsividade) */
+nav.top-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Por defeito para desktop */
+    flex-direction: row; /* Itens em linha no desktop */
+    align-items: center;
+}
+
+.menu-items li {
+    margin: 0 0.5rem; /* Espaçamento horizontal entre itens */
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
+    border-radius: 4px;
+}
+
+.menu-items a:hover,
+.menu-items a.active-link { /* Renomeado para evitar conflito com .header-slide.active */
+    background-color: #B08D57;
+    color: #121212;
+}
+
+/* Botão Hambúrguer */
+.menu-toggle {
+    display: none; /* Escondido por defeito, aparece em mobile */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001; 
+    position: absolute; /* Para posicionar no canto se necessário */
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    position: relative;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease-in-out, top 0.3s ease-in-out, bottom 0.3s ease-in-out;
+}
+
+.hamburger-icon::before {
+    top: -8px;
+}
+
+.hamburger-icon::after {
+    bottom: -8px;
+}
+
+/* Estilos para o menu ativo (mobile) */
+.hamburger-icon.active {
+    background-color: transparent; /* Linha do meio desaparece */
+}
+
+.hamburger-icon.active::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.hamburger-icon.active::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+/* Media Query para Mobile */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: row; /* Menu hambúrguer à direita */
+        justify-content: space-between; /* Logo à esquerda, menu à direita */
+        align-items: center;
+        padding: 0.5rem 1rem; /* Menor padding em mobile */
+    }
+
+    .logo-container {
+        margin-bottom: 0;
+        height: 50px;
+        width: auto;
+        padding: 5px;
+    }
+
+    #header-logo {
+        height: 40px;
+    }
+
+    nav.top-nav {
+        width: auto; /* Nav não ocupa toda a largura */
+        position: static;
+    }
+
+    .menu-toggle {
+        display: block; /* Mostrar botão hambúrguer */
+        position: relative; /* Permitir posicionamento correto */
+        transform: none;
+        z-index: 1002; /* Garantir que está acima do menu */
+    }
+
+    .menu-items {
+        position: fixed; /* Fixo na tela */
+        top: 0;
+        right: -100%; /* Esconder fora da tela */
+        width: 80%; /* Largura do menu */
+        max-width: 300px;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 60px; /* Espaço para o botão fechar */
+        transition: right 0.3s ease;
+        z-index: 1001;
+        overflow-y: auto; /* Permitir rolagem se o menu for muito longo */
+        display: flex; /* Sempre flex, mas escondido pela posição */
+    }
+
+    .menu-items.active {
+        right: 0; /* Mostrar menu */
+    }
+
+    .menu-items li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-items a {
+        padding: 1rem;
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu-items li:last-child a {
+        border-bottom: none;
+    }
+    
+    .intro-content {
+        flex-direction: column;
+    }
+    
+    .intro-text, .intro-carousel {
+        width: 100%;
+    }
+    
+    .intro-carousel-container {
+        height: 250px;
+    }
+}
+
+/* Conteúdo Principal - Ajustar padding-top para o header */
+main {
+    padding-top: 0; /* Header is relative, not fixed, so no main padding needed unless header becomes fixed */
+    /* If header#main-header becomes fixed, add padding-top: <header_height>; e.g., 450px */
+}
+
+.page-section {
+    background-color: #1f1f1f;
+    padding: 2.5rem 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.page-section h1, .page-section h2, .page-section h3, .page-section h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.page-section h2 {
+    font-size: 2.5em;
+    color: #B08D57;
+    margin-bottom: 1.875rem;
+    padding-bottom: 0.9375rem;
+    border-bottom: 3px solid #A8875F;
+    display: inline-block;
+}
+
+/* Secção Hero (Esta secção pode ser o próprio header slider ou uma secção abaixo) */
+/* Se #hero é o slider, os estilos abaixo podem não ser necessários ou precisam de ajuste */
+/* Se #hero é uma secção separada abaixo do header slider, estes estilos são para ela */
+section#hero.hero-section.page-section {
+    /* Estes estilos são para uma secção #hero que NÃO é o slider */
+    /* Se o slider é o hero, remova ou ajuste esta secção no HTML e CSS */
+    background: #B08D57; 
+    color: #fff;
+    padding: 1.5625rem 1.25rem; 
+    min-height: auto; /* Ajustar se for uma secção separada */
+    margin-top: 0; /* Se o header não for fixo e esta for a primeira secção */
+}
+
+section#hero.hero-section.page-section h1 {
+    font-size: 2.2em;
+    margin-bottom: 0.5rem;
+}
+
+section#hero.hero-section.page-section .hero-subtitle {
+    font-size: 1.6em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+/* Secção Introdutória */
+.intro-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 1.25rem;
+}
+
+.intro-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.intro-text {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.intro-text p {
+    margin-bottom: 1.25rem;
+    font-size: 1.1em;
+}
+
+.intro-carousel {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.intro-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    background-color: #121212;
+}
+
+.intro-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.intro-slide.active {
+    opacity: 1;
+}
+
+.intro-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #121212;
+}
+
+.intro-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #555;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #B08D57;
+}
+
+.intro-section p {
+    max-width: 50rem;
+    margin: 0 auto 1.25rem auto;
+    font-size: 1.1em;
+}
+
+.cta-buttons a.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5625rem;
+    margin: 0.625rem;
+    border-radius: 0.3125rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-buttons a.btn-primary {
+    background-color: #B08D57;
+    color: #fff;
+}
+
+.cta-buttons a.btn-primary:hover {
+    background-color: #8c6f40;
+    transform: translateY(-0.125rem);
+}
+
+.cta-buttons a.btn-secondary {
+    background-color: #333;
+    color: #fff;
+}
+
+.cta-buttons a.btn-secondary:hover {
+    background-color: #555;
+    transform: translateY(-0.125rem);
+}
+
+/* Secção Serviços */
+#servicos .servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1.875rem;
+    text-align: left;
+    margin-top: 1.25rem;
+}
+
+#servicos .servico-card {
+    background: #2c2c2c;
+    padding: 1.875rem;
+    border: 1px solid #444;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e0e0e0;
+}
+
+#servicos .servico-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.375rem 0.9375rem rgba(0,0,0,0.25);
+}
+
+#servicos .servico-card .servico-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    background-color: #333;
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    margin-bottom: 1.5625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    color: #B08D57;
+}
+
+#servicos .servico-card h3 {
+    color: #B08D57;
+    margin-bottom: 0.9375rem;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+#servicos .servico-card p {
+    text-align: center;
+    font-size: 1.05em;
+    line-height: 1.7;
+}
+
+/* Secção Sobre o Fundador */
+#sobre-fundador .fundador-content {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 56.25rem;
+    margin: 1.25rem auto;
+    padding: 1.5625rem;
+    background-color: #2c2c2c;
+    border-left: 5px solid #B08D57;
+    gap: 1.5625rem;
+    border-radius: 0.3125rem;
+    color: #e0e0e0;
+}
+
+#sobre-fundador .fundador-foto {
+    width: 9.375rem;
+    height: 9.375rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #B08D57;
+    flex-shrink: 0;
+}
+
+#sobre-fundador .fundador-texto p {
+    margin-top: 0;
+    font-size: 1.05em;
+}
+
+#sobre-fundador .experiencia-profissional {
+    text-align: left;
+    max-width: 56.25rem;
+    margin: 2.5rem auto 1.25rem auto;
+    padding: 1.5625rem;
+    background-color: #2c2c2c;
+    border-left: 5px solid #B08D57;
+    border-radius: 0.3125rem;
+    color: #e0e0e0;
+}
+
+#sobre-fundador .experiencia-profissional h3 {
+    color: #B08D57;
+    margin-top: 0;
+    margin-bottom: 1.5625rem;
+    text-align: center;
+    font-size: 1.8em;
+    border-bottom: none; /* Remove default page-section h2 border */
+    padding-bottom: 0;
+}
+
+.experiencia-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background-color: #333;
+    border-radius: 0.3125rem;
+}
+
+.experiencia-logo {
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-right: 1rem;
+    object-fit: contain;
+}
+
+.experiencia-detalhes h4 {
+    color: #B08D57;
+    margin-top: 0;
+    margin-bottom: 0.3125rem;
+    font-size: 1.2em;
+}
+
+.experiencia-detalhes p {
+    margin: 0.25rem 0;
+    font-size: 0.95em;
+}
+
+/* Dashboard Destaque */
+.dashboard-destaque {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); /* 200px */
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #333;
+    border-radius: 0.5rem;
+}
+
+.dashboard-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.3125rem;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-item i {
+    font-size: 1.8em;
+    color: #B08D57;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-number, .dashboard-highlight {
+    display: block;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #B08D57;
+}
+
+.dashboard-text {
+    display: block;
+    font-size: 0.85em;
+    color: #333333;
+}
+
+/* Recomendações */
+.recomendacoes {
+    /* Styles for recommendations section */
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 50rem; /* 800px */
+    margin: auto;
+    overflow: hidden;
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.recomendacao-card.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 1.25rem;
+    display: flex; /* For layout of photo and content */
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.recomendacao-foto {
+    width: 6.25rem; /* 100px */
+    height: 6.25rem; /* 100px */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #B08D57;
+}
+
+.recomendacao-conteudo {
+    text-align: left;
+}
+
+.recomendacao-texto {
+    font-style: italic;
+    margin-bottom: 0.625rem;
+    font-size: 1em;
+}
+
+.recomendacao-autor {
+    font-weight: bold;
+    color: #B08D57;
+    font-size: 1.1em;
+}
+
+.recomendacao-cargo {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 0.625rem;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 100;
+}
+
+.carousel-button.prev {
+    left: 0.625rem;
+}
+
+.carousel-button.next {
+    right: 0.625rem;
+}
+
+/* Loja */
+#loja .loja-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1.875rem;
+    margin-top: 1.25rem;
+}
+
+#loja .loja-item-card {
+    background: #2c2c2c;
+    padding: 1.875rem;
+    border-radius: 0.625rem;
+    text-align: center;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.25);
+}
+
+#loja .ebook-cover {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.3125rem;
+    margin-bottom: 1rem;
+    border: 2px solid #B08D57;
+}
+
+#loja .loja-item-card h3 {
+    color: #B08D57;
+    margin-bottom: 0.625rem;
+    font-size: 1.5em;
+}
+
+#loja .loja-item-card p {
+    margin-bottom: 1.25rem;
+    font-size: 1.05em;
+}
+
+.btn-gold, .hotmart__button-checkout {
+    display: inline-block;
+    background-color: #B08D57;
+    color: #fff !important; /* Important to override Hotmart styles if needed */
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 0.3125rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-gold:hover, .hotmart__button-checkout:hover {
+    background-color: #8c6f40;
+}
+
+#loja .survey-card .servico-icon {
+    /* Reusing servico-icon style, ensure it's defined or copy here */
+    width: 3.75rem;
+    height: 3.75rem;
+    background-color: #333;
+    border: 2px solid #B08D57;
+    border-radius: 50%;
+    margin: 0 auto 1.5625rem auto; /* Centered icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    color: #B08D57;
+}
+
+/* Agendar e Contactos */
+#agendar a.btn-primary,
+#contactos a {
+    /* General styling for these links if needed */
+}
+
+#contactos .contactos-details {
+    margin-top: 1.25rem;
+}
+
+#contactos .contactos-details a {
+    color: #B08D57;
+    font-size: 2em;
+    margin: 0 0.625rem;
+    transition: color 0.3s ease;
+}
+
+#contactos .contactos-details a:hover {
+    color: #8c6f40;
+}
+
+/* LinkedIn Button Style */
+.libutton {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7px;
+  text-align: center;
+  outline: none;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  width: 200px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: #0A66C2;
+  font-family: "SF Pro Text", Helvetica, sans-serif;
+  margin: 0 auto;
+}
+
+/* Footer */
+footer {
+    background: #1f1f1f;
+    color: #ccc;
+    text-align: center;
+    padding: 1.875rem 1.25rem;
+    margin-top: 1.25rem;
+    border-top: 1px solid #333;
+}
+
+footer .footer-content p {
+    margin: 0.3125rem 0;
+    font-size: 0.9em;
+}
+
+footer .footer-content a {
+    color: #B08D57;
+    text-decoration: none;
+}
+
+footer .footer-content a:hover {
+    text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal, .survey-widget-container {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content, .survey-widget-content {
+    background-color: #2c2c2c;
+    margin: 10% auto;
+    padding: 1.875rem;
+    border: 1px solid #555;
+    width: 80%;
+    max-width: 37.5rem; /* 600px */
+    border-radius: 0.5rem;
+    position: relative;
+    color: #e0e0e0;
+}
+
+.close-button, .close-survey-widget {
+    color: #aaa;
+    float: right;
+    font-size: 1.75em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus,
+.close-survey-widget:hover,
+.close-survey-widget:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+#service-request-form label {
+    display: block;
+    margin-top: 0.625rem;
+    color: #B08D57;
+    font-weight: 600;
+}
+
+#service-request-form input[type="text"],
+#service-request-form input[type="email"],
+#service-request-form input[type="tel"],
+#service-request-form select,
+#service-request-form textarea {
+    width: 100%;
+    padding: 0.625rem;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.625rem;
+    border: 1px solid #555;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+#service-request-form textarea {
+    resize: vertical;
+}
+
+.btn-form.btn-gold-icon {
+    /* Assuming .btn-gold styles are applied, add icon specific if needed */
+    margin-top: 1rem;
+}
+
+#service-request-message {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Survey Widget Iframe */
+.survey-widget-content iframe {
+    border-radius: 0.3125rem;
+}
+
+/* Feedback Section */
+#feedback-section {
+    /* General page-section styles apply */
+}
+
+#feedback-form .star-rating {
+    margin-bottom: 1rem;
+    text-align: center; /* Ensure stars are centered */
+}
+
+#feedback-form .star-rating i {
+    font-size: 2em;
+    color: #ccc; /* Default star color */
+    cursor: pointer;
+    padding: 0 0.2rem;
+    transition: color 0.2s ease;
+}
+
+#feedback-form .star-rating i.selected,
+#feedback-form .star-rating i:hover,
+#feedback-form .star-rating i:hover ~ i { /* Makes stars light up on hover from left to right */
+    color: #B08D57; /* Gold color for selected/hovered stars */
+}
+
+#feedback-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #555;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    min-height: 6.25rem; /* 100px */
+    background-color: #333;
+    color: #e0e0e0;
+    resize: vertical;
+}
+
+#feedback-message {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* HR Innovation Hub Section Specific Styles */
+#hr-innovation-hub .container {
+    width: 100%; /* Override default container width for full-width feel if needed */
+    max-width: 75rem; /* 1200px, adjust as needed */
+    margin: auto;
+    padding: 0 1rem; /* Add some padding for smaller screens */
+}
+
+#hr-innovation-hub .newsletter-hero {
+    text-align: center;
+    padding: 2.5rem 1.25rem;
+    background-color: #2a2a2a; /* Slightly different dark shade */
+    border-bottom: 1px solid #444;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 0.5rem;
+}
+
+#hr-innovation-hub .newsletter-hero h2 {
+    font-size: 2.2rem;
+    color: #B08D57;
+    margin-bottom: 0.9375rem;
+    border-bottom: none; /* Override page-section h2 style */
+    padding-bottom: 0;
+}
+
+#hr-innovation-hub .newsletter-hero p {
+    font-size: 1.1rem;
+    color: #ccc;
+    max-width: 50rem;
+    margin: 0 auto 1.5625rem auto;
+}
+
+#hr-innovation-hub .newsletter-hero .btn-primary {
+    margin-top: 0.625rem;
+    background-color: #B08D57;
+    border-color: #B08D57;
+}
+
+#hr-innovation-hub .newsletter-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 2.5rem 0;
+    padding: 0 1.25rem;
+}
+
+#hr-innovation-hub .newsletter-stat-card {
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding: 1.25rem;
+    text-align: center;
+    flex-basis: 13.75rem; /* 220px */
+    margin-bottom: 1.25rem;
+    border: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-stat-card div:first-child {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #B08D57;
+    margin-bottom: 0.3125rem;
+}
+
+#hr-innovation-hub .newsletter-stat-card div:last-child {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+#hr-innovation-hub .newsletter-featured-post {
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 3.125rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-featured-post img {
+    width: 100%;
+    max-width: 50rem; /* 800px */
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-featured-post > div {
+    padding: 1.875rem;
+    text-align: center;
+    max-width: 50rem;
+}
+
+#hr-innovation-hub .newsletter-featured-post h3 {
+    font-size: 1.9rem;
+    margin-bottom: 0.625rem;
+    color: #B08D57;
+}
+
+#hr-innovation-hub .newsletter-featured-post p:first-of-type {
+    color: #aaa;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+}
+
+#hr-innovation-hub .newsletter-featured-post p:last-of-type {
+    font-size: 1.05rem;
+    margin-bottom: 1.5625rem;
+    line-height: 1.7;
+    color: #ccc;
+}
+
+#hr-innovation-hub .newsletter-featured-post .btn-secondary {
+    background-color: #555;
+    border-color: #555;
+    color: #fff;
+}
+#hr-innovation-hub .newsletter-featured-post .btn-secondary:hover {
+    background-color: #444;
+}
+
+#hr-innovation-hub h3.section-title {
+    text-align:center;
+    margin-top: 3.125rem;
+    margin-bottom: 1.875rem;
+    font-size: 2rem;
+    color: #B08D57;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+#hr-innovation-hub .newsletter-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); /* 320px */
+    gap: 1.875rem;
+    margin-bottom: 3.125rem;
+}
+
+#hr-innovation-hub .newsletter-post-card {
+    background-color: #2c2c2c;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #444;
+}
+
+#hr-innovation-hub .newsletter-post-card img {
+    width: 100%;
+    height: 13.75rem; /* 220px */
+    object-fit: cover;
+}
+
+#hr-innovation-hub .newsletter-post-card > div {
+    padding: 1.5625rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#hr-innovation-hub .newsletter-post-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.625rem;
+    color: #B08D57;
+}
+
+#hr-innovation-hub .newsletter-post-card p:first-of-type {
+    color: #aaa;
+    margin-bottom: 0.9375rem;
+    font-size: 0.85rem;
+}
+
+#hr-innovation-hub .newsletter-post-card p:nth-of-type(2) {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    color: #ccc;
+    flex-grow: 1;
+}
+
+#hr-innovation-hub .newsletter-post-card .post-link {
+    color: #B08D57;
+    text-decoration: none;
+    font-weight: bold;
+    align-self: flex-start;
+}
+#hr-innovation-hub .newsletter-post-card .post-link:hover {
+    text-decoration: underline;
+}
+
+#hr-innovation-hub .newsletter-subscribe-section {
+    background-color: #343a40;
+    color: white;
+    padding: 3.75rem 1.25rem;
+    text-align: center;
+    margin: 3.125rem 0 0 0; /* Adjusted margin */
+    border-radius: 0.5rem;
+}
+
+#hr-innovation-hub .newsletter-subscribe-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    color: #fff;
+}
+
+#hr-innovation-hub .newsletter-subscribe-section p {
+    margin-bottom: 1.875rem;
+    font-size: 1.1rem;
+    max-width: 37.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #f0f0f0;
+}
+
+#hr-innovation-hub .newsletter-subscribe-form {
+    max-width: 34.375rem; /* 550px */
+    margin: 0 auto;
+    display: flex;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 0.3125rem;
+    overflow: hidden;
+}
+
+#hr-innovation-hub .newsletter-subscribe-form input[type="email"] {
+    flex-grow: 1;
+    padding: 0.9375rem 1.25rem;
+    border: none;
+    font-size: 1rem;
+    color: #333;
+    margin:0; /* Reset margin */
+}
+
+#hr-innovation-hub .newsletter-subscribe-form button[type="submit"] {
+    border-radius: 0 0.3125rem 0.3125rem 0;
+    white-space: nowrap;
+    padding: 0.9375rem 1.5625rem;
+    font-size: 1rem;
+    background-color: #B08D57;
+    border-color: #B08D57;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin:0; /* Reset margin */
+}
+
+/* Responsive menu styles */
+@media (max-width: 768px) { /* Ponto de quebra, ajuste conforme necessário */
+    header#main-header {
+        height: 350px; /* Adjust header height for mobile */
+    }
+    .header-overlay {
+        justify-content: flex-start; /* Align logo and nav to top on mobile */
+    }
+    nav.top-nav {
+        justify-content: flex-end; /* Align menu toggle to the right */
+        background-color: transparent; /* Make nav bar transparent, rely on overlay bg */
+        padding: 0.5rem; 
+    }
+    .menu-items {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% + 5px); /* Position below the nav.top-nav bar */
+        left: 0;
+        right: 0; /* Make it full width */
+        width: auto; /* Override width:100% if it causes issues with padding */
+        margin: 0 0.5rem; /* Add some horizontal margin */
+        background-color: rgba(30, 30, 30, 0.95); /* Darker, more opaque background for dropdown */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), padding 0.4s ease; 
+        z-index: 999; /* Ensure it's below menu-toggle if it has higher z-index */
+        border-radius: 0 0 0.3125rem 0.3125rem;
+        padding: 0 1rem;
+    }
+
+    .menu-items.active {
+        display: flex;
+        max-height: 31.25rem; /* 500px, adjust as needed */
+        padding: 0.5rem 1rem; /* Add padding when active */
+    }
+
+    .menu-items li {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #444;
+    }
+
+    .menu-items li:last-child {
+        border-bottom: none;
+    }
+
+    .menu-items a {
+        display: block;
+        padding: 1rem;
+        width: 100%;
+        color: #f0f0f0;
+    }
+    .menu-items a:hover, .menu-items a.active {
+        background-color: #B08D57;
+        color: #121212;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon {
+        background-color: transparent;
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon::before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] .hamburger-icon::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+    }
+    
+    /* Adjustments for smaller screens */
+    .page-section h2 {
+        font-size: 2em;
+    }
+    .intro-section p, #servicos .servico-card p, #sobre-fundador .fundador-texto p {
+        font-size: 1em;
+    }
+    #sobre-fundador .fundador-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    #sobre-fundador .fundador-foto {
+        margin-bottom: 1rem;
+    }
+    .dashboard-destaque {
+        grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr)); /* 150px */
+    }
+    .recomendacao-card.carousel-slide {
+        flex-direction: column;
+        text-align: center;
+    }
+    .recomendacao-foto {
+        margin-bottom: 1rem;
+    }
+    .recomendacao-conteudo {
+        text-align: center;
+    }
+}
+
+
+
+/* HR Innovation Hub Section - Dark Theme Override */
+#hr-innovation-hub .newsletter-hero {
+    background-color: #1f1f1f !important;
+    border-bottom: 1px solid #333 !important;
+}
+
+#hr-innovation-hub .newsletter-hero h2 {
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-hero p {
+    color: #e0e0e0 !important;
+}
+
+#hr-innovation-hub .newsletter-stat-card {
+    background-color: #2c2c2c !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3) !important;
+    border: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-stat-card div:first-of-type {
+    color: #B08D57 !important; /* Number, already gold, ensure it stays */
+}
+#hr-innovation-hub .newsletter-stat-card div:last-of-type {
+    color: #ccc !important; /* Text description */
+}
+
+#hr-innovation-hub .newsletter-featured-post {
+    background-color: #2c2c2c !important;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.3) !important;
+    border: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post img {
+    border-bottom: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post div > h3 {
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post div > p[style*="font-size: 0.9rem"] { /* Date/Edition paragraph */
+    color: #aaa !important;
+}
+
+#hr-innovation-hub .newsletter-featured-post div > p[style*="font-size: 1.05rem"] { /* Summary paragraph */
+    color: #e0e0e0 !important;
+}
+
+#hr-innovation-hub > h3[style*="text-align:center"] { /* "Edições Recentes" title */
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-post-card {
+    background-color: #2c2c2c !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3) !important;
+    border: 1px solid #444 !important;
+}
+
+#hr-innovation-hub .newsletter-post-card div > h4 {
+    color: #B08D57 !important;
+}
+
+#hr-innovation-hub .newsletter-post-card div > p[style*="font-size: 0.85rem"] { /* Date paragraph in post card */
+    color: #aaa !important;
+}
+
+#hr-innovation-hub .newsletter-post-card div > p[style*="font-size: 0.95rem"] { /* Summary paragraph in post card */
+    color: #e0e0e0 !important;
+}
+
+
+
+/* Specific styling for HR Innovation Hub Stats Cards (White Background) */
+#hr-innovation-hub .newsletter-stats .newsletter-stat-card {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important; /* Light border for white card */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1) !important; /* Lighter shadow for white card */
+    border-radius: 8px; /* Ensure consistent border radius */
+}
+
+#hr-innovation-hub .newsletter-stats .newsletter-stat-card div:first-of-type { /* Number */
+    color: #B08D57 !important; /* Gold color for numbers */
+}
+
+#hr-innovation-hub .newsletter-stats .newsletter-stat-card div:last-of-type { /* Text description */
+    color: #495057 !important; /* Dark grey text for readability on white background */
+}
+
