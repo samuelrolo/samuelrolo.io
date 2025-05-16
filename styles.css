@@ -489,15 +489,24 @@ section#hero.hero-section.page-section .hero-subtitle {
 
 .download-buttons {
     display: flex;
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: 1.5rem;
+    margin: 2rem 0;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
+    width: 100%;
 }
 
 .download-buttons a.btn {
     display: inline-flex;
     align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.3125rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 180px;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     padding: 0.75rem 1.25rem;
     border-radius: 0.3125rem;
     text-decoration: none;
