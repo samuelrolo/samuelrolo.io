@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do eBook: GESTÃO DA MUDANÇA - Samuel Rolo</title>
     <link rel="stylesheet" href="css/loja-styles.css">
+    <style>
+        .botoes-compra {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .btn-comprar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            background-color: white;
+            color: #333;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn-comprar:hover {
+            background-color: #c19a49;
+            color: white;
+        }
+        
+        .btn-comprar i {
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,7 +53,7 @@
         <a href="../index.html">Voltar ao início</a>
         <a href="../loja/gestao-da-mudanca/index.html">Avançar</a>
         <h1>GESTÃO DA MUDANÇA</h1>
-            </header>
+    </header>
     <main>
         <section class="produto-detalhe">
             <div class="produto-info">
@@ -32,35 +68,32 @@
                         <ul>
                             <li>LIDERAR MUDANÇAS COM CONFIANÇA: Mesmo perante a ambiguidade e a pressão.</li>
                             <li>MOBILIZAR EQUIPAS COM EMPATIA: Transformando a resistência em colaboração.</li>
-                            <li>EVITAR OS ERROS DE “AMADOR”: Aprendendo com as armadilhas que outros já enfrentaram.</li>
+                            <li>EVITAR OS ERROS DE "AMADOR": Aprendendo com as armadilhas que outros já enfrentaram.</li>
                         </ul>
                         <p>A gestão da mudança não tem de ser um bicho-de-sete-cabeças, com as ferramentas e a abordagem certas, pode transformar desafios em oportunidades.</p>
                     </div>
                 </div>
             </div>
-
             <div class="formulario-compra">
-                <h3>Completa os teus dados para comprar e receber o eBook por e-mail:</h3>
-                <form id="formComprarEbook">
-                    <div>
-                        <label for="nome">Nome Completo:</label>
-                        <input type="text" id="nome" name="nome" required>
-                    </div>
-                    <div>
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <button type="submit" class="btn-comprar">Comprar Agora (7,50€)</button>
-                </form>
-                <p class="aviso-pagamento">Após clicar em "Comprar Agora", vais ser redirecionado para o pagamento seguro via ifthenpay. O eBook será enviado para o teu e-mail após a confirmação do pagamento.</p>
+                <h3>Escolha onde comprar o eBook:</h3>
+                <div class="botoes-compra">
+                    <a href="https://amzn.eu/d/gGC3jrY" target="_blank" class="btn-comprar">
+                        <i class="fas fa-shopping-cart"></i> Comprar na Amazon
+                    </a>
+                    
+                    <a href="https://hotmart.com/pt-br/marketplace/produtos/gestao-da-mudanca-estrategias-para-impulsionar-a-transformacao-organizacional/O99582309U" target="_blank" class="btn-comprar">
+                        <i class="fas fa-shopping-cart"></i> Comprar na Hotmart
+                    </a>
+                </div>
+                <p class="aviso-pagamento">Escolha a plataforma de sua preferência para adquirir o eBook. Após a compra, você receberá instruções para download.</p>
             </div>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2025 Share2Inspire. Todos os direitos reservados.</p>
     </footer>
-
     <script src="/../js/loja-scripts.js"></script>
+    <!-- Adicionando Font Awesome para os ícones -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
