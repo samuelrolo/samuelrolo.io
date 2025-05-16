@@ -5,44 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre o Fundador - SHARE2INSPIRE - Samuel Rolo</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header (será comum a todas as páginas) -->
     <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/logo.png" alt="SHARE2INSPIRE Logo">
+            </a>
+        </div>
         <nav>
-            <div class="logo">
-                <img src="images/logo_white.png" alt="SHARE2INSPIRE Logo" id="nav-logo">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="index.html#areas-chave">Áreas-chave</a></li>
+                <li><a href="index.html#servicos">Serviços</a></li>
+                <li><a href="sobre.html" class="active">Sobre o Fundador</a></li>
+                <li><a href="index.html#loja">Loja</a></li>
+                <li><a href="index.html#contactos">Contactos</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
             </div>
-            <!-- O menu de navegação será atualizado para o menu lateral -->
         </nav>
     </header>
 
-    <!-- Menu Lateral (será comum a todas as páginas) -->
-    <aside class="sidebar-menu">
-        <!-- Conteúdo do menu lateral virá aqui -->
-    </aside>
-
-    <main class="content-with-sidebar">
-        <section id="sobre-fundador" class="content-section page-section">
+    <main>
+        <section id="sobre-fundador" class="page-section">
             <h2>Sobre o Fundador</h2>
             <div class="fundador-content">
-                <img src="assets/img/fundador.png" alt="Foto do Fundador Samuel Rolo">
+                <img src="assets/img/FUNDADOR.jpg" alt="Foto do Fundador Samuel Rolo" class="fundador-foto">
                 <div>
                     <p>Samuel Rolo, fundador da SHARE2INSPIRE, é um especialista em desenvolvimento de liderança e gestão de talentos com mais de uma década de experiência. A sua paixão por inspirar outros a alcançar o seu potencial máximo é a força motriz por detrás de cada projeto e iniciativa.</p>
                     <p>Com uma abordagem prática e focada em resultados, Samuel combina conhecimentos teóricos sólidos com uma vasta experiência no terreno, ajudando líderes e equipas a transformar desafios em oportunidades de crescimento.</p>
                 </div>
             </div>
+        </section>
 
+        <section id="experiencia-detalhada" class="page-section">
+            <h2>Experiência Profissional Detalhada</h2>
+            
             <div class="experiencia-profissional">
-                <h3>Experiência Profissional</h3>
-                
                 <div class="experiencia-card">
                     <img src="assets/img/logos/apg_logo.png" alt="Logótipo APG" class="experiencia-logo">
                     <div class="experiencia-detalhes">
                         <h4>APG - Associação Portuguesa de Gestão das Pessoas</h4>
-                        <p><strong>Função:</strong> Project Manager (Voluntário), Comissão de Gestão de Pessoas no Setor Social</p>
+                        <p><strong>Função:</strong> Gestor de Projeto, Comissão de Gestão de Pessoas no Setor Social</p>
                         <p><strong>Período:</strong> Abr 2025 - Presente</p>
                         <p><strong>Responsabilidades:</strong> Coordenação de projetos e apoio a práticas estratégicas de gestão de pessoas no setor social.</p>
                         <p><strong>Competências Chave:</strong> Gestão de Projetos, Empreendedorismo Social, Gestão de Pessoas, Setor Social.</p>
@@ -137,9 +145,11 @@
                     </div>
                 </div>
             </div>
+        </section>
 
+        <section id="recomendacoes" class="page-section">
+            <h2>Recomendações</h2>
             <div class="recomendacoes">
-                <h3>Recomendações</h3>
                 <div class="recomendacao-card">
                     <img src="assets/img/recommendations/Marta.png" alt="Foto de Marta Oliveira Dias" class="recomendacao-foto">
                     <div class="recomendacao-conteudo">
@@ -180,7 +190,7 @@
                         <p class="recomendacao-cargo">Director de Recursos Humanos</p>
                     </div>
                 </div>
-                 <div class="recomendacao-card">
+                <div class="recomendacao-card">
                     <img src="assets/img/recommendations/Jose.png" alt="Foto de José Subtil" class="recomendacao-foto">
                     <div class="recomendacao-conteudo">
                         <p class="recomendacao-texto">"O Samuel é além de um profissional extremamente disponível e conhecedor da sua área de actuação, um ser humano ímpar. Procura congregar as ideias do grupo para encontrar soluções que sejam sempre focadas em resultados. Foi um prazer imensurável trabalhar com o Samuel pois mais uma vez tive a certeza que vale mais trabalhar com e do que com pessoas boas..."</p>
@@ -192,6 +202,27 @@
                     <img src="assets/img/recommendations/Ivo.png" alt="Foto de Ivo Guimarães" class="recomendacao-foto">
                     <div class="recomendacao-conteudo">
                         <p class="recomendacao-texto">"O Samuel é um profissional de excelência, com uma capacidade de trabalho e dedicação ímpares. A sua visão estratégica e a sua capacidade de liderança são notáveis, e a sua paixão por desenvolver pessoas é contagiante. Tive o privilégio de trabalhar com o Samuel em diversos projectos e aprendi muito com ele. Recomendo vivamente o seu trabalho!"</p>
+                        <p class="recomendacao-autor"><strong>Ivo Guimarães</strong></p>
+                        <p class="recomendacao-cargo">Gestão de Talento | RH Analítico | Transformação Digital | SAP Success Factors | LMS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 SHARE2INSPIRE por Samuel Rolo. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" title="LinkedIn de Samuel Rolo" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/share2inspire_" target="_blank" title="Visitar Instagram @share2inspire_" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>mente o seu trabalho!"</p>
                         <p class="recomendacao-autor"><strong>Ivo Guimarães</strong></p>
                         <p class="recomendacao-cargo">Gestão de Talento | RH Analítico | Transformação Digital | SAP Success Factors | LMS</p>
                     </div>
