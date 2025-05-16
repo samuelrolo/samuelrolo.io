@@ -1419,3 +1419,46 @@ footer .footer-content a:hover {
 #hr-innovation-hub .newsletter-stats .newsletter-stat-card div:last-of-type { /* Text description */
     color: #495057 !important; /* Dark grey text for readability on white background */
 }
+
+.payment-methods {
+    margin: 20px 0;
+}
+
+.payment-method-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.payment-method {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    width: calc(50% - 10px);
+    transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+    border-color: #3498db;
+    background-color: #f8f9fa;
+}
+
+.payment-method.selected {
+    border-color: #3498db;
+    background-color: #e8f4fc;
+}
+
+.payment-method i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .payment-method {
+        width: 100%;
+    }
+}
