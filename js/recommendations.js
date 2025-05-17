@@ -28,7 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 slide.className = 'recomendacao-card carousel-slide';
                 
                 const img = document.createElement('img');
-                img.src = recommendation.avatar;
+                // Corrigir o caminho das imagens para apontar para a pasta assets/img/recommendations
+                const imageName = recommendation.avatar.split('/').pop();
+                img.src = `assets/img/recommendations/${imageName}`;
+                
+                // Verificar especificamente para João Lince e Joana Russinho
+                if (recommendation.name === "João Miguel Lince") {
+                    img.src = "assets/img/recommendations/Joao_Lince.jpeg";
+                } else if (recommendation.name === "Joana Russinho") {
+                    img.src = "assets/img/recommendations/default_avatar.png";
+                }
                 img.alt = `Foto de ${recommendation.name}`;
                 img.className = 'recomendacao-foto';
                 img.onerror = function() {

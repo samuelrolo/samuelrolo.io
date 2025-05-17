@@ -1,7 +1,7 @@
-/* Estilos gerais - Herdar cores base do HTML principal se possível */
+/* Estilos gerais - Alinhados com o site principal */
 :root {
-    /* Define color variables locally for this page */
-    --primary-color: #B8860B; /* DarkGoldenrod */
+    /* Define color variables to match main site */
+    --primary-color: #B08D57; /* Gold color from main site */
     --secondary-color: #333333; /* Dark Gray/Near Black */
     --accent-color: #D4AF37; /* Gold (alternative accent) */
     --white: #ffffff;
@@ -228,6 +228,51 @@ main {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
+}
+
+.booking-actions button, 
+.booking-actions .btn,
+button[type="submit"],
+input[type="button"] {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.booking-actions button:first-child,
+.booking-actions .btn:first-child,
+button[id="voltar"],
+.btn-secondary {
+    background-color: #6c757d;
+    color: var(--white);
+}
+
+.booking-actions button:first-child:hover,
+.booking-actions .btn:first-child:hover,
+button[id="voltar"]:hover,
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.booking-actions button:last-child,
+.booking-actions .btn:last-child,
+button[id="confirmar-marcacao"],
+button[type="submit"],
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.booking-actions button:last-child:hover,
+.booking-actions .btn:last-child:hover,
+button[id="confirmar-marcacao"]:hover,
+button[type="submit"]:hover,
+.btn-primary:hover {
+    background-color: #9a7b4a;
 }
 
 /* Políticas de marcação */

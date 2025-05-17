@@ -72,7 +72,7 @@ header#main-header {
 }
 
 #header-logo {
-    height: 210px; /* Reduzido de 280px para 210px (redução de 25%) */
+    height: 150px; /* Reduzido de 280px para 150px para melhor visualização em mobile */
     width: auto;
     object-fit: contain;
 }
@@ -184,13 +184,13 @@ nav.top-nav {
 
     .logo-container {
         margin-bottom: 0;
-        height: 80px;
+        height: 60px; /* Reduzido para melhor visualização em mobile */
         width: auto;
         padding: 5px;
     }
 
     #header-logo {
-        height: 70px;
+        height: 50px; /* Reduzido para melhor visualização em mobile */
     }
 
     nav.top-nav {
@@ -258,8 +258,13 @@ nav.top-nav {
 
 /* Conteúdo Principal - Ajustar padding-top para o header */
 main {
-    padding-top: 0; /* Header is relative, not fixed, so no main padding needed unless header becomes fixed */
-    /* If header#main-header becomes fixed, add padding-top: <header_height>; e.g., 450px */
+    padding-top: 170px; /* Ajustado para a altura do header fixo */
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 80px; /* Ajustado para a altura do header fixo em mobile */
+    }
 }
 
 .page-section {
@@ -623,6 +628,11 @@ section#hero.hero-section.page-section .hero-subtitle {
     text-align: center;
     border: 1px solid #333;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .dashboard-item i {
@@ -642,6 +652,9 @@ section#hero.hero-section.page-section .hero-subtitle {
     display: block;
     font-size: 0.85em;
     color: #ffffff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 /* Recomendações */

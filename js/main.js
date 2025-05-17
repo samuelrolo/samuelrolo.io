@@ -89,11 +89,11 @@ document.addEventListener("DOMContentLoaded", function() {
         menuToggle.addEventListener("click", function(e) {
             e.preventDefault();
             e.stopPropagation();
-            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true" || false;
-            menuToggle.setAttribute("aria-expanded", !isExpanded);
             menuItems.classList.toggle("active");
             hamburgerIcon.classList.toggle("active");
-            console.log("Menu toggle clicked, isExpanded:", !isExpanded);
+            const isExpanded = menuItems.classList.contains("active");
+            menuToggle.setAttribute("aria-expanded", isExpanded);
+            console.log("Menu toggle clicked, isExpanded:", isExpanded);
         });
         
         // Fechar menu ao clicar fora
