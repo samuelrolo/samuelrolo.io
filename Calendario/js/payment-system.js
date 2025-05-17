@@ -11,31 +11,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Configurar seleção de método de pagamento
         setupPaymentMethodSelection: function() {
+            // Selecionar todos os elementos de método de pagamento, tanto divs quanto botões
             const paymentMethods = document.querySelectorAll('.payment-method');
+            
+            console.log('Métodos de pagamento encontrados:', paymentMethods.length);
+            
             paymentMethods.forEach(method => {
                 method.addEventListener('click', function() {
-                    // Remover seleção anterior
+                    // Remover seleção anterior de todos os métodos de pagamento
                     paymentMethods.forEach(m => m.classList.remove('selected'));
                     // Adicionar seleção ao método clicado
                     this.classList.add('selected');
+                    
+                    // Registrar o método selecionado no console para debug
+                    console.log('Método de pagamento selecionado:', this.getAttribute('data-method'));
                 });
             });
         },
 
         // Configurar confirmação de pagamento
         setupPaymentConfirmation: function() {
-            const confirmButton = document.getElementById('confirm-booking');
+            const confirmButton = document.getElementById('confirm-booking-coaching');
             if (confirmButton) {
                 confirmButton.addEventListener('click', () => {
                     this.processPaymentFlow();
                 });
+            } else {
+                console.log('Botão de confirmação não encontrado');
             }
         },
 
         // Processar fluxo de pagamento
         processPaymentFlow: function() {
             // Verificar termos e condições
-            if (!document.getElementById('terms-accept').checked) {
+            if (!document.getElementById('terms-accept-coaching').checked) {
                 alert('Por favor, aceite os termos e condições para continuar.');
                 return;
             }
@@ -49,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Verificar se um método de pagamento foi selecionado
+        // Verificar se um método de pagamento foi selecionado
             const selectedPayment = document.querySelector('.payment-method.selected');
             if (!selectedPayment) {
                 alert('Por favor, selecione um método de pagamento.');

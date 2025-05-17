@@ -189,7 +189,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Feedback Stars Interaction - Improved
+    // Feedback Stars Interaction - Desativado para evitar conflito com feedback.js
+    /*
     const starRatingContainer = document.querySelector(".star-rating");
     if (starRatingContainer) {
         const stars = starRatingContainer.querySelectorAll(".fa-star");
@@ -270,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+    */
 
     const feedbackForm = document.getElementById("feedback-form");
     const feedbackMessage = document.getElementById("feedback-message");

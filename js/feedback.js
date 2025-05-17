@@ -9,52 +9,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Configuração das estrelas de avaliação
         if (stars.length > 0) {
+            // Função para resetar o visual das estrelas
+            function resetStarsVisual() {
+                stars.forEach(star => {
+                    star.classList.remove("fas");
+                    star.classList.add("far");
+                    star.style.color = '#ddd';
+                });
+            }
+
+            // Função para destacar estrelas até um valor específico
+            function highlightStars(value) {
+                stars.forEach((star, index) => {
+                    if (index < value) {
+                        star.classList.remove("far");
+                        star.classList.add("fas");
+                        star.style.color = '#B08D57';
+                    } else {
+                        star.classList.remove("fas");
+                        star.classList.add("far");
+                        star.style.color = '#ddd';
+                    }
+                });
+            }
+
             stars.forEach((star, index) => {
                 // Evento de hover nas estrelas
                 star.addEventListener("mouseover", () => {
-                    const hoverValue = index + 1;
-                    stars.forEach((s, i) => {
-                        if (i < hoverValue) {
-                            s.classList.remove("far");
-                            s.classList.add("fas");
-                            s.style.color = '#B08D57';
-                        } else {
-                            s.classList.remove("fas");
-                            s.classList.add("far");
-                            s.style.color = '#ddd';
-                        }
-                    });
+                    resetStarsVisual();
+                    highlightStars(index + 1);
                 });
 
                 // Evento de saída do hover
                 star.addEventListener("mouseout", () => {
-                    stars.forEach((s, i) => {
-                        if (i < currentRating) {
-                            s.classList.remove("far");
-                            s.classList.add("fas");
-                            s.style.color = '#B08D57';
-                        } else {
-                            s.classList.remove("fas");
-                            s.classList.add("far");
-                            s.style.color = '#ddd';
-                        }
-                    });
+                    resetStarsVisual();
+                    if (currentRating > 0) {
+                        highlightStars(currentRating);
+                    }
                 });
 
                 // Evento de clique nas estrelas
                 star.addEventListener("click", () => {
                     currentRating = index + 1;
-                    stars.forEach((s, i) => {
-                        if (i < currentRating) {
-                            s.classList.remove("far");
-                            s.classList.add("fas");
-                            s.style.color = '#B08D57';
-                        } else {
-                            s.classList.remove("fas");
-                            s.classList.add("far");
-                            s.style.color = '#ddd';
-                        }
-                    });
+                    resetStarsVisual();
+                    highlightStars(currentRating);
+                    console.log('Avaliação selecionada:', currentRating);
                 });
             });
         }
@@ -140,11 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset do formulário
                 feedbackForm.reset();
                 currentRating = 0;
-                stars.forEach(s => {
-                    s.classList.remove("fas");
-                    s.classList.add("far");
-                    s.style.color = '#ddd';
-                });
+                resetStarsVisual();
 
                 // Esconder a mensagem após alguns segundos
                 setTimeout(() => {

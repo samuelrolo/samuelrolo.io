@@ -39,12 +39,15 @@ body {
 
 /* Header com Logo */
 header#main-header {
-    position: relative;
+    position: fixed; /* Alterado de relative para fixed */
+    top: 0;
+    left: 0;
     width: 100%;
     color: #fff;
     background-color: #121212;
     overflow: visible;
     padding: 15px 0;
+    z-index: 1000; /* Garantir que o menu fica acima de outros elementos */
 }
 
 .header-content {
@@ -61,12 +64,13 @@ header#main-header {
 .logo-container {
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 5px; /* Reduzido de 10px para 5px */
     background-color: transparent;
+    margin-bottom: 5px; /* Reduzido para minimizar o espaço */
 }
 
 #header-logo {
-    height: 320px;
+    height: 280px; /* Reduzido de 320px para 280px */
     width: auto;
     object-fit: contain;
 }
