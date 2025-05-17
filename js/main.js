@@ -353,50 +353,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Recommendations Carousel Logic - Updated to load from JSON
-    const carousel = document.querySelector(".carousel-container");
-    if (carousel) {
-        const slidesContainer = carousel.querySelector(".carousel-slides");
-        const nextButton = carousel.querySelector(".carousel-button.next");
-        const prevButton = carousel.querySelector(".carousel-button.prev");
-        let currentIndex = 0;
-        let slides = []; // Initialize as empty, will be populated after fetch
-
-        const populateRecommendations = (recommendations) => {
-            if (!slidesContainer) return;
-            slidesContainer.innerHTML = ''; // Clear any existing static content
-
-            recommendations.forEach(rec => {
-                const slideDiv = document.createElement('div');
-                slideDiv.classList.add('recomendacao-card', 'carousel-slide');
-
-                const img = document.createElement('img');
-                img.src = rec.avatar; // Using the URL from JSON
-                img.alt = `Foto de ${rec.name}`;
-                img.classList.add('recomendacao-foto');
-                // Handle image loading errors gracefully
-                img.onerror = function() {
-                    this.alt = `Foto de ${rec.name}`;
-                    this.src = 'images/default_avatar.png'; // Provide a fallback image path
-                    console.warn(`Failed to load image: ${rec.avatar}. Using fallback.`);
-                };
-
-                const contentDiv = document.createElement('div');
-                contentDiv.classList.add('recomendacao-conteudo');
-
-                const textP = document.createElement('p');
-                textP.classList.add('recomendacao-texto');
-                textP.textContent = rec.text;
-
-                const authorP = document.createElement('p');
-                authorP.classList.add('recomendacao-autor');
-                const strongAuthor = document.createElement('strong');
-                strongAuthor.textContent = rec.name;
-                authorP.appendChild(strongAuthor);
-
-                const titleP = document.createElement('p');
-                titleP.classList.add('recomendacao-cargo');
-                titleP.textContent = rec.title;
+    // Recommendations Carousel Logic - REMOVIDO
+    // Esta lógica foi movida para o ficheiro recommendations.js
+    // para centralizar o carregamento das recomendações
 
                 contentDiv.appendChild(textP);
                 contentDiv.appendChild(authorP);
