@@ -262,145 +262,89 @@
         <section id="agendar" class="page-section">
             <h2>Agendar Sessão</h2>
             <p>Pronto para dar o próximo passo na sua jornada de desenvolvimento ou transformação? Agende uma sessão de Kickstart Pro ou Express Coaching.</p>
-            <a href="https://samuelrolo.github.io/samuelrolo.io/Calendario/index.html" class="btn btn-primary" target="_blank">Agendar Agora</a>
+            <a href="https://samuelrolo.github.io/samuelrolo.io/Calendario/index.html" class="btn btn-primary">Agendar Agora</a>
+        </section>
+
+        <section id="hr-innovation-hub" class="page-section">
+            <h2>HR Innovation Hub</h2>
+            <p>Um espaço dedicado à inovação e ao futuro da gestão de pessoas, onde partilhamos conhecimento, tendências e ferramentas para profissionais de RH e líderes.</p>
+            
+            <h3>Newsletter People Management Challenges</h3>
+            <p>Receba mensalmente insights, ferramentas práticas e reflexões sobre os desafios atuais da gestão de pessoas.</p>
+            
+            <div class="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Seu email" required>
+                <button type="submit" class="btn-gold" id="newsletter-submit">Subscrever</button>
+            </div>
+            
+            <h3>Recursos Gratuitos</h3>
+            <div class="recursos-grid" id="recursos-container">
+                <!-- Recursos serão carregados dinamicamente aqui -->
+            </div>
         </section>
 
         <section id="contactos" class="page-section">
             <h2>Contactos</h2>
-            <p>Entre em contacto para explorarmos como podemos colaborar.</p>
-            <div class="contactos-details">
-                <a href="mailto:srshare2inspire@gmail.com" title="Enviar email para srshare2inspire@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" title="Visitar LinkedIn de Samuel Rolo" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/share2inspire_" target="_blank" title="Visitar Instagram @share2inspire_" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <div class="contactos-grid">
+                <div class="contacto-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:srshare2inspire@gmail.com">srshare2inspire@gmail.com</a></p>
+                </div>
+                <div class="contacto-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/samuelrolo/" target="_blank">linkedin.com/in/samuelrolo</a></p>
+                </div>
+                <div class="contacto-item">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <p><a href="https://www.instagram.com/share2inspire_" target="_blank">@share2inspire_</a></p>
+                </div>
             </div>
         </section>
-
-        <section id="feedback-section" class="page-section">
-            <h2>Dá-nos o teu Feedback</h2>
-            <p>A tua opinião é importante para nós! Avalia a tua experiência com o site e serviços disponíveis</p>
-            <form id="feedback-form">
-                <div class="star-rating" role="radiogroup" aria-label="Avaliação de 1 a 5 estrelas">
-                    <i class="far fa-star" data-value="1" role="radio" aria-label="Avaliar como 1 estrela" aria-checked="false" tabindex="0"></i>
-                    <i class="far fa-star" data-value="2" role="radio" aria-label="Avaliar como 2 estrelas" aria-checked="false" tabindex="0"></i>
-                    <i class="far fa-star" data-value="3" role="radio" aria-label="Avaliar como 3 estrelas" aria-checked="false" tabindex="0"></i>
-                    <i class="far fa-star" data-value="4" role="radio" aria-label="Avaliar como 4 estrelas" aria-checked="false" tabindex="0"></i>
-                    <i class="far fa-star" data-value="5" role="radio" aria-label="Avaliar como 5 estrelas" aria-checked="false" tabindex="0"></i>
-                </div>
-                <textarea id="feedback-text" name="feedback-text" rows="4" placeholder="Deixa o teu comentário aqui..."></textarea>
-                <button type="submit" class="btn-gold">Enviar Feedback</button>
-                <div id="feedback-message" style="display:none;"></div>
-            </form>
-        </section>    </main>
+    </main>
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 SHARE2INSPIRE por Samuel Rolo. Todos os direitos reservados.</p>
-            <p>
-                <a href="politica_privacidade.pdf" target="_blank">Política de Privacidade</a> | 
-                <a href="informacao_legal.pdf" target="_blank">Informação Legal</a>
-            </p>
+            <div class="footer-logo">
+                <img src="images/logo_share2inspire_gold_transparent.png" alt="Share2Inspire Logo" class="footer-logo-img">
+            </div>
+            <div class="footer-links">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#intro">Sobre</a></li>
+                    <li><a href="sobre.html">Sobre o Fundador</a></li>
+                    <li><a href="#hr-innovation-hub">HR Hub</a></li>
+                    <li><a href="#loja">Loja</a></li>
+                    <li><a href="#agendar">Agendar</a></li>
+                    <li><a href="#contactos">Contactos</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/samuelrolo/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/share2inspire_" target="_blank" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SHARE2INSPIRE. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <div id="service-request-modal" class="modal">
+    <div id="survey-modal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 id="service-request-title">Solicitar Serviço</h2>
-            <form id="service-request-form">
-                <input type="hidden" id="service-type" name="service-type" value="">
-                <div class="form-group">
-                    <label for="name">Nome Completo</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Telefone</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-                <div class="form-group">
-                    <label for="company">Empresa (se aplicável)</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="message">Mensagem</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="how-found">Como nos encontrou?</label>
-                    <select id="how-found" name="how-found">
-                        <option value="">Selecione uma opção</option>
-                        <option value="search">Pesquisa na Internet</option>
-                        <option value="social">Redes Sociais</option>
-                        <option value="recommendation">Recomendação</option>
-                        <option value="other">Outro</option>
-                    </select>
-                </div>
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
-                    <label for="privacy-policy">Li e aceito a <a href="politica_privacidade.html" target="_blank">Política de Privacidade</a></label>
-                </div>
-                <button type="submit" class="btn-gold">Enviar Solicitação</button>
-            </form>
+            <span class="close-modal">&times;</span>
+            <h2>Questionário dos Arquétipos de Liderança</h2>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfLxVzBUzYWLVYRUKWViJQJMwrjH5SnCZJXRfHI_yvDNE1yjw/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
         </div>
     </div>
 
-    <div id="survey-widget-modal" class="modal">
-        <div class="modal-content survey-modal-content">
-            <span class="close-button">&times;</span>
-            <iframe src="survey_widget/index.html" frameborder="0" width="100%" height="600px"></iframe>
-        </div>
-    </div>
-
-    <div id="newsletter-modal" class="modal">
-        <div class="modal-content newsletter-modal-content">
-            <span class="close-button">&times;</span>
-            <div class="newsletter-container">
-                <h2>HR Innovation Hub</h2>
-                <p>Subscreve a nossa newsletter para receberes conteúdos exclusivos sobre Gestão da Mudança, Transformação Organizacional e Desenvolvimento de Liderança.</p>
-                <form id="newsletter-form">
-                    <div class="form-group">
-                        <label for="newsletter-name">Nome</label>
-                        <input type="text" id="newsletter-name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newsletter-email">Email</label>
-                        <input type="email" id="newsletter-email" name="email" required>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="newsletter-privacy" name="privacy" required>
-                        <label for="newsletter-privacy">Li e aceito a <a href="politica_privacidade.html" target="_blank">Política de Privacidade</a></label>
-                    </div>
-                    <button type="submit" class="btn-gold">Subscrever</button>
-                </form>
-                <div id="newsletter-message"></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="hr-innovation-hub" class="page-section">
-        <h2>HR Innovation Hub</h2>
-        <p>O HR Innovation Hub é um espaço dedicado à partilha de conhecimento e inovação na área de Recursos Humanos, Transformação Organizacional e Desenvolvimento de Liderança.</p>
-        
-        <div class="newsletter-preview">
-            <h3>Newsletter HR Innovation Hub</h3>
-            <p>Subscreve a nossa newsletter para receberes conteúdos exclusivos sobre Gestão da Mudança, Transformação Organizacional e Desenvolvimento de Liderança.</p>
-            <button id="open-newsletter-modal" class="btn-gold">Subscrever Newsletter</button>
-        </div>
-        
-        <div id="newsletter-content" class="newsletter-content">
-            <h3>Últimas Edições</h3>
-            <div class="newsletter-grid" id="newsletter-grid">
-                <!-- Conteúdo da newsletter será carregado dinamicamente aqui -->
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="newsletter_loader.js"></script>
-    <script src="main.js"></script>
-    <script src="https://static.hotmart.com/checkout/widget.min.js"></script>
 </body>
 </html>
