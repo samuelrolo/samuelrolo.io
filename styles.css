@@ -625,12 +625,12 @@ section#hero.hero-section.page-section .hero-subtitle {
 }
 
 .dashboard-item {
-    background-color: #ffffff;
+    background-color: #1e1e1e;
     padding: 1rem;
     border-radius: 0.3125rem;
     text-align: center;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    border: 1px solid #333;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
 .dashboard-item i {
@@ -1322,12 +1322,29 @@ footer .footer-content a:hover {
         font-size: 1em;
     }
     #sobre-fundador .fundador-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 30px;
+        text-align: left;
+    }
+    
+    #sobre-fundador .fundador-texto-container {
+        flex: 1;
+        max-width: 60%;
+    }
+    #sobre-fundador .fundador-foto-container {
+        flex: 0 0 auto;
+        width: 35%;
+        max-width: 350px;
+        margin-right: 20px;
     }
     #sobre-fundador .fundador-foto {
-        margin-bottom: 1rem;
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .dashboard-destaque {
         grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr)); /* 150px */
@@ -1421,9 +1438,9 @@ footer .footer-content a:hover {
 
 /* Specific styling for HR Innovation Hub Stats Cards (White Background) */
 #hr-innovation-hub .newsletter-stats .newsletter-stat-card {
-    background-color: #ffffff !important;
-    border: 1px solid #dee2e6 !important; /* Light border for white card */
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1) !important; /* Lighter shadow for white card */
+    background-color: #1e1e1e !important;
+    border: 1px solid #333 !important; /* Darker border for dark card */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3) !important; /* Stronger shadow for dark card */
     border-radius: 8px; /* Ensure consistent border radius */
 }
 
